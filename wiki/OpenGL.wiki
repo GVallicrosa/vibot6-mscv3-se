@@ -6,3 +6,10 @@ In this page we try to cover OpenGL technical issues. [http://en.wikipedia.org/w
 
 = Details =
 Coming soon. :)
+
+== Installation ==
+In this section we cover how to install OpenGL in your machine step by step.
+
+= References =
+ # [http://www.opengl.org/ OpenGL official website]
+ # [http://en.wikipedia.org/wiki/OpenGL OpenGL in Wikipedia]
