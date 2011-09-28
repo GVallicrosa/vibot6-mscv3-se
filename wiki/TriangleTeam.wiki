@@ -20,10 +20,10 @@ Team manager and tech leader are *Pablo* and *Saurabh*, respectively.
 
 Links to OpenCV literature:
 
-#[http://www.cse.iitk.ac.in/users/vision/dipakmj/papers/OReilly%20Learning%20OpenCV.pdf Bradsky, Kaheler. Learning OpenCV: Computer Vision with the OpenCV Library. O'Reilly, 2008.]
+# [http://www.cse.iitk.ac.in/users/vision/dipakmj/papers/OReilly%20Learning%20OpenCV.pdf Bradsky, Kaheler. Learning OpenCV: Computer Vision with the OpenCV Library. O'Reilly, 2008.]
 
-#[http://ebookee.org/OpenCV-2-Computer-Vision-Application-Programming-Cookbook_1311289.html *Laganière. OpenCV 2 Computer Vision Application Programing Cookbook. Packt Publishing, 2011.]
+# [http://ebookee.org/OpenCV-2-Computer-Vision-Application-Programming-Cookbook_1311289.html *Laganière. OpenCV 2 Computer Vision Application Programing Cookbook. Packt Publishing, 2011.]
 
 Links to other projects:
 
-#[http://code.google.com/p/opencvstereovision/source/browse/#svn%2Ftrunk OpenCV Stereovision Using Qt.]
+# [http://code.google.com/p/opencvstereovision/source/browse/#svn%2Ftrunk OpenCV Stereovision Using Qt.]
