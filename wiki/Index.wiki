@@ -5,4 +5,4 @@
 Welcome to the google code site for the software engineering project
 
 List of teams:
-  *[HeartTeam]
+  * HeartTeam
