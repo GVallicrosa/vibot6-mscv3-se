@@ -9,12 +9,12 @@ Log for the triangle team. Triangle team is in charge of Matlab and OpenCV prese
 
 Team members and their tasks for week one are:
 
-==*OpenCV*==
+===OpenCV*===
 *Pablo Speciale
 *Federico Camposeco
 *Igor Jovanevic
 
-==*Matlab*==
+===Matlab===
 *Angga Reza Fardana
 *Saurabh Jain
 *Zhongyang Liu
