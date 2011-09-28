@@ -1,20 +1,25 @@
-#summary Team's Wiki and Log
+#summary Log and wiki for triangle team.
 
-= Introduction =
+= Objectives =
+Matlab and OpenCV. We intend to find specific useful functions for this project, both for Matlab and OpenCV. 
 
-Log for the triangle team. Triangle team is in charge of Matlab and OpenCV presentation.
+= Members =
+|| *Name* || *Main Topic* ||
+|| Saurabh Jain || Matlab ||
+|| Angga Reza || Matlab ||
+|| Zhongyang Liu || Matlab ||
+|| Pablo Speciale || OpenCV ||
+|| Igor Jovancevic || OpenCV ||
+|| Federico Camposeco  || OpenCV ||
 
+All the team members will know both topics (Matlab and OpenCV) so feel free to address any of the team members for both topics.
 
-= Details =
+Team manager and tech leader are *Pablo* and *Saurabh*, respectively.
 
-Team members and their tasks for week one are:
+=Links=
 
-===OpenCV*===
-*Pablo Speciale
-*Federico Camposeco
-*Igor Jovanevic
+Links to OpenCV literature:
 
-===Matlab===
-*Angga Reza Fardana
-*Saurabh Jain
-*Zhongyang Liu
+*http://www.cse.iitk.ac.in/users/vision/dipakmj/papers/OReilly%20Learning%20OpenCV.pdf
+
+*http://ebookee.org/OpenCV-2-Computer-Vision-Application-Programming-Cookbook_1311289.html
