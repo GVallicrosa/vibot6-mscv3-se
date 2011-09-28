@@ -4,10 +4,10 @@
 The objectives of this group are to cover C++ and OpenGL technical issues and present it to the rest of students.
 
 = Members =
- || *Name* || *Role* ||
- || Corina || Manager ||
- || Guillem || ||
- || Taman || ||
- || Danupol (Big) || ||
- || Shreyansh || ||
- || Arash  || ||
+|| *Name* || *Role* ||
+|| Corina || Manager ||
+|| Guillem || ||
+|| Taman || ||
+|| Danupol (Big) || ||
+|| Shreyansh || ||
+|| Arash  || ||
