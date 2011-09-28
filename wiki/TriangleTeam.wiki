@@ -1,0 +1,20 @@
+#summary Team's Wiki and Log
+
+= Introduction =
+
+Log for the triangle team. Triangle team is in charge of Matlab and OpenCV presentation.
+
+
+= Details =
+
+Team members and their tasks for week one are:
+
+==*OpenCV*==
+*Pablo Speciale
+*Federico Camposeco
+*Igor Jovanevic
+
+==*Matlab*==
+*Angga Reza Fardana
+*Saurabh Jain
+*Zhongyang Liu
