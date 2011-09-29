@@ -11,13 +11,13 @@ Coming soon. :)
 In this section we cover how to install OpenGL in your machine step by step.
 
 
-=== CodeBlocks ===
+=== Code Blocks ===
 Since it seems must of the people have been manipulated by using the CodeBlock, I tried first to install glut for that IDE.
 
  # Download glut-3.7.6-bin from this link.
  # Copy glut32.dll to c:\windows\system,
- # Copy glut32.lib to C:\Program Files (x86)\\CodeBlocks\MinGW\lib (The path might be different on your machine, but very similar to this one, depending on the Windows you're using.)
- # Copy glut.h to c:\Program Files (x86)\\CodeBlocks\MinGW\include\GL.
+ # Copy glut32.lib to C:\Program Files (x86)\Code Blocks\MinGW\lib (The path might be different on your machine, but very similar to this one, depending on the Windows you're using.)
+ # Copy glut.h to c:\Program Files (x86)\Code Blocks\MinGW\include\GL.
 
 It's not yet fully done, more things need to be fixed in the code, will write it in the morning.
 
