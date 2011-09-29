@@ -5,9 +5,9 @@ Build a framework for communication and a system where everyone can keep up to d
 
 = Members =
 || *Name* || *Main Topic* ||
-Raquel Gil || Manager
-Jose Franco || Tech lead
-Hamed Mohammadbagher ||
-Nathanael Lemessa Baisa ||
-Joel Vidal ||
-Gao Lijia ||
+Raquel Gil || Manager ||
+Jose Franco || Tech lead ||
+Hamed Mohammadbagher || ||
+Nathanael Lemessa Baisa || ||
+Joel Vidal || ||
+Gao Lijia || ||
