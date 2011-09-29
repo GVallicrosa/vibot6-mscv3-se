@@ -1,0 +1,5 @@
+#summary Requirements to follow while developing the project
+
+= Introduction =
+
+CloudTeam can use this page to post the requirements they discussed with Yohan
