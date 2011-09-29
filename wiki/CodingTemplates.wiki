@@ -1,0 +1,5 @@
+#summary Coding style for the project
+
+= Introduction =
+
+BlankTeam can put here the coding style they decide is best for the project
