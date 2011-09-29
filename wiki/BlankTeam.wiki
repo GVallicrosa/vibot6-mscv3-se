@@ -1,0 +1,11 @@
+#summary Log and wiki for the blank team
+
+= Objectives =
+
+Do a presentation on software engineering and create different templates
+
+= Members =
+|| *Name* || *Main Topic* ||
+
+
+=Links=
