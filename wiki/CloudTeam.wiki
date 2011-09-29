@@ -1,0 +1,9 @@
+#summary Log and wiki for cloud team.
+
+= Objectives =
+
+= Members =
+|| *Name* || *Main Topic* ||
+
+
+=Links=
