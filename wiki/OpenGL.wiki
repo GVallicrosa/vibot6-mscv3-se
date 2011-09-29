@@ -41,6 +41,9 @@ In order to use Eigen, you just need to download and extract Eigen's source code
 
 *This is not related to OpenGL, but necessary to compile the code we got for the project, I'm going to migrate it tomorrow to somewhere more approperiate.*
 
+= Tutorial =
+[http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete tutorial, video, description, code, etc. Hope you enjoy it! :D
+
 = References =
  # [http://www.opengl.org/ OpenGL official website]
  # [http://en.wikipedia.org/wiki/OpenGL OpenGL in Wikipedia]
