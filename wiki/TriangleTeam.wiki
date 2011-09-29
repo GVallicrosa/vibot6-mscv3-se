@@ -27,3 +27,5 @@ Team manager and tech leader are *Pablo* and *Saurabh*, respectively.
 ===Links to other projects:===
 
 [http://code.google.com/p/opencvstereovision/source/browse/#svn%2Ftrunk OpenCV Stereovision Using Qt.]
+
+[http://opencv.willowgarage.com/wiki/CodeBlocks CodeBlocks + OpenCV]
