@@ -3,7 +3,7 @@
 = Introduction =
 Welcome to the google code site for the software engineering project.
 
-=People=
+=Members=
 
 The list of members working on the project and their skills can be checked in google docs.
 
