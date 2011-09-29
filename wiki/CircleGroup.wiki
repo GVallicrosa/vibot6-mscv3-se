@@ -10,4 +10,4 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 || Taman || ||
 || Danupol (Big) || ||
 || Shreyansh || ||
-|| Arash  || TechLead ||
+|| Arash  ||  ||
