@@ -1,8 +1,23 @@
 #summary Covering technicality of OpenGL.
 
 = Introduction =
-In this page we try to cover OpenGL technical issues. [http://en.wikipedia.org/wiki/OpenGL Open Graphics Library (OpenGL)] is a standard specification defining a cross-language, cross-platform API for writing applications that produce 2D and 3D computer graphics.
+In this page we try to cover OpenGL technical issues. [http://en.wikipedia.org/wiki/OpenGL Open Graphics Library (OpenGL)] is a standard specification defining a cross-language, cross-platform API for writing applications that produce 2D and 3D computer graphics. In short, OpenGL is a standard (not a library) to make a same code to be able to use use in different machine, different language, different platform, etc.
 
+There are many libraries that agree with this standard e.g. GLUT, GLEW. One library has its own advantage to the other, but the most basic one (which should be enough) is GLUT (OpenGL Utility Toolkit).
+
+= What can GLUT do? =
+GLUT provides most of APIs to present the information (image and 3D model) through screen, some connections with window, lighting, interface to render engine, interface to write shader, etc.
+  * create window with mouse and keyboard handle to display something
+  * place camera
+  * drawing something (triangle, cube, sphere)
+  * matrix operation (for transform object, camera projection, etc)
+  * create light source
+  * load and apply material
+  * interface with user shader
+  * render image
+  * much more! :D
+
+N.B. GLUI (OpenGL User Interface Library) which based on GLUT can provide you common controls such as buttons, checkboxes, radio buttons, and spinners to OpenGL applications. It is window- and operating system independent, relying on GLUT to handle all system-dependent issues, such as window and mouse management. However, GLUI is depricated to create GUI. Other library/framework like WxWidget, Qt, GTK are recommended.
 
 = Details =
 Coming soon. :)
