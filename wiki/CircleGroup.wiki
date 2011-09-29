@@ -5,9 +5,9 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 
 = Members =
 || *Name* || *Role* ||
-|| Corina || Manager ||
-|| Guillem || ||
-|| Taman || ||
-|| Danupol (Big) || ||
-|| Shreyansh || ||
-|| Arash  || TechLead||
+|| Corina || C++ ||
+|| Guillem || C++ ||
+|| Taman || C++ ||
+|| Danupol (Big) || OpenGL ||
+|| Shreyansh || C++ ||
+|| Arash  || OpenGL ||
