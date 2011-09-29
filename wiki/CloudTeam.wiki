@@ -1,4 +1,5 @@
 #summary Log and wiki for cloud team.
+In charge of drafting a formal list of requirements to use throughout the project
 
 = Objectives =
 
