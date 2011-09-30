@@ -26,7 +26,7 @@ sudo apt-get install libsvn-java
   # Press 'finish'. Now the code will be checked out into your computer. It might take sometime, because of the size of images.
   # When it's completed switch back to C/C++ perspective and voila you got the code. 
  * Compiling on eclipse
-  # When you're in the C/C++ perspective, right click on the project and go to 'run as' and run it as C/C++ application.
+  # When you're in the C/C++ perspective, right click on the project and go to 'run as' and run it as 'local C/C++ application'.
 
 == Terminal ==
  # Check out the code by running following command. (Of course change akbarinia.arash@gmail.com to your username.
@@ -46,6 +46,12 @@ make install
 The application should be running now.
 
 == Code Blocks ==
+ # Checkout the code as mentioned in the terminal version.
+ # Create an empty Code Blocks project and add all the files to the project you just created.
+ # Right click on the project you created and go to properties.
+ # In the 'project settings' tab, check the 'this is custom makefile', and give the path to the makefile in 'vibot6_mscv3' folder, which just checked out.
+ # Run the code!
+*I haven't tested it with Code Blocks, so I cant grantee that the instructions I wrote works 100% properly, so you might have to perform some additional steps. But, I can grantee that it should work in Code Blocks with the 'custom make file'.*
 
 = Windows =
 
