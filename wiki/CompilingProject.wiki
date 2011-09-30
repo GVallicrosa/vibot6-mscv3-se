@@ -29,6 +29,21 @@ sudo apt-get install libsvn-java
   # Coming soon.
 
 == Terminal ==
+ # Check out the code by running following command. (Of course change akbarinia.arash@gmail.com to your username.
+{{{
+svn checkout https://vibot6-mscv3-se.googlecode.com/svn/trunk/ vibot6-mscv3-se --username akbarinia.arash@gmail.com
+}}}
+ # Navigate to the vibot6_mscv3 folder.
+ # Run this command.
+{{{
+make install
+}}}
+ # When compilation is done, run this command.
+{{{
+./vibot6_mscv3
+}}}
+
+The application should be running now.
 
 == Code Blocks ==
 
