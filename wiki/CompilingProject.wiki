@@ -26,7 +26,7 @@ sudo apt-get install libsvn-java
   # Press 'finish'. Now the code will be checked out into your computer. It might take sometime, because of the size of images.
   # When it's completed switch back to C/C++ perspective and voila you got the code. 
  * Compiling on eclipse
-  # Coming soon.
+  # When you're in the C/C++ perspective, right click on the project and go to 'run as' and run it as C/C++ application.
 
 == Terminal ==
  # Check out the code by running following command. (Of course change akbarinia.arash@gmail.com to your username.
