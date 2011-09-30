@@ -20,7 +20,11 @@ sudo apt-get install eclipse-cdt
 sudo apt-get install libsvn-java
 }}}
   # Open your eclipse again and press 'window' menu, and submenu 'open perspective' and press on 'other'. When the menu is opened click on 'SVN Repository Exploring'.
-  # *I finish this instructions after lecture! :)* 
+  # Right click on the 'SVN Repositories' perspective (usually located on the left of screen), and go to 'new'and then 'repository location'.
+  # Provide this link https://vibot6-mscv3-se.googlecode.com/svn/trunk/ and press finish.
+  # Expand the repository. When the contents of repository is loaded, right click on the 'vibot6_mscv3' folder and press on 'checkout'
+  # Press 'finish'. Now the code will be checked out into your computer. It might take sometime, because of the size of images.
+  # When it's completed switch back to C/C++ perspective and voila you got the code. 
  * Compiling on eclipse
   # Coming soon.
 
