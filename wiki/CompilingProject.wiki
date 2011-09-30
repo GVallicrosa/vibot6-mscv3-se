@@ -6,6 +6,12 @@ In this page we'll go through a step by step instruction on how to compile the c
 = Linux =
 An eclipse project is created for our source code, however no one is forced to use that IDE, if you don't like it. Since now we got a makefile for our project, you can simply run the code from terminal if you like to do so, or if you like some other IDEs, let say Code Blocks, you can export the project to that IDE and use our makefile to compile the code and run it. Here, I'll try to cover three different options, eclipse, terminal, and Code Blocks.
 
+== Glut ==
+You need to install glut library before you continue this tutorial. You can easily do it by running the following command.
+{{{
+sudo apt-get install glutg3 glutg3-dev
+}}}
+
 == Eclipse ==
  * Setting up eclipse
   # Install eclipse-cdt on your machine by running the following command in the terminal (you can run the terminal by pressing the shortcut ctrl + alt + t).
