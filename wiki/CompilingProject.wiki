@@ -7,14 +7,22 @@ In this page we'll go through a step by step instruction on how to compile the c
 An eclipse project is created for our source code, however no one is forced to use that IDE, if you don't like it. Since now we got a makefile for our project, you can simply run the code from terminal if you like to do so, or if you like some other IDEs, let say Code Blocks, you can export the project to that IDE and use our makefile to compile the code and run it. Here, I'll try to cover three different options, eclipse, terminal, and Code Blocks.
 
 == Eclipse ==
- # Install eclipse-cdt on your machine by running the following command in the terminal (you can run the terminal by pressing the shortcut ctrl + alt + t).
+ * Setting up eclipse
+  # Install eclipse-cdt on your machine by running the following command in the terminal (you can run the terminal by pressing the shortcut ctrl + alt + t).
 {{{
 sudo apt-get install eclipse-cdt
 }}}
- # Open your eclipse and go to the 'help' menu, and then click on 'install new software'.
- # Enter this link in the 'work with' box and press enter. http://subclipse.tigris.org/update_1.6.x
- # In the box below expand 'subclipse' and check the three 'required' options. (Subclipse (Required), Subversion Client Adapter (Required), Subversion JavaHL Native Library Adapter (Required)). And press on finish and follow the instruction to complete the installation.
- # *I finish this instructions after lecture! :)* 
+  # Open your eclipse and go to the 'help' menu, and then click on 'install new software'.
+  # Enter this link in the 'work with' box and press enter. http://subclipse.tigris.org/update_1.6.x
+  # In the box below expand 'subclipse' and check the three 'required' options. (Subclipse (Required), Subversion Client Adapter (Required), Subversion JavaHL Native Library Adapter (Required)). And press on finish and follow the instruction to complete the installation
+  # Close your eclipse and run the following command in terminal.
+{{{
+sudo apt-get install libsvn-java
+}}}
+  # Open your eclipse again and press 'window' menu, and submenu 'open perspective' and press on 'other'. When the menu is opened click on 'SVN Repository Exploring'.
+  # *I finish this instructions after lecture! :)* 
+ * Compiling on eclipse
+  # Coming soon.
 
 == Terminal ==
 
