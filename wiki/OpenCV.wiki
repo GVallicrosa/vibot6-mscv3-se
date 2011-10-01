@@ -1,0 +1,28 @@
+#summary Installation and references
+
+=Installation Guide=
+
+==Official Guide==
+
+http://opencv.willowgarage.com/wiki/MinGW#OpenCV2.2 
+
+==Troubleshooting==
+
+For Windows XP, after successful compilation of the library your program might crash. If so, go to: 
+
+http://stackoverflow.com/questions/4609069/opencv-2-2-windows-xp-mingw-build-crashes-on-namedwindow-imshow
+
+=Links=
+
+[http://opencv.willowgarage.com/documentation/cpp/index.html Main Documentation for the 2.2 version]
+
+===Links to OpenCV literature:===
+
+[http://www.cse.iitk.ac.in/users/vision/dipakmj/papers/OReilly%20Learning%20OpenCV.pdf Bradsky, Kaheler. Learning OpenCV: Computer Vision with the OpenCV Library. O'Reilly, 2008.]
+
+[http://ebookee.org/OpenCV-2-Computer-Vision-Application-Programming-Cookbook_1311289.html Laganière. OpenCV 2 Computer Vision Application Programing Cookbook. Packt Publishing, 2011.]
+
+===Links to other projects:===
+
+[http://code.google.com/p/opencvstereovision/source/browse/#svn%2Ftrunk OpenCV Stereovision Using Qt.]
+
