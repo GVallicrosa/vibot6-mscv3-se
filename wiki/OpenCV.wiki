@@ -1,6 +1,6 @@
 #summary Installation and references
 
-=OpenCV=
+
 
 ==Introduction==
 
