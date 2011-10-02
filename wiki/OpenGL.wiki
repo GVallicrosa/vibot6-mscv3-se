@@ -74,6 +74,7 @@ comming soon :D
 = Tutorial =
  * [http://www.cs.uccs.edu/~semwal/indexGLTutorial.html Tutorial by University of Colorado]
  * [http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete description, video, example code, etc. It will be good for starter. Hope you enjoy it! :D
+ * [http://www.opengl.org/resources/code/samples/redbook/ A few sample codes]
 
 = References =
  # [http://www.opengl.org/ OpenGL official website]
