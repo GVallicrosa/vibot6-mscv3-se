@@ -56,12 +56,11 @@ In order to use Eigen, you just need to download and extract Eigen's source code
     * *glutPassiveMotionFunc(passiveMotion);* - bind the callback function name 'passiveMotion'. When the mouse is moved within the window while no mouse buttons are pressed, the function is called.
     * *glutMouseFunc(mouse);* - bind the callback function name 'mouse'. When the mouse is clicked, the function is called.
     * *glutKeyboardFunc(keyboard);* - bind the callback function name 'keyboard'. When the key is pressed, the function is called. This function detect only 'char' keys.
-  * Rare, but still it is in the project...
-    * *glutSpecialFunc(Special);* - bind the callback function name 'keyboard'. When the key is pressed, the function is called. This function detect any keys.
+  * Rare, but still they are in the project...
+    * *glutSpecialFunc(special);* - bind the callback function name 'special'. When the key is pressed, the function is called. This function detect any keys.
     * *glBindTexture()* - comming soon :)
     * *glGenLists()*
     * *glNewList()*
-
 
 These functions should be call in order; glutInit(...) > glutInitDisplayMode(...) > init window (if neccessary) > glutCreateWindow(...) > set callback functions (glutDisplayFunc(...) and glutReshapeFunc(...) must be specified. The rest is not mandatory).
 
