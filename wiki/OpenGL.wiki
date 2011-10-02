@@ -19,6 +19,7 @@ GLUT provides most of APIs to present the information (image and 3D model) throu
 
 N.B. GLUI (OpenGL User Interface Library) which based on GLUT can provide you common controls such as buttons, checkboxes, radio buttons, and spinners to OpenGL applications. It is window- and operating system independent, relying on GLUT to handle all system-dependent issues, such as window and mouse management. However, GLUI is depricated to create GUI. Other library/framework like WxWidget, Qt, GTK are recommended.
 
+<wiki:comment>
 = Details =
 Coming soon. :)
 
@@ -40,6 +41,7 @@ It's not yet fully done, more things need to be fixed in the code, will write it
 In order to use Eigen, you just need to download and extract Eigen's source code (see the wiki for download instructions). In fact, the header files in the Eigen subdirectory are the only files required to compile programs using Eigen. The header files are the same for all platforms. It is not necessary to use CMake or install anything.
 
 *This is not related to OpenGL, but necessary to compile the code we got for the project, I'm going to migrate it tomorrow to somewhere more approperiate.*
+</wiki:comment>
 
 = Some famous functions =
   * Must know
