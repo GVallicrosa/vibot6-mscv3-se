@@ -41,6 +41,35 @@ In order to use Eigen, you just need to download and extract Eigen's source code
 
 *This is not related to OpenGL, but necessary to compile the code we got for the project, I'm going to migrate it tomorrow to somewhere more approperiate.*
 
+= Some famous functions =
+  * Must know
+    * *glutInit(&argc,argv);* - initialize the GLUT library, e.g. talk to OS, check for hardware compatibility, etc. If in doubt, throw &argc,argv in. :)
+    * *glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);* - configure display mode, e.g. color, double buffer, depth buffer, other buffer. If in doubt, use GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH. :)
+    * *glutCreateWindow("YF_Viewer 1.1");* - create the window with that name
+    * *glEnable(GL_DEPTH_TEST);* - turn on/off some options. There are too many options to mention. Most of time you need GL_DEPTH_TEST, so GL ckecks for occlusion of objects in scene.
+    * *glutDisplayFunc(drawScene);* - draw something. Please see "How to draw?".
+    * *glutReshapeFunc(reshape);* - bind the callback function name 'reshape'. When the window is resized, the function is called.
+  * Good to know
+    * *glutInitWindowSize(800,800);* - set the window size in pixel.
+    * *glutInitWindowPosition(00,00);* - set window position in pixel.
+    * *glutMotionFunc(motion);* - bind the callback function name 'motion'. When the mouse is moved within the window while some mouse buttons are pressed, the function is called.
+    * *glutPassiveMotionFunc(passiveMotion);* - bind the callback function name 'passiveMotion'. When the mouse is moved within the window while no mouse buttons are pressed, the function is called.
+    * *glutMouseFunc(mouse);* - bind the callback function name 'mouse'. When the mouse is clicked, the function is called.
+    * *glutKeyboardFunc(keyboard);* - bind the callback function name 'keyboard'. When the key is pressed, the function is called. This function detect only 'char' keys.
+  * Rare, but still it is in the project...
+    * *glutSpecialFunc(Special);* - bind the callback function name 'keyboard'. When the key is pressed, the function is called. This function detect any keys.
+    * *glBindTexture()* - comming soon :)
+    * *glGenLists()*
+    * *glNewList()*
+
+
+These functions should be call in order; glutInit(...) > glutInitDisplayMode(...) > init window (if neccessary) > glutCreateWindow(...) > set callback functions (glutDisplayFunc(...) and glutReshapeFunc(...) must be specified. The rest is not mandatory).
+
+Every callback function has it own pre-defined argument list. For example, with glutKeyboardFunc(keyboard);, keyboard function has to be something like "void keyboard(unsigned char key, int x, int y);". Please see the references.
+
+= How to draw? =
+comming soon :D
+
 = Tutorial =
 [http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete description, video, example code, etc. It will be good for starter. Hope you enjoy it! :D
 
