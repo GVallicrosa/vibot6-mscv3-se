@@ -72,7 +72,8 @@ Every callback function has it own pre-defined argument list. For example, with 
 comming soon :D
 
 = Tutorial =
-[http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete description, video, example code, etc. It will be good for starter. Hope you enjoy it! :D
+ * [http://www.cs.uccs.edu/~semwal/indexGLTutorial.html Tutorial by University of Colorado]
+ * [http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete description, video, example code, etc. It will be good for starter. Hope you enjoy it! :D
 
 = References =
  # [http://www.opengl.org/ OpenGL official website]
