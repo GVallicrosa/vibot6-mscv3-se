@@ -14,4 +14,5 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 
 = Useful Links =
 == For C++ ==
+https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US
 http://www.java2s.com/Tutorial/Cpp/CatalogCpp.htm
