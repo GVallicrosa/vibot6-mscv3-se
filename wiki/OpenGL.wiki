@@ -102,7 +102,7 @@ Then, you, dear readers, are going to doubt why stack. Because in most case of g
   * *glClear(GL_COLOR_BUFFER_BIT);* - to clear buffer. Some other buffer can be clear, but, for GL_COLOR_BUFFER_BIT, every pixels are paint with background color which can be specified with "glClearColor(...);"
   * *glLoadIdentity()* - replace the matrix on the top of stack with identity matrix. In short, use this to clear any transformation made before.
   * *glBegin(GL_TRIANGLES)* - tell openGL that we are going to add some vertices soon (by calling "glVertex3f(...)" and, with GL_TRIANGLES, every 3 calls of "glVertex3f(...);", they found a triangle. There are many other arguments that you can pass to draw lines, rectangle, etc.
-  * *glVertex3f(1.f, 2.f, 3.f)* - transform a vertex [x, y, z] = [1.f, 2.f, 3.f] with the transformation matrix on the top of stack and add it in the scene.
+  * *glVertex3f(1.f, 2.f, 3.f)* - transform a vertex {x, y, z} = {1.f, 2.f, 3.f} with the transformation matrix on the top of stack and add it in the scene.
   * *glEnd();* - tell openGL that we have finished adding vertices. Every "glBegin(...);" must have its corresponding "glEnd();".
   * *glutSwapBuffers();* - In case of double buffer is used, swap the working buffer (back buffer) with the buffer of the current window.
   * *glPushMatrix()* - copy the matrix on the top of stack and place it on the stack (after the call, two top matrices are identical).
@@ -144,7 +144,7 @@ void display(void)
 
 = Tutorial =
  * [http://www.cs.uccs.edu/~semwal/indexGLTutorial.html Tutorial by University of Colorado]
- * [http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete description, video, example code, etc. It will be good for starter. Hope you enjoy it! :D
+ * [http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete description, video, example code, etc. It will be good for the starters. Hope you enjoy it! :D
  * [http://www.opengl.org/resources/code/samples/redbook/ A few sample codes]
 
 = References =
