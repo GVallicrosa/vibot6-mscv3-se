@@ -1,6 +1,8 @@
 #summary Covering technicality of OpenGL.
 
 = Introduction =
+We would like to demonstrate the overview of openGL, but graphics is a big subject and openGL is designed to handle both 3D and 2D tasks, then there will be some additional complexity in 2D task e.g. 3D transformation matrix, matrix stacks, etc. If we are manipulating only 2D image, we suggest to use other library like OpenCV to handle the task. We would like to keep the wiki as short and clear as possible. If you are interested in deep detail, please kindly, in addition, see the resource we provide in "Reference" section.
+
 In this page we try to cover OpenGL technical issues. [http://en.wikipedia.org/wiki/OpenGL Open Graphics Library (OpenGL)] is a standard specification defining a cross-language, cross-platform API for writing applications that produce 2D and 3D computer graphics. In short, OpenGL is a standard (not a library) to make a same code to be able to use use in different machine, different language, different platform, etc.
 
 There are many libraries that agree with this standard e.g. GLUT, GLEW. One library has its own advantage to the other, but the most basic one (which should be enough) is GLUT (OpenGL Utility Toolkit).
@@ -45,12 +47,13 @@ In order to use Eigen, you just need to download and extract Eigen's source code
 
 = Some famous functions =
   * Must know
-    * *glutInit(&argc,argv);* - initialize the GLUT library, e.g. talk to OS, check for hardware compatibility, etc. If in doubt, throw &argc,argv in. :)
+    * *glutInit(&argc, argv);* - initialize the GLUT library, e.g. talk to OS, check for hardware compatibility, etc. If in doubt, throw &argc, argv in. :)
     * *glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);* - configure display mode, e.g. color, double buffer, depth buffer, other buffer. If in doubt, use GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH. :)
     * *glutCreateWindow("YF_Viewer 1.1");* - create the window with that name
     * *glEnable(GL_DEPTH_TEST);* - turn on/off some options. There are too many options to mention. Most of time you need GL_DEPTH_TEST, so GL ckecks for occlusion of objects in scene.
     * *glutDisplayFunc(drawScene);* - draw something. Please see "How to draw?".
     * *glutReshapeFunc(reshape);* - bind the callback function name 'reshape'. When the window is resized, the function is called.
+    * *glutMainLoop();* - enter the main loop which never returns until the termination of application. The application will wait for event from user and process the event with the binded callback function.
   * Good to know
     * *glutInitWindowSize(800,800);* - set the window size in pixel.
     * *glutInitWindowPosition(00,00);* - set window position in pixel.
@@ -58,18 +61,86 @@ In order to use Eigen, you just need to download and extract Eigen's source code
     * *glutPassiveMotionFunc(passiveMotion);* - bind the callback function name 'passiveMotion'. When the mouse is moved within the window while no mouse buttons are pressed, the function is called.
     * *glutMouseFunc(mouse);* - bind the callback function name 'mouse'. When the mouse is clicked, the function is called.
     * *glutKeyboardFunc(keyboard);* - bind the callback function name 'keyboard'. When the key is pressed, the function is called. This function detect only 'char' keys.
+    * *glViewport* - coming soon...
+    * *gluPerspective*
+    * *gluLookAt*
+    * *glutPostRedisplay*
   * Rare, but still they are in the project...
-    * *glutSpecialFunc(special);* - bind the callback function name 'special'. When the key is pressed, the function is called. This function detect any keys.
-    * *glBindTexture()* - comming soon :)
-    * *glGenLists()*
-    * *glNewList()*
+    * *glutSpecialFunc(special);* - bind the callback function name 'special'. When the key is pressed, the function is called. This function detect any keys  like F1, F2, etc.
+    * glBindTexture - comming soon :)
+    * glGenLists
+    * glNewList
+    * glCallList
+    * gluOrtho2D
+    * glRasterPos2f
+    * glutBitmapCharacter
+    * glMultMatrixf
 
 These functions should be call in order; glutInit(...) > glutInitDisplayMode(...) > init window (if neccessary) > glutCreateWindow(...) > set callback functions (glutDisplayFunc(...) and glutReshapeFunc(...) must be specified. The rest is not mandatory).
 
 Every callback function has it own pre-defined argument list. For example, with glutKeyboardFunc(keyboard);, keyboard function has to be something like "void keyboard(unsigned char key, int x, int y);". Please see the references.
 
 = How to draw? =
-comming soon :D
+
+To draw something, you must specify display callback function of a window by calling "glutDisplayFunc(displayFunctionName);", and the function should look like "void displayFunctionName(){...}". We will draw (code) our object in this function.
+
+== Axes and Frustum ==
+First of all, we need to talk about axes before going further. We work on Euclidean space. +X axis points to your right. (yes, that way). +Y points up and +Z comes out of the screen.
+
+In graphics, "frustum" is a word to call the 3D space that can be seen by camera. However, the spaces that are very near and very far from the camera are clipped by "near plane" and "far plane", because if some object is very close to the camera it will occlude everything in the scene and we do not need to waste time rendering the very far object. So the 3D space is clipped into a square frustum volume.
+
+== Transformation matrix ==
+Transformation matrix in is a 4*4 matrix to transform the vertices/objects. "Transform" here means rotating, translating, scaling all contain in one matrix. It is use as an operation to move, rotate, scale any vertices/objects. If you are questioning why 4*4, please see "Homogeneous coordinates".
+
+== Stack ==
+OpenGL operations are based on stacks of matrix. There are many stacks e.g. projection stack, model stack, texture stack, etc. User have to specify which one that we are going to use. In this case, we are going to draw some objects in the scene, then we have to use a stack called GL_MODELVIEW by calling "glMatrixMode(GL_MODELVIEW);".
+
+Then, you, dear readers, are going to doubt why stack. Because in most case of graphic thingies, relative value is used e.g. relative position from other object, orientation of parent object, etc. Relative value is easier to manipulate by stack. 
+
+== Some basic functions for drawing ==
+  * *glMatrixMode(GL_MODELVIEW);* - call this to tell openGL that we are going to work with modelview stack (object/model in the scene).
+  * *glClear(GL_COLOR_BUFFER_BIT);* - to clear buffer. Some other buffer can be clear, but, for GL_COLOR_BUFFER_BIT, every pixels are paint with background color which can be specified with "glClearColor(...);"
+  * *glLoadIdentity()* - replace the matrix on the top of stack with identity matrix. In short, use this to clear any transformation made before.
+  * *glBegin(GL_TRIANGLES)* - tell openGL that we are going to add some vertices soon (by calling "glVertex3f(...)" and, with GL_TRIANGLES, every 3 calls of "glVertex3f(...);", they found a triangle. There are many other arguments that you can pass to draw lines, rectangle, etc.
+  * *glVertex3f(1.f, 2.f, 3.f)* - transform a vertex [x, y, z] = [1.f, 2.f, 3.f] with the transformation matrix on the top of stack and add it in the scene.
+  * *glEnd();* - tell openGL that we have finished adding vertices. Every "glBegin(...);" must have its corresponding "glEnd();".
+  * *glutSwapBuffers();* - In case of double buffer is used, swap the working buffer (back buffer) with the buffer of the current window.
+  * *glPushMatrix()* - copy the matrix on the top of stack and place it on the stack (after the call, two top matrices are identical).
+  * *glPopMatrix();* - remove the matrix on the top of stack.
+  * *glRotatef(angle, 0.0, 0.0, 1.0);* - add rotation information to transformation matrix on the top of stack (multiply it with rotation matrix). In this case, it is rotation around z axis by 'angle' degree.
+  * *glTranslatef(0.0, 5.0, 0.0);* - add translation information to transformation matrix on the top of stack (multiply it with translation matrix). In this case, it is the translation in y axis for 5.0 unit.
+  * *glColor3f(1.0, 0.0, 0.0);* - specify the current color. It can be use to paint something e.g. lines with color. In this case, it is maximum red color.
+
+== Example ==
+Here is an example of display callback function to draw 2 diagonal lines. The green one is rotated clockwise by rotAngle degree and the blue one is rotated counter clock wise by rotAngle degree. Please note that if there is no rotation at all both lines will be prependicular to each other and form a x's.
+
+{{{
+void display(void)
+{
+   glClear(GL_COLOR_BUFFER_BIT);
+
+   glColor3f (0.0, 1.0, 0.0);
+   glPushMatrix();
+   glRotatef(-rotAngle, 0.0, 0.0, 0.1);
+   glBegin (GL_LINES);
+      glVertex2f (-0.5, 0.5);
+      glVertex2f (0.5, -0.5);
+   glEnd ();
+   glPopMatrix();
+
+   glColor3f (0.0, 0.0, 1.0);
+   glPushMatrix();
+   glRotatef(rotAngle, 0.0, 0.0, 0.1);
+   glBegin (GL_LINES);
+      glVertex2f (0.5, 0.5);
+      glVertex2f (-0.5, -0.5);
+   glEnd ();
+   glPopMatrix();
+
+   glFlush();
+
+}
+}}}
 
 = Tutorial =
  * [http://www.cs.uccs.edu/~semwal/indexGLTutorial.html Tutorial by University of Colorado]
