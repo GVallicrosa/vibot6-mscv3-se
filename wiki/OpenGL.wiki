@@ -61,20 +61,14 @@ In order to use Eigen, you just need to download and extract Eigen's source code
     * *glutPassiveMotionFunc(passiveMotion);* - bind the callback function name 'passiveMotion'. When the mouse is moved within the window while no mouse buttons are pressed, the function is called.
     * *glutMouseFunc(mouse);* - bind the callback function name 'mouse'. When the mouse is clicked, the function is called.
     * *glutKeyboardFunc(keyboard);* - bind the callback function name 'keyboard'. When the key is pressed, the function is called. This function detect only 'char' keys.
-    * *glViewport* - coming soon...
-    * *gluPerspective*
-    * *gluLookAt*
-    * *glutPostRedisplay*
+    * *glViewport(0, 0, w, h)* - specify the lower left corner of the viewport rectangle and resolution of the viewport. This viewport is used to convert from 3D coordinate to pixel coordinate. If in doubt put "glViewport(0, 0, w, h);" where w, h are the width and hight of the window.
+    * *gluPerspective(angle, (float)w/h, 1.0, 200.0)* - set a perspective projection matrix (camera perspective). The arguments are angle in degree for angle of view, aspect ratio, "near plane" distance, "far plane" distance. Please see "How to draw?" for more information about "near plane" and "far plane".
+    * *glutPostRedisplay()* - mark the current window to be repainted.
   * Rare, but still they are in the project...
     * *glutSpecialFunc(special);* - bind the callback function name 'special'. When the key is pressed, the function is called. This function detect any keys  like F1, F2, etc.
-    * glBindTexture - comming soon :)
-    * glGenLists
-    * glNewList
-    * glCallList
-    * gluOrtho2D
-    * glRasterPos2f
-    * glutBitmapCharacter
-    * glMultMatrixf
+    * *gluOrtho2D(left, right, top, bottom)* - set a orthogonal projection matrix. The arguments are left and right vertical clipping plane. Top and bottom horizontal clipping plane. Normally, in graphics and 3D, we work with perspective projection (gluPerspective(...)).
+    * *glutBitmapCharacter(GLUT_BITMAP_9_BY_15, char)* - (desperately) render a bitmap 'char' character using OpenGL where, in this case, a character will fit in 9*15 pixel box.
+
 
 These functions should be call in order; glutInit(...) > glutInitDisplayMode(...) > init window (if neccessary) > glutCreateWindow(...) > set callback functions (glutDisplayFunc(...) and glutReshapeFunc(...) must be specified. The rest is not mandatory).
 
@@ -107,10 +101,28 @@ Then, you, dear readers, are going to doubt why stack. Because in most case of g
   * *glutSwapBuffers();* - In case of double buffer is used, swap the working buffer (back buffer) with the buffer of the current window.
   * *glPushMatrix()* - copy the matrix on the top of stack and place it on the stack (after the call, two top matrices are identical).
   * *glPopMatrix();* - remove the matrix on the top of stack.
+  * *glMultMatrixf(m)* - multiply the matrix on the top of stack with matrix 4*4 m.
   * *glRotatef(angle, 0.0, 0.0, 1.0);* - add rotation information to transformation matrix on the top of stack (multiply it with rotation matrix). In this case, it is rotation around z axis by 'angle' degree.
   * *glTranslatef(0.0, 5.0, 0.0);* - add translation information to transformation matrix on the top of stack (multiply it with translation matrix). In this case, it is the translation in y axis for 5.0 unit.
-  * *glColor3f(1.0, 0.0, 0.0);* - specify the current color. It can be use to paint something e.g. lines with color. In this case, it is maximum red color.
+  * *gluLookAt(eyeX, eyeY, eyeZ, centerX, cecterY, centerZ, upX, upY, upZ)* - it is like moving a camera (eye) to {eyeX, eyeY, eyeZ} and look at the specific point (center) by specifying which direction is up direction (normally +y is up). However, it happens that openGL has no interface to actually move camera. In fact, objects are move to the static camera instead. It is relativity! So, this function multiply the transformation matrix on top of stack with the transformation matrix to move an object in front of camera. Please note that camera stay at {0.0, 0.0, 0.0} all the time and cannot be moved.
+  * *glColor3f(1.0, 0.0, 0.0);* - specify the current color. When glVertex3d() is called the new vertex has this color which is totally red in this case.
+  * *glNormal3d(0.0, 1.0, 0.0);* - specify the current normal. When glVertex3d() is called the new vertex has this normal which is pointing to +Y in this case.
 
+== Some advance commands for drawing (which exist in the project) ==
+  * glPolygonOffset - coming soon
+  * Display list
+    * *glGenLists(num)* - create a contiguous empty "display lists" with 'num' elements. This function return 'id' for glNewList(...). "Display list" is a list of openGL command like glVertex3f(x, y, z), glTexCoord2f (x, y), etc. Why display list? We can store the long commands to draw some complex object and use it to draw the same thing many times.
+    * *glNewList(id, GL_COMPILE_AND_EXECUTE)* - tell openGL to start adding the next openGL command into the display list. The second argument is for specifying if the command should be added to the list with or without execution e.g. GL_COMPILE_AND_EXECUTE add the command to the list and also execute the command.
+    * *glEndList()* - stop adding the commands into the display list. This function must be coresponding with glNewList(...).
+    * *glCallList(id)* - execute the display list specified by 'id'.
+  * Material & lighting
+    * glBindTexture - coming soon
+    * glMaterialf - coming soon
+    * glLightfv - coming soon
+    * *glShadeModel(GL_FLAT)* - select flat or smooth shading.
+  * Rasterisation
+    * *glPolygonMode(GL_FRONT, GL_FILL);* - select a polygon rasterization mode. In this case, we specify those polygons with normals point toward the camera (front facing polygon) to have their interior filled.
+    * glRasterPos2f - coming soon
 == Example ==
 Here is an example of display callback function to draw 2 diagonal lines. The green one is rotated clockwise by rotAngle degree and the blue one is rotated counter clock wise by rotAngle degree. Please note that if there is no rotation at all both lines will be prependicular to each other and form a x's.
 
