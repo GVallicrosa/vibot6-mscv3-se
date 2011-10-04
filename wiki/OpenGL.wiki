@@ -51,7 +51,7 @@ In order to use Eigen, you just need to download and extract Eigen's source code
     * *glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);* - configure display mode, e.g. color, double buffer, depth buffer, other buffer. If in doubt, use GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH. :)
     * *glutCreateWindow("YF_Viewer 1.1");* - create the window with that name
     * *glEnable(GL_DEPTH_TEST);* - turn on/off some options. There are too many options to mention. Most of time you need GL_DEPTH_TEST, so GL ckecks for occlusion of objects in scene.
-    * *glutDisplayFunc(drawScene);* - draw something. Please see "How to draw?".
+    * *glutDisplayFunc(drawScene);* - bind the callback function name 'drawScene'. When the window is drawn, the function is called. Please see "How to draw?".
     * *glutReshapeFunc(reshape);* - bind the callback function name 'reshape'. When the window is resized, the function is called.
     * *glutMainLoop();* - enter the main loop which never returns until the termination of application. The application will wait for event from user and process the event with the binded callback function.
   * Good to know
