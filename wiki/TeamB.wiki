@@ -1,0 +1,19 @@
+#summary Log and wiki for Team B.
+
+= Objectives =
+Matlab and OpenCV. We intend to find specific useful functions for this project, both for Matlab and OpenCV. 
+
+= Members =
+|| *Name* || *Main Topic* ||
+|| Saurabh Jain || Matlab ||
+|| Angga Reza Fardana || Matlab ||
+|| Zhongyang Liu || Matlab ||
+|| Pablo Speciale || OpenCV ||
+|| Igor Jovancevic || OpenCV ||
+|| Federico Camposeco  || OpenCV ||
+
+All the team members will know both topics (Matlab and OpenCV) so feel free to address any of the team members for both topics.
+
+Team manager and tech leader are *Pablo* and *Saurabh*, respectively.
+
+_Tasks for the group completed. Group dissolved._
