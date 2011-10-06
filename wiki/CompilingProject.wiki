@@ -1,4 +1,4 @@
-#summary How to compile the code of project and run it.
+#summary How to compile the code of a project and run it.
 
 = Introduction =
 In this page we'll go through a step by step instruction on how to compile the code of project and how to run it.
