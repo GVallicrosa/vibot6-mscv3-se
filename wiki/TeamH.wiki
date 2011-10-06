@@ -1,0 +1,14 @@
+#summary Log and wiki for triangle team.
+
+= Objectives =
+To 'RampUp' the requirements of point 5.2 of the Project's Requirements. This point, 5.2, corresponds to the postprocessing of the segmented image.
+
+The team will go into a deeper level pf detail regarding this requirement.
+
+= Members =
+|| *Name* || *Main Topic* || *Role* ||
+|| Eduardo Tusa ||  || Manager ||
+|| Federico Camposeco ||  || Team Leader ||
+|| Hamed Mohammadbagher ||  || Team Member||
+|| Joel Vidal ||  || Team Member ||
+|| Igor Jovancevic ||  || Team Member ||
