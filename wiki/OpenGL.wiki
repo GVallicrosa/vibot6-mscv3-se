@@ -154,6 +154,223 @@ void display(void)
 }
 }}}
 
+Another example:
+{{{
+/*
+ * Copyright (c) 1993-1997, Silicon Graphics, Inc.
+ * ALL RIGHTS RESERVED 
+ * Permission to use, copy, modify, and distribute this software for 
+ * any purpose and without fee is hereby granted, provided that the above
+ * copyright notice appear in all copies and that both the copyright notice
+ * and this permission notice appear in supporting documentation, and that 
+ * the name of Silicon Graphics, Inc. not be used in advertising
+ * or publicity pertaining to distribution of the software without specific,
+ * written prior permission. 
+ *
+ * THE MATERIAL EMBODIED ON THIS SOFTWARE IS PROVIDED TO YOU "AS-IS"
+ * AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE,
+ * INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR
+ * FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT SHALL SILICON
+ * GRAPHICS, INC.  BE LIABLE TO YOU OR ANYONE ELSE FOR ANY DIRECT,
+ * SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY
+ * KIND, OR ANY DAMAGES WHATSOEVER, INCLUDING WITHOUT LIMITATION,
+ * LOSS OF PROFIT, LOSS OF USE, SAVINGS OR REVENUE, OR THE CLAIMS OF
+ * THIRD PARTIES, WHETHER OR NOT SILICON GRAPHICS, INC.  HAS BEEN
+ * ADVISED OF THE POSSIBILITY OF SUCH LOSS, HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE
+ * POSSESSION, USE OR PERFORMANCE OF THIS SOFTWARE.
+ * 
+ * US Government Users Restricted Rights 
+ * Use, duplication, or disclosure by the Government is subject to
+ * restrictions set forth in FAR 52.227.19(c)(2) or subparagraph
+ * (c)(1)(ii) of the Rights in Technical Data and Computer Software
+ * clause at DFARS 252.227-7013 and/or in similar or successor
+ * clauses in the FAR or the DOD or NASA FAR Supplement.
+ * Unpublished-- rights reserved under the copyright laws of the
+ * United States.  Contractor/manufacturer is Silicon Graphics,
+ * Inc., 2011 N.  Shoreline Blvd., Mountain View, CA 94039-7311.
+ *
+ * OpenGL(R) is a registered trademark of Silicon Graphics, Inc.
+ */
+
+/*
+ *  aargb.c
+ *  This program draws shows how to draw anti-aliased lines. It draws
+ *  two diagonal lines to form an X; when 'r' is typed in the window, 
+ *  the lines are rotated in opposite directions.
+ */
+#include <GL/glut.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+static float rotAngle = 0.;
+
+/*  Initialize antialiasing for RGBA mode, including alpha
+ *  blending, hint, and line width.  Print out implementation
+ *  specific info on line width granularity and width.
+ */
+void
+init(void)
+{
+  GLfloat values[2];
+  glGetFloatv(GL_LINE_WIDTH_GRANULARITY, values);
+  printf("GL_LINE_WIDTH_GRANULARITY value is %3.1f\n", values[0]);
+
+  glGetFloatv(GL_LINE_WIDTH_RANGE, values);
+  printf("GL_LINE_WIDTH_RANGE values are %3.1f %3.1f\n", values[0], values[1]);
+
+  glEnable( GL_LINE_SMOOTH);
+  glEnable( GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glHint(GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
+
+  // The thickness of line. The higher the number the thicker the line is.
+  glLineWidth(1.5);
+
+  // Settign the background color (the colour that is used when buffer is cleared.)
+  glClearColor(0.0, 0.0, 0.0, 0.0);
+}
+
+/* Draw 2 diagonal lines to form an X
+ */
+void
+display(void)
+{
+  glClear( GL_COLOR_BUFFER_BIT);
+
+  // glColor3 variants specify new red, green, and blue values explicitly and 
+  // set the current alpha value to 1.0 (full intensity) implicitly
+  glColor3f(0.0, 1.0, 0.0);
+  // Push the matrix, modify it, draw stuff, then pop the matrix back off again.
+  // That way any code that comes after it isn't affected by the matrix changes that you made.
+  glPushMatrix();
+  // multiply the current matrix by a rotation matrix.
+  glRotatef(-rotAngle, 0.0, 0.0, 0.1);
+
+  // glBegin and glEnd delimit the vertices that define a primitive or a group of like primitives.
+  // GL_LINES: Treats each pair of vertices as an independent line segment.
+  glBegin( GL_LINES);
+    {
+      // Specifies two vertices.
+      glVertex2f(-0.5, 0.5);
+      glVertex2f(0.5, -0.5);
+    }
+  glEnd();
+  glPopMatrix();
+
+  glColor3f(0.0, 0.0, 1.0);
+  glPushMatrix();
+  glRotatef(rotAngle, 0.0, 0.0, 0.1);
+  glBegin(GL_LINES);
+    {
+      glVertex2f(0.5, 0.5);
+      glVertex2f(-0.5, -0.5);
+    }
+  glEnd();
+  glPopMatrix();
+
+  // Different OpenGL implementations buffer commands in several different locations, 
+  // including network buffers and the graphics accelerator itself.
+  // The glFlush function empties all these buffers,
+  glFlush();
+}
+
+void
+reshape(int w, int h)
+{
+  // Transforming device coordinates to window coordinates
+  glViewport(0, 0, w, h);
+  // Specifies which matrix stack is the target for subsequent matrix operations.
+  // Three values are accepted: GL_MODELVIEW, GL_PROJECTION, and GL_TEXTURE.
+  // The initial value is GL_MODELVIEW.
+  glMatrixMode( GL_PROJECTION);
+  // Replace the current matrix with the identity matrix.
+  glLoadIdentity();
+  if (w <= h)
+    {
+      // gluOrtho2D sets up a two-dimensional orthographic viewing region.
+      gluOrtho2D(-1.0, 1.0, -1.0 * (GLfloat) h / (GLfloat) w, 1.0 * (GLfloat) h
+          / (GLfloat) w);
+    }
+  else
+    {
+      gluOrtho2D(-1.0 * (GLfloat) w / (GLfloat) h, 1.0 * (GLfloat) w
+          / (GLfloat) h, -1.0, 1.0);
+    }
+  glMatrixMode( GL_MODELVIEW);
+  glLoadIdentity();
+}
+
+void
+keyboard(unsigned char key, int x, int y)
+{
+  switch (key)
+    {
+  // If r lowercase or upper case is pressed, add 20 to the rotation agnle.
+  case 'r':
+  case 'R':
+    rotAngle += 20.;
+    // If rotation angle has reached 360, reset to 0.
+    if (rotAngle >= 360.)
+      {
+        rotAngle = 0.;
+      }
+    // Mark the normal plane of current window as needing to be redisplayed.
+    // The next iteration through glutMainLoop, the window's display callback
+    // will be called to redisplay the window's normal plane.
+    glutPostRedisplay();
+    break;
+  case 27: /*  Escape Key  */
+    exit(0);
+    break;
+  default:
+    break;
+    }
+}
+
+/*  Main Loop
+ *  Open window with initial window size, title bar, 
+ *  RGBA display mode, and handle input events.
+ */
+int
+main(int argc, char** argv)
+{
+  // We're not passing any argument to glutInit, sicne the argv is empty.
+  // Initialising the GLUT. It must be always called, before calling any 
+  // other GLUT functions.
+  glutInit(&argc, argv);
+
+  // Initialising the display mode. e.g. GLUT_SINGLE, GLUT_DOUBLE, GLUT_DEPTH
+  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+
+  // Setting the windows size
+  glutInitWindowSize(200, 200);
+
+  // The passed argument is going to be displayed as the window name.
+  glutCreateWindow(argv[0]);
+
+  init();
+  // Callback functions
+  // The reshape callback is triggered when a window is reshaped.
+  // glViewport(0,0,width,height) is called if nothing is provided.
+  glutReshapeFunc(reshape);
+
+  // Sets the keyboard callback for the current window.
+  glutKeyboardFunc(keyboard);
+
+  // When GLUT determines that the normal plane for the window needs to be 
+  // redisplayed, the display callback for the window is called.
+  glutDisplayFunc(display);
+
+  // enters the GLUT event processing loop. This routine should be called at 
+  // most once in a GLUT program. Once called, this routine will never return.
+  // It will call as necessary any callbacks that have been registered.
+  glutMainLoop();
+
+  return 0;
+}
+}}}
+
 = Tutorial =
  * [http://www.cs.uccs.edu/~semwal/indexGLTutorial.html Tutorial by University of Colorado]
  * [http://www.videotutorialsrock.com This tutorial] is quite old, but has a complete description, video, example code, etc. It will be good for the starters. Hope you enjoy it! :D
