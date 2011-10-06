@@ -1,4 +1,4 @@
-#summary Log and wiki for Team H.
+#summary Wiki for Team H.
 
 = Objectives =
 To "Ramp Up" the requirements of point 5.2 of the Project's Requirements. This point, 5.2, corresponds to the postprocessing of the segmented image.
