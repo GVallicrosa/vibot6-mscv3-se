@@ -1,0 +1,17 @@
+#summary Wiki for Team H.
+
+= Objectives =
+To "Ramp Up" the requirements of point 5.4 c) of the Project's Requirements. 
+Retrieval of Rotation Offset
+To fit the curve onto a set of 2D points, determination of the rotational
+offset is required for a correct initialization.
+
+
+= Members =
+|| *Name* || *Main Topic* || *Role* ||
+|| Raquel Gil ||  || Manager ||
+|| Saurabh Jain ||  || Team Leader ||
+|| Suman Raj Bista ||  || Team Member||
+|| Taman Upadhaya ||  || Team Member ||
+|| Yukti Suri ||  || Team Member ||
+|| Zhongyang Liu ||  || Team Member ||
