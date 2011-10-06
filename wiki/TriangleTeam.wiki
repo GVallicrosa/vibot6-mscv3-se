@@ -6,7 +6,7 @@ Matlab and OpenCV. We intend to find specific useful functions for this project,
 = Members =
 || *Name* || *Main Topic* ||
 || Saurabh Jain || Matlab ||
-|| Angga Reza || Matlab ||
+|| Angga Reza Fardana || Matlab ||
 || Zhongyang Liu || Matlab ||
 || Pablo Speciale || OpenCV ||
 || Igor Jovancevic || OpenCV ||
