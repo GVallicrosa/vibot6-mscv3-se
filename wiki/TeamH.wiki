@@ -1,7 +1,7 @@
-#summary Log and wiki for triangle team.
+#summary Log and wiki for Team H.
 
 = Objectives =
-To "RampUp" the requirements of point 5.2 of the Project's Requirements. This point, 5.2, corresponds to the postprocessing of the segmented image.
+To "Ramp Up" the requirements of point 5.2 of the Project's Requirements. This point, 5.2, corresponds to the postprocessing of the segmented image.
 
 The team will go into a deeper level pf detail regarding this requirement.
 
