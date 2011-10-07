@@ -27,6 +27,6 @@ List of teams:
  * TeamO
 
 = Technical Pages =
- * OpenGL
- * OpenCV
- * ColourSegmentation
+ * [OpenGL]
+ * [OpenCV]
+ * [ColourSegmentation]
