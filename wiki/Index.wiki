@@ -10,21 +10,21 @@ The list of members working on the project and their skills can be checked in [h
 =Teams=
 
 List of teams:
- * HeartTeam
- * CircleGroup
- * TriangleTeam
- * CloudTeam
- * BlankTeam
- * TeamF
- * TeamG
- * TeamH
- * TeamI
- * TeamJ
- * TeamK
- * TeamL
- * TeamM
- * TeamN
- * TeamO
+ * [HeartTeam]
+ * [CircleGroup]
+ * [TriangleTeam]
+ * [CloudTeam]
+ * [BlankTeam]
+ * [TeamF]
+ * [TeamG]
+ * [TeamH]
+ * [TeamI]
+ * [TeamJ]
+ * [TeamK]
+ * [TeamL]
+ * [TeamM]
+ * [TeamN]
+ * [TeamO]
 
 = Technical Pages =
  * [OpenGL]
