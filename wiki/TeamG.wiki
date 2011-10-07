@@ -1,0 +1,19 @@
+#summary Main page of team G.
+
+= Members =
+* Arash
+* Big
+* Eduardo
+* Dadhichi
+* Hamed
+
+= Meetings =
+
+== October 7 ==
+
+* Implement the Matlab code for IHLS in C++.
+* Same for LT (Luminance Thresholding)
+* Same for NHS
+* Comment the Matlab code 
+
+Note: please make sure that all the C++ codes are well unit-tested.
