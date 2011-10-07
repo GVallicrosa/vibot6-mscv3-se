@@ -25,10 +25,15 @@ private slots:
 
     void on_Slider_n3_valueChanged(int value);
 
+    void on_btn_zoomIn_clicked();
+
+    void on_btn_zoomOut_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene m_scene;
     QPixmap m_img;
+    QGraphicsPixmapItem *m_pixItem;
     int m, n1, n2, n3;
 };
 

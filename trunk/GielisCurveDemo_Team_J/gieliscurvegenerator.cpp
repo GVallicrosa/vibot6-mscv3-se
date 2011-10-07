@@ -12,7 +12,7 @@ QPixmap GielisCurveGenerator::generateGielisCurve(double a, double b, double m, 
 {
     //:TODO: Take width and height as an argument, calculate center accordingly
     //Generate the gielis curve painted on QPixmap
-    QPixmap img(400,400);
+    QPixmap img(1000,1000);
     QPainter painter(&img);
 
     //Background is white
@@ -20,7 +20,7 @@ QPixmap GielisCurveGenerator::generateGielisCurve(double a, double b, double m, 
     //The color of the curve is black
     painter.setPen(Qt::black);
 
-    double center = 200;
+    double center = 500;
 
     for (double i = 0; i <= PI*2; i += 0.0001) {
         double r = qPow((qPow(qAbs(qCos(m*i/4)/a), n2) + qPow(qAbs(qSin(m*i/4)/b), n3)), -(1/n1));
