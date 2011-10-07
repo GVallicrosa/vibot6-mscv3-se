@@ -1,0 +1,13 @@
+#summary Wiki for Team O.
+
+= Objectives =
+Management Team
+
+= Members =
+|| *Name* || *Role* ||
+|| Corina Barbalata || ||
+|| Guillem Vallicrosa || ||
+|| Jose Franco || ||
+|| Nolang Fanani || ||
+|| Shreyansh Jain || ||
+|| Vineet Nagrath || ||
