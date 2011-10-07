@@ -3,6 +3,9 @@
 
 #include "gieliscurvegenerator.h"
 
+#include <QScrollBar>
+#include <QGraphicsPixmapItem>s
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -33,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     m_img = GielisCurveGenerator::generateGielisCurve(1,1,m,n1,n2,n3);
-    m_scene.addPixmap(m_img);
+    m_pixItem = m_scene.addPixmap(m_img);
     ui->gielisScene->setScene(&m_scene);
 }
 
@@ -47,7 +50,8 @@ void MainWindow::on_slider_m_valueChanged(int value)
     m = value;
     ui->Label_m->setText(QString("m: ") + QString::number(value));
     m_img = GielisCurveGenerator::generateGielisCurve(1,1,m,n1,n2,n3);
-    m_scene.addPixmap(m_img);
+    m_scene.removeItem(m_pixItem);
+    m_pixItem = m_scene.addPixmap(m_img);
 }
 
 void MainWindow::on_Slider_n1_valueChanged(int value)
@@ -55,7 +59,8 @@ void MainWindow::on_Slider_n1_valueChanged(int value)
     n1 = value;
     ui->Label_n1->setText(QString("n1: ") + QString::number(value));
     m_img = GielisCurveGenerator::generateGielisCurve(1,1,m,n1,n2,n3);
-    m_scene.addPixmap(m_img);
+    m_scene.removeItem(m_pixItem);
+    m_pixItem = m_scene.addPixmap(m_img);
 }
 
 void MainWindow::on_Slider_n2_valueChanged(int value)
@@ -63,7 +68,8 @@ void MainWindow::on_Slider_n2_valueChanged(int value)
     n2 = value;
     ui->Label_n2->setText(QString("n2: ") + QString::number(value));
     m_img = GielisCurveGenerator::generateGielisCurve(1,1,m,n1,n2,n3);
-    m_scene.addPixmap(m_img);
+    m_scene.removeItem(m_pixItem);
+    m_pixItem = m_scene.addPixmap(m_img);
 }
 
 void MainWindow::on_Slider_n3_valueChanged(int value)
@@ -71,5 +77,16 @@ void MainWindow::on_Slider_n3_valueChanged(int value)
     n3 = value;
     ui->Label_n3->setText(QString("n3: ") + QString::number(value));
     m_img = GielisCurveGenerator::generateGielisCurve(1,1,m,n1,n2,n3);
-    m_scene.addPixmap(m_img);
+    m_scene.removeItem(m_pixItem);
+    m_pixItem = m_scene.addPixmap(m_img);
+}
+
+void MainWindow::on_btn_zoomIn_clicked()
+{
+    ui->gielisScene->scale(1.25, 1.25);
+}
+
+void MainWindow::on_btn_zoomOut_clicked()
+{
+    ui->gielisScene->scale(0.8,0.8);
 }
