@@ -5,7 +5,7 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 
 = Members =
 || *Name* || *Main topic* || *Role* ||
-|| Corina || C++ || Team Manager
+|| Corina || C++ || Team Manager ||
 || Guillem || C++ || Member ||
 || Taman || C++ || Member ||
 || Danupol (Big) || OpenGL || Member ||
