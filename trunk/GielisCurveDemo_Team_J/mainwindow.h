@@ -34,7 +34,8 @@ private:
     QGraphicsScene m_scene;
     QPixmap m_img;
     QGraphicsPixmapItem *m_pixItem;
-    int m, n1, n2, n3;
+    int m;
+    double n1, n2, n3;
 };
 
 #endif // MAINWINDOW_H
