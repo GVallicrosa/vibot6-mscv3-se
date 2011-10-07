@@ -4,13 +4,13 @@
 The objectives of this group are to cover C++ and OpenGL technical issues and present it to the rest of students.
 
 = Members =
-|| *Name* || *Role* ||
-|| Corina || C++ ||
-|| Guillem || C++ ||
-|| Taman || C++ ||
-|| Danupol (Big) || OpenGL ||
-|| Shreyansh || C++ ||
-|| Arash  || OpenGL ||
+|| *Name* || *Main topic* || *Role* ||
+|| Corina || C++ || Team Manager
+|| Guillem || C++ || Member ||
+|| Taman || C++ || Member ||
+|| Danupol (Big) || OpenGL || Member ||
+|| Shreyansh || C++ || Member ||
+|| Arash  || OpenGL || Team Leader ||
 
 = Useful Links =
 == For C++ ==
