@@ -1,0 +1,18 @@
+#summary Main page of team F.
+
+= Members =
+  * Ajad
+  * Andru
+  * Angga
+  * Dadhichi
+  * BiG
+
+= Meetings =
+
+== October 6 ==
+
+  * Qt tutorial
+  * MATLAB tutorial
+  * Feasibility on other GUI tools
+  * Review old code
+  * Sketch GUI
