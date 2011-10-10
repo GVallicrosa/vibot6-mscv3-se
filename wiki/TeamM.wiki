@@ -9,10 +9,10 @@ Reconstructing a Gielis curve can be posed as a minimization problem of a cost f
 
 
 = Members =
-|| *Name* || *Main Topic* || *Role* ||
-|| Taman Upadhaya ||  || Manager ||
-|| Yukti Suri ||  || Technical Manager ||
-|| Zhongyang Liu ||  || Team Member||
-|| Ajad Chhatkuli ||  || Team Member ||
-|| Andru Putra Twinanda ||  || Team Member ||
-|| Angga Reza Fardana ||  || Team Member ||
+|| *Name* || *Role* ||
+|| Taman Upadhaya ||Manager ||
+|| Yukti Suri || Technical Manager ||
+|| Zhongyang Liu || Team Member||
+|| Ajad Chhatkuli ||  Team Member ||
+|| Andru Putra Twinanda ||  Team Member ||
+|| Angga Reza Fardana ||  Team Member ||
