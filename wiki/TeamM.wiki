@@ -1,0 +1,18 @@
+#summary Wiki for Team M.
+
+= Objectives =
+To RampUP Req. Doc. 5.4 d) of the Project's Requirements. 
+
+ Shape Reconstruction 
+
+Reconstructing a Gielis curve can be posed as a minimization problem of a cost function. For this, Levenberg-Marquardt algorithm for Least Square Minimization of Nonlinear Models is required.
+
+
+= Members =
+|| *Name* || *Main Topic* || *Role* ||
+|| Taman Upadhaya ||  || Manager ||
+|| Yukti Suri ||  || Technical Manager ||
+|| Zhongyang Liu ||  || Team Member||
+|| Ajad Chhatkuli ||  || Team Member ||
+|| Andru Putra Twinanda ||  || Team Member ||
+|| Angga Reza Fardana ||  || Team Member ||
