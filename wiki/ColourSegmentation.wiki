@@ -31,7 +31,7 @@ thresold = exp(Nmean)
 
 //treshold
 for each (pixel p){
-  //calc distance d. S1 is ref. S2 is a pixel
+  //calc distance d. S1 is ref. S2 is a pixel. Please see S1 and S2 in the summary
   float a = p.s * cos(p.h) - ref.s * cos(ref.h)
   float b = p.s * sin(p.h) - ref.s * sin(ref.h)
   float d = sqrtf(a * a + b * b)
