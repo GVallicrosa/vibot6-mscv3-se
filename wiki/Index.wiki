@@ -10,8 +10,8 @@ The list of members working on the project and their skills can be checked in [h
 =Teams=
 
 List of teams:
+ * [TeamA] 
  * [HeartTeam]
- * [CircleGroup]
  * [TriangleTeam]
  * [CloudTeam]
  * [BlankTeam]
