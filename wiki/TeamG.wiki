@@ -17,3 +17,5 @@
   * Comment the Matlab code 
 
 Note: please make sure that all the C++ codes are well unit-tested.
+
+Testing: issue 1
