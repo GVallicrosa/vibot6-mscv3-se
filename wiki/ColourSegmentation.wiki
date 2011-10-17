@@ -46,3 +46,7 @@ for each (pixel p){
 
 2. The simplest way to derive an expression for this angle is to project the vector (1; 0; 0) corresponding to red in the RGB space and an arbitrary vector c onto a plane perpendicular to the achromatic
 axis.
+
+3. For formula and pictorial representation refer Downloads sections:
+   Filename: Hue (Hue Reference 1)
+   Filename: Hue2(Hue Reference 2)
