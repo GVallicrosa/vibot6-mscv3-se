@@ -1,10 +1,18 @@
 #summary Log and wiki for TeamJ
-Description of tasks assigned
 
 = Objectives =
+To RampUP Req. Doc. 5.4 a) of the Project's Requirements.
+
+ Gielis Curves
+
+Gielis Curves can be seen as a generic model to unify the representation
+of road signs, and will be required to detect the shapes of road signs.
+
 
 = Members =
-|| *Name* || *Main Topic* ||
-
-
-=Links=
+|| *Name* || *Role* ||
+|| Lijia Gao ||Manager ||
+|| Marc Barnada Rius || Technical Manager ||
+|| Pablo Speciale || Team Member||
+|| Ozan Tonkal ||  Team Member ||
+|| Muhammed Safiul Azam ||  Team Member ||
