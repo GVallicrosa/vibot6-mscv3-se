@@ -20,8 +20,7 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 = Activity =
 [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNDAxOTcyOTctY2FhZi00MGY4LThlYWEtYzRmYzIzOGRkNjEz&hl=en_US C++ and OpenGL Presentation]
 
-[https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US C++ Documentation]
-
+[https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US C++ Documentation] 
 [http://code.google.com/p/vibot6-mscv3-se/wiki/OpenGL OpenGL Documentation]
 
 = References =
