@@ -1,4 +1,4 @@
-#summary Wiki for Team N.
+#summary Log and wiki for TeamN
 
 = Objectives =
 HLD High Level Design Document
