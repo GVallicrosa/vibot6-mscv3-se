@@ -1,4 +1,4 @@
-#summary Wiki for Team M.
+#summary Log and wiki for TeamM
 
 = Objectives =
 To RampUP Req. Doc. 5.4 d) of the Project's Requirements. 
