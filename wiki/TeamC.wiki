@@ -3,8 +3,24 @@ In charge of drafting a formal list of requirements to use throughout the projec
 
 = Objectives =
 
+1. Draft a contract and get it signed by Yohan
+
+2. Table the list of requirements
+
 = Members =
-|| *Name* || *Main Topic* ||
+|| *Name*   || *Designation* ||
+|| Dadhichi || Manager       ||
+|| Ozan     || Technical     ||
+|| Yukti    || Member        ||
+|| Ajad     || Member        ||
+|| Suman    || Member        ||
+|| Jeorge   || Member        ||
+  
+
 
 
 =Links=
+Refer Wiki "Project Requirements"
+
+=Conclusion=
+Both the tasks complete.
