@@ -1,5 +1,7 @@
 #summary Main page of team G.
 
+<wiki:toc max_depth="2" />
+
 = Members =
   * Arash
   * Big
