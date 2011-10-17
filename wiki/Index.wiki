@@ -1,7 +1,9 @@
 #summary Index page.
 
 = Introduction =
-Welcome to the google code site for the software engineering project. The [Requirements] can be found in this link, and the CodingTemplates in this one.
+Welcome to the google code site for the software engineering project. 
+
+Check the [ProjectRequirements] and [CodingTemplates].
 
 =Members=
 
@@ -38,3 +40,5 @@ The list of members working on the project and their skills can be checked in [h
  * [OpenGL]
  * [OpenCV]
  * [ColourSegmentation]
+ * [CMake]
+ * [CompilingProject]
