@@ -1,4 +1,4 @@
-#summary Log and wiki for Team B.
+#summary Log and wiki for Team B
 
 = Objectives =
 Matlab and OpenCV. We intend to find specific useful functions for this project, both for Matlab and OpenCV. 
