@@ -1,4 +1,4 @@
-#summary Main page of team G.
+#summary Log and wiki for TeamG
 
 <wiki:toc max_depth="2" />
 
