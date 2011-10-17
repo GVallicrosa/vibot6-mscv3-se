@@ -1,4 +1,4 @@
-#summary Main page of TeamA.
+#summary Log and wiki for TeamA
 
 = Objectives =
 The objectives of this group are to cover C++ and OpenGL technical issues and present it to the rest of students.
