@@ -5,9 +5,16 @@ Management Team
 
 = Members =
 || *Name* || *Role* ||
-|| Corina Barbalata || ||
-|| Guillem Vallicrosa || ||
-|| Jose Franco || ||
-|| Nolang Fanani || ||
-|| Shreyansh Jain || ||
-|| Vineet Nagrath || ||
+|| Corina Barbalata || Member ||
+|| Guillem Vallicrosa || Manager ||
+|| Jose Franco || Member ||
+|| Nolang Fanani || Member ||
+|| Shreyansh Jain || Member ||
+|| Vineet Nagrath || Member ||
+
+= Activity =
+
+= Meetings =
+[https://docs.google.com/document/d/1G7EyvjiOTE9w1vPQaVIUM_jSfb2eeZxlKL1AGdoG1Qo/edit?hl=en_US GroupO111011]
+
+[https://docs.google.com/document/d/1pabn5djZoDePM2JKLu1P6muXfn67OQ8IfrTLUYRAIwk/edit?hl=en_US GroupO161011]
