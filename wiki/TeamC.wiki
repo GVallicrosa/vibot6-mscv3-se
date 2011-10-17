@@ -20,7 +20,7 @@ In charge of drafting a formal list of requirements to use throughout the projec
 
 
 =Links=
-Refer Wiki "Project Requirements"
+Refer Wiki [ProjectRequirements] page.
 
 =Conclusion=
 Both the tasks complete.
