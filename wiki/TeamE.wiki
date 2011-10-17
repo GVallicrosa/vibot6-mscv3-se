@@ -1,8 +1,8 @@
-#summary Log and wiki for TeamE
+#summary Log and wiki for Team E
 
 = Objectives =
 
-Do a presentation on software engineering and create different templates
+Quality Management Team, to prepare a presentation on software engineering and to create several templates form and code conventions for C++ and Matlab.
 
 = Members =
 || *Name* || *Main Topic* || Role ||
@@ -13,3 +13,56 @@ Do a presentation on software engineering and create different templates
 || Muhammed Safiul Azam ||  || Team Member ||
 
 =Links=
+
+
+= Meetings =
+*28 September 2011* 
+
+All the members of the team were present. 
+
+We discussed what are our requirements and what will be our tasks.
+We divided the tasks for work efficiency.
+
+[https://docs.google.com/document/d/1Z2zL4_suIyAeOayk92NnHjGaTJKR7iH-_gWbRpLE4Kg/edit?hl=en_US]
+
+*30 September 2011*
+
+All the member of the team were present.
+
+Collect all the requirements, clear all doubts.
+
+[https://docs.google.com/document/d/19LA9K5VtOr7taz1v9ei3pBpQdi_pfHjkrdVwQKdNxdo/edit?hl=en_US]
+
+*04 October 2011*
+
+All the member of the team were present.
+
+Finish all tasks.
+
+[https://docs.google.com/document/d/1J0e3HSxmmgdu5AX1SszvrTXgmkipESf4uURTShen9Bw/edit?hl=en_US]
+
+
+
+
+
+= Activity =
+
+The presentation of Software Engineering
+
+[https://docs.google.com/present/edit?id=0AcH6C198PBUQZGZoejd0Y3RfNjZkamp4ZDJjag&hl=en_US] 
+
+C++ Code Convention   
+
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQMDNmN2U0OWItODJiNC00ODBmLTk5NTQtOGRhNTM3ODcwOGJj&hl=en_US] 
+
+Matlab Code Convention
+
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQYjM3OWE5MTUtYTFlMS00ZmRiLWFhZDktYzU5NWQyODBkM2Y3&hl=en_US]
+
+Matlab Code Convention
+
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQNmU2YzNjMmEtMjBiMC00MDBhLWI4YmQtZTljMjMwYzJkMzkx&hl=en_US]
+
+Group Meeting Log - Template
+
+[https://docs.google.com/document/d/1ZDSu5GKmG-Nugsqqfq8obUOAWwJ1m5z6K0rXSsKy-UQ/edit?hl=en_US]
