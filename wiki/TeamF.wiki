@@ -1,4 +1,4 @@
-#summary Main page of team F.
+#summary Log and wiki for TeamF
 
 = Members =
   * Ajad
