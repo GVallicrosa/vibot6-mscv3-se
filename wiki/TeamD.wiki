@@ -1,4 +1,4 @@
-#summary Log and wiki for TeamE
+#summary Log and wiki for TeamD
 
 = Objectives =
 Build a framework for communication and a system where everyone can keep up to date with the progress of every team
