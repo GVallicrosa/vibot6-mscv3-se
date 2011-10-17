@@ -7,7 +7,7 @@ Check the [ProjectRequirements] and [CodingTemplates].
 
 =Members=
 
-The list of members working on the project and their skills can be checked in [http://docs.google.com google docs].
+The list of members working on the project and their skills can be checked in [https://docs.google.com/spreadsheet/ccc?key=0Au1PQR5x3uF-dGVkRFBabk14Y3h3c1JzM1JSUXZWakE&hl=en_US#gid=0 google docs].
 
 =Teams=
 ==Working teams==
