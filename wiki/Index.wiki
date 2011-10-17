@@ -8,13 +8,9 @@ Welcome to the google code site for the software engineering project. The [Requi
 The list of members working on the project and their skills can be checked in [http://docs.google.com google docs].
 
 =Teams=
+==Working teams==
 
-List of teams:
- * [TeamA] 
- * [HeartTeam]
- * [TriangleTeam]
- * [CloudTeam]
- * [BlankTeam]
+ * [TeamD]
  * [TeamF]
  * [TeamG]
  * [TeamH]
@@ -25,6 +21,18 @@ List of teams:
  * [TeamM]
  * [TeamN]
  * [TeamO]
+
+==On hold teams==
+
+
+
+==Dissolved teams==
+
+ * [TeamA] 
+ * [TeamB]
+ * [TeamC]
+ * [TeamE]
+
 
 = Technical Pages =
  * [OpenGL]
