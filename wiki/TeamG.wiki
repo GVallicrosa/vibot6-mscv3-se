@@ -10,7 +10,7 @@
   * Hamed
 
 = Description =
-This groups is responsible of reading and understanding colour space conversion (from RGB to IHLS). As well as colour segmentation, namely LT and NHS methods. (Corresponding to section 2.4 of Valentine thesis.)
+This groups is responsible of reading and understanding colour space conversion (from RGB to IHLS). As well as colour segmentation, namely LT and NHS methods. (Corresponding to section 2.4 of Valentine thesis.) For further readings please check [ColourSegmentation] page.
 
 = Meetings =
 
@@ -42,6 +42,3 @@ Necessary explanations were written in their corresponding wiki page.
 All members were present.
 
 Presentation was created for Wednesday.
-
-== October 17 ==
-All members were present.
