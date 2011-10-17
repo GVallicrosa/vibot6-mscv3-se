@@ -1,4 +1,4 @@
-#summary Log and wiki for the blank team
+#summary Log and wiki for TeamE
 
 = Objectives =
 
