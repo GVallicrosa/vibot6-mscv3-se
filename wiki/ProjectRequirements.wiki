@@ -1,6 +1,4 @@
 #summary Requirements to follow while developing the project
-<b>Software Engineering
-Project Requirements</b>
 
 <b>1.	High Level Design</b>
 
