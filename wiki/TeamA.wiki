@@ -12,8 +12,11 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 || Shreyansh || C++ || Member ||
 || Arash  || OpenGL || Team Leader ||
 
+= Meetings =
+https://docs.google.com/document/d/1pmuCJ_uARTzJiBIzZWpp94W9kiqyjYKXmL91xXyAHxU/edit?hl=en_US
+https://docs.google.com/document/d/1Nl0OP6HnQ7KQR_8JJC-o8IuN9pN7dSCCrzcdRfrsqgQ/edit?hl=en_US
+
 = Useful Links =
 == For C++ ==
 https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US
-
 http://www.java2s.com/Tutorial/Cpp/CatalogCpp.htm
