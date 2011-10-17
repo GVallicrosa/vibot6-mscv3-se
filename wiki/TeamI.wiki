@@ -1,0 +1,10 @@
+#summary Log and wiki for TeamI
+Description of tasks assigned
+
+= Objectives =
+
+= Members =
+|| *Name* || *Main Topic* ||
+
+
+=Links=
