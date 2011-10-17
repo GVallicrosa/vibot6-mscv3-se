@@ -25,6 +25,7 @@ System Testing Document
 [https://docs.google.com/document/d/1p_EndZ4rBhuXVYaMsH-S7i-qev4gsfkis2Y6bclyyRk/edit?hl=en_US HLD Document]
 
 = Meetings =
+[https://docs.google.com/document/pub?id=1jaSCgxEFSU_mvQg72zk1wlrYzBnEEo06zpQRwipMDNA GroupN 09102011]
 [https://docs.google.com/document/d/1JcMZLQNKiJ-f76uvC62aPUNvjvAvW5GfbONV9Dk6kT8/edit?hl=en_US GroupN161011]
 
 = References =
