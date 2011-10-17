@@ -1,10 +1,18 @@
 #summary Log and wiki for TeamK
-Description of tasks assigned
 
 = Objectives =
+To RampUP Req. Doc. 5.4 b) of the Project's Requirements.
+
+ Contour Smoothing
+
+As the contours provided by polynomial interpolation suffer from outliers
+and staircase effect, contour smoothing is required. For this purpose,
+Robust Loess Smoothing algorithm is used.
 
 = Members =
-|| *Name* || *Main Topic* ||
-
-
-=Links=
+|| *Name* || *Role* ||
+|| Nathanael Lemessa Baisa ||Manager ||
+|| Ozan Tonkal || Technical Manager ||
+|| Pablo Speciale || Team Member||
+|| Raquel Gil ||  Team Member ||
+|| Suman Raj Bista ||  Team Member ||
