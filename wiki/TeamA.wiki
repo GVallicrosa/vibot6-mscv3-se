@@ -16,16 +16,18 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 
 
 = Meetings =
-28 September 
+*28 September* 
 
 All the members of the team were present. 
+
 We discussed what are our requirements and what will be our tasks.
 We divided into two subgroups, one for the C++ part and one for the OpenGL.
 
 [https://docs.google.com/document/d/1pmuCJ_uARTzJiBIzZWpp94W9kiqyjYKXmL91xXyAHxU/edit?hl=en_US GroupAMeeting280911]
 
-29 September
+*29 September*
 All the member of the team were present.
+
 The points of the presentation were established. For the C++ part we considered Makefiles and Compilation Process. An overview of the OpenGL was explained to the other members of the team. 
  
 [https://docs.google.com/document/d/1Nl0OP6HnQ7KQR_8JJC-o8IuN9pN7dSCCrzcdRfrsqgQ/edit?hl=en_US  GroupAMeeting290911]
