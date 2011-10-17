@@ -10,7 +10,7 @@ System Testing Document
 || Arash Akbarinia || Member ||
 || Corina Barbalata || Member ||
 || Federico Camposeco || Member ||
-|| Guillem Vallicrosa || TechLead ||
+|| Guillem Vallicrosa || Tech Lead ||
 || Jorge Zavala || Member ||
 || Jose Franco || Manager ||
 || Nathanael Lemessa || Member ||
