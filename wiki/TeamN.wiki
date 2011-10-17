@@ -7,14 +7,14 @@ System Testing Document
 
 = Members =
 || *Name* || *Role* ||
-|| Arash Akbarinia || ||
-|| Corina Barbalata || ||
-|| Federico Camposeco || ||
-|| Guillem Vallicrosa || ||
-|| Jorge Zavala || ||
-|| Jose Franco || ||
-|| Nathanael Lemessa || ||
-|| Nolang Fanani || ||
-|| Saurabh Jain || ||
-|| Shreyansh Jain || ||
-|| Vineet Nagrath || ||
+|| Arash Akbarinia || Member ||
+|| Corina Barbalata || Member ||
+|| Federico Camposeco || Member ||
+|| Guillem Vallicrosa || Member ||
+|| Jorge Zavala || Member ||
+|| Jose Franco || Manager ||
+|| Nathanael Lemessa || Member ||
+|| Nolang Fanani || Member ||
+|| Saurabh Jain || Member ||
+|| Shreyansh Jain || Member ||
+|| Vineet Nagrath || Member ||
