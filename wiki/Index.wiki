@@ -5,7 +5,7 @@ Welcome to the google code site for the software engineering project. The [Requi
 
 =Members=
 
-The list of members working on the project and their skills can be checked in [http://docs.google.com google docs].
+The list of members working on the project and their skills can be checked in [google docs] http://docs.google.com .
 
 =Teams=
 
