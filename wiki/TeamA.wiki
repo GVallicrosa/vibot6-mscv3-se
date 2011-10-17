@@ -16,6 +16,11 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 https://docs.google.com/document/d/1pmuCJ_uARTzJiBIzZWpp94W9kiqyjYKXmL91xXyAHxU/edit?hl=en_US
 https://docs.google.com/document/d/1Nl0OP6HnQ7KQR_8JJC-o8IuN9pN7dSCCrzcdRfrsqgQ/edit?hl=en_US
 
+= Activity =
+https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNDAxOTcyOTctY2FhZi00MGY4LThlYWEtYzRmYzIzOGRkNjEz&hl=en_US
+https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US
+http://code.google.com/p/vibot6-mscv3-se/wiki/OpenGL
+
 = Useful Links =
 https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US
 http://www.java2s.com/Tutorial/Cpp/CatalogCpp.htm
