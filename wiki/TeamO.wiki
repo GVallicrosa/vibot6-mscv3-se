@@ -7,12 +7,12 @@ Management Team
 Maintain the connection between teams and the supervisors.
 
 = Members =
-|| *Name* || *Role* ||
-|| Corina Barbalata || Member ||
-|| Guillem Vallicrosa || Manager ||
-|| Jose Franco || Member ||
-|| Nolang Fanani || Member ||
-|| Shreyansh Jain || Member ||
+|| *Name* || *Role* || *Responsible of team* ||
+|| Corina Barbalata || Member || F, G||
+|| Guillem Vallicrosa || Manager || L ||
+|| Jose Franco || Member || M ||
+|| Nolang Fanani || Member || H, I ||
+|| Shreyansh Jain || Member || J, K ||
 || Vineet Nagrath || Member ||
 
 = Activity =
