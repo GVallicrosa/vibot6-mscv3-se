@@ -5,7 +5,11 @@
 Do a presentation on software engineering and create different templates
 
 = Members =
-|| *Name* || *Main Topic* ||
-
+|| *Name* || *Main Topic* || Role ||
+|| Nolang Fanani ||  || Manager ||
+|| Marc Barnada ||  || Team Leader ||
+|| Andru Putra ||  || Team Member||
+|| Eduardo Tusa ||  || Team Member ||
+|| Muhammed Safiul Azam ||  || Team Member ||
 
 =Links=
