@@ -1,5 +1,7 @@
 #summary Log and wiki for TeamO
 
+<wiki:toc max_depth="2" />
+
 = Objectives =
 Management Team
 Maintain the connection between teams and the supervisors.
