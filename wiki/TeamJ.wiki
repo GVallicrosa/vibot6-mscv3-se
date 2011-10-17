@@ -1,4 +1,4 @@
-#summary Log and wiki for TeamI
+#summary Log and wiki for TeamJ
 Description of tasks assigned
 
 = Objectives =
