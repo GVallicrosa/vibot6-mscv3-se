@@ -29,8 +29,8 @@ We divided into two subgroups, one for the C++ part and one for the OpenGL.
 
 All the member of the team were present.
 
-The points of the presentation were established. For the C++ part we considered Makefiles and Compilation Process. An overview of the OpenGL was explained to the other members of the team. 
- 
+The points of the presentation were established. For the C++ part we considered Makefiles and Compilation Process. An overview of the OpenGL was explained to the other members of the team.
+
 [https://docs.google.com/document/d/1Nl0OP6HnQ7KQR_8JJC-o8IuN9pN7dSCCrzcdRfrsqgQ/edit?hl=en_US  GroupAMeeting290911]
 
 
