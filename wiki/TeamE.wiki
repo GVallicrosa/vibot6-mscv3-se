@@ -59,7 +59,7 @@ Matlab Code Convention
 
 [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQYjM3OWE5MTUtYTFlMS00ZmRiLWFhZDktYzU5NWQyODBkM2Y3&hl=en_US]
 
-Matlab Code Convention
+HDL & LDL Template
 
 [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQNmU2YzNjMmEtMjBiMC00MDBhLWI4YmQtZTljMjMwYzJkMzkx&hl=en_US]
 
