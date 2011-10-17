@@ -1,5 +1,7 @@
 #summary Log and wiki for TeamA
 
+<wiki:toc max_depth="2" />
+
 = Objectives =
 The objectives of this group are to cover C++ and OpenGL technical issues and present it to the rest of students.
 
