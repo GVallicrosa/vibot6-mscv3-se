@@ -1,5 +1,7 @@
 #summary Log and wiki for TeamN
 
+<wiki:toc max_depth="2" />
+
 = Objectives =
 HLD High Level Design Document
 
