@@ -12,28 +12,28 @@ The list of members working on the project and their skills can be checked in [h
 =Teams=
 ==Working teams==
 
- * [TeamD]
- * [TeamF]
- * [TeamG]
- * [TeamH]
- * [TeamI]
- * [TeamJ]
- * [TeamK]
- * [TeamL]
- * [TeamM]
- * [TeamN]
- * [TeamO]
+ * [TeamD] - Wiki
+ * [TeamF] - GUI
+ * [TeamG] - IHLS, NHS
+ * [TeamH] - Noise removal, object elimination, recover deformed sign
+ * [TeamI] - Contour extraction
+ * [TeamJ] - Gielis curves
+ * [TeamK] - Contour smoothing
+ * [TeamL] - Rotational offset
+ * [TeamM] - Shape reconstruction
+ * [TeamN] - HLD, system testing
+ * [TeamO] - Management
 
 ==On hold teams==
 
-
+ *
 
 ==Dissolved teams==
 
- * [TeamA] 
- * [TeamB]
- * [TeamC]
- * [TeamE]
+ * [TeamA] - C++, OpenGL
+ * [TeamB] - Matlab, OpenCV
+ * [TeamC] - Requirement Acquisition
+ * [TeamE] - Templates for documents and code
 
 
 = Technical Pages =
