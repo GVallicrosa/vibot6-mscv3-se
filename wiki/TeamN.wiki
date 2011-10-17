@@ -8,18 +8,18 @@ HLD High Level Design Document
 System Testing Document
 
 = Members =
-|| *Name* || *Role* ||
-|| Arash Akbarinia || Member ||
-|| Corina Barbalata || Member ||
-|| Federico Camposeco || Member ||
-|| Guillem Vallicrosa || Tech Lead ||
-|| Jorge Zavala || Member ||
-|| Jose Franco || Manager ||
-|| Nathanael Lemessa || Member ||
-|| Nolang Fanani || Member ||
-|| Saurabh Jain || Member ||
-|| Shreyansh Jain || Member ||
-|| Vineet Nagrath || Member ||
+|| *Name* || *Role* || *Main role* ||
+|| Arash Akbarinia || Member ||  ||
+|| Corina Barbalata || Member || GUI ||
+|| Federico Camposeco || Member || ||
+|| Guillem Vallicrosa || Tech Lead || GUI ||
+|| Jorge Zavala || Member || ||
+|| Jose Franco || Manager || ||
+|| Nathanael Lemessa || Member || ||
+|| Nolang Fanani || Member || ||
+|| Saurabh Jain || Member || ||
+|| Shreyansh Jain || Member || ||
+|| Vineet Nagrath || Member || || 
 
 = Activity =
 [https://docs.google.com/document/d/1p_EndZ4rBhuXVYaMsH-S7i-qev4gsfkis2Y6bclyyRk/edit?hl=en_US HLD Document]
