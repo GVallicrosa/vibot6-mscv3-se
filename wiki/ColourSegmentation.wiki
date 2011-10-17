@@ -40,3 +40,8 @@ for each (pixel p){
 }}}
 
 = NHS =
+= HUE =
+The hue angle is traditionally measured starting at the direction corresponding to pure red. The
+simplest way to derive an expression for this angle is to project the vector (1; 0; 0) corresponding
+to red in the RGB space and an arbitrary vector c onto a plane perpendicular to the achromatic
+axi.
