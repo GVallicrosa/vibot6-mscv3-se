@@ -1,4 +1,4 @@
-#summary Log and wiki for heart team.
+#summary Log and wiki for TeamE
 
 = Objectives =
 Build a framework for communication and a system where everyone can keep up to date with the progress of every team
