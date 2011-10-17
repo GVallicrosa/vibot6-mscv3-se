@@ -13,7 +13,7 @@ The objectives of this group are to cover C++ and OpenGL technical issues and pr
 || Arash  || OpenGL || Team Leader ||
 
 = Meetings =
-[https://docs.google.com/document/d/1pmuCJ_uARTzJiBIzZWpp94W9kiqyjYKXmL91xXyAHxU/edit?hl=en_US GroupAMeeting280911] 
+[https://docs.google.com/document/d/1pmuCJ_uARTzJiBIzZWpp94W9kiqyjYKXmL91xXyAHxU/edit?hl=en_US GroupAMeeting280911]
 [https://docs.google.com/document/d/1Nl0OP6HnQ7KQR_8JJC-o8IuN9pN7dSCCrzcdRfrsqgQ/edit?hl=en_US  GroupAMeeting290911]
 
 = Activity =
