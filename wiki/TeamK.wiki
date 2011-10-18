@@ -1,5 +1,9 @@
 #summary Log and wiki for TeamK
 
+<wiki:toc max_depth="2" />
+
+----
+
 = Objectives =
 To RampUP Req. Doc. 5.4 b) of the Project's Requirements.
 
@@ -16,3 +20,28 @@ Robust Loess Smoothing algorithm is used.
 || Pablo Speciale || Team Member||
 || Raquel Gil ||  Team Member ||
 || Suman Raj Bista ||  Team Member ||
+
+
+
+=Design Specifications=
+
+==Input==
+
+Binary image of size NxM which is contour points generated from polynomial interpolation.
+
+==Description==
+
+As the contours provided by polynomial interpolation made during contour extraction suffer from outliers and staircase effect, contour smoothing is needed . To remove outliers and staircase effect, we use the Robust Lowess Smoothing algorithm which carries out (robust) locally-weighted time series and scatter plot smoothing for both equispaced and non-equispaced data.
+
+Robust lowess method considers two weighting parameters, local weight and robustness
+weight. The local weight f, which can be defined by the user, indicates the fraction of data
+used in the procedure.The larger the value of f, more percentage of the data is included, thus more smoothing is performed.
+
+==Output==
+
+Smoothed contour points of the detected objects which is actually in a binary image.
+
+
+= Meetings =
+
+[https://docs.google.com/document/d/1aLnMT8tdDRvh6AtYaUwtfCIxuoLoC8_ID80VkGX7k1Y/edit?hl=es Group K, Meeting 16102011]
