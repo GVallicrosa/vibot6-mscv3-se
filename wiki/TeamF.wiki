@@ -3,7 +3,7 @@
 <wiki:toc max_depth="2" />
 
 = Objectives =
-The objectives of this group are to cover C++ and OpenGL technical issues and present it to the rest of students.
+The objectives of this group is to give a presentation on creating GUIs using C++ with QT and MATLAB with GUIDE to the rest of the students.
 
 = Members =
 || *Name* || *Main topic* || *Role* ||
