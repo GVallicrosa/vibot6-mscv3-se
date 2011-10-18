@@ -45,3 +45,6 @@ Smoothed contour points of the detected objects which is actually in a binary im
 = Meetings =
 
 [https://docs.google.com/document/d/1aLnMT8tdDRvh6AtYaUwtfCIxuoLoC8_ID80VkGX7k1Y/edit?hl=es Group K, Meeting 16102011]
+
+= References =
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B6w6ezwYzkaiMmI2ZmQ2OWUtNDU3NS00MGE3LWI1ZDYtYjA0Yzc4NDIzZGQw&hl=en_US Contour Smoothing Presentation]
