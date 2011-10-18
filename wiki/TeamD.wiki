@@ -1,14 +1,31 @@
 #summary Log and wiki for TeamD
 
+<wiki:toc max_depth="2" />
+
 = Objectives =
-Build a framework for communication and a system where everyone can keep up to date with the progress of every team
+Build a framework for communication and a system where everyone can keep up to date with the progress of every team.
 
 = Members =
 
 || *Name* || *Main Topic* ||
 || Raquel Gil || Manager ||
 || Jose Franco || Tech lead ||
-|| Hamed Mohammadbagher || ||
-|| Nathanael Lemessa Baisa || ||
-|| Joel Vidal || ||
-|| Gao Lijia || ||
+|| Hamed Mohammadbagher || Team Member ||
+|| Nathanael Lemessa Baisa || Team Member ||
+|| Joel Vidal || Team Member ||
+|| Gao Lijia || Team Member ||
+
+
+
+= Meetings =
+ 
+*18 October*
+
+Meeting with Vineet. We discuss how to structure the website. 
+He also shared with us a new website he has created for our project.
+
+= Activity =
+
+During this week implement and improve the website for the project.
+
+= References =
