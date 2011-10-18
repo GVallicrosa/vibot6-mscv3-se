@@ -1,10 +1,15 @@
 #summary Log and wiki for TeamI
 Description of tasks assigned
 
-= Objectives =
+= Objectives = RampUP Req. Doc. 5.3
 
 = Members =
-|| Igor Jovancevic || *Main Topic* ||
+|| *Name* || *Main Topic* || *Role* ||
+|| Igor Jovancevic || || Team Manager ||
+|| Joel Vidal || || Technical Lead ||
+|| Lijia Gao || || Member ||
+|| Marc Barnada Rius || || Member || 
+|| Muhammed Safiul Azam || || Member ||
 
 
 =Links=
