@@ -2,8 +2,8 @@
 RampUP Req. Doc. 5.3
 
 = Objective =
-Contour Extraction
-Polynomial Interpolation - Polynomial Interpolation is used to interpolate the extreme points resulting from the Convex-Hull algorithm
+*Contour Extraction*
+_Polynomial Interpolation - Polynomial Interpolation is used to interpolate the extreme points resulting from the Convex-Hull algorithm_
 
 = Members =
 || *Name* || *Role* ||
