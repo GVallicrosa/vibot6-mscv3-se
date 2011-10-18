@@ -1,18 +1,40 @@
 #summary Log and wiki for TeamF
 
+<wiki:toc max_depth="2" />
+
+= Objectives =
+The objectives of this group are to cover C++ and OpenGL technical issues and present it to the rest of students.
+
 = Members =
-  * Ajad
-  * Andru
-  * Angga
-  * Dadhichi
-  * BiG
+|| *Name* || *Main topic* || *Role* ||
+|| Ajad || MATLAB GUI || Team Manager ||
+|| Andru || C++ GUI with QT || Team Leader ||
+|| Angga || MATLAB GUI || Member ||
+|| Dadhichi || C++ GUI with QT || Member ||
+|| Danupol BiG || C++ GUI with QT || Member ||
 
 = Meetings =
 
-== October 6 ==
+== 6 October ==
 
-  * Qt tutorial
-  * MATLAB tutorial
-  * Feasibility on other GUI tools
-  * Review old code
-  * Sketch GUI
+Ajad, Andru, Angga and BiG were present.
+We discussed about the requirements of the team, divided tasks to be carried out by two subgroups (creating tutorials). One subgroup deals with C++ GUI with QT, and another with MATLAB GUI with GUIDE.
+We also considered the feasibility on using other GUI tools, reviewed old code and made a draft sketch of the GUI.
+
+[https://docs.google.com/a/norture.com/document/d/1i2o2vkICqovmq5rKEwUm8ewvfb62NrevXdUwYhWgAoA/edit?hl=en_US Group F Meeting Log for 6 October]
+
+== 16 October ==
+
+All the member of the team were present.
+
+The requirements of the team was changed. We don't need to make the GUI. So the team's task now just to create a basic tutorial on creating GUIs using both C++ with QT and MATLAB GUIDE.
+
+We finished the presentation material and shared things relevant to GUI creation on both platforms (C++ & MATLAB).
+
+[https://docs.google.com/a/norture.com/document/d/1mvB3zhiOQHF0OIySR6yPHIGkPF3RFmbXJ5lbEUGvg8E/edit?hl=en_US Group F Meeting Log for 16 October]
+
+
+= References =
+Matlab for Beginners
+
+[http://blinkdagger.com/matlab/matlab-gui-graphical-user-interface-tutorial-for-beginners/]
