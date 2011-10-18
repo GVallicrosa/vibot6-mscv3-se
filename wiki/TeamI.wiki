@@ -1,5 +1,4 @@
-#summary Log and wiki for TeamI
-Description of tasks assigned
+Tasks assigned *RampUP Req. Doc. 5.3*
 
 = Objectives = RampUP Req. Doc. 5.3
 
