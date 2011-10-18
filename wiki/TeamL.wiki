@@ -24,11 +24,11 @@ offset is required for a correct initialization.
 = Meetings =
 *6 October* 
 
-1. Reading rotational offset part from the thesis.
+1. Reading rotational offset part from the thesis and understand the matlab code.
 
 *12 October*
 
-1. Discussion among ourselves for the problems we were facing.
+1. Discussion among ourselves for the problems we were facing(Differences in Implementation and thesis)
 
 2. Conclusion was that we need to talk to Yohan about our common problems.
 
