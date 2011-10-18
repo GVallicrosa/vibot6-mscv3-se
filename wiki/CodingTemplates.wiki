@@ -1,5 +1,16 @@
-#summary Coding style for the project
+= Conventions =
 
-= Introduction =
+== Code Convention C++ ==
 
-BlankTeam can put here the coding style they decide is best for the project
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQMDNmN2U0OWItODJiNC00ODBmLTk5NTQtOGRhNTM3ODcwOGJj&hl=es C++_Code_Convention]
+
+
+
+== Code Convention Matlab ==
+
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQYjM3OWE5MTUtYTFlMS00ZmRiLWFhZDktYzU5NWQyODBkM2Y3&hl=es Matlab_Code_Convention]
+
+
+== High Level Design and Low Level Design Convention ==
+
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B8H6C198PBUQNmU2YzNjMmEtMjBiMC00MDBhLWI4YmQtZTljMjMwYzJkMzkx&hl=es Design convention]
