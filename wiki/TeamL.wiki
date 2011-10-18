@@ -23,18 +23,25 @@ offset is required for a correct initialization.
 
 = Meetings =
 *6 October* 
+
 1. Reading rotational offset part from the thesis.
 
 *12 October*
+
 1. Discussion among ourselves for the problems we were facing.
+
 2. Conclusion was that we need to talk to Yohan about our common problems.
 
 *14 October*
+
 1. Meeting with Yohan. Many queries were cleared about why and how.
+
 2. Conclusion: Better understanding of concept and got to know about the scope of improvement.
 
 *18 October*
+
 1. Made the presentation keeping improvements in mind.
+
 2. Meeting logs were filled.
 
 
