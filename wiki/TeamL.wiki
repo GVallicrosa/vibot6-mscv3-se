@@ -46,3 +46,5 @@ offset is required for a correct initialization.
 
 
 = References =
+
+[https://docs.google.com/present/edit?id=0Aaw6ezwYzkaiZGY2ZGdyNXhfMjQ4Y2Zmc3I4YzY&hl=en_US]
