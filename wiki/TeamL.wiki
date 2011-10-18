@@ -1,5 +1,7 @@
 #summary Log and wiki for TeamL
 
+<wiki:toc max_depth="2" />
+
 = Objectives =
 To "Ramp Up" the requirements of point 5.4 c) of the Project's Requirements. 
 
@@ -17,3 +19,22 @@ offset is required for a correct initialization.
 || Taman Upadhaya ||  || Team Member ||
 || Yukti Suri ||  || Team Member ||
 || Zhongyang Liu ||  || Team Member ||
+
+
+= Meetings =
+*10 September* 
+
+*12 September*
+
+*14 September*
+
+*15 September*
+
+
+
+= Activity =
+
+
+
+
+= References =
