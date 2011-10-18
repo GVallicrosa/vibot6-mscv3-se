@@ -13,5 +13,4 @@ _Polynomial Interpolation - Polynomial Interpolation is used to interpolate the 
 || Marc Barnada Rius || Member || 
 || Muhammed Safiul Azam || Member ||
 
-
-=Links=
+== Explanation ==
