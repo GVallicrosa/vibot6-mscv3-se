@@ -1,0 +1,25 @@
+#summary Log and wiki for TeamT
+
+<wiki:toc max_depth="2" />
+
+= Objectives =
+
+
+= Members =
+|| *Name* || *Main topic* || *Role* ||
+|| Zhongyang Liu ||  || Manager Member ||
+|| Saurabh Jain ||  || Member ||
+|| Shreyansh Jain ||  || Member ||
+|| Raquel Gil ||  || Member ||
+
+= Meetings =
+
+*20 October* 
+
+
+
+= Activity =
+
+
+
+= References =
