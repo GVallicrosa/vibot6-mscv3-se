@@ -1,5 +1,7 @@
 #summary Log and wiki for TeamM
 
+<wiki:toc max_depth="2" />
+
 = Objectives =
 To RampUP Req. Doc. 5.4 d) of the Project's Requirements. 
 
