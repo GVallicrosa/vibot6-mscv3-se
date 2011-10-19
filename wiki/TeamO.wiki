@@ -9,12 +9,12 @@ Maintain the connection between teams and the supervisors.
 
 = Members =
 || *Name* || *Role* || *Responsible of team* ||
-|| Corina Barbalata || Member || F, G||
-|| Guillem Vallicrosa || Manager || L ||
-|| Jose Franco || Member || M, N ||
-|| Nolang Fanani || Member || H, I ||
-|| Shreyansh Jain || Member || J, K ||
-|| Vineet Nagrath || Member ||
+|| Corina Barbalata || Member || P, Q (F, G)||
+|| Guillem Vallicrosa || Manager || R, V (L) ||
+|| Jose Franco || Member || S (M, N) ||
+|| Nolang Fanani || Member || T (H, I) ||
+|| Shreyansh Jain || Member || U (J, K) ||
+|| Vineet Nagrath || Member || ||
 
 = Activity =
 An activity report, for all the teams, is completed every week by the members of TeamO. This activity report is sent every Wednesday to Vineet and Yohan.
