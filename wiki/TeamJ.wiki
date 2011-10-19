@@ -22,6 +22,11 @@ of road signs, and will be required to detect the shapes of road signs.
 || Muhammed Safiul Azam ||  Team Member ||
 
 
+= Presentation =
+
+[https://docs.google.com/leaf?id=0B2QwCUFIvEU_Y2ZmNjQzMzAtMGY1My00NzE0LTllY2EtMDdhYjRiMDA4NjA1&hl=en_US Gieles Curves]
+
+
 = Meetings =
 
 [https://docs.google.com/document/d/1QYwY6UjGikMaVMkEhiP6h-Us3kwMgz73OfjiszetJlA/edit?hl=es Group J, Meeting14102011]
