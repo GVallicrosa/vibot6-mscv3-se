@@ -18,6 +18,10 @@ Reconstructing a Gielis curve can be posed as a minimization problem of a cost f
 || Angga Reza Fardana ||  Team Member ||
 
 
+=Presentation=
+[https://docs.google.com/present/edit?id=0ARF_cJMh0G-dZGZnczg3ZHpfMGRqd216bWZt&hl=en_US]
+
+
 =Meetings=
 *8 October 2011*
 
