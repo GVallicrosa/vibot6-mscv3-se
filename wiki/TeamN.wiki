@@ -24,6 +24,8 @@ System Testing Document
 = Activity =
 [https://docs.google.com/document/d/1p_EndZ4rBhuXVYaMsH-S7i-qev4gsfkis2Y6bclyyRk/edit?hl=en_US HLD Document]
 
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzkyOGVmMWItNDkzYy00ZDYxLTkyNzgtZjA5MWI1NTJjMjgx&hl=en_US HLD GUI Presentation]
+
 = Meetings =
 Created HLD flowchart, divided tasks for every module to write a document.
 
