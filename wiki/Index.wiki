@@ -12,7 +12,21 @@ The list of members working on the project and their skills can be checked in [h
 =Teams=
 ==Working teams==
 
- * [TeamD] - Wiki
+ * [TeamD] - Wiki, website
+ * [TeamO] - Management
+ * [TeamP] - IHLS, NHS
+ * [TeamQ] - Noise removal, object elimination, recover deformed sign
+ * [TeamR] - Contour extraction
+ * [TeamS] - Testing
+ * [TeamT] - Rotational offset
+ * [TeamU] - Shape reconstruction
+
+==Dissolved teams==
+
+ * [TeamA] - C++, OpenGL
+ * [TeamB] - Matlab, OpenCV
+ * [TeamC] - Requirement Acquisition
+ * [TeamE] - Templates for documents and code
  * [TeamF] - GUI
  * [TeamG] - IHLS, NHS
  * [TeamH] - Noise removal, object elimination, recover deformed sign
@@ -22,18 +36,6 @@ The list of members working on the project and their skills can be checked in [h
  * [TeamL] - Rotational offset
  * [TeamM] - Shape reconstruction
  * [TeamN] - HLD, system testing
- * [TeamO] - Management
-
-==On hold teams==
-
- *
-
-==Dissolved teams==
-
- * [TeamA] - C++, OpenGL
- * [TeamB] - Matlab, OpenCV
- * [TeamC] - Requirement Acquisition
- * [TeamE] - Templates for documents and code
 
 
 = Technical Pages =
