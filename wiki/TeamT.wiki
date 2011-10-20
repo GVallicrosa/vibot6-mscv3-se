@@ -20,8 +20,11 @@
 
 = Activity =
 1. Block is currently implemented in MATLAB, we have to implement it complete in C++.
+
 2. Team decided to make LLD of the basic functionalities of the block first and then the will work on possible improvements like occlusion issue..
+
 3. KT is planned on 22nd Oct.
+
 4. Saurabh and Raquel are going to share KT on all the concepts related to Geilis Curves, rotational offsets.
 
 
