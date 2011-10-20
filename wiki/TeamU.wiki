@@ -1,0 +1,17 @@
+#summary Log and wiki for TeamU
+
+<wiki:toc max_depth="2" />
+
+= Objectives =
+
+
+= Members =
+|| *Name* || *Main topic* || *Role* ||
+
+= Meetings =
+
+
+= Activity =
+
+
+= References =
