@@ -1,0 +1,25 @@
+#summary Log and wiki for TeamQ
+
+<wiki:toc max_depth="2" />
+
+= Objectives =
+
+
+= Members =
+|| *Name* || *Main topic* || *Role* ||
+|| Corina Barbalata ||  || Member ||
+|| Eduardo Tusa ||  || Member ||
+|| Federico Camposeco Paulsen ||  || Member ||
+|| Joel Vidal ||  || Manager Member ||
+
+= Meetings =
+
+[https://docs.google.com/document/d/1IeFFsb09k3OWMXNwmtDbBp3NveJrCXTZ4h1nT3wJASw/edit?hl=en_US Meeting 20/10/2011]
+
+
+
+= Activity =
+
+
+
+= References =
