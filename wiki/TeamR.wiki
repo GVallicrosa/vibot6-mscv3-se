@@ -7,6 +7,11 @@
 
 = Members =
 || *Name* || *Main topic* || *Role* ||
+|| Guillem Vallicrosa  ||  || Member || 
+|| Igor Jovancevic ||  || Member || 
+|| Jorge Zavala ||  || Member || 
+|| Marc Barnada ||  || Member || 
+|| Muhammed Safiul Azam ||  || Manager || 
 
 = Meetings =
 
