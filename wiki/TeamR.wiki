@@ -3,18 +3,21 @@
 <wiki:toc max_depth="2" />
 
 = Objectives =
-
+Contour extraction of the meaningful points near the convex hull.
 
 = Members =
-|| *Name* || *Main topic* || *Role* ||
-|| Guillem Vallicrosa  ||  || Member || 
-|| Igor Jovancevic ||  || Member || 
-|| Jorge Zavala ||  || Member || 
-|| Marc Barnada ||  || Member || 
-|| Muhammed Safiul Azam ||  || Manager || 
+|| *Name* || *Role* ||
+|| Guillem Vallicrosa  || Member || 
+|| Igor Jovancevic || Member || 
+|| Jorge Zavala || Member || 
+|| Marc Barnada || Member || 
+|| Muhammed Safiul Azam || Manager || 
 
 = Meetings =
 
+*21 October*
+
+Discussion about what to do and explanation to all group. Division of tasks.
 
 = Activity =
 
