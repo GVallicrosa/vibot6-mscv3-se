@@ -3,23 +3,24 @@
 <wiki:toc max_depth="2" />
 
 = Objectives =
-
+The team has to create the low level design for the Post Processing part of the project
 
 = Members =
 || *Name* || *Main topic* || *Role* ||
-|| Corina Barbalata ||  || Member ||
-|| Eduardo Tusa ||  || Member ||
-|| Federico Camposeco Paulsen ||  || Member ||
-|| Joel Vidal ||  || Manager Member ||
+|| Corina Barbalata || Diagrams || Member ||
+|| Eduardo Tusa || Eliminate Object  || Member ||
+|| Federico Camposeco Paulsen || Recover deformed sign || Member ||
+|| Joel Vidal || Remove noise  || Manager Member ||
 
 = Meetings =
 
+In this meeting the task were distributed. The functions that have to be used in Matlab and C++ were discussed. Understanding of the Case Diagram. 
 [https://docs.google.com/document/d/1IeFFsb09k3OWMXNwmtDbBp3NveJrCXTZ4h1nT3wJASw/edit?hl=en_US Meeting 20/10/2011]
 
 
 
 = Activity =
-
+[https://docs.google.com/document/d/1reYNrlv_c6SvIAcoSZZ69ng32V47OgFE7YfBMVPp0rw/edit?hl=en_US LLD for PostProcessing]
 
 
 = References =
