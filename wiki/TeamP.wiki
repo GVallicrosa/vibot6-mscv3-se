@@ -6,13 +6,20 @@
 
 
 = Members =
-|| *Name* || *Main topic* || *Role* ||
+= Members =
+|| *Name* || *Role* ||
+|| Arash Akbarinia  || Member || 
+||Dadhichi Shukla || Member || 
+||Danupol Tanprayoon || Member || 
+|| Jose Franco || Member || 
+|| Hamed Mohammadbagher || Manager || 
+
 
 
 = Meetings =
-
+21 oct 2011
 
 = Activity =
-
+Discussion about how to do low level design . Division of tasks.
 
 = References =
