@@ -3,15 +3,20 @@
 <wiki:toc max_depth="2" />
 
 = Objectives =
-
+To suggest testing mechanisms at different stages of our project
 
 = Members =
-|| *Name* || *Main topic* || *Role* ||
+|| *Name* || *Role* ||
+|| Suman Raj Bista || Manager ||
+|| Pablo Speciale || Member ||
+|| Ozan Tonkal || Member ||
+|| Nolang Fanani || Member ||
+|| Nathanael Lemessa Baisa || Member ||
 
 = Meetings =
-
+October 19,2011
 
 = Activity =
-
+ Work division for studying different kinds of testing mechanisms
 
 = References =
