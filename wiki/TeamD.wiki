@@ -7,13 +7,12 @@ Build a framework for communication and a system where everyone can keep up to d
 
 = Members =
 
-|| *Name* || *Main Topic* ||
-|| Raquel Gil || Manager ||
-|| Jose Franco || Tech lead ||
-|| Hamed Mohammadbagher || Team Member ||
-|| Nathanael Lemessa Baisa || Team Member ||
-|| Joel Vidal || Team Member ||
-|| Gao Lijia || Team Member ||
+|| *Name* || *Main Topic* || *Role* ||
+|| Raquel Gil || ||  Manager ||
+|| Hamed Mohammadbagher  ||  || Tech lead ||
+|| Nathanael Lemessa Baisa ||  || Team Member ||
+|| Joel Vidal ||  || Team Member ||
+|| Gao Lijia || || Team Member ||
 
 
 
