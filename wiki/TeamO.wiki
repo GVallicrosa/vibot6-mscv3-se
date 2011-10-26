@@ -21,7 +21,7 @@ An activity report, for all the teams, is completed every week by the members of
 
 [https://docs.google.com/document/d/1JVU28d0G6B8JpC1PPwD9tQG3vYSeXQdsU9X1GaY_96A/edit?hl=en_US ActivityReport-12.10.2011]
 
-[https://docs.google.com/document/d/17EeE4xbcO86HBYe67A373Q5zGA8Pxs9A190vwmhEylU/edit?hl=en_US ActivityReport-26.10.2011]
+[ActivityReport-26.10.2011]
 
 = Meetings =
 The progress of the project was discussed and the agenda of the next big meeting group was decided.
