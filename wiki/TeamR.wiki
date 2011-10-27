@@ -15,7 +15,7 @@ Contour extraction of the meaningful points near the convex hull.
 
 = Meetings =
 
-*21 October*
+[https://docs.google.com/document/d/1-M4Jx_8I7XWEmOMA440fEiMM5qFQUK_IO3jYabOEHjU/edit?hl=en_US *21 October*]
 
 Discussion about what to do and explanation to all group. Division of tasks.
 
