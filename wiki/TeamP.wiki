@@ -18,6 +18,7 @@ IHLS, NHS
 
 = Meetings =
 21 oct 2011
+26 oct 2011
 
 = Activity =
 Discussion about how to do low level design . Division of tasks.
