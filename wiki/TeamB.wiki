@@ -16,4 +16,10 @@ All the team members will know both topics (Matlab and OpenCV) so feel free to a
 
 Team manager and tech leader are *Pablo* and *Saurabh*, respectively.
 
+= Meetings =
+
+[https://docs.google.com/document/d/1gpMe4BHOQx_AYwERUBB9N80l5Wi-wTug1Zt3aKqbh4k/edit?hl=es GroupBMeeting01102011]
+
+
+
 _Tasks for the group completed. Group dissolved._
