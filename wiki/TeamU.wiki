@@ -15,8 +15,8 @@ The team has to create the low level design for the Shape Reconstruction part of
 
 = Meetings =
 
-
 [https://docs.google.com/a/norture.com/document/d/1Kc-S5GKnuM5CBZJNbw5qNTW7bOUM5vc4KMF-Dib9_xA/edit?hl=en_US 26-10-2011]
+
 In this meeting we discussed on how the Shape Reconstruction functions are used in the code, how to determine the number of variables relevant to the functions. Then we discussed on how to divide the task among members based on those variables.
 
 
