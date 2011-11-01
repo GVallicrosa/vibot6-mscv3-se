@@ -36,3 +36,5 @@ The PostProcessing team had as main task the realization of the pseudo-code for 
 [http://opencv.willowgarage.com/documentation/cpp/imgproc_structural_analysis_and_shape_descriptors.html#cv-findcontours Labeling in OpenCV]
 
 [http://www.mathworks.com/help/toolbox/images/ref/regionprops.html Properties of image regions]
+
+[http://en.wikipedia.org/wiki/Use_case_diagram Case Diagrams]
