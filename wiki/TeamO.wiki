@@ -9,11 +9,11 @@ Maintain the connection between teams and the supervisors.
 
 = Members =
 || *Name* || *Role* || *Responsible of team* ||
-|| Corina Barbalata || Member || P, Q (F, G)||
-|| Guillem Vallicrosa || Manager || R, V (L) ||
-|| Jose Franco || Member || S (M, N) ||
-|| Nolang Fanani || Member || T (H, I) ||
-|| Shreyansh Jain || Member || U (J, K) ||
+|| Corina Barbalata || Member || Q (F, G)||
+|| Guillem Vallicrosa || Manager || R(L) ||
+|| Jose Franco || Member || P,U (M, N) ||
+|| Nolang Fanani || Member || S (H, I) ||
+|| Shreyansh Jain || Member || T (J, K) ||
 || Vineet Nagrath || Member || ||
 
 = Activity =
