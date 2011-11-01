@@ -22,7 +22,8 @@ In this meeting the task were distributed. The functions that have to be used in
 
 = Activity =
 
-The PostProcessing LLD has as main task the pseudo-code of the Noise Removal (using Median Filter and Morphological Operations), Recovery of the deformed sign and Object Elimination. 
+The PostProcessing team had as main task the realization of the pseudo-code for the Noise Removal (using Median Filter and Morphological Operations), Recovery of the deformed sign and Object Elimination. 
+
 [https://docs.google.com/document/d/1reYNrlv_c6SvIAcoSZZ69ng32V47OgFE7YfBMVPp0rw/edit?hl=en_US LLD for PostProcessing]
 
 
