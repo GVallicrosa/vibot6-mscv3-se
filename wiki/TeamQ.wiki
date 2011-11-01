@@ -29,8 +29,10 @@ The PostProcessing team had as main task the realization of the pseudo-code for 
 
 = References =
 
-[http://www.mathworks.com/help/toolbox/images/ref/im2bw.html
-Convertion of binary images in Matlab]
+[http://www.mathworks.com/help/toolbox/images/ref/im2bw.html Convertion of binary images in Matlab]
+
 [http://www.mathworks.com/help/toolbox/images/ref/bwlabel.html Labeling in Matlab]
+
 [http://opencv.willowgarage.com/documentation/cpp/imgproc_structural_analysis_and_shape_descriptors.html#cv-findcontours Labeling in OpenCV]
+
 [http://www.mathworks.com/help/toolbox/images/ref/regionprops.html Properties of image regions]
