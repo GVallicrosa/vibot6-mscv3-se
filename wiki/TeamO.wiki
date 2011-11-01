@@ -11,8 +11,8 @@ Maintain the connection between teams and the supervisors.
 || *Name* || *Role* || *Responsible of team* ||
 || Corina Barbalata || Member || Q (F, G)||
 || Guillem Vallicrosa || Manager || R(L) ||
-|| Jose Franco || Member || P,U (M, N) ||
-|| Nolang Fanani || Member || S (H, I) ||
+|| Jose Franco || Member || P(M, N) ||
+|| Nolang Fanani || Member || S,U (H, I) ||
 || Shreyansh Jain || Member || T (J, K) ||
 || Vineet Nagrath || Member || ||
 
