@@ -6,12 +6,12 @@
 The team has to create the low level design for the Shape Reconstruction part of the project
 
 = Members =
-|| *Name* || *Main topic* || *Role* ||
-|| Angga Reza Fardana ||  || Manager ||
-|| Yukti Suri ||  || Member ||
-|| Taman Upadhaya ||  || Member ||
-|| Lijia Gao ||  || Member ||
-|| Andru Putra Twinanda ||   || Member ||
+|| *Name* || *Role* ||
+|| Angga Reza Fardana || Manager ||
+|| Yukti Suri || Member ||
+|| Taman Upadhaya || Member ||
+|| Lijia Gao || Member ||
+|| Andru Putra Twinanda || Member ||
 
 = Meetings =
 
@@ -19,10 +19,14 @@ The team has to create the low level design for the Shape Reconstruction part of
 
 In this meeting we discussed on how the Shape Reconstruction functions are used in the code, how to determine the number of variables relevant to the functions. Then we discussed on how to divide the task among members based on those variables.
 
+[https://docs.google.com/a/norture.com/document/d/1eDi79Vvc8ruSUu8MWXptV11tDNvhWZ9DwuFoLvsaFtQ/edit?hl=en_US 01-11-2011]
+
+In this meeting we decided to analyse the code together and discuss the low-level design of the functions. We continued the previous analysis of the functions, along with their relevant variables and how they are used in the functions. We've also figured out the input/output parameters of each functions and added header texts for each one too.
 
 = Activity =
 
-LLD for Shape Reconstruction
+The team made a report on the Low-level design for Shape Reconstruction which can be viewed here:
+[https://docs.google.com/a/norture.com/document/d/1Ji8cqD3nRoDTuA-FCqZGZrAlmIZ81JHq46wXPE8tr2I/edit?hl=en_US LLD for Shape Reconstruction]
 
 
 = References =
