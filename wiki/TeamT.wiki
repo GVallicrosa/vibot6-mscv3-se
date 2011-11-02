@@ -15,10 +15,7 @@
 = Meetings =
 
 *20 October* 
-*24 October* 
 
-
-= Activity =
 1.1 Block is currently implemented in MATLAB, we have to implement it complete in C++.
 
 1.2 Team decided to make LLD of the basic functionalities of the block first and then we will work on possible improvements like occlusion issue..
@@ -26,6 +23,8 @@
 1.3 KT is planned on 22nd Oct.
 
 1.4 Saurabh and Raquel are going to share KT on all the concepts related to Geilis Curves, rotational offsets.
+
+*24 October* 
 
 2.1 Cause sometimes the first minimum theta doesn't work for the gielius curve, we need to use several minimum thetas, namely, passing thetas in an array.
 
@@ -35,6 +34,12 @@
 
 2.4 Next meeting we will make sure how our function(and class) should be like.
 
-= References =
+*1 November*
+
+= Activity =
 
 [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzU4NWM3ZjQtYjE5OS00MWMyLThiYjgtMTAwODM5YzljY2Uz&hl=en_US LLD RotationalOffset]
+
+
+
+= References =
