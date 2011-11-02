@@ -15,6 +15,7 @@ To suggest testing mechanisms at different stages of our project
 
 = Meetings =
 October 19,2011
+26 October 2011
 
 = Activity =
  Work division for studying different kinds of testing mechanisms
