@@ -15,9 +15,18 @@ To suggest testing mechanisms at different stages of our project
 
 = Meetings =
 October 19,2011
-26 October 2011
+
+October 26 2011 
+
 
 = Activity =
- Work division for studying different kinds of testing mechanisms
+Ist meeting :- Work division for studying different kinds of testing mechanisms
+
+IInd meeting :- meeting log is available here
+ https://docs.google.com/document/d/18KxTrRr7QQXFXsMmgC5khvIhggYPykAGTBwDcLt-NYA/edit?hl=en_US#
 
 = References =
+Report :- https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US#
+
+Issues:- 
+http://code.google.com/p/vibot6-mscv3-se/issues/detail?id=3
