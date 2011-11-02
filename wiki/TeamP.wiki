@@ -24,4 +24,37 @@ IHLS, NHS
 = Activity =
 Discussion about how to do low level design . Division of tasks.
 
-= References =
+= TASK =
+Algorithm: Color Space Convertion
+1.	Function RGB2IHLS(input) have argument as ‘input’. ‘input’ is the rgb image to be processed.
+2.	Return value from RGB2IHLS is ‘output’. The ‘output’ is 3-channel image with 3 parameters (h, l, s) in each pixel and have the same dimension as ‘input’.
+3.	Read pixel ‘p’ of ‘input’ image to assign pixel ‘pp’ for ‘output’ of the same coordinate
+a.	r := red value of pixel ‘p’
+b.	g := green value of pixel ‘p’
+c.	b := blue value of pixel ‘p’
+4.	Find ‘h’, ‘s’, ‘l’ using the following equation and conditions for all ‘pp’:
+a.	theta := arccos((r - 0.5 * g - 0.5 * b) / sqrt(r * r + g * g + b * b - r * g - r * b - g * b))
+if b <= g
+		     	h := theta
+		     else
+		     	h := 360 – theta
+b.	s := max(r, g, b) - min(r, g, b)
+c.	l := 0.212 * r + 0.715 * g + 0.072 * b
+5.	Return ‘output’
+
+Algorithm:  Color Segmentation
+1.	Define following parameter from look up table
+a.	hueMax := maximum hue threshold from look-up table
+b.	hueMin := minimum hue threshold from look-up table
+c.	satMin := minimum saturation threshold from look-up tableFunction
+2.	NHS(input) have argument as ‘input’. ‘input’ is the ihls image to be processed.
+3.	Return value from NHS is ‘output’. The ‘output’ is binary image and have the same dimension as ‘input’.
+4.	Read pixel ‘p’ of ‘input’ image to assign pixel ‘pp’ for ‘output’ of the same coordinate using following conditions:
+a.	h := hue value of p
+b.	s := saturation value of p
+c.	if h < hueMax && h > hueMin && s > satMin
+4.c.i.	pp =1
+5.	Return output
+
+
+
