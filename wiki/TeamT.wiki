@@ -36,3 +36,5 @@
 2.4 Next meeting we will make sure how our function(and class) should be like.
 
 = References =
+
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzU4NWM3ZjQtYjE5OS00MWMyLThiYjgtMTAwODM5YzljY2Uz&hl=en_US LLD RotationalOffset]
