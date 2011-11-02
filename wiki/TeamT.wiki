@@ -6,11 +6,11 @@
 
 
 = Members =
-|| *Name* || *Main topic* || *Role* ||
-|| Zhongyang Liu ||  || Manager Member ||
-|| Saurabh Jain ||  || Member ||
-|| Shreyansh Jain ||  || Member ||
-|| Raquel Gil ||  || Member ||
+|| *Name*  || *Role* ||
+|| Zhongyang Liu || Manager Member ||
+|| Saurabh Jain || Member ||
+|| Shreyansh Jain ||  Member ||
+|| Raquel Gil || Member ||
 
 = Meetings =
 
