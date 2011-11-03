@@ -40,7 +40,7 @@
 
 3.2 Shreyansh explained us the importance of an abstract class for the interface functions between classes.
 
-3.3 Next task will be implement the RotationalOffset function in Matlab.
+3.3 Next task will be implement the Rotational Offset function in Matlab.
 
 = Activity =
 
