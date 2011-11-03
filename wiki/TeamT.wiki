@@ -36,6 +36,12 @@
 
 *1 November*
 
+3.1 Discuss about the members and functions of our class.
+
+3.2 Shreyansh explained us the importance of an abstract class for the interface functions between classes.
+
+3.3 Next task will be implement the RotationalOffset function in Matlab.
+
 = Activity =
 
 [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzU4NWM3ZjQtYjE5OS00MWMyLThiYjgtMTAwODM5YzljY2Uz&hl=en_US LLD RotationalOffset]
