@@ -20,6 +20,7 @@ IHLS, NHS
 21 oct 2011
 
 26 oct 2011
+https://docs.google.com/document/d/1whPxIfN1kInsZSScpleYJF4oDXvY3ib8ZwEyjEsrW64/edit?hl=en_GB
 
 = Activity =
 Discussion about how to do low level design . Division of tasks.
