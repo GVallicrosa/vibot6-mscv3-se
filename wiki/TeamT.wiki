@@ -42,6 +42,14 @@
 
 3.3 Next task will be implement the Rotational Offset function in Matlab.
 
+*6 November*
+
+To do:
+--------
+1. Each team member will prepare the code with the guidelines given in LLD.
+2. Shreyansh will send a mail about the naming conventions of the local variables to be followed.
+3. The dead-line to finish the coding activity by all the members is 21st Nov’2011.
+
 = Activity =
 
 [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzU4NWM3ZjQtYjE5OS00MWMyLThiYjgtMTAwODM5YzljY2Uz&hl=en_US LLD RotationalOffset]
