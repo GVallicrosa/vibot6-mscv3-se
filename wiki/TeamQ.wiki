@@ -7,10 +7,10 @@ The team has to create the low level design for the Post Processing part of the 
 
 = Members =
 || *Name* || *Main topic* || *Role* ||
-|| Corina Barbalata || Diagrams || Member ||
-|| Eduardo Tusa || Eliminate Object  || Member ||
-|| Federico Camposeco Paulsen || Recover deformed sign || Member ||
-|| Joel Vidal || Remove noise  || Manager Member ||
+|| Corina Barbalata || || Member ||
+|| Eduardo Tusa || || Member ||
+|| Federico Camposeco Paulsen || || Member ||
+|| Joel Vidal || || Manager Member ||
 
 = Meetings =
 
