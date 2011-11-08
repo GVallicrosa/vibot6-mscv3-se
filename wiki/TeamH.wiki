@@ -50,3 +50,11 @@ The content of our presentation such as explanations, illustrations, examples; w
 Each member presented his assigned task. Comments and hesitations on each presentation were discussed in order to improve the explanations about Noise Removal and Object Elimination. The presentation on Recovery of Deformed Road Sign presented very illustrative definitions. 
 
 By another hand, each member will send his final slides in order to delineate the final presentation. The presence of code in the final presentation will be avoided. The illustrative examples will have more priority.
+
+
+
+= Questions =
+|| || *Question* || *Answer* ||
+||1|| How is the noise removed in the binary images?||A median filter and a morphological "close" operation is applied||
+||2|| What are the two methods applied for "Object Elimination"?||Ratio of the region and area of the region||
+||3|| What is the input and output of a convex hull algorithm||Input: binary image or set of coordinates. Output: Coordinates of the points forming the outmost convex polygon of the input.||
