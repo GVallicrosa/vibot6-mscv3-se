@@ -20,6 +20,13 @@ Team manager and tech leader are *Pablo* and *Saurabh*, respectively.
 
 [https://docs.google.com/document/d/1gpMe4BHOQx_AYwERUBB9N80l5Wi-wTug1Zt3aKqbh4k/edit?hl=es GroupBMeeting01102011]
 
+= Questions =
 
+#What was the role of Matlab in Valentine's code?
+Answer: Color segmentation, contour extraction, convex hull.
+#What was the role of the C++ code in Valentine's code?
+Answer: Smooth contour, rotational offset, curve fitting, overlaying the reconstructed shape.
+#What version of OpenCV are we supposed to use for the project?
+Answer: 2.2
 
 _Tasks for the group completed. Group dissolved._
