@@ -19,13 +19,15 @@ IHLS, NHS
 = Meetings =
 21 oct 2011
 
-26 oct 2011
-https://docs.google.com/document/d/1whPxIfN1kInsZSScpleYJF4oDXvY3ib8ZwEyjEsrW64/edit?hl=en_GB
 
+[https://docs.google.com/document/d/1whPxIfN1kInsZSScpleYJF4oDXvY3ib8ZwEyjEsrW64 26 oct 2011]
+
+
+[https://docs.google.com/document/pub?id=1ZU80_x9tRY-0ZZVBlQWjo5vHPlS5EJJhzip6U5pPwlk 09 nov 2011]
 = Activity =
-Discussion about how to do low level design . Division of tasks.
+Coding will begin shortly. *OpenCV matrices will be used for the input and output of the programmed functions*.
 
-Task done. 
+Discussion about how to do low level design . Division of tasks. (Task done)
 
 =Tasks=
 https://docs.google.com/document/d/1LpkVXDpwcoc-4bX0f7eM9Q0S5CHdo9XvvRsosHweI24/edit?hl=en_GB
