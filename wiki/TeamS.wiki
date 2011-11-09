@@ -9,9 +9,10 @@ To suggest testing mechanisms at different stages of our project
 || *Name* || *Role* ||
 || Suman Raj Bista || Manager ||
 || Pablo Speciale || Member ||
-|| Ozan Tonkal || Member ||
+|| Ozan Tonkal || Member || 
 || Nolang Fanani || Member ||
 || Nathanael Lemessa Baisa || Member ||
+||Taman Upadhaya || Member ||
 
 = Meetings =
 October 19,2011
