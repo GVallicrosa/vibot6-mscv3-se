@@ -28,6 +28,11 @@ The Post-Processing team had as main task the realization of the pseudo-code for
 
 [https://docs.google.com/document/d/1reYNrlv_c6SvIAcoSZZ69ng32V47OgFE7YfBMVPp0rw/edit?hl=en_US LLD for PostProcessing]
 
+= Questions =
+|| || *Question* || *Answer* ||
+||1|| || ||
+||2|| || ||
+||3|| || ||
 
 = References =
 
