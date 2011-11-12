@@ -45,6 +45,11 @@ The team has realized a C++ Documentation for a better understanding of the topi
 A wiki page for the OpenGL was created for more detail information 
 [http://code.google.com/p/vibot6-mscv3-se/wiki/OpenGL OpenGL Documentation]
 
+= Questions =
+|| || *Question* || *Answer* ||
+||1|| || ||
+||2|| || ||
+||3|| || ||
 
 = References =
 https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US
