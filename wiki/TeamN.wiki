@@ -10,9 +10,9 @@ System Testing Document
 = Members =
 || *Name* || *Role* || *Main role* ||
 || Arash Akbarinia || Member ||  ||
-|| Corina Barbalata || Member || GUI ||
+|| Corina Barbalata || Member ||  ||
 || Federico Camposeco || Member || ||
-|| Guillem Vallicrosa || Tech Lead || GUI ||
+|| Guillem Vallicrosa || Tech Lead ||  ||
 || Jorge Zavala || Member || ||
 || Jose Franco || Manager || ||
 || Nathanael Lemessa || Member || ||
