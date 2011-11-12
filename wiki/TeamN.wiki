@@ -35,4 +35,10 @@ Revise work. Prepare presentation. Discuss about testing.
 
 [https://docs.google.com/document/d/1JcMZLQNKiJ-f76uvC62aPUNvjvAvW5GfbONV9Dk6kT8/edit?hl=en_US GroupN161011]
 
+= Questions =
+|| || *Question* || *Answer* ||
+||1|| || ||
+||2|| || ||
+||3|| || ||
+
 = References =
