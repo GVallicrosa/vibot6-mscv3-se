@@ -1,12 +1,12 @@
 /*
  * TODO: write unit testing for all the functions.
  */
-#include <iostream>
-#include <cmath>
-
 #include "ihls.h"
 #include "math_utils.h"
 
+#include <cmath>
+
+#include <iostream>
 using namespace std;
 
 float
@@ -82,4 +82,38 @@ retrieve_saturation(unsigned int r, unsigned int g, unsigned int b)
   saturation = max - min;
 
   return saturation;
+}
+
+Mat
+convert_rgb_to_ihls(Mat rgb_image)
+{
+  Mat ihls_image;
+  ihls_image = rgb_image.clone();
+
+  for (int i = 0; i < ihls_image.rows; i++)
+    {
+      for (int j = 0; j < ihls_image.cols; j++)
+        {
+          // gray-level image
+          if (ihls_image.channels() == 1)
+            {
+              ihls_image.at<uchar> (i, j) = 255;
+            }
+          // colour image
+          else if (ihls_image.channels() == 3)
+            {
+              unsigned int r = ihls_image.at<Vec3b> (i, j)[2];
+              unsigned int g = ihls_image.at<Vec3b> (i, j)[1];
+              unsigned int b = ihls_image.at<Vec3b> (i, j)[0];
+              float h = retrieve_hue(r, g, b);
+              float s = retrieve_luminance(r, g, b);
+              float l = retrieve_saturation(r, g, b);
+              ihls_image.at<Vec3b> (i, j)[0] = h;
+              ihls_image.at<Vec3b> (i, j)[1] = s;
+              ihls_image.at<Vec3b> (i, j)[2] = l;
+            }
+        }
+    }
+
+  return ihls_image;
 }
