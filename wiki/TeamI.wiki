@@ -16,9 +16,9 @@ _Polynomial Interpolation - Polynomial Interpolation is used to interpolate the 
 
 == Meeting logs ==
 
-[https://docs.google.com/document/d/13mIVdMr-Mcg1-o_tgiGko6OavCCrxvRgXEGLXJq3RpU/edit?hl=en_US *11. October*] 
+[https://docs.google.com/document/d/13mIVdMr-Mcg1-o_tgiGko6OavCCrxvRgXEGLXJq3RpU/edit?hl=en_US 11. October] 
 
-[https://docs.google.com/document/d/11XvUWC0iBB2LqbySCe5dFtVMEQ21f5PUIIWJyHJeIkU/edit?hl=en_US *17. October*]
+[https://docs.google.com/document/d/11XvUWC0iBB2LqbySCe5dFtVMEQ21f5PUIIWJyHJeIkU/edit?hl=en_US 17. October]
 
 
 == Explanation ==
