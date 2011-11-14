@@ -30,6 +30,6 @@ We are informed by the team L (Task: Retrieval of rotational offset) that Polyno
 
 = Questions =
 || || *Question* || *Answer* ||
-||1|| What was the goal of polinomial interpolation? || Obtain additional contour points besides extreme points from Convex Hull. ||
+||1|| What was the goal of polynomial interpolation? || Obtain additional contour points besides extreme points from Convex Hull. ||
 ||2|| Why was decided that this phase is not needed? || Doesn't give enough correct values. Causes problems in obtaining rotational offset phase. Produces outliers. ||
-||3|| What is the main advantage of new method proposed by group R? || We only work with the original contour points to improve the performance of the curve fitting part, this means that there is not any interpolation neither contour smoothing. We don't "make up" points.||
+||3|| What is the main advantage of new method proposed by group R? || We only work with the *original* contour points to improve the performance of the curve fitting part, this means that there is not any interpolation neither contour smoothing. We don't "make up" points.||
