@@ -18,7 +18,13 @@ _Polynomial Interpolation - Polynomial Interpolation is used to interpolate the 
 
 [https://docs.google.com/document/d/13mIVdMr-Mcg1-o_tgiGko6OavCCrxvRgXEGLXJq3RpU/edit?hl=en_US 11. October] 
 
+Team discussed overall idea of Polynomial interpolation and whole post-processing phase. Matlab code related to the topic is covered. Since work cannot be divided, all members agreed that everyone should try to understand as much as possible from this phase (theoretical background as well as Matlab code) before next meeting.
+Some doubts encountered with linear algebra part covered within the thesis. Help will be requested from Yohan or Desire.
+
+
 [https://docs.google.com/document/d/11XvUWC0iBB2LqbySCe5dFtVMEQ21f5PUIIWJyHJeIkU/edit?hl=en_US 17. October]
 
+We all agreed that what is done in Matlab code is not what is explained in the thesis. Presentation is almost finished. Draft version is waiting for approval of all members of the group.
+We are informed by the team L (Task: Retrieval of rotational offset) that Polynomial interpolation is not needed for the process. Since it can be skipped as a step, we are focusing on explaining why it was important and why it is skipped and we count on help of group L on that.  However, we are not 100% sure what is our role in presenting since decision about removing was done without us.
 
 == Explanation ==
