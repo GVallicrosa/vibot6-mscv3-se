@@ -12,5 +12,6 @@ _Polynomial Interpolation - Polynomial Interpolation is used to interpolate the 
 || Lijia Gao || Member ||
 || Marc Barnada Rius || Member || 
 || Muhammed Safiul Azam || Member ||
+|| Jorge Zavala || Member ||
 
 == Explanation ==
