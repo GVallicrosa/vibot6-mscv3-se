@@ -21,6 +21,10 @@ private slots:
     void on_pushButton_LoadImage_clicked();
     void on_tableImage_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
+    void on_pushButton_Next_clicked();
+
+    void on_pushButton_Prev_clicked();
+
 private:
     Ui::Gui *ui;
     QGraphicsScene *scene;
