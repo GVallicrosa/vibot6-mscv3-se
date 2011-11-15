@@ -42,3 +42,12 @@ Necessary explanations were written in their corresponding wiki page.
 All members were present.
 
 Presentation was created for Wednesday.
+
+= Questions =
+1. *What is IHLS?* Improved Hue Luminance Saturation. IHLS is one of the most common cylindrical-coordinate representations of points in an RGB colour model. In brief IHLS is a colour space.
+
+[http://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Hsl-hsv_models.svg/400px-Hsl-hsv_models.svg.png]
+
+2. *What is NHS?* Normalised Hue Saturation. By using "Look-up table" road-signs are distinguished from background images.
+
+3. *What is the starting point for Hue?* The hue angle is traditionally measured starting at the direction corresponding to pure red.
