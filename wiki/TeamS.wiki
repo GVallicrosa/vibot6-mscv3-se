@@ -25,8 +25,8 @@ October 26 2011 meeting:- Discussion about testing methods and preparation of re
 November 1,2011 meeting:-Review of  [https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US# Software Testing Report]
 
 November 10,2011 meeting:-
-Discussion about implementation of GUI according to   [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzkyOGVmMWItNDkzYy00ZDYxLTkyNzgtZjA5MWI1NTJjMjgx&hl=es GUIDesign]
-Division of Work
+Discussion about implementation of GUI according to   [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzkyOGVmMWItNDkzYy00ZDYxLTkyNzgtZjA5MWI1NTJjMjgx&hl=es GUIDesign].
+Division of Work. The meeting log is available here [https://docs.google.com/document/d/1hBKXTv4NDLvKP832IR869Neb7_1LSm81P8KZVVr_ry4/edit?hl=en_US MeetingLog10-11-2011]
 
 = Activity =
 I) Software Testing
