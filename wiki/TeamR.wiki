@@ -23,5 +23,9 @@ Discussion about what to do and explanation to all group. Division of tasks.
 
 [https://docs.google.com/document/d/1pl-tXTchtpWfqZ8kL80DD8PHROo-VLOiNzv9GeaX3yI/edit?hl=en_US Contour extraction] - Document explaining how it works, with examples.
 
+= Questions / Answers =
+
+|| Question || Answer ||
+|| What is the meaning of contour extraction in our project? || Extract the meaningful points of the previously segmented region. A point is considered meaningful if it is near (with some threshold) the convex hull polygon that encloses the region. ||
 
 = References =
