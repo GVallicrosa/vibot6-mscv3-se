@@ -24,8 +24,7 @@ Synopsis: Lists the various ways in which the function can be called.
 Input: Describes each input variable.
 Output: Describes each output variable.
 Don’t forget: The command “help” prints the first contiguous block of comment lines from the file. For this reason, it is important to make it helpful. ||
-||3|| What are the differences between include and extends in use case diagram? || Include: a relationship between two use cases in which a use case will be automatically executed when another is triggered. 
-Extends: a relationship between two use cases in which a use case may or may not be executed when another is triggered. ||
+||3|| What are the differences between include and extends in use case diagram? || Include: a relationship between two use cases in which a use case will be automatically executed when another is triggered. Extends: a relationship between two use cases in which a use case may or may not be executed when another is triggered. ||
 
 
 = Meetings =
