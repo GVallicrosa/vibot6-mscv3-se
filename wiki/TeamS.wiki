@@ -5,6 +5,8 @@
 = Objectives =
 To suggest testing mechanisms at different stages of our project
 
+To develop GUI in QT and Matlab 
+
 = Members =
 || *Name* || *Role* ||
 || Suman Raj Bista || Manager ||
@@ -15,19 +17,36 @@ To suggest testing mechanisms at different stages of our project
 ||Taman Upadhaya || Member ||
 
 = Meetings =
-October 19,2011
+October 19,2011 meeting :- Work division for studying different kinds of testing mechanisms
 
-October 26 2011 
+October 26 2011 meeting:- Discussion about testing methods and preparation of report. The meeting log is available here
+[https://docs.google.com/document/d/18KxTrRr7QQXFXsMmgC5khvIhggYPykAGTBwDcLt-NYA/edit?hl=en_US# MeetingLog10-26-2011]
 
+November 1,2011 meeting:-Review of  [https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US# Software Testing Report]
+
+November 10,2011 meeting:-
+Discussion about implementation of GUI according to   [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzkyOGVmMWItNDkzYy00ZDYxLTkyNzgtZjA5MWI1NTJjMjgx&hl=es GUIDesign]
+Division of Work
 
 = Activity =
-Ist meeting :- Work division for studying different kinds of testing mechanisms
+I) Software Testing
+     a) [https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US# Software Testing Report]
+ 
+II) Graphical User Interface(GUI)
+    GUI coding started 
 
-IInd meeting :- meeting log is available here
- https://docs.google.com/document/d/18KxTrRr7QQXFXsMmgC5khvIhggYPykAGTBwDcLt-NYA/edit?hl=en_US#
+    a) [https://vibot6-mscv3-se.googlecode.com/svn/trunk/vibot6_mscv3/Gui Repository for GUI in QT]
+  
+    b)[https://vibot6-mscv3-se.googlecode.com/svn/trunk/vibot6_mscv3/MatlabGui Repository for GUI in Matlab]
+
+=Issues==
+    a) [http://code.google.com/p/vibot6-mscv3-se/issues/detail?id=3 Software Testing Issues]
+    
+    b) [http://code.google.com/p/vibot6-mscv3-se/issues/detail?id=4 QT GUI Issues]
+
+    c)[http://code.google.com/p/vibot6-mscv3-se/issues/detail?id=5 Matlab GUI Issues]
+
+= Questions =
 
 = References =
-Report :- https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US#
-
-Issues:- 
-http://code.google.com/p/vibot6-mscv3-se/issues/detail?id=3
+[https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzkyOGVmMWItNDkzYy00ZDYxLTkyNzgtZjA5MWI1NTJjMjgx&hl=es GUIDesign]
