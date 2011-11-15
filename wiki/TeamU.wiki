@@ -14,7 +14,7 @@ The team has to create the low level design for the Shape Reconstruction part of
 || Andru Putra Twinanda || Member ||
 
 
-
+= Questions =
 || *Question* || *	Answer* ||
 ||1.  What is the name of function that is used to calculate the cost function and what else does it give?|| 	The function name is XiSquare(). When it is called with a certain flag "update" on, it also updates the partial derivatives.||
 ||2.  How is the symmetry parameter used in optimization?|| The symmetry parameter is not optimized, however, the optimization of cost function is checked for all important values of m, i.e., m=3,4,6,8||
