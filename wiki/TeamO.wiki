@@ -36,7 +36,7 @@ An activity report, for all the teams, is completed every week by the members of
 
 *1 nov 2011* Talked about changes in some teams, organization of the code in Google Project and questions for the Quiz. [https://docs.google.com/document/d/1hIa25VqyAoNxHph0YO4yTPVfM9qJjgdIl0Yty5Pt8to/edit GroupO11111]
 
-*15 nov 2011*
+*15 nov 2011* Prepared Quiz questions
 
 = Questions =
 || || *Question* || *Answer* ||
