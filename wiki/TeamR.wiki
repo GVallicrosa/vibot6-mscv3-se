@@ -25,7 +25,9 @@ Discussion about what to do and explanation to all group. Division of tasks.
 
 = Questions / Answers =
 
-|| Question || Answer ||
+|| *Question* || *Answer* ||
 || What is the meaning of contour extraction in our project? || Extract the meaningful points of the previously segmented region. A point is considered meaningful if it is near (with some threshold) the convex hull polygon that encloses the region. ||
+|| Why we have reprogrammed the contour extraction function from Matlab? || Because the original function implemented by Valentine was only "trying" to check if the interpolated convex_hull points belonged to the polygon of convex_hull points, also the computed results were not very good and had to be improved with contour smoothing techniques, among other problems. But in our implementation we consider all the contour points that are close (using a distance threshold) to the edges of convex hull points, and we don't need to do contour smoothing. ||
+|| What is the main advantage of new method proposed by group R? || We only work with the original contour points to improve the performance of the curve fitting part, this means that there is not any interpolation neither contour smoothing. We don't "make up" points. ||
 
 = References =
