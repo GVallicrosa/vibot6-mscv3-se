@@ -30,3 +30,10 @@ Reconstructing a Gielis curve can be posed as a minimization problem of a cost f
 [https://docs.google.com/document/d/1vyon-Hw1j7xfonejXdhULxxus6gTyxGgSP8eJ7swxm8/edit?hl=en_US 14 October 2011(with Yohan)]
 
 [https://docs.google.com/document/d/1QjY9zPeJKCpV9Q1RA_UWIN8XUq6_EqmFh4Zn8DiyZbg/edit?hl=en_US 16 October 2011]
+
+
+= Questions =
+|| || *Question* || *Answer* ||
+||1|| Why do we use Potential Field? || It is used to know whether a point lies outside, inside or on the boundary of the curve. ||
+||2|| What is the physical significance of Cost Function? || It gives the overall deviation of the detected contour points from the Gielis curve.  ||
+||3|| What is the basic principle behind 'Curve fitting algorithm'? ||In simple terms Curve fitting or reconstruction of Gielis curve is posed as a minimization problem of the corresponding cost function, which is the underlying principal used in this algorithm. ||
