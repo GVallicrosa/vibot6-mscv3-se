@@ -20,6 +20,7 @@ Quality Management Team, to prepare a presentation on software engineering and t
 ||1|| Why is coding convention important in software engineering? || Code conventions improve the readability of the software, allowing engineers to understand new code more quickly and thoroughly. ||
 ||2|| What should a header comment include in a function in MATLAB? || It should include a prologue that supports “help”: (a) Summary: One line description of what the function does. (b) Synopsis: Lists the various ways in which the function can be called. (c) Input: Describes each input variable. (d) Output: Describes each output variable. Don’t forget: The command “help” prints the first contiguous block of comment lines from the file. For this reason, it is important to make it helpful. ||
 ||3|| What are the differences between include and extends in use case diagram? || Include: a relationship between two use cases in which a use case will be automatically executed when another is triggered. Extends: a relationship between two use cases in which a use case may or may not be executed when another is triggered. ||
+||4|| Why it's better to write comments while coding than doing it later? || Because while coding you know exactly what you are trying to do, also it's useful to find errors while debugging. ||
 
 
 = Meetings =
