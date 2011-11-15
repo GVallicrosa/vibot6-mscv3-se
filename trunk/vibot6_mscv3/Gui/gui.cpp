@@ -90,10 +90,6 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
     QString fileName = ui->tableImage->item( currentRow, 1 )->text();
 
     qDebug() << fileName;
-//    QImage img(fileName);
-//    img.scaled( ui->graphicsView->size(), Qt::KeepAspectRatio );
-//    ui->graphicsView->setBackgroundBrush( img );
-
 
     // clear the scene
     scene->clear();
@@ -102,4 +98,27 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
     pixmap.scaled( ui->graphicsView->size(), Qt::KeepAspectRatio );
 
     scene->addPixmap(pixmap);
+
+    QFileInfo fi( fileName );
+    ui->label_CurrentImage->setText( fi.fileName() );
+}
+
+
+
+void Gui::on_pushButton_Next_clicked()
+{
+    int currentRow = ui->tableImage->currentRow();
+    int size = ui->tableImage->rowCount();
+
+    if( size > 0 && currentRow < size-1 )
+        ui->tableImage->setCurrentCell( currentRow+1, 1 );
+}
+
+void Gui::on_pushButton_Prev_clicked()
+{
+    int currentRow = ui->tableImage->currentRow();
+    int size = ui->tableImage->rowCount();
+
+    if( size > 0 && currentRow > 0 )
+        ui->tableImage->setCurrentCell( currentRow-1, 1 );
 }
