@@ -47,9 +47,10 @@ A wiki page for the OpenGL was created for more detail information
 
 = Questions =
 || || *Question* || *Answer* ||
-||1|| || ||
-||2|| || ||
-||3|| || ||
+||1|| Is C++ Object Oriented Language? || Yes ||
+||2|| What is the advantage of Makefiles? || When you have many .cpp files it is not necessary to recompile all the files when you make changes. Using Makefiles you can recompile a small subset of the files. ||
+||3|| What does OpenGL stand for? || Open Graphics Library ||
+||4|| Please give a name of library that agree with OpenGL. || OpenGL Utility Library (GLU), OpenGL Utility Toolkit (GLUT), OpenGL Extension Wrangler Library (GLEW) ||
 
 = References =
 https://docs.google.com/document/d/1irjNN-qDgzgsm4iY1eZ4rm3uZ6W_rh77GCjRjF_Ze7Y/edit?hl=en_US
