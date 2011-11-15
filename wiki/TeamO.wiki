@@ -36,8 +36,11 @@ An activity report, for all the teams, is completed every week by the members of
 
 *1 nov 2011* Talked about changes in some teams, organization of the code in Google Project and questions for the Quiz. [https://docs.google.com/document/d/1hIa25VqyAoNxHph0YO4yTPVfM9qJjgdIl0Yty5Pt8to/edit GroupO11111]
 
+*15 nov 2011*
+
 = Questions =
 || || *Question* || *Answer* ||
-||1|| || ||
-||2|| || ||
-||3|| || ||
+||1|| *Why people are working in only one group?* || Because it was good to be in two teams for the learning part, but with coding it's easier to be in only one team ||
+||2|| *Why the managers are changed when new teams are created?* || Because we think that everyone should be a manager at least one time ||
+||3|| *How TeamO keep Yohan and Vineet updated every week?* || With an activity report sent every Wednesday, where they can find the task status, problems and future work for each team ||
+||4|| *How TeamO keeps track off all teams?* || We talk with the managers of each team. The members of TeamO are also divided each one in a different team ||
