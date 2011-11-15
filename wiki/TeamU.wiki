@@ -13,6 +13,16 @@ The team has to create the low level design for the Shape Reconstruction part of
 || Lijia Gao || Member ||
 || Andru Putra Twinanda || Member ||
 
+
+
+Question	Answer
+1	 What is the name of function that is used to calculate the cost function and what else does it give?	 The function name is XiSquare(). When it is called with a certain flag "update" on, it also updates the partial derivatives.
+2	 How is the symmetry parameter used in optimization?	 The symmetry parameter is not optimized, however, the optimization of cost function is checked for all important values of m, i.e.,
+    m=3,4,6,8
+3	 What is the purpose of defining three implicit functions?       The main purpose of implicit functions (defined in Superformula.cpp) is to calculate the potential field. However, depending on the requirements, there are three       important definitions that can be used, as given in Valentine's paper. Hence there are three different functions for these different definitions. However, only one will be used depending on the programmer's (or could be user's) choice.
+
+4	  What kinds of changes in the cost function are rejected in the code?	 When the cost function decreases by less than or 1% or when it increases or when there is an improvement of more than 99%, the calculated h is rejected and a new one is calculated.
+
 = Meetings =
 
 [https://docs.google.com/a/norture.com/document/d/1Kc-S5GKnuM5CBZJNbw5qNTW7bOUM5vc4KMF-Dib9_xA/edit?hl=en_US 26-10-2011]
@@ -28,14 +38,5 @@ In this meeting we decided to analyse the code together and discuss the low-leve
 The team made a report on the Low-level design for Shape Reconstruction which can be viewed here:
 [https://docs.google.com/a/norture.com/document/d/1Ji8cqD3nRoDTuA-FCqZGZrAlmIZ81JHq46wXPE8tr2I/edit?hl=en_US LLD for Shape Reconstruction]
 
-= Issues =
-
-= Questions =
-
-|| No || Question || Answer ||
-|| 1 || What is name of function that is used to calculate the cost function and what else does it give? ||  The function name is XiSquare(). When it is called with a certain flag "update" on, it also updates the partial derivatives. ||
-|| 2 || What is the purpose of defining three implicit functions? || The main purpose of implicit functions (defined in Superformula.cpp) is to calculate the potential field. However, depending on the requirements, there are three important definitions that can be used, as given in Valentine's paper. Hence there are three different functions for these different definitions. However, only one will be used depending on the programmer's (or could be user's) choice. ||
-|| 3 || What kinds of changes in the cost function are rejected in the code? || When the cost function decreases by less than or 1% or when it increases or when there is an improvement of more than 99%, the calculated h is rejected and a new one is calculated. ||
-|| 4 || What is the purpose of the optimization procedure? || It is used to minimize the cost function, hence to obtain and reconstruct an appropriate shape for a given image. ||
 
 = References =
