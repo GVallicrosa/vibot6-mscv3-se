@@ -14,7 +14,11 @@ IHLS, NHS
 || Jose Franco || Member || 
 || Hamed Mohammadbagher || Manager || 
 
-
+=Questions=
+|| || *Question* || *Answer* ||
+||1|| How will the IHLS conversion formula be extended from a single pixel to the entire image? || A double loop will apply the formula to every pixel in the image  ||
+||2|| What kind of data structure will be used for the output of the segmenting method in C++? || An OpenCV matrix. ||
+||3|| What kind of data structure will be used for the output of the segmenting method in MATLAB? || A matrix representing an image.  ||
 
 = Meetings =
 21 oct 2011
