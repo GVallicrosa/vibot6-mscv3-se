@@ -27,4 +27,10 @@ He also shared with us a new website he has created for our project.
 
 During this week, we will implement and improve the website for the project.
 
+= Questions =
+|| || *Question* || *Answer* ||
+||1|| Where should members upload their source code? || There is a source tab in home page in our wiki page for uploading sources.  ||
+||2|| How can we access the page of other group? ||  Each team has a special page which you can access that by their link in home page. ||
+||3|| How can we access the documents and meeting logs related to project? || We have to connect to google group for this project.  ||
+
 = References =
