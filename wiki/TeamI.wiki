@@ -2,14 +2,14 @@
 
 <wiki:toc max_depth="2" />
 
-== Task ==
+= Task =
 RampUP Req. Doc. 5.3
 
-== Objective ==
+= Objective =
 ===Contour Extraction===
 _Polynomial Interpolation - Polynomial Interpolation is used to interpolate the extreme points resulting from the Convex-Hull algorithm_
 
-== Members ==
+= Members =
 || *Name* || *Role* ||
 || Igor Jovancevic || Team Manager ||
 || Joel Vidal || Technical Lead ||
@@ -18,7 +18,7 @@ _Polynomial Interpolation - Polynomial Interpolation is used to interpolate the 
 || Muhammed Safiul Azam || Member ||
 || Jorge Zavala || Member ||
 
-== Meeting logs ==
+= Meeting logs =
 
 [https://docs.google.com/document/d/13mIVdMr-Mcg1-o_tgiGko6OavCCrxvRgXEGLXJq3RpU/edit?hl=en_US 11. October] 
 
