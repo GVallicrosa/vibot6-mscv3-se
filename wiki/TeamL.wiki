@@ -48,7 +48,7 @@ offset is required for a correct initialization.
 || || *Question* || *Answer* ||
 ||1|| What is rotational offset ? || Angle required so that the contour gets aligned to the Gielis curve before matching starts. ||
 ||2|| Why rotational offset is required ? || The rotational offset is a very sensitive parameter for Gielis curves recovery. In other words, if the initial rotational offset is not correct, the minimization routine might strongly converge to local minimum. ||
-||3|| How to get the rotational offset? || See Presentation's slide no. 6||
+||3|| How to get the rotational offset? || Given the contour points of the figure: 1. Change to polar coordinates: (x,y)->(r,theta) 2. Sort (r,theta) points by the angle theta from [0, 2pi) 3. Get the minimum radius of the sorted points by comparing the two previous and the two next points. ||
 
 = References =
 
