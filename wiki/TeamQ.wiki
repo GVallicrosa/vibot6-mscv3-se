@@ -31,7 +31,7 @@ The Post-Processing team had as main task the realization of the pseudo-code for
 = Questions =
 || || *Question* || *Answer* ||
 ||1|| What is the purpose of post processing? || To remove artifacts in the image that we know in advance that cannot be road signs. ||
-||2|| What is the strategy of noise removal? || Morphological filtering. ||
+||2|| What is the strategy of noise removal? || Morphological filtering and using the median filter||
 ||3|| Why is a convex hull algorithm performed? || To extract an approximate convex polygon from the segmented section. We know that all road signs are convex polygons.||
 
 = References =
