@@ -47,7 +47,7 @@ A wiki page for the OpenGL was created for more detail information
 
 = Questions =
 || || *Question* || *Answer* ||
-||1|| Is C++ Object Oriented Language? || Yes ||
+||1|| What is difference between class and object? || Class is templet for an object.Object is an instance of a class. ||
 ||2|| What is the advantage of Makefiles? || When you have many .cpp files it is not necessary to recompile all the files when you make changes. Using Makefiles you can recompile a small subset of the files. ||
 ||3|| What does OpenGL stand for? || Open Graphics Library ||
 ||4|| Please give a name of library that agree with OpenGL. || OpenGL Utility Library (GLU), OpenGL Utility Toolkit (GLUT), OpenGL Extension Wrangler Library (GLEW) ||
