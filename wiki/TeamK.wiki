@@ -47,20 +47,11 @@ Smoothed contour points of the detected objects which is actually in a binary im
 [https://docs.google.com/document/d/1aLnMT8tdDRvh6AtYaUwtfCIxuoLoC8_ID80VkGX7k1Y/edit?hl=es Group K, Meeting 16102011]
 
 = Questions =
-
-====1. What is the purpose of counter smoothing ? ====  
-
-   From polynomial interpolation we get all the points of the "contour"      
-   which suﬀer from outliers and staircase eﬀect. Counter smoothing     
-   removes such effect.(For figure refer to slide)   
-
-====2. What is the algorithm to remove such effects ? ====
- 
-   The Robust Lowess Smoothing algorithm.
-
-====3. Why we don't require contour smoothing in this project ?====
-    
-   No Polynomial Interpolation means No Contour Smoothing.
+|| ||*Questions*||*Answers*||
+|| 1 ||*What is the purpose of counter smoothing ?*                   ||
+From polynomial interpolation we get all the points of the *contour* which suﬀer from outliers and staircase eﬀect. Counter smoothing removes such effect.(For figure refer to slide)   
+|| 2 ||*What is the algorithm to remove such effects ?*               || The Robust Lowess Smoothing algorithm.||
+|| 3 ||*Why we don't require contour smoothing in this project ?*     || No Polynomial Interpolation means No Contour Smoothing.||
 
 = References =
 [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B6w6ezwYzkaiMmI2ZmQ2OWUtNDU3NS00MGE3LWI1ZDYtYjA0Yzc4NDIzZGQw&hl=en_US Contour Smoothing Presentation]
