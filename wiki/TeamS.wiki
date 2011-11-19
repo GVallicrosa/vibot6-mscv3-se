@@ -52,13 +52,10 @@ II) Graphical User Interface(GUI)
 = Questions =
 || || *Questions* || *Answers*||
 || 1 || Why is Testing stage important in software engineering? || A primary purpose of testing is to check if the software works properly, and to detect software failures so that defects may be discovered and corrected.||
-
-|| 2 || What are levels of testing in our project? || *a Unit Testing :-* Unit Testing is done at the lowest level.Unit testing is a method by which individual units of source code are tested to determine if they are fit for use.In procedural programming a unit may be an individual function or procedure.In object-oriented programming a unit is usually an interface, such as a class. Unit tests are generally created by programmers. *b Integration Testing :-*Integration Testing is performed when two or more tested units are combined into a larger structure. 
-The test is often done on both the interfaces between the components and the larger structure being constructed. *c System Testing :-* System Testing tends to affirm the end-to-end quality of the entire system. System test is often based on the functional/requirement specification of the system. Non-functional quality attributes, such as reliability, security, and maintainability, are also checked. ||
-
+|| 2 || What are levels of testing in our project? || *a Unit Testing:-* Unit Testing is done at the lowest level.Unit testing is a method by which individual units of source code are tested to determine if they are fit for use.In procedural programming a unit may be an individual
+function or procedure.In object-oriented programming a unit is usually an interface,such as a class.Unit tests are generally created by programmers.*b Integration Testing:-*Integration Testing is performed when two or more tested units are combined into a larger structure.The test is often done on both the interfaces between the components and the larger structure being constructed. *c System Testing :-* System Testing tends to affirm the end-to-end quality of the entire system. System test is often based on the functional/requirement specification of the system.Non-functional quality attributes, such as reliability, security, and maintainability, are also checked. ||
 || 3 || *What testing approach will we use in our project?* || We will use bottom up approach i.e. we begin from unit/component testing to system testing (integration testing). For Integration test, first we use black box approach with Valantine’s data set. If required, then we go for white box (in the case black box fails).|| 
-
-|| 4 || *What are Defect testing and validation testing ?* || a.Defect Testing :- Tests designed to reveal the presence of defects in a system. b. Validation Testing :- Tests designed to show that the software meets its requirements. ||
+|| 4 || *What are Defect testing and validation testing ?*   || a.Defect Testing :- Tests designed to reveal the presence of defects in a system. b. Validation Testing :- Tests designed to show that the software meets its requirements. ||
 
 ===5. Which GUI environment are we using in our project ?===
 We are using Qt for developing GUI in C++. Qt is a cross-platform application framework that is widely used for developing application software with a graphical user interface.
