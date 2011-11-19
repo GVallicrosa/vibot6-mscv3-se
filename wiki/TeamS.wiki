@@ -60,4 +60,4 @@ II) Graphical User Interface(GUI)
 = References =
 1. [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzkyOGVmMWItNDkzYy00ZDYxLTkyNzgtZjA5MWI1NTJjMjgx&hl=es GUIDesign]
 
-2.   [https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US# Software Testing Report]
+2. [http://en.wikipedia.org/wiki/Software_testing Software Testing]
