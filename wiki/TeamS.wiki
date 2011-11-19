@@ -56,9 +56,9 @@ II) Graphical User Interface(GUI)
 || 3 || *What testing approach will we use in our project?*           ||  We will use bottom up approach i.e. we begin from unit/component testing to system testing (integration testing).For Integration test, first we use black box approach with Valantine’s data set. If required, then we go for white box (in the case black box fails).|| 
 || 4 || *What are Defect testing and validation testing ?*            || *a) Defect Testing:-* Tests designed to reveal the presence of defects in a system. <br>*b) Validation Testing:-* Tests designed to show that the software meets its requirements. ||
 || 5 || *Which GUI environment are we using in our project ?*         ||
-We are using Qt for developing GUI in C++. Qt is a cross-platform application framework that is widely used for developing application software with a graphical user interface.For GUI in matlab,we are using the GUIDE Toolbox.||  
+We are using Qt for developing GUI in C++. Qt is a cross-platform application framework that is widely used for developing application software with a graphical user interface. For GUI in matlab,we are using the GUIDE Toolbox. ||  
 
 = References =
 1. [https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B5di_0iaJKEVNzkyOGVmMWItNDkzYy00ZDYxLTkyNzgtZjA5MWI1NTJjMjgx&hl=es GUIDesign]
 
-2[https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US# Software Testing Report]
+2.   [https://docs.google.com/document/d/1taOXreZJKWHshbyNGalSH5IWHMaHoAODTE7s3I3Q2Wk/edit?hl=en_US# Software Testing Report]
