@@ -6,11 +6,11 @@
 The team has to create the low level design for the Post Processing part of the project
 
 = Members =
-|| *Name* || *Main topic* || *Role* ||
-|| Corina Barbalata || || Member ||
-|| Eduardo Tusa || || Member ||
-|| Federico Camposeco Paulsen || || Member ||
-|| Joel Vidal || || Manager Member ||
+|| *Name* || *Role* ||
+|| Corina Barbalata || Member ||
+|| Eduardo Tusa || Member ||
+|| Federico Camposeco Paulsen || Member ||
+|| Joel Vidal || Manager Member ||
 
 = Meetings =
 
