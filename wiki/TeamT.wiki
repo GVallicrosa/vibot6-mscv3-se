@@ -52,6 +52,7 @@ To do:
 
 3. The dead-line to finish the coding activity by all the members is 21st Nov’2011.
 
+
 = Questions =
 || || *Question* || *Answer* ||
 ||1|| What is rotational offset ? || Angle required so that the contour gets aligned to the Gielis curve before matching starts. ||
