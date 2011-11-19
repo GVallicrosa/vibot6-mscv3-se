@@ -9,12 +9,12 @@ In charge of drafting a formal list of requirements to use throughout the projec
 
 = Members =
 || *Name*   || *Designation* ||
-|| Dadhichi || Manager       ||
-|| Ozan     || Technical     ||
-|| Yukti    || Member        ||
-|| Ajad     || Member        ||
-|| Suman    || Member        ||
-|| Jeorge   || Member        ||
+|| Dadhichi Shukla || Manager       ||
+|| Ozan Tonkal    || Technical     ||
+|| Yukti Suri   || Member        ||
+|| Ajad Chhatkuli   || Member        ||
+|| Suman Raj Bista   || Member        ||
+|| Jeorge zavala   || Member        ||
   
 
 
