@@ -7,6 +7,7 @@ In charge of drafting a formal list of requirements to use throughout the projec
 
 2. Table the list of requirements
 
+
 = Members =
 || *Name*   || *Designation* ||
 || Dadhichi Shukla || Manager       ||
@@ -17,6 +18,15 @@ In charge of drafting a formal list of requirements to use throughout the projec
 || Jeorge zavala   || Member        ||
   
 
+= Meetings =
+1. [https://docs.google.com/document/d/1l4xfaBxQSiSdxHfqs6C31RrV_DldVpHhBbEW9gxAa6s/edit?hl=en_US Meeting 28-09-2011 ]
+
+2. [https://docs.google.com/document/d/1YG3XB2EQeGe29Ek7K809tG81l_c3FY2uVH6gy-qS2aM/edit?hl=en_US Meeting 29-09-2011 ]
+
+3.[https://docs.google.com/document/d/1ZyTJYkuWukz3es8ppfExR0KRHKjcVoPwaVX_jjE-NhM/edit?hl=en_US Meeting 30-09-2011 ]
+
+4. 
+[https://docs.google.com/document/d/1FVFD-1WCHsY1t2aWdkLB6BN3wAQW06TX_-PjU1FekLA/edit?hl=en_US Meeting 04-10-2011,05-10-2011]
 
 
 =Links=
