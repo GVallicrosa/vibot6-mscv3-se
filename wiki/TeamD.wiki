@@ -7,12 +7,12 @@ Build a framework for communication and a system where everyone can keep up to d
 
 = Members =
 
-|| *Name* || *Main Topic* || *Role* ||
-|| Raquel Gil || ||  Manager ||
-|| Hamed Mohammadbagher  ||  || Tech lead ||
-|| Nathanael Lemessa Baisa ||  || Team Member ||
-|| Joel Vidal ||  || Team Member ||
-|| Gao Lijia || || Team Member ||
+|| *Name* ||  *Role* ||
+|| Raquel Gil ||   Manager ||
+|| Hamed Mohammadbagher  || Tech lead ||
+|| Nathanael Lemessa Baisa ||  Team Member ||
+|| Joel Vidal ||  Team Member ||
+|| Gao Lijia || Team Member ||
 
 
 
@@ -23,9 +23,21 @@ Build a framework for communication and a system where everyone can keep up to d
 Meeting with Vineet. We discuss how to structure the website. 
 He also shared with us a new website he has created for our project.
 
+*19 November*
+
+
 = Activity =
 
-During this week, we will implement and improve the website for the project.
+1.During this week, we will implement and improve the website for the project.
+
+----------
+
+2.1.Each member of the group will create a new template for TeamPages in the new website.
+
+2.2.The design of a website to learn how to deal with it and its tool.
+
+
+
 
 = Questions =
 || || *Question* || *Answer* ||
