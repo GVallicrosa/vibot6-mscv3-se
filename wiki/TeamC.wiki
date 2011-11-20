@@ -34,3 +34,9 @@ Refer Wiki [ProjectRequirements] page.
 
 =Conclusion=
 Both the tasks complete.
+
+=Quiz=
+||Why is contract needed?||To make sure both parties agree on same points and to protect both parties from no surprises||
+||There are how many main project requirements are mentioned in contract?||6||
+||How the code will be maintained?||Using Google code and wiki||
+||List any 2 significant project requirements.||1. Implementation of Vega Valentine code in C++ and MATLAB. 2.GUI's will be independent of core program.||
