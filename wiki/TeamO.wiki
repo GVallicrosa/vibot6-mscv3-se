@@ -29,6 +29,8 @@ An activity report, for all the teams, is completed every week by the members of
 
 [https://docs.google.com/document/d/1BmRc8kQGddsPkZzV-JmkWXBSfxjo1dSiNN8VazN41VU/edit?hl=en_US ActivityReport-16.11.2011]
 
+[https://docs.google.com/document/d/1jnnX4CnFXGb2pvwADLnqdo8yaqKeq4sII2wSI_vL42s/edit?hl=en_US ActivityReport-23.11.2011]
+
 = Meetings =
 *11 oct 2011* The progress of the project was discussed and the agenda of the next big meeting group was decided.[https://docs.google.com/document/d/1G7EyvjiOTE9w1vPQaVIUM_jSfb2eeZxlKL1AGdoG1Qo/edit?hl=en_US GroupO111011]
 
@@ -38,7 +40,10 @@ An activity report, for all the teams, is completed every week by the members of
 
 *1 nov 2011* Talked about changes in some teams, organization of the code in Google Project and questions for the Quiz. [https://docs.google.com/document/d/1hIa25VqyAoNxHph0YO4yTPVfM9qJjgdIl0Yty5Pt8to/edit GroupO11111]
 
-*15 nov 2011* Prepared Quiz questions
+*15 nov 2011* Prepared Quiz questions for TeamO. Checked questions of other teams.
+
+*22 nov 2011* Decided deadlines for each part. Arranged a meeting for organizing the code and how testing will work.
+[https://docs.google.com/document/d/18WHYsBl6sX2o36QJ1LyV-j2tK5r1Rn_0E2P2LkSizpQ/edit GroupO22111]
 
 = Questions =
 || || *Question* || *Answer* ||
