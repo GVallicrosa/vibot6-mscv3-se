@@ -52,6 +52,10 @@ To do:
 
 3. The dead-line to finish the coding activity by all the members is 21st Nov’2011.
 
+*22 November*
+
+C++ code is ready. Team will proceed with Matlab coding.
+
 
 = Questions =
 || || *Question* || *Answer* ||
