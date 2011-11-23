@@ -136,7 +136,7 @@ function Options_Callback(hObject, eventdata, handles)
 % hObject    handle to Options (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+ optionsGUI();
 
 % --- Executes on button press in IntermediateResults.
 function IntermediateResults_Callback(hObject, eventdata, handles)
@@ -293,7 +293,6 @@ function Next_Callback(hObject, eventdata, handles)
 % hObject    handle to Next (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes when figure1 is resized.
 function figure1_ResizeFcn(hObject, eventdata, handles)
