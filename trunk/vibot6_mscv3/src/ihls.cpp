@@ -21,12 +21,19 @@ retrieve_theta(unsigned int r, unsigned int g, unsigned int b)
   float theta;
 
   // The numerator part of equation
-  float numerator = r - (g / 2) - (b / 2);
+  float numerator = r - (g * 0.5) - (b * 0.5);
+
   // The denominator part of equation
   float denominator = (r * r) + (g * g) + (b * b) - (r * g) - (r * b) - (g * b);
-  float temp = numerator / sqrt(denominator);
+  if (denominator == 0.f)
+    {
+      printf("DIVIDE BY ZERO!! o_O!\n");
+			// TODO: Must be corrected.
+      denominator = 200;
+    }
 
-  theta = acos(temp);
+  float temp = numerator / sqrtf(denominator);
+  theta = acosf(temp) * 28.648f; // acosf(temp) * 180 / 2 / PI (from radian to degree)
 
   return theta;
 }
@@ -40,18 +47,14 @@ retrieve_theta(unsigned int r, unsigned int g, unsigned int b)
 float
 retrieve_hue(unsigned int r, unsigned int g, unsigned int b)
 {
-  float hue;
-
   if (b <= g)
     {
-      hue = retrieve_theta(r, g, b);
+      return retrieve_theta(r, g, b);
     }
   else
     {
-      hue = 360.0 - retrieve_theta(r, g, b);
+      return 360.0f - retrieve_theta(r, g, b);
     }
-
-  return hue;
 }
 
 /**
@@ -62,9 +65,7 @@ retrieve_hue(unsigned int r, unsigned int g, unsigned int b)
 float
 retrieve_luminance(unsigned int r, unsigned int g, unsigned int b)
 {
-  float luminance = (0.212 * r) + (0.715 * g) + (0.072 * b);
-
-  return luminance;
+  return (0.212f * r) + (0.715f * g) + (0.072f * b);
 }
 
 /**
@@ -87,31 +88,24 @@ retrieve_saturation(unsigned int r, unsigned int g, unsigned int b)
 Mat
 convert_rgb_to_ihls(Mat rgb_image)
 {
-  Mat ihls_image;
-  ihls_image = rgb_image.clone();
+  assert(rgb_image.channels() == 3);
 
-  for (int i = 0; i < ihls_image.rows; i++)
+  Mat ihls_image(rgb_image.rows, rgb_image.cols, CV_8UC3);
+
+  for (int i = 0; i < rgb_image.rows; ++i)
     {
-      for (int j = 0; j < ihls_image.cols; j++)
+      const uchar* rgb_data = rgb_image.ptr<uchar> (i);
+      uchar* ihls_data = ihls_image.ptr<uchar> (i);
+
+      for (int j = 0; j < rgb_image.cols; ++j)
         {
-          // gray-level image
-          if (ihls_image.channels() == 1)
-            {
-              ihls_image.at<uchar> (i, j) = 255;
-            }
-          // colour image
-          else if (ihls_image.channels() == 3)
-            {
-              unsigned int r = ihls_image.at<Vec3b> (i, j)[2];
-              unsigned int g = ihls_image.at<Vec3b> (i, j)[1];
-              unsigned int b = ihls_image.at<Vec3b> (i, j)[0];
-              float h = retrieve_hue(r, g, b);
-              float s = retrieve_luminance(r, g, b);
-              float l = retrieve_saturation(r, g, b);
-              ihls_image.at<Vec3b> (i, j)[0] = h;
-              ihls_image.at<Vec3b> (i, j)[1] = s;
-              ihls_image.at<Vec3b> (i, j)[2] = l;
-            }
+          unsigned int b = *rgb_data++;
+          unsigned int g = *rgb_data++;
+          unsigned int r = *rgb_data++;
+          *ihls_data++ = (uchar) retrieve_saturation(r, g, b);
+          *ihls_data++ = (uchar) retrieve_luminance(r, g, b);
+          // to store the data in 1 byte we need to divide it by 2 (360 is more than 1 byte)
+          *ihls_data++ = (uchar) retrieve_hue(r, g, b) * 0.5;
         }
     }
 
