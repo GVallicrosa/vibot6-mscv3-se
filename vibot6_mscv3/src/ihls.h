@@ -20,19 +20,19 @@ using namespace cv;
 /**
  * Returning hue value of RGB.
  */
-float
+inline float
 retrieve_hue(unsigned int r, unsigned int g, unsigned int b);
 
 /**
  * Returning luminance value of RGB.
  */
-float
+inline float
 retrieve_luminance(unsigned int r, unsigned int g, unsigned int b);
 
 /**
  * Returning saturation value of RGB.
  */
-float
+inline float
 retrieve_saturation(unsigned int r, unsigned int g, unsigned int b);
 
 /**
@@ -41,10 +41,6 @@ retrieve_saturation(unsigned int r, unsigned int g, unsigned int b);
  * The reason that we have a return matrix and not overriding the original
  * RGB image, is to keep the original RGB values for reference.
  *
- * FIXME: both rgb_image and the returned IHLS images are taken as
- * two dimensional matrices of floating points. This is the starting
- * prototype and can be changed later on to some IMAGE types from
- * some libraries (like OpenCV ...).
  */
 Mat
 convert_rgb_to_ihls(Mat rgb_image);

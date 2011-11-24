@@ -11,17 +11,27 @@
 unsigned int
 get_maximum(unsigned int r, unsigned int g, unsigned int b)
 {
-  if (r >= g && r >= b)
+  if (r >= g)
     {
-      return r;
-    }
-  else if (g >= r && g >= b)
-    {
-      return g;
+      if (r >= b)
+        {
+          return r;
+        }
+      else
+        {
+          return b;
+        }
     }
   else
     {
-      return b;
+      if (g >= b)
+        {
+          return g;
+        }
+      else
+        {
+          return b;
+        }
     }
 }
 
@@ -33,16 +43,26 @@ get_maximum(unsigned int r, unsigned int g, unsigned int b)
 unsigned int
 get_minimum(unsigned int r, unsigned int g, unsigned int b)
 {
-  if (r <= g && r <= b)
+  if (r <= g)
     {
-      return r;
-    }
-  else if (g <= r && g <= b)
-    {
-      return g;
+      if (r <= b)
+        {
+          return r;
+        }
+      else
+        {
+          return b;
+        }
     }
   else
     {
-      return b;
+      if (g <= b)
+        {
+          return g;
+        }
+      else
+        {
+          return b;
+        }
     }
 }

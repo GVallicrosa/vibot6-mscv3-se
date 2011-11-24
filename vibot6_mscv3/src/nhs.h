@@ -15,6 +15,12 @@
 
 using namespace cv;
 
+// Got it from the Matlab code
+// divide by 2 to contain in one byte
+const uchar HUE_MAX = 11 * 0.5;
+const uchar HUE_MIN = 230 * 0.5;
+const uchar SAT_MIN = 30;
+
 /**
  * Normalising the hue value.
  */
@@ -29,10 +35,6 @@ normalise_hue(float hue);
  * The reason that we have a return matrix and not overriding the original
  * RGB image, is to keep the original RGB values for reference.
  *
- * FIXME: both ihls_image and the returned binary images are taken as
- * two dimensional matrices of floating and integer points respectively.
- * This is the starting prototype and can be changed later on to
- * some IMAGE types from some libraries (like OpenCV ...).
  */
 Mat
 convert_ihls_to_nhs(Mat ihls_image);
