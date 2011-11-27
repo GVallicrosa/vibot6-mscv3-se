@@ -1,4 +1,30 @@
-function valid = meaningful_contour_extraction(points, K, ERROR)
+function valid = contour_extraction(contP, convHull, distanceError)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%         Contour extraction         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   ---Responsibles---
+%   Guillem Vallicrosa
+%   Marc Barnada
+%   Igor Jovancevic
+%   Jorge Zavala
+%   Muhammed Safiul Azam
+%
+%   ---Inputs---
+%   contP          : structure containing contour points of each region
+%                    in a image sorted CCW
+%   convHull       : structure containing the indexs of the contour
+%                    points that are in the convex hull
+%   distanceError  : parameter to set the maximum distance to the convex
+%                    hull polygon to take the points
+%
+%   ---Outputs---
+%   valid          : structure containing all the valid points at a
+%                    distance less or equal to 'distanceError' of the
+%                    convex hull polygon
+%
+%   ---Testing---
+%   TODO
 
 valid = []; % variable to save near points
 allx = points(:,1);
@@ -28,7 +54,7 @@ for i=1:(length(K)-1)
         % obtain distance
         dist = abs((xf-xo)*(yp-yo)-(yf-yo)*(xp-xo))/sqrt((xf-xo)^2+(yf-yo)^2);
         % if dist < error, include point
-        if (abs(dist) < ERROR)
+        if (abs(dist) < distanceError)
             valid = [valid; xp, yp];
         end
     end
