@@ -5,6 +5,9 @@ function [potential_field_value, Dffinal] = ImplicitFunction1_(P)
 %1.  Input  : P, Single Data Point after translation/rotation
 %2.  Output : Dffinal, Partial derivatives of potential field
 %3.  Output : return, the potential field value for one point
+global Parameters;
+
+q = Parameters(7);
 
 Dffinal = zeroes(3);
 
@@ -21,7 +24,7 @@ end;
 
 % dimension of f = Get_q(), because later on there will be a loop
 % which assign values to f, Get_q times.
-f = zeros(Get_q);
+f = zeros(q);
 Ddum = 0;
 
 x = P(1);
@@ -39,10 +42,10 @@ if theta < 0
     theta = theta + 2*pi;
 end
 
-Df = zeros(Get_q, 3); % Workaround for the following loop
+Df = zeros(q, 3); % Workaround for the following loop
 
 % compute all intersections and associated partial derivatives
-for i = 1 : Get_q()
+for i = 1 : q
     theta = thetabase + (i-1)*2*pi;
 
     R = radius_(theta);
@@ -57,8 +60,8 @@ for i = 1 : Get_q()
 end
 
 % bubble sort, not really efficient but acceptable for such small arrays
-for i = 1:Get_q()-1
-    for j= (i+1) : Get_q()
+for i = 1:q-1
+    for j= (i+1) : q
         if f(i) < f(j)
             % swap values of f[i] and f[j]
             temp = f(i);
@@ -88,7 +91,7 @@ Df1 = Df(1,:);  % first associated row with partial derivatives
 
 % combine functions as (...((F1 v F2) v F3 ) v F4) v ...)
 
-for i = 1:Get_q() % for all intersections
+for i = 1:q % for all intersections
     % compute R-function, sets all partial derivatives
     % fdum and Ddum temporary results of the union from F1 to Fi
 
