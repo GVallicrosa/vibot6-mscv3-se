@@ -44,7 +44,7 @@ end
 
 Df = zeros(q, 3); % Workaround for the following loop
 
-% compute all intersections and associated partial derivatives
+%% compute all intersections and associated partial derivatives
 for i = 1 : q
     theta = thetabase + (i-1)*2*pi;
 
@@ -59,7 +59,7 @@ for i = 1 : q
     Df(i, 3) = 2/R;                       % df/dr
 end
 
-% bubble sort, not really efficient but acceptable for such small arrays
+%% bubble sort, not really efficient but acceptable for such small arrays
 for i = 1:q-1
     for j= (i+1) : q
         if f(i) < f(j)
@@ -76,7 +76,7 @@ for i = 1:q-1
     end
 end
 
-% Compute resulting Rfunction
+%% Compute resulting Rfunction
 
 % Df1: vector for df/dxi
 
@@ -102,7 +102,7 @@ for i = 1:q % for all intersections
     Df1 = Ddum;
 end
 
-% final partial derivatives df/dxi after R-functions
+%% final partial derivatives df/dxi after R-functions
 Dffinal = Df1;
 
 potential_field_value = f1;
