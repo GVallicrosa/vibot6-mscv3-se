@@ -10,10 +10,12 @@ Dffinal = zeroes(3);
 
 % if the point is zero
 if P(1) == 0 && P(2) == 0
-    % Df/Dx, Df/Dy, Df/Dr set to zero...
-    for i = 1:3
-        Dffinal(i) = 0;
-    end;
+    % Df/Dx, Df/Dy, Df/Dr set to zero. We don't need to zero its elements
+    % because it was done on line 9, so we'll just get out of this
+    % function.
+    %for i = 1:3
+    %    Dffinal(i) = 0;
+    %end;
     return;
 end;
 
