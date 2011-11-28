@@ -25,6 +25,12 @@ He also shared with us a new website he has created for our project.
 
 *19 November*
 
+*27 November*
+
+Discuss about members page and team pages final structure. 
+
+Questions and doubts to discuss with Yohan.
+
 
 = Activity =
 
@@ -36,6 +42,11 @@ He also shared with us a new website he has created for our project.
 
 2.2.The design of a website to learn how to deal with it and its tool.
 
+----------
+
+3.1. Create the members page.
+
+3.2. Create the team pages for all the groups.
 
 
 
