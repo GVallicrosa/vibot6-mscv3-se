@@ -1,11 +1,32 @@
-%% Test Program for Shape Reconstruction
-% This program is used to do the low-level testing of the program
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         Shape Reconstruction         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                      %
+% Project Manager: Angga Reza Fardana  %
+% Contributors:                        %
+%    - Yukti Suri                      %
+%    - Ajad Chhatkuli                  %
+%    - Gao Lijia                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function [ err ] = ShapeReconstruction(SmoothData, ErrorOfFit)
+% [INPUTS]
+% SmoothData  : contains the already-processed image data
+%               to be optimized and reconstructed
+%
+% [OUTPUTS]
+% ErrorOfFit  : contains the minimum of cost function
+%
+% [TESTING]
+%
+% ErrorOfFit = ShapeReconstruction(SmoothData);
+% figure(1); imshow(SmoothData);
+% title('Smoothed Data');
+% figure(2); imshow('?');
 %
 
-SmoothData = zeros(0);
-ErrofOfFit = zeros(0);
-
-err = Optimize2(SmoothData, ErrorOfFit, ...
+ErrorOfFit = Optimize2(SmoothData, ...
     false, ... % activate normalization or not
     1); % the potential function (use 1 or 2, 3 possible
         % but not the most stable)
+end
