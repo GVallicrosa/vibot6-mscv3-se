@@ -38,9 +38,9 @@ I) Software Testing
 II) Graphical User Interface(GUI)
  GUI coding started 
 
-  a) [https://vibot6-mscv3-se.googlecode.com/svn/trunk/vibot6_mscv3/Gui Repository for GUI in QT]
+  a) [https://vibot6-mscv3-se.googlecode.com/svn/trunk/project/c++/gui/ Repository for GUI in QT]
 
-  b)[https://vibot6-mscv3-se.googlecode.com/svn/trunk/vibot6_mscv3/MatlabGui Repository for GUI in Matlab]
+  b)[https://vibot6-mscv3-se.googlecode.com/svn/trunk/project/matlab/gui/ Repository for GUI in Matlab]
 
 =Issues==
     a) [http://code.google.com/p/vibot6-mscv3-se/issues/detail?id=3 Software Testing Issues]
