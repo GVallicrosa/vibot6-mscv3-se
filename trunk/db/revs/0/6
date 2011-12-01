@@ -1,0 +1,50 @@
+PLAIN
+K 20
+RotationalOffset.cpp
+V 20
+file 4-2.0.r2/102522
+K 18
+RotationalOffset.h
+V 20
+file s-2.0.r2/105727
+K 8
+main.cpp
+V 20
+file 6-2.0.r2/102924
+END
+ENDREP
+id: 0-1.0.r6/158
+type: dir
+pred: 0-1.0.r5/197
+count: 5
+text: 6 0 145 145 54cd828ea25b69ee689126bcee12682c
+cpath: /trunk
+copyroot: 0 /
+
+PLAIN
+K 8
+branches
+V 15
+dir 2-1.0.r1/63
+K 4
+tags
+V 16
+dir 3-1.0.r1/130
+K 5
+trunk
+V 16
+dir 0-1.0.r6/158
+END
+ENDREP
+id: 0.0.r6/407
+type: dir
+pred: 0.0.r5/446
+count: 6
+text: 6 293 101 101 163a8dbc440bb8d51341ee78ec9fb485
+cpath: /
+copyroot: 0 /
+
+1-2.0.r2/102345 delete-file false false /trunk/test.cpp
+
+
+407 535
