@@ -25,6 +25,9 @@ function [ err ] = ShapeReconstruction(SmoothData, ErrorOfFit)
 % figure(2); imshow('?');
 %
 
+% Make a reference to the folder containing our required functions.
+addpath '.\ShapeReconstruction';
+
 ErrorOfFit = Optimize2(SmoothData, ...
     false, ... % activate normalization or not
     1); % the potential function (use 1 or 2, 3 possible
