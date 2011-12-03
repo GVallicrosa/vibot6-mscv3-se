@@ -22,7 +22,7 @@ function varargout = gui_matlab(varargin)
 
 % Edit the above text to modify the response to help gui_matlab
 
-% Last Modified by GUIDE v2.5 13-Nov-2011 17:57:57
+% Last Modified by GUIDE v2.5 03-Dec-2011 14:54:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -286,11 +286,10 @@ function Previous_Callback(hObject, eventdata, handles)
 % hObject    handle to Previous (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% --- Executes on button press in Previous.
 
-
-% --- Executes on button press in Next.
 function Next_Callback(hObject, eventdata, handles)
-% hObject    handle to Next (see GCBO)
+% hObject    handle to Previous (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
