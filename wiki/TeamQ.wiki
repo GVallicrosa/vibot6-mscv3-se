@@ -20,6 +20,8 @@ In this meeting the task were distributed. The functions that have to be used in
 
 [https://docs.google.com/document/d/1DfupMQrhH1pFDWachyRRaj-hNjvgZdNR0PVDlWiQNI0/edit?hl=en_US Meeting 09/11/2011]
 
+[https://docs.google.com/document/d/1jpPrHnNqpgG43ZYYgFbhM4U6ASaGeJZMQJlmS0648A4/edit?hl=en_US Meeting 02/11/2011]
+
 
 
 = Activity =
@@ -27,6 +29,7 @@ In this meeting the task were distributed. The functions that have to be used in
 The Post-Processing team had as main task the realization of the pseudo-code for the Noise Removal (using Median Filter and Morphological Operations), Recovery of the deformed sign and Object Elimination. 
 
 [https://docs.google.com/document/d/1reYNrlv_c6SvIAcoSZZ69ng32V47OgFE7YfBMVPp0rw/edit?hl=en_US LLD for PostProcessing]
+
 
 = Questions =
 || || *Question* || *Answer* ||
