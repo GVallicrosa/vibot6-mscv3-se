@@ -22,8 +22,8 @@ if P(1) == 0 && P(2) == 0
     return;
 end;
 
-% dimension of f = Get_q(), because later on there will be a loop
-% which assign values to f, Get_q times.
+% dimension of f = q, because later on there will be a loop
+% which assign values to f by q times.
 f = zeros(q);
 Ddum = 0;
 

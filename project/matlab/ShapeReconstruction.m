@@ -28,6 +28,10 @@ function [ err ] = ShapeReconstruction(SmoothData, ErrorOfFit)
 % Make a reference to the folder containing our required functions.
 addpath '.\ShapeReconstruction';
 
+global Parameters;
+Parameters(1) = 1;
+Parameters(2) = 3;
+
 ErrorOfFit = Optimize2(SmoothData, ...
     false, ... % activate normalization or not
     1); % the potential function (use 1 or 2, 3 possible
