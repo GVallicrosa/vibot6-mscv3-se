@@ -8,7 +8,7 @@
 %    - Eduardo Tusa
 %    - Joel Vidal
 
-function [noiseRem,cleanImg,convHull,contP] = Postprocessing(BW_im)
+function [noiseRem,cleanImg] = Postprocessing(BW_im)
 %   ---Inputs----
 %   BW_im   : a segmented binary image [mxn bool]
 %   ---Outputs---
@@ -66,17 +66,18 @@ for i = 1:N                             %For each region in the image do:
     end
 end             
 
-%% Convex hull
-% Obtaining the points in the segmented region that correspond to the CH
-
-[L,N] = bwlabel(cleanImg, 8);              %Labeling of the latest clean image
-contP = cell(N);
-convHull = cell(N);                        %Output data structure will be in cell form
-for i=1:N                                  %For each labeled region
-    [rows cols] = find(L==i);              %Get the coordinates of the points
-    tmpI = (L==i);                         %Make a temporary binary image of the current label
-    contP{i} = bwtraceboundary(tmpI, [rows(1),cols(1)], 'E', 8, Inf, 'counterclockwise');
-                                           %Get the points in the boundary of the blob
-    convHull{i} = convhull(contP{i}(:,1),contP{i}(:,2));
-                                           %Convex hull operation of the contour (as index of contP)
-end
+%% TO ERASE
+% %% Convex hull
+% % Obtaining the points in the segmented region that correspond to the CH
+% 
+% [L,N] = bwlabel(cleanImg, 8);              %Labeling of the latest clean image
+% contP = cell(N);
+% convHull = cell(N);                        %Output data structure will be in cell form
+% for i=1:N                                  %For each labeled region
+%     [rows cols] = find(L==i);              %Get the coordinates of the points
+%     tmpI = (L==i);                         %Make a temporary binary image of the current label
+%     contP{i} = bwtraceboundary(tmpI, [rows(1),cols(1)], 'E', 8, Inf, 'counterclockwise');
+%                                            %Get the points in the boundary of the blob
+%     convHull{i} = convhull(contP{i}(:,1),contP{i}(:,2));
+%                                            %Convex hull operation of the contour (as index of contP)
+% end
