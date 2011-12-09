@@ -1,45 +1,31 @@
- #include "cv.h"
- #include "cxcore.h"
- #include "highgui.h"
- #include "PostProcessing.h"
-#include "nhs.h"
-#include "ihls.h"
+# include "cv.h"
+# include "cxcore.h"
+# include "highgui.h"
+# include "PostProcessing.h"
  #include <iostream>
  #include <stdio.h>
  #include <stdlib.h>
+#include <vector>
+#include <algorithm>
 
-
+using namespace cv;
 
 void main()
-{  
-	//RGB to NHS---team P
-	Mat image=imread("E:\\VIBOT\\VIBOT-cursuri\\Sem I\\Software Engineering\\C++2011-2012\\(Backup) Road Sign - Gielis Code\\NHS Code\\Images\\Different0038.jpg");
-	Mat ihlsImage=convert_rgb_to_ihls(image);
-	Mat nhsImage=convert_ihls_to_nhs(ihlsImage);
-	cvNamedWindow("input for team Q",0);
-	imshow("input for team Q",nhsImage);
-
-	//PostProcessing
-	IplImage *x=new IplImage(nhsImage);
-
-	IplImage* pFimage, *pElimImage, *pConvexImage;
-	CvSeq * pFirst_contour = NULL;
+{
+    Mat img=imread("E:\\VIBOT\\VIBOT-cursuri\\Sem I\\Software Engineering\\C++2011-2012\\(Backup) Road Sign - Gielis Code\\NHS Output\\Different0038.jpg",0);
+	PostProcessing p(img);
+	p.DisplayImage("InputImage",img);
 	
-    PostProcessing *p=new PostProcessing(x);
-	//Noise removal; morphological operations
-	pFimage=p->FilteredImage();
-    //Display image
-	p->DisplayImage("FilteredImage",pFimage);
+	Mat fimg=p.FilterImage();
+	p.DisplayImage("FilteredImage",fimg);
 
-	//Object Elimination
-	pElimImage=p->ObjectElimination(pFimage);
-	p->DisplayImage("Elimination",pElimImage);
+	vector<vector<Point> > copyCont;
+	Mat eimg=p.Elimination(fimg,copyCont);
+	p.DisplayImage("Elimination",eimg);
 
-	//ConvexHull
-	vector<CvSeq*> hullVector;
-	pConvexImage=p->ConvexHull(pElimImage,hullVector);
-	p->DisplayImage("Convex_Hull",pConvexImage);
-	cout<<hullVector.size();
+	vector<vector<Point> >hull( copyCont.size() );
+	Mat himg=p.Convex(eimg,hull,copyCont);
+	p.DisplayImage("ConvexHull",himg);
 
-	cvWaitKey(0);
+	waitKey(0);
 }
