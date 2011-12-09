@@ -1,28 +1,26 @@
- /**
- *Description of the class
- */
-
-//INCLUDES
- #include "cv.h"
- #include "cxcore.h"
- #include "highgui.h"
+# include "cv.h"
+# include "cxcore.h"
+# include "highgui.h"
  #include <iostream>
  #include <stdio.h>
  #include <stdlib.h>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
+using namespace cv;
 
 class PostProcessing
 {
-	IplImage* image;
+	Mat image;
 public:
 	//Constructor and destructors
-	PostProcessing(IplImage *);
+	PostProcessing(Mat);
     ~PostProcessing();
 
 	//Methods
-	void DisplayImage(char*, IplImage*);
-	IplImage *FilteredImage();
-	IplImage *ObjectElimination(IplImage*);
-	IplImage *ConvexHull(IplImage*,vector<CvSeq*>&);
+	void DisplayImage(char*, Mat);
+	Mat FilterImage();
+	Mat Elimination(Mat,vector<vector<Point> >&);
+	Mat Convex(Mat, vector<vector<Point> >&hull,vector<vector<Point> > &copyCont);
 };

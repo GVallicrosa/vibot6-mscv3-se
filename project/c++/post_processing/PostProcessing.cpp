@@ -1,18 +1,16 @@
 #include "PostProcessing.h"
 
-//Constructor
-PostProcessing::PostProcessing(IplImage *filename)
+//constructor
+PostProcessing::PostProcessing(Mat filename)
 {
 	image=filename;
 }
 
-//Destructor
+//destructor
 PostProcessing::~PostProcessing()
 {
-	cvReleaseImage(&image);
+
 }
-
-
 
 //NAME OF FUNCTION: DisplayImage
 //PURPOSE:
@@ -22,21 +20,20 @@ PostProcessing::~PostProcessing()
 //     name         type     value/reference               description
 //--------------------------------------------------------------------------------
 //     name         char*        value               the name of the window
-//    image       IplImage*      value          the image that we want to display 
+//    image          Mat      value          the image that we want to display 
 //
 //OUTPUT PARAMETERS:
 //     name         type     value/reference               description
 //--------------------------------------------------------------------------------
 //                             NO OUTPUT
 //
-
-void PostProcessing::DisplayImage(char *name,IplImage *image)
+void PostProcessing::DisplayImage(char *name, Mat img)
 {
-	cvNamedWindow(name,0);
-	cvShowImage(name,image);
+	namedWindow(name,0);
+	imshow(name,img);
 }
 
-//NAME OF FUNCTION: FilteredImage
+//NAME OF FUNCTION: FilterImage
 //PURPOSE:
 //    The function will eliminate the noise in the image, using morphological 
 //    operations and the median filer. First the source image is dilated,
@@ -50,43 +47,40 @@ void PostProcessing::DisplayImage(char *name,IplImage *image)
 //OUTPUT PARAMETERS:
 //     name         type          value/reference               description
 //--------------------------------------------------------------------------------
-//    fimage      IplImage*           value                  the filtered image
-//
-IplImage* PostProcessing::FilteredImage()
+//      dst          Mat             value                  the filtered image
+
+Mat PostProcessing::FilterImage()
 {
-   //Morphological operations
-   //dilate
-   IplConvKernel* sd=cvCreateStructuringElementEx(4,4,0,0,CV_SHAPE_ELLIPSE); //structuring element used for dilate and erode
-   IplImage *dimage=cvCreateImage(cvGetSize(image),IPL_DEPTH_8U ,1);  //destination image, where the image after dilation will be placed
-   cvDilate(image,dimage,sd);
+	//Morphological operation
+    //dilate
+	Mat sd=getStructuringElement(MORPH_CROSS,Size(4,4)); //structuring element used for dilate and erode
+	dilate(image,image,sd);
+
+    Mat dst=image.clone();                                //destination image; copy of the original image
+	threshold(image,image,254,255,CV_THRESH_BINARY);      // make the image binary 
+
+	// find the contours of the objects
+    vector<vector<Point> > contours;
+    vector<Vec4i> hierarchy;
+    findContours(image, contours,hierarchy,CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 	
-   //find the contours  
-   CvMemStorage * storage = cvCreateMemStorage(0);
-     // cvThreshold(dimage,dimage,200,255,CV_THRESH_BINARY);
-   CvSeq* contour=NULL;
-   IplImage *dest=cvCreateImage(cvGetSize(image),IPL_DEPTH_8U ,1); //destination image, image after filling the contours
-   cvZero(dest); //make all image black
-   cvFindContours(dimage,storage,&contour, sizeof(CvContour), CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE, cvPoint(0,0));//finds the contours
-   
-   //fill the contours
-   while (contour != NULL){
-		cvDrawContours(dest,contour,cvScalarAll(255),cvScalarAll(255),-1,CV_FILLED,8);
-		contour=contour->h_next;
-   }
+	//draw the filled contours to the destination image
+	Scalar color(255,255,255);
+	drawContours(dst, contours, -1, color, CV_FILLED, 8);
 
-   //erode
-   IplImage *eimage=cvCreateImage(cvGetSize(dest),IPL_DEPTH_8U ,1);  //destination image, where the image after erosion will be placed
-   cvErode(dest,eimage,sd); 
-   
-   //Filter using Median Filter
-   IplImage *fimage=cvCreateImage(cvGetSize(eimage),IPL_DEPTH_8U ,1); //destination image
-   for (int i=0;i<5;i++) { 
-	   cvSmooth(eimage, fimage, CV_MEDIAN,5,0,0,0);}
+	//Morphological operations
+    //dilate
+	erode(dst,dst,sd);
 
-   return fimage;
+	//eliminate nois using a median filter
+	for (int i=0;i<5;i++)
+	   medianBlur(dst,dst,5);
+
+	//output
+	return dst;
 }
 
-//NAME OF FUNCTION: ObjectElimination
+//NAME OF FUNCTION: Elimination
 //PURPOSE:
 //    The function will eliminate the small objects in the image.
 //    First the area of the image is computed. Secondly, for each contour
@@ -95,62 +89,70 @@ IplImage* PostProcessing::FilteredImage()
 //    1/1500 of image size, and the aspect ratio outside the range of 0.25 and 1.3 then
 //    we consider the region as insignificant object, therefore it is eliminated.
 //INPUT PARAMETERS:
-//     name         type          value/reference               description
-//--------------------------------------------------------------------------------
-//    fimage      IplImage*           value                 the filtered image, the output 
+//     name         type                 value/reference               description
+//---------------------------------------------------------------------------------------
+//    fimage         Mat                     value          the filtered image, the output 
 //                                                           image of the previous method
+//   copyCont  vector<vector<Point> >      reference         the contours of the objects
 //
 //OUTPUT PARAMETERS:
 //     name         type          value/reference               description
 //--------------------------------------------------------------------------------
-//     dest      IplImage*           value                  the image obtained after 
+//     dest         Mat          value                     the image obtained after 
 //                                                      elimination of the small objects
 //
-IplImage* PostProcessing::ObjectElimination(IplImage *fimage)
+Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont)
 {
-	//area of the hole image 
-	double area=image->height*image->width;
-	   cout<<area/1500<<endl;
-	   cout<<endl;
-    IplImage *dest=cvCreateImage(cvGetSize(image),IPL_DEPTH_8U ,1); //the output image
-	dest=cvCloneImage(fimage);   //copy of the input image 
+	long int area=image.size().area();                   //area of the original image
+	    cout<<"Aria/1500: "<<area/1500<<endl;
+	
+	Mat dst=Mat::zeros(fimage.rows,fimage.cols,CV_8U);   //destination image  
+	
+	threshold(fimage,fimage,254,255,CV_THRESH_BINARY);   //make image binary
 
-   //find the contours in the new image
-   CvMemStorage * storage = cvCreateMemStorage(0);
-   CvSeq * first_contour = NULL;
-   cvFindContours(fimage,storage,&first_contour, sizeof(CvContour),  CV_RETR_LIST, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
+	//find the new contours
+    vector<vector<Point> > contours;
+    vector<Vec4i> hierarchy;
+    findContours(fimage,contours,hierarchy,CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+
+	     cout<<"Dimensiune: "<<contours.size()<<endl;
+    
+    //for each contour   
+	for (int i=0;i<contours.size();i++)
+	   {
+		
+		 //  RotatedRect b=minAreaRect(Mat(contours[i]));       //associate a rectangle to calculate the width and height
+		 	Rect b=boundingRect(Mat(contours[i]));
+
+		  
+		   //double ratio=b.size.width/b.size.height;          // compute the aspect ratio 
+		 double ratio=(double)b.width/(double)b.height;
+			 
+		   //long int areaRegion=b.size.area();
+			       long int areaRegion=b.area();
+
+			
+			         cout<<"Ratie: "<<ratio<<" Area: "<<areaRegion<<endl;
+			
+			if ((areaRegion<area/1500) || ((ratio>1.3) || (ratio<0.25)))  //conditions for eliminating the objects
+			{
+				 cout<<"sters de la pozitia "<<i<<endl;
+			}
+			else
+				copyCont.push_back(contours[i]);	
+			
+	   }
+
+	   cout<<copyCont.size()<<endl;
    
-   // for each contour
-   CvSeq* result;
-	while (first_contour != NULL)
- 	{
-		//area of the contour
-		double areaRegion=fabs(cvContourArea(first_contour, CV_WHOLE_SEQ));
+	Scalar color(255,255,255);
+	drawContours(dst,copyCont, -1, color, CV_FILLED, 8);
 
-		//associate one rectangle for each contour to calculate the height and width 
-		CvBox2D rect=cvMinAreaRect2(first_contour,NULL);
-		//CvRect rect=cvBoundingRect(first_contour,1);
-		//the ratio
-		double ratio=rect.size.width/rect.size.height;
-		//double areaRegion=rect.size.width*rect.size.height;
-		cout<<ratio<<" "<<areaRegion;
-		      //double ratio=rect.width/rect.height;
-        // checks the area and the ratio and eliminates the contours that do not respect the rules
-		if (((areaRegion<area/1500) || (ratio<0.25 || ratio>1.3)))
-		{
-			  cvDrawContours(dest,first_contour,cvScalarAll(0),cvScalarAll(0),-1,CV_FILLED,8);
-			  cout << "deleted";
-		}
-		cout << endl;
-		
-		first_contour=first_contour->h_next;
-		
-	}
-    //returns the image after elimination
-	return dest;
+	//return image after elimination
+    return dst;
 }
 
-//NAME OF FUNCTION: ConvexHull
+//NAME OF FUNCTION: Convex
 //PURPOSE:
 //    The function will recover the shape of the segmented figures .
 //    The contours of the shape is found and then the function 'convexHull2'
@@ -158,44 +160,42 @@ IplImage* PostProcessing::ObjectElimination(IplImage *fimage)
 //INPUT PARAMETERS:
 //     name         type          value/reference              description
 //------------------------------------------------------------------------------------
-//    image      IplImage*            value            the image after the elimination   
+//   eimage         Mat               value            the image after the elimination   
 //                                                         of the small shapes 
-// hull_vector    vector            reference        the memory storage, for each contour
+//   hull     vector<vector<Point>   reference        the memory storage, for each contour
 //                                                   the points of  the convex hull will
 //                                                             be memorated
+// copyCont   vector<vector<Point>   reference          the contours of the objects
+//
+//
 //OUTPUT PARAMETERS:
 //     name         type          value/reference               description
 //-------------------------------------------------------------------------------------
-//     dest      IplImage*           value           the image obtained after elimination of 
-//                                                          the recovery of the shape
+//     dest         Mat                value           the image obtained after elimination of 
+//                                                            the recovery of the shape
 //
 
-IplImage* PostProcessing::ConvexHull(IplImage *image,vector<CvSeq*>&hull_vector)
+Mat PostProcessing::Convex(Mat eimage,vector<vector<Point> >&hull,vector<vector<Point> > &copyCont)
 {
-   
-	IplImage *dest=cvCreateImage(cvGetSize(image),IPL_DEPTH_8U ,1); //destination image
-	cvZero(dest);
-	//finds the new contours 
-	CvMemStorage *storage = cvCreateMemStorage(0);
-	CvSeq * first_contour = NULL;
-	cvFindContours(image,storage,&first_contour, sizeof(CvContour), CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
-    
-	CvSeq* hull=NULL;
-	//for each contour
-	while (first_contour!=NULL)
-	{
-         //compute the convex hull
-		 hull=cvConvexHull2(first_contour,0,CV_CLOCKWISE,1);
-		 // store the coordinates of the convex hull
-		 hull_vector.push_back(hull);
+    	 Mat dest = Mat::zeros( image.size(), CV_8U ); // the output image
+	     for (int i=0;i<copyCont.size();i++)
+		 {
+			 convexHull(Mat(copyCont[i]),hull[i]);    //convex hull operation
+		 }
+        
+		
 
-		 //draws the region in a new picture
-		 cvDrawContours(dest,hull,cvScalarAll(255),cvScalarAll(255),-1,CV_FILLED,8);
-		 first_contour=first_contour->h_next;		 
+       for( int i = 0; i<copyCont.size(); i++ )   //drawing the points for convex hull
+        {
+			for (int j=0;j<hull[i].size();j++)
+			{
+			Scalar color = Scalar(255, 0, 0);
+			     //drawContours( drawing, copyCont, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
+			//drawContours( dest, hull, i, color, 1, CV_AA, vector<Vec4i>(), 0, Point() );
+			 circle(dest,hull[i][j],2,color,1,8);
+			}
+        };
+		
+		return dest;
 
-	}
-   
-   //returns the new image 
-   return dest;
 }
-
