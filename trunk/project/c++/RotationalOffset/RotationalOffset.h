@@ -1,8 +1,10 @@
 /*
-Description:    This is the header file for its corresponding cpp file. Provide the class for the module. 
+Description:    This is the header file for its corresponding cpp file. Provide the class for the module.
 
 Date Created:   22/11/2011
-Date Modified:  
+Date Modified:  27/11/2011
+				(Transformation from C style to C++ style. Use of vector instead of structure)
+
 Author:         Team T
 */
 
@@ -11,13 +13,16 @@ Author:         Team T
 #define RotationalOffset_H
 
 #include <iostream>
+#include <fstream>
 #include <math.h>
-#include <stdlib.h>
+#include <vector>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
 #define cPI 3.141
-#define cMAX_POINTS 5
+#define cMAX_POINTS 167
 
 //Dummy Contour class
 typedef struct Contour {
@@ -31,29 +36,23 @@ typedef struct Contour {
 class IRO
 {
 public:
-	virtual float* GetMinRadius(Contour* ContourPtr) = 0;
+	virtual vector< vector<float> > GetMinRadius(vector< vector< pair<unsigned int, unsigned int> > > ContourPtr) = 0;
 };
 
-//This structure hold the parameters of the RO
-typedef struct Params {
-	float mRad;
-	float mTheta;
-}roParams;
 
 //RO module class
 class cRotationalOffset:public IRO
 {
 	private:
-		roParams		mPrm[cMAX_POINTS];
-		unsigned int	mNoOfPoints;
-		float			*mpOutput;
+		//hold the <theta,radius> pair in vector
+		vector<pair<float, float> >	mThetaRad;
+		//unsigned int				mNoOfPoints;
+		vector< vector<float> >		mpOutput;
 
 	public:
-		void		CartisanToPolar	(Contour* ContourPtr);
-		static int	Compare			(const void *first, const void *second);
-		void		SortThetaAscend	(void);
-		void		FindMinimum		(void);
-		float*		GetMinRadius	(Contour* ContourPtr);
+		void						CartisanToPolar	(vector< pair<unsigned int, unsigned int> > ContourPtr);
+		void						FindMinimum		(void);
+		vector< vector<float> >		GetMinRadius	(vector< vector< pair<unsigned int, unsigned int> > > ContourPtr);
 
 		cRotationalOffset();
 	   ~cRotationalOffset();
