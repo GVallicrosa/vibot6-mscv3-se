@@ -18,8 +18,11 @@ for i = 1:length(fileIndex)
     fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     
+    %% Image segmentation
+    nhs = normalize_segmentation(im);
+    
     %% Postprocessing
-    [noiseRem,cleanImg] = Postprocessing(im);
+    [noiseRem,cleanImg] = Postprocessing(nhs);
     
     %% Label image
     [L,N] = bwlabel(cleanImg, 8);              %Labeling of the clean image
