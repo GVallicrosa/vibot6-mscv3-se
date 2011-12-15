@@ -101,10 +101,10 @@ Mat PostProcessing::FilterImage()
 //     dest         Mat          value                     the image obtained after 
 //                                                      elimination of the small objects
 //
-Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont)
+Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont, long int areaRatio, double lowAspectRatio, double highAspectRatio)
 {
 	long int area=image.size().area();                   //area of the original image
-	    cout<<"Aria/1500: "<<area/1500<<endl;
+	   // cout<<"Aria/1500: "<<area/1500<<endl;
 	
 	Mat dst=Mat::zeros(fimage.rows,fimage.cols,CV_8U);   //destination image  
 	
@@ -115,28 +115,28 @@ Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont)
     vector<Vec4i> hierarchy;
     findContours(fimage,contours,hierarchy,CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
-	     cout<<"Dimensiune: "<<contours.size()<<endl;
+	    // cout<<"Dimensiune: "<<contours.size()<<endl;
     
     //for each contour   
 	for (int i=0;i<contours.size();i++)
 	   {
 		
-		 //  RotatedRect b=minAreaRect(Mat(contours[i]));       //associate a rectangle to calculate the width and height
-		 	Rect b=boundingRect(Mat(contours[i]));
+		    //associate a rectangle to calculate the width and height
+		 Rect b=boundingRect(Mat(contours[i]));
 
 		  
-		   //double ratio=b.size.width/b.size.height;          // compute the aspect ratio 
+		 // compute the aspect ratio 
 		 double ratio=(double)b.width/(double)b.height;
 			 
 		   //long int areaRegion=b.size.area();
-			       long int areaRegion=b.area();
+	     long int areaRegion=b.area();
 
 			
-			         cout<<"Ratie: "<<ratio<<" Area: "<<areaRegion<<endl;
+			        // cout<<"Ratie: "<<ratio<<" Area: "<<areaRegion<<endl;
 			
-			if ((areaRegion<area/1500) || ((ratio>1.3) || (ratio<0.25)))  //conditions for eliminating the objects
+			if ((areaRegion<area/areaRatio) || ((ratio>highAspectRatio) || (ratio<lowAspectRatio)))  //conditions for eliminating the objects
 			{
-				 cout<<"sters de la pozitia "<<i<<endl;
+				// cout<<"sters de la pozitia "<<i<<endl;
 			}
 			else
 				copyCont.push_back(contours[i]);	
