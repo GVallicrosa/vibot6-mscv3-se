@@ -21,6 +21,6 @@ public:
 	//Methods
 	void DisplayImage(char*, Mat);
 	Mat FilterImage();
-	Mat Elimination(Mat,vector<vector<Point> >&);
+	Mat Elimination(Mat,vector<vector<Point> >&,long int, double, double);
 	Mat Convex(Mat, vector<vector<Point> >&hull,vector<vector<Point> > &copyCont);
 };
