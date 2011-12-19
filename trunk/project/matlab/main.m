@@ -7,6 +7,9 @@
 close all;
 clear all;
 
+%% Add necessary paths to call all functions
+addpath('gui', 'ShapeReconstruction', 'Rotational Offset');
+
 %% Search for images
 dirname = '/home/guillem/Desktop/UE1_softwareEng/project/code_original/NHS Output/';
 files = dir(dirname);
@@ -35,7 +38,7 @@ for i = 1:length(fileIndex)
         %% Contour extraction
         outputCE = true;
         distanceError = sqrt(2);
-        valid = contour_extraction(contP, distanceError);
+        valid_contour = contour_extraction(contP, distanceError);
         % Optional outputs
         if (outputCE)
             % Save contours
@@ -44,13 +47,17 @@ for i = 1:length(fileIndex)
             [m n] = size(cleanImg);
             imCE = zeros(m,n);
             for k=1:length(valid)
-                imCE(valid(k,1), valid(k,2)) = 1;
+                imCE(valid_contour(k,1), valid(k,2)) = 1;
             end
             IMname = ['outputCE/',fname,'_cont',num2str(i)];
             imwrite(imCE,IMname,'PNG','BitDepth',1);
         end
         
         %% Rotational offset
+        [Radius, Theta] = Cartisian2Polar(valid_contour);
+        [Theta,Permutation_Index] = sort(Theta,'ascend');
+        Radius = Radius(Permutation_Index);
+        Offset = FindMinimum(Radius, Theta);
         
         %% Gielis curves reconstruction
         
