@@ -22,7 +22,7 @@ function varargout = gui_matlab(varargin)
 
 % Edit the above text to modify the response to help gui_matlab
 
-% Last Modified by GUIDE v2.5 03-Dec-2011 14:54:24
+% Last Modified by GUIDE v2.5 20-Dec-2011 01:53:36
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -42,6 +42,7 @@ else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
+global DisplayIndex ;
 
 
 % --- Executes just before gui_matlab is made visible.
@@ -55,11 +56,15 @@ function gui_matlab_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for gui_matlab
 handles.output = hObject;
 clc;
+global DisplayIndex ;
+DisplayIndex = 0;
+    %for remembering the previously selected folder 
 handles.macroFolder = cd;
-strIniFile = fullfile(handles.macroFolder, 'Magic.mat');
+strIniFile = fullfile(handles.macroFolder, 'imageFolder.mat');
+    %checks whether imageFolder.mat exists or not
 	if exist(strIniFile, 'file')
 		% Pull out values and stuff them in structure initialValues.
-		initialValues = load('Magic.mat');
+		initialValues = load('imageFolder.mat');
 		% Assign the image folder from the lastUsedImageFolder field of the
 		% structure.
 	    handles.ImageFolder = initialValues.lastUsedImageFolder;
@@ -70,8 +75,7 @@ strIniFile = fullfile(handles.macroFolder, 'Magic.mat');
 		% Save the image folder in our ini file.
 		lastUsedImageFolder = handles.ImageFolder;
 		save(strIniFile, 'lastUsedImageFolder');
-	end
- 
+    end
 % Update handles structure
 guidata(hObject, handles);
 
@@ -101,15 +105,28 @@ function SelectImageFolder_Callback(hObject, eventdata, handles)
 	% returnValue will be the path (a string) if they clicked OK.
 	if folder ~= 0
 		% Assign the value if they didn't click cancel.
-		handles.ImageFolder = folder;
+ 		handles.ImageFolder = folder;
+        handles = LoadImageList(handles);
+        guidata(hObject, handles);
+		% Save the image folder in our ini file.
+		lastUsedImageFolder = handles.ImageFolder;
+		save('imageFolder.mat', 'lastUsedImageFolder');
+    else
+        msgbox('No folder specified as input for function LoadImageList.');
+        return;
+    end
+%===========================================================================    
+ %---- Load up the listbox with image files from the selected folder -----
+function handles=LoadImageList(handles)
 		ListOfImageNames = {};
+        folder = handles.ImageFolder;
         if ~isempty(handles.ImageFolder) 
             if exist(folder,'dir') == false
                 msgboxw(['Folder ' folder ' does not exist.']);
                 return;
             end
         else
-            msgboxw('No folder specified as input for function LoadImageList.');
+            msgbox('No folder specified as input for function LoadImageList.');
             return;
         end
     % If it gets to here, the folder is good.
@@ -126,11 +143,8 @@ function SelectImageFolder_Callback(hObject, eventdata, handles)
             end
         end
         set(handles.ImageList,'string',ListOfImageNames);
-		% Save the image folder in our ini file.
-		lastUsedImageFolder = handles.ImageFolder;
-		save('Magic.mat', 'lastUsedImageFolder');
-	end
-
+        return;
+%========================================================================================
 % --- Executes on button press in Options.
 function Options_Callback(hObject, eventdata, handles)
 % hObject    handle to Options (see GCBO)
@@ -147,58 +161,58 @@ function IntermediateResults_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of IntermediateResults
 
 
-% --- Executes on button press in checkbox20.
-function checkbox20_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox20 (see GCBO)
+% --- Executes on button press in GetRotationalOffset.
+function GetRotationalOffset_Callback(hObject, eventdata, handles)
+% hObject    handle to GetRotationalOffset (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox20
+% Hint: get(hObject,'Value') returns toggle state of GetRotationalOffset
 
 
-% --- Executes on button press in checkbox21.
-function checkbox21_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox21 (see GCBO)
+% --- Executes on button press in ContourExtraction.
+function ContourExtraction_Callback(hObject, eventdata, handles)
+% hObject    handle to ContourExtraction (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox21
+% Hint: get(hObject,'Value') returns toggle state of ContourExtraction
 
 
-% --- Executes on button press in checkbox22.
-function checkbox22_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox22 (see GCBO)
+% --- Executes on button press in FinalOutput.
+function FinalOutput_Callback(hObject, eventdata, handles)
+% hObject    handle to FinalOutput (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox22
+% Hint: get(hObject,'Value') returns toggle state of FinalOutput
 
 
-% --- Executes on button press in checkbox23.
-function checkbox23_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox23 (see GCBO)
+% --- Executes on button press in GelisShapeReconstruction.
+function GelisShapeReconstruction_Callback(hObject, eventdata, handles)
+% hObject    handle to GelisShapeReconstruction (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox23
+% Hint: get(hObject,'Value') returns toggle state of GelisShapeReconstruction
 
 
-% --- Executes on button press in checkbox24.
-function checkbox24_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox24 (see GCBO)
+% --- Executes on button press in RecoverDeformedShape.
+function RecoverDeformedShape_Callback(hObject, eventdata, handles)
+% hObject    handle to RecoverDeformedShape (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox24
+% Hint: get(hObject,'Value') returns toggle state of RecoverDeformedShape
 
 
-% --- Executes on button press in checkbox25.
-function checkbox25_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox25 (see GCBO)
+% --- Executes on button press in NHSSegmentation.
+function NHSSegmentation_Callback(hObject, eventdata, handles)
+% hObject    handle to NHSSegmentation (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox25
+% Hint: get(hObject,'Value') returns toggle state of NHSSegmentation
 
 
 % --- Executes on button press in RGB2IHLS.
@@ -210,22 +224,22 @@ function RGB2IHLS_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of RGB2IHLS
 
 
-% --- Executes on button press in checkbox27.
-function checkbox27_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox27 (see GCBO)
+% --- Executes on button press in ObjectElimination.
+function ObjectElimination_Callback(hObject, eventdata, handles)
+% hObject    handle to ObjectElimination (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox27
+% Hint: get(hObject,'Value') returns toggle state of ObjectElimination
 
 
-% --- Executes on button press in checkbox28.
-function checkbox28_Callback(hObject, eventdata, handles)
-% hObject    handle to checkbox28 (see GCBO)
+% --- Executes on button press in NoiseRemoval.
+function NoiseRemoval_Callback(hObject, eventdata, handles)
+% hObject    handle to NoiseRemoval (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox28
+% Hint: get(hObject,'Value') returns toggle state of NoiseRemoval
 
 
 % --------------------------------------------------------------------
@@ -240,6 +254,7 @@ function Process_Callback(hObject, eventdata, handles)
 % hObject    handle to Process (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
 
 
 % --- Executes on button press in SaveAll.
@@ -257,16 +272,25 @@ function ImageList_Callback(hObject, eventdata, handles)
 
 % Hints: contents = cellstr(get(hObject,'String')) returns ImageList contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from ImageList
+
  selectedIndex = get(handles.ImageList, 'value');
  ListOfImageNames = get(handles.ImageList, 'string');
-% baseImageFileName = ListOfImageNames(selectedIndex);
-  baseImageFileName = strcat(cell2mat(ListOfImageNames(selectedIndex)));
- fullImageFileName = [handles.ImageFolder '/' baseImageFileName];
- imageArray = imread(fullImageFileName);
-
- axes(handles.ImgDisp);
- hold off;	% IMPORTANT NOTE: hold needs to be off in order for the "fit" feature to work correctly.
- axesChildHandle = imshow(imageArray, [], 'InitialMagnification', 'fit');
+ %if no files are loaded in list the list contains [Image List]
+ %the first char [ is checked for whether the list is empty or not 
+ flagempty = char(ListOfImageNames(selectedIndex)); 
+  if  flagempty ~= '['
+      baseImageFileName = strcat(cell2mat(ListOfImageNames(selectedIndex)));
+      fullImageFileName = [handles.ImageFolder '/' baseImageFileName];
+      imageArray = imread(fullImageFileName);
+      imageDisplay(imageArray,handles);
+  end
+ %=========================================================================
+function handles = imageDisplay(imageArray,handles)
+hold off;	% IMPORTANT NOTE: hold needs to be off in order for the "fit" feature to work correctly.
+axesChildHandle = imshow(imageArray, [], 'InitialMagnification', 'fit');
+return;
+ 
+ %==========================================================================
 
 % --- Executes during object creation, after setting all properties.
 function ImageList_CreateFcn(hObject, eventdata, handles)
@@ -287,11 +311,106 @@ function Previous_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % --- Executes on button press in Previous.
+    updateDisplayIndex('prev',handles);
+     global DisplayIndex;
+     DisplayIndex
+     
+%==========================================================================================================
+
+function handles = updateDisplayIndex(buttontype,handles)
+     global DisplayIndex;
+     value = 0;
+    if(buttontype == 'prev')
+        value = -1;
+    end
+    if(buttontype == 'next')
+        value = 1;
+    end
+    presentdisplay = DisplayIndex + value;
+    if(get(handles.IntermediateResults,'Value')==1)
+        flag = 1;
+        while flag == 1
+            switch presentdisplay
+                case 1
+                    if(get(handles.RGB2IHLS,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 2
+                     if(get(handles.NHSSegmentation,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 3
+                     if(get(handles.NoiseRemoval,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                    case 4
+                    if(get(handles.ObjectElimination,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 5
+                     if(get(handles.RecoverDeformedShape,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 6
+                     if(get(handles.ContourExtraction,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                     end
+                case 7
+                    if(get(handles.GetRotationalOffset,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 8
+                     if(get(handles.GelisShapeReconstruction,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 9
+                     if(get(handles.FinalOutput,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                     end
+                otherwise
+                    if (presentdisplay > 9)
+                        presentdisplay = 9;
+                    end
+                    if (presentdisplay <1)
+                        presentdisplay = 1;
+                    end
+                    flag = 0;
+            end
+        end
+        DisplayIndex = presentdisplay;
+    end 
+   return;
+                
+%=============================================================================            
+      
+        
 
 function Next_Callback(hObject, eventdata, handles)
 % hObject    handle to Previous (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+     updateDisplayIndex('next');
+     global DisplayIndex;
+     DisplayIndex
+
 
 % --- Executes when figure1 is resized.
 function figure1_ResizeFcn(hObject, eventdata, handles)
