@@ -1,3 +1,14 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         GUI                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                      %
+%    Suman Raj Bista(Manager)          %
+%    Pablo Speciale	                   %
+%    Nolang Fanani	                   %
+%    Nathanael Lemessa Baisa	       %
+%    Taman Upadhaya	                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function varargout = optionsGUI(varargin)
 % OPTIONSGUI MATLAB code for optionsGUI.fig
 %      OPTIONSGUI, by itself, creates a new OPTIONSGUI or raises the existing

@@ -1,3 +1,14 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         GUI                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                      %
+%    Suman Raj Bista(Manager)          %
+%    Pablo Speciale	                   %
+%    Nolang Fanani	                   %
+%    Nathanael Lemessa Baisa	       %
+%    Taman Upadhaya	                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function varargout = gui_matlab(varargin)
 % GUI_MATLAB MATLAB code for gui_matlab.fig
 %      GUI_MATLAB, by itself, creates a new GUI_MATLAB or raises the existing
@@ -45,7 +56,7 @@ end
 global DisplayIndex ;
 
 
-% --- Executes just before gui_matlab is made visible.
+%% --- Executes just before gui_matlab is made visible.
 function gui_matlab_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
@@ -56,10 +67,14 @@ function gui_matlab_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for gui_matlab
 handles.output = hObject;
 clc;
+
 global DisplayIndex ;
+global Processflag;
+Processflag = 0;
 DisplayIndex = 0;
     %for remembering the previously selected folder 
 handles.macroFolder = cd;
+
 strIniFile = fullfile(handles.macroFolder, 'imageFolder.mat');
     %checks whether imageFolder.mat exists or not
 	if exist(strIniFile, 'file')
@@ -83,7 +98,7 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 
-% --- Outputs from this function are returned to the command line.
+%% --- Outputs from this function are returned to the command line.
 function varargout = gui_matlab_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
@@ -94,7 +109,7 @@ function varargout = gui_matlab_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in SelectImageFolder.
+%% --- Executes on button press in SelectImageFolder.
 function SelectImageFolder_Callback(hObject, eventdata, handles)
 % hObject    handle to SelectImageFolder (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -116,13 +131,13 @@ function SelectImageFolder_Callback(hObject, eventdata, handles)
         return;
     end
 %===========================================================================    
- %---- Load up the listbox with image files from the selected folder -----
+ %% ---- Load up the listbox with image files from the selected folder -----
 function handles=LoadImageList(handles)
 		ListOfImageNames = {};
         folder = handles.ImageFolder;
         if ~isempty(handles.ImageFolder) 
             if exist(folder,'dir') == false
-                msgboxw(['Folder ' folder ' does not exist.']);
+                msgbox(['Folder ' folder ' does not exist.']);
                 return;
             end
         else
@@ -145,7 +160,7 @@ function handles=LoadImageList(handles)
         set(handles.ImageList,'string',ListOfImageNames);
         return;
 %========================================================================================
-% --- Executes on button press in Options.
+%% --- Executes on button press in Options.
 function Options_Callback(hObject, eventdata, handles)
 % hObject    handle to Options (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -249,22 +264,38 @@ function Untitled_1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in Process.
+%% --- Executes on button press in Process.
 function Process_Callback(hObject, eventdata, handles)
 % hObject    handle to Process (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-
-
-% --- Executes on button press in SaveAll.
+  global ihls;
+  global nhs;
+  global noiseRem;
+  global cleanImg;
+  global countoutImg;
+  global Processflag;
+  im = get(handles.ImageList,'UserData');
+  if size(im) == 0
+       msgbox('No Image Selected from the list');
+       return;   
+  end
+  ihls = im;
+ [nhs,noiseRem,cleanImg,countoutImg] = ProcessImage(im);
+ Processflag = 1;
+%  setappdata(gui_matlab,'ihls',im);
+%  setappdata(gui_matlab,'nhsSegmentation',nhs);
+%  setappdata(gui_matlab,'noiseRemoval',noiseRem);
+%  setappdata(gui_matlab,'objectElimination',cleanImg);
+ 
+%% --- Executes on button press in SaveAll.
 function SaveAll_Callback(hObject, eventdata, handles)
 % hObject    handle to SaveAll (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on selection change in ImageList.
+%% --- Executes on selection change in ImageList.
 function ImageList_Callback(hObject, eventdata, handles)
 % hObject    handle to ImageList (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -272,7 +303,8 @@ function ImageList_Callback(hObject, eventdata, handles)
 
 % Hints: contents = cellstr(get(hObject,'String')) returns ImageList contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from ImageList
-
+ global DisplayIndex ;
+ global Processflag;
  selectedIndex = get(handles.ImageList, 'value');
  ListOfImageNames = get(handles.ImageList, 'string');
  %if no files are loaded in list the list contains [Image List]
@@ -282,17 +314,22 @@ function ImageList_Callback(hObject, eventdata, handles)
       baseImageFileName = strcat(cell2mat(ListOfImageNames(selectedIndex)));
       fullImageFileName = [handles.ImageFolder '/' baseImageFileName];
       imageArray = imread(fullImageFileName);
-      imageDisplay(imageArray,handles);
+      ImageDisplay(imageArray);
+      set(handles.text1,'string',baseImageFileName);
+      set(hObject,'UserData',imageArray);
+      DisplayIndex = 0;
+      Processflag = 0;
   end
  %=========================================================================
-function handles = imageDisplay(imageArray,handles)
+%% --- Displays image in image list -------  
+function ImageDisplay(imageArray)
 hold off;	% IMPORTANT NOTE: hold needs to be off in order for the "fit" feature to work correctly.
 axesChildHandle = imshow(imageArray, [], 'InitialMagnification', 'fit');
 return;
  
  %==========================================================================
 
-% --- Executes during object creation, after setting all properties.
+%% --- Executes during object creation, after setting all properties.
 function ImageList_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to ImageList (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -305,19 +342,65 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in Previous.
+%% --- Executes on button press in Previous.
 function Previous_Callback(hObject, eventdata, handles)
 % hObject    handle to Previous (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % --- Executes on button press in Previous.
-    updateDisplayIndex('prev',handles);
-     global DisplayIndex;
-     DisplayIndex
-     
-%==========================================================================================================
-
-function handles = updateDisplayIndex(buttontype,handles)
+    global Processflag;
+    if Processflag == 1
+        updateDisplayIndex('prev',handles);
+        ImageShow(handles);
+    end
+    
+%% --- Executes on button press in Next.
+function Next_Callback(hObject, eventdata, handles)
+% hObject    handle to Previous (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+     global Processflag;
+     if Processflag == 1
+        updateDisplayIndex('next',handles);
+        ImageShow(handles);
+    end
+ 
+%==========================================================================
+%%--- show the intermediate results and o/p--------
+function ImageShow(handles)
+    global DisplayIndex;
+    global ihls;
+    global nhs;
+    global noiseRem;
+    global cleanImg;
+    global countoutImg;
+    global Processflag;
+    if Processflag == 1
+     switch DisplayIndex
+         case 1
+            ImageDisplay(ihls);
+            set(handles.text1,'string','RGB2IHLS Result');
+         case 2
+             ImageDisplay(nhs);
+             set(handles.text1,'string','NHS Segmentation Result');
+         case 3
+             ImageDisplay(noiseRem);
+             set(handles.text1,'string','After Noise Removal');
+         case 4
+             ImageDisplay(cleanImg);
+             set(handles.text1,'string','After Object Elimination');
+         case 5
+             set(handles.text1,'string','Recover Deformed Shape');
+         case 6
+             ImageDisplay(countoutImg);
+             set(handles.text1,'string','Contour');
+         otherwise
+     end     
+    end
+return;
+%==========================================================================
+%% -- update DisplayIndex according to check box
+function updateDisplayIndex(buttontype,handles)
      global DisplayIndex;
      value = 0;
     if(buttontype == 'prev')
@@ -399,20 +482,9 @@ function handles = updateDisplayIndex(buttontype,handles)
     end 
    return;
                 
-%=============================================================================            
-      
-        
+%============================================================================= 
 
-function Next_Callback(hObject, eventdata, handles)
-% hObject    handle to Previous (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-     updateDisplayIndex('next');
-     global DisplayIndex;
-     DisplayIndex
-
-
-% --- Executes when figure1 is resized.
+%% --- Executes when figure1 is resized.
 function figure1_ResizeFcn(hObject, eventdata, handles)
 % hObject    handle to figure1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
