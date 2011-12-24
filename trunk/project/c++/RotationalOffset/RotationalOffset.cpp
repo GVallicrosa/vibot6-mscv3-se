@@ -201,6 +201,7 @@ vector<float> cRotationalOffset::GetMinRadius( const Contour &contour )
 {
     Contour::iterator i;
 
+    mpOutput.clear();
     CartisanToPolar( contour );
     /* Sort in pairs ascending order.
     By default sort function sort on the basis of 1st element of pairs.
