@@ -3,7 +3,7 @@ Description:    This is the header file for its corresponding cpp file. Provide 
 
 Date Created:   22/11/2011
 Date Modified:  27/11/2011
-				(Transformation from C style to C++ style. Use of vector instead of structure)
+                (Transformation from C style to C++ style. Use of vector instead of structure)
 
 Author:         Team T
 */
@@ -22,40 +22,39 @@ Author:         Team T
 using namespace std;
 
 #define cPI 3.141
-#define cMAX_POINTS 167
+#define cMAX_POINTS 10
 
-//Dummy Contour class
-typedef struct Contour {
-	int mX;
-	int mY;
-	unsigned int nop;
-	//Contour *next;
-}structContour;
+
 
 //Interface class
+
 class IRO
 {
 public:
-	virtual vector< vector<float> > GetMinRadius(vector< vector< pair<unsigned int, unsigned int> > > ContourPtr) = 0;
+    typedef pair<unsigned,unsigned> Point2D;
+    typedef vector<Point2D> Contour;
+
+    virtual vector<float>  GetMinRadius( const Contour &contour ) = 0;
 };
 
 
 //RO module class
-class cRotationalOffset:public IRO
+
+class cRotationalOffset : public IRO
 {
-	private:
-		//hold the <theta,radius> pair in vector
-		vector<pair<float, float> >	mThetaRad;
-		//unsigned int				mNoOfPoints;
-		vector< vector<float> >		mpOutput;
+private:
+    //hold the <theta,radius> pair in vector
+    vector<pair<float, float> > mThetaRad;
+    //unsigned int              mNoOfPoints;
+    vector<float>   mpOutput;
 
-	public:
-		void						CartisanToPolar	(vector< pair<unsigned int, unsigned int> > ContourPtr);
-		void						FindMinimum		(void);
-		vector< vector<float> >		GetMinRadius	(vector< vector< pair<unsigned int, unsigned int> > > ContourPtr);
+public:
+    void            CartisanToPolar( const Contour &contour );
+    void            FindMinimum( void );
+    vector<float>   GetMinRadius( const Contour &contour );
 
-		cRotationalOffset();
-	   ~cRotationalOffset();
+    cRotationalOffset();
+    ~cRotationalOffset();
 };
 
 #endif
