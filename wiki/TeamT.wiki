@@ -70,4 +70,7 @@ C++ code is ready. Team will proceed with Matlab coding.
 
 
 
+= Issues =
+[http://code.google.com/p/vibot6-mscv3-se/issues/detail?id=6 (Issue 6)]
+
 = References =
