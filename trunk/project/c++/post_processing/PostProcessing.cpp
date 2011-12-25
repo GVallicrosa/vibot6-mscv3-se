@@ -27,7 +27,7 @@ PostProcessing::~PostProcessing()
 //--------------------------------------------------------------------------------
 //                             NO OUTPUT
 //
-void PostProcessing::DisplayImage(char *name, Mat img)
+void PostProcessing::DisplayImage(const string &name, Mat img)
 {
 	namedWindow(name,0);
 	imshow(name,img);
@@ -118,7 +118,7 @@ Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont, lon
 	    // cout<<"Dimensiune: "<<contours.size()<<endl;
     
     //for each contour   
-	for (int i=0;i<contours.size();i++)
+	for (unsigned int i=0;i<contours.size();i++)
 	   {
 		
 		    //associate a rectangle to calculate the width and height
@@ -178,16 +178,16 @@ Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont, lon
 Mat PostProcessing::Convex(Mat eimage,vector<vector<Point> >&hull,vector<vector<Point> > &copyCont)
 {
     	 Mat dest = Mat::zeros( image.size(), CV_8U ); // the output image
-	     for (int i=0;i<copyCont.size();i++)
+	     for (unsigned int i=0;i<copyCont.size();i++)
 		 {
 			 convexHull(Mat(copyCont[i]),hull[i]);    //convex hull operation
 		 }
         
 		
 
-       for( int i = 0; i<copyCont.size(); i++ )   //drawing the points for convex hull
+       for(unsigned int i = 0; i<copyCont.size(); i++ )   //drawing the points for convex hull
         {
-			for (int j=0;j<hull[i].size();j++)
+			for (unsigned int j=0;j<hull[i].size();j++)
 			{
 			Scalar color = Scalar(255, 0, 0);
 			     //drawContours( drawing, copyCont, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
@@ -198,4 +198,123 @@ Mat PostProcessing::Convex(Mat eimage,vector<vector<Point> >&hull,vector<vector<
 		
 		return dest;
 
+}
+
+
+//NAME OF FUNCTION: ThresholdedContour
+//PURPOSE:
+//    The function will recover the shape of the segmented figures .
+//    The contours of the shape is found and then the function 'convexHull2'
+//    is used.
+//INPUT PARAMETERS:
+//     name         type          value/reference              description
+//------------------------------------------------------------------------------------
+//   hull     vector<vector<Point>  reference        the memory storage, for each contour
+//                                                   the points of  the convex hull will
+//                                                   be memorated
+// Contour   vector<vector<Point>   reference        the contours of the objects
+//
+// extractedCont    vect<vect<pair<int,int>>>        the memory storage, for each contour that
+//                                  reference        the points of the function will be stored
+//
+// dist_threshold   float           value            distance limit between contour points
+//                                                   and convex hull edges
+//OUTPUT PARAMETERS:
+//     name         type            value/reference  description
+//-------------------------------------------------------------------------------------
+//     dest         Mat             value            the image obtained with the contour
+//                                                   close to the edges of convex hull polygon
+
+Mat PostProcessing::ThresholdedContour( vector < vector< Point > > &hull,
+                                        vector<vector<Point> > &Contour,
+                                        vector<IRO::Contour> extractedCont,
+                                        float dist_threshold )
+{
+    Mat dest = Mat::zeros( image.size(), CV_8U );
+
+    /*  //DISPLAY ALL CONTOUR POINTS
+        cvDrawContours(dest, first_contour,cvScalar(0,255,0),cvScalar(0,255,0),2);//green
+    */
+
+    Point hullCurrent, contourPoint, hullNext;
+
+    //Computes the contourPoints
+    cout << "hull size =" << hull.size() << endl;
+    cout << "contour size =" << Contour.size() << endl;
+    for ( unsigned int objectIndex = 0;objectIndex < Contour.size();objectIndex++ )
+    {
+        int hullIndex = 0;
+
+        hullCurrent = hull[objectIndex][hullIndex];
+        contourPoint = Contour[objectIndex][0];
+
+        //searches from the set of hull points which is also the first of the contour points
+        while ( hullCurrent.x != contourPoint.x || hullCurrent.y != contourPoint.y )
+        {
+            hullIndex++;
+            hullCurrent = hull[objectIndex][hullIndex];
+        }
+
+        //explores the hull contour in inverse order
+        cout << endl << hull[0].size() << endl;
+        hullIndex = (( hullIndex - 1 ) + hull[objectIndex].size() ) % hull[objectIndex].size();
+        hullNext = hull[objectIndex][hullIndex];
+
+        //stores the points of each contour to object vector
+        vector< pair <unsigned, unsigned> > object;
+
+        //for each point of the contour
+        for ( unsigned int i = 0;i < Contour[objectIndex].size();i++ )
+        {
+            //explore the contour point
+            contourPoint = Contour[objectIndex][i];
+
+            //if the contour point is near to the conex_hull edge add it to the output
+            if ( dist_threshold >= distance( hullCurrent, hullNext, contourPoint ) )
+            {
+                object.push_back( make_pair( contourPoint.x, contourPoint.y ) );
+                //cout<<"distance= "<<distance(hullCurrent,hullNext,contourPoint)<<endl;
+            }
+
+            //if the explored point is the same than the Hullnext point, then change hullNext and hullcurrent
+            if ( hullNext.x == contourPoint.x && hullNext.y == contourPoint.y )
+            {
+                hullCurrent = hull[objectIndex][hullIndex];
+                hullIndex = (( hullIndex - 1 ) + hull[objectIndex].size() ) % hull[objectIndex].size();
+                hullNext = hull[objectIndex][hullIndex];
+            }
+        }
+
+        extractedCont.push_back( object );
+    }
+    /*
+    //DISPLAY THE ORIGINAL CONTOUR
+    for(unsigned int i=0;i<Contour.size();i++){
+            for(unsigned int j=0;j<Contour[i].size();j++){
+                circle(dest,Contour[i][j],1,cvScalar(255,0,0),3 ); //blue
+            }
+        }
+    */
+    //display contour points given a threshold
+    for ( unsigned int i = 0;i < extractedCont.size();i++ )
+    {
+        for ( unsigned int j = 0;j < extractedCont[i].size();j++ )
+        {
+            circle( dest, Point( extractedCont[i][j].first, extractedCont[i][j].second ), 1, cvScalar( 255, 0, 0 ), 3 ); //blue
+        }
+    }
+
+    return dest;
+}
+
+//compute the distance between the edge points (po and pf) , with the current point pc
+float PostProcessing:: distance( Point  po, Point pf, Point pc )
+{
+    float pox = ( float )po.x;
+    float poy = ( float )po.y;
+    float pfx = ( float )pf.x;
+    float pfy = ( float )pf.y;
+    float pcx = ( float )pc.x;
+    float pcy = ( float )pc.y;
+    return abs(( pfx - pox ) * ( pcy - poy ) - ( pfy - poy ) * ( pcx - pox ) ) / sqrt( pow(( pfx - pox ), 2 ) + pow(( pfy - poy ), 2 ) );
 }
