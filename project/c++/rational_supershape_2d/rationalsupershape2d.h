@@ -24,8 +24,6 @@ class RationalSuperShape2D: public IRationalSuperShape2D
                    double phiOffset=0, double xOffset=0,
                    double yOffset=0, double zOffset=0);
         void Init( double a, double b, double n1,double n2,double n3);
-        /*TODO: Implement?
-        void RandomInit();*/
 
         double ImplicitFunction1( const Vector2d &point, vector <double> &dfFinal );
         double ImplicitFunction2( const Vector2d &point, vector <double> &dfFinal );
@@ -37,10 +35,6 @@ class RationalSuperShape2D: public IRationalSuperShape2D
         double DrDn2(const double tht);
         double DrDn3(const double tht);
         double DrDtheta(const double tht);
-
-        /*TODO: Implement?
-        void GetPartialDerivatives(double tht, double &DrDa, double &DrDb,
-                                   double &DrDn1, double &DrDn2, double &DrDn3);*/
 
         void Optimize(const vector< Vector2d > &data, double &err ,
                        bool normalization = true,
@@ -56,6 +50,7 @@ class RationalSuperShape2D: public IRationalSuperShape2D
                                                 bool normalization = false, bool update = false);
 
         vector < Vector2d > Run(const vector<Vector2d> &data,
+								const vector< float > &rotOffsets,
                                 bool normalization=true, int functionUsed=1);
 
         inline Vector2d Point(double angle) {

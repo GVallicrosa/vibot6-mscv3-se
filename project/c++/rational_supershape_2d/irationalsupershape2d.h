@@ -42,6 +42,7 @@ public:
     IRationalSuperShape2D() {}
 
     virtual vector< Vector2d > Run(const vector< Vector2d > &data,
+										   const vector< float > &rotOffsets,
                                            bool normalization = true,
                                            int functionUsed = 1) = 0;
 };

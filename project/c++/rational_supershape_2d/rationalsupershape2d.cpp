@@ -942,38 +942,41 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
 }
 
 vector< Vector2d > RationalSuperShape2D::Run(const vector<Vector2d> &data,
+											 const vector< float > &rotOffsets,
                                              bool normalization, int functionUsed) {
     mError = 1e30;
-    for (int i = 0; i < 5; i++) {
-        double err = 1e30;
-        RationalSuperShape2D tmp;
+    int sizeOffsets = rotOffsets.size();
+    for (int j = 0; j < sizeOffsets; j++) {
+		for (int i = 0; i < 5; i++) {
+			double err = 1e30;
+			RationalSuperShape2D tmp;
 
-        int ptmp;
-        if (i==0) ptmp = 1;
-        if (i==1) ptmp = 3;
-        if (i==2) ptmp = 4;
-        if (i==3) ptmp = 6;
-        if (i==4) ptmp = 8;
+			int ptmp;
+			if (i==0) ptmp = 1;
+			if (i==1) ptmp = 3;
+			if (i==2) ptmp = 4;
+			if (i==3) ptmp = 6;
+			if (i==4) ptmp = 8;
 
-        //TODO: Get rotational offset!
-        tmp.Init(1,1,       // and b
-                 2,2,2,     // n1  to n3
-                 ptmp,1,    // and q
-                 0,0,       // change thtoffset to manual PI/2
-                 0,0,0);
+			tmp.Init(1,1,       // and b
+					 2,2,2,     // n1  to n3
+					 ptmp,1,    // and q
+					 rotOffsets[j],0,       // change thtoffset to manual PI/2
+					 0,0,0);
 
-        tmp.Optimize(data, err, normalization, functionUsed);
+			tmp.Optimize(data, err, normalization, functionUsed);
 
-        // less error, so update parameters!
-        if (err < mError) {
-            Init(tmp.Get_a(), tmp.Get_b(),
-                 tmp.Get_n1(), tmp.Get_n2(), tmp.Get_n3(),
-                 tmp.Get_p(), tmp.Get_q(),
-                 tmp.Get_thtoffset(), tmp.Get_phioffset(),
-                 tmp.Get_xoffset(), tmp.Get_yoffset(), tmp.Get_zoffset());
-            mError = err;
-        }
-    }
+			// less error, so update parameters!
+			if (err < mError) {
+				Init(tmp.Get_a(), tmp.Get_b(),
+					 tmp.Get_n1(), tmp.Get_n2(), tmp.Get_n3(),
+					 tmp.Get_p(), tmp.Get_q(),
+					 tmp.Get_thtoffset(), tmp.Get_phioffset(),
+					 tmp.Get_xoffset(), tmp.Get_yoffset(), tmp.Get_zoffset());
+				mError = err;
+			}
+		}
+	}
 
     vector< Vector2d > output;
     double centerX = Get_xoffset();
