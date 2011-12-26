@@ -14,14 +14,25 @@
 
 using namespace cv;
 
+void help();
+
 int
 main(int argc, char** argv)
 {
-  Mat image;
-  char *file_path = "Your File Path";
-
-  image = imread(file_path);
-
+  if( argc != 2 )
+    {
+      help();
+      return -1;
+    }
+    
+  Mat image = imread(argv[1]);
+ 
+  if( image.channels() != 3 )
+    {
+      std::cerr << "image.channels() != 3\n";
+      return -1;
+    }
+  
   namedWindow("Display Image", CV_WINDOW_AUTOSIZE);
 
   Mat ihls_image = convert_rgb_to_ihls(image);
@@ -34,3 +45,10 @@ main(int argc, char** argv)
   return 0;
 }
 
+/**
+ * help
+ */
+void help()
+{
+    std::cout << "Usage: ./ihls_nhs <img>\n";
+}
