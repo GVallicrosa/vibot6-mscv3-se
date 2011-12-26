@@ -31,6 +31,7 @@ In this meeting the task were distributed. The functions that have to be used in
 The Post-Processing team had as main task the realization of the pseudo-code for the Noise Removal (using Median Filter and Morphological Operations), Recovery of the deformed sign and Object Elimination. 
 
 [https://docs.google.com/document/d/1reYNrlv_c6SvIAcoSZZ69ng32V47OgFE7YfBMVPp0rw/edit?hl=en_US LLD for PostProcessing]
+
 [http://code.google.com/p/vibot6-mscv3-se/source/browse/#svn%2Ftrunk%2Fproject%2Fc%2B%2B%2Fpost_processing C++ code]
 
 [http://code.google.com/p/vibot6-mscv3-se/source/browse/trunk/project/matlab/Postprocessing.m Matlab code]
