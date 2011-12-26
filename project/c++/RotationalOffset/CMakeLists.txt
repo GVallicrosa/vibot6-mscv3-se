@@ -1,11 +1,11 @@
-cmake_minimum_required (VERSION 2.6) 
+cmake_minimum_required (VERSION 2.8.3) 
 
 # Project Name
-project(ihls_nhs)
+project(RotationalOffset)
 
 # Sources
 set( SOURCES    main.cpp
                 RotationalOffset.cpp )
 
 # Target
-add_executable( RotationalOffset ${SOURCES} )
+add_executable( ${PROJECT_NAME} ${SOURCES} )
