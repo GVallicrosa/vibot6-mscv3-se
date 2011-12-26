@@ -3,4 +3,18 @@
 
 = Why CMake? =
 
-ToDo
+  * Cross-platform build system.
+  * [http://www.cmake.org/Wiki/CMake_FAQ#Out-of-source_build_trees Out-of-source_build_trees]
+  * [http://www.cmake.org/Wiki/CMake:Packaging_With_CPack CPack] - _make package_
+    * [http://www.cmake.org/Wiki/CMake:CPackPackageGenerators CPack_Package_Generators]
+      * TGZ, STGZ, TBZ2, TZ, ZIP
+      * NSIS (Windows only)
+      * RPM, DEV (Unix only)
+      * DragNDrop, PackageMaker, OSXX11, Bundle (OSX only) 
+  * [http://www.cmake.org/cmake/help/cmake-2.6.html#section_Generators Generators]
+    * MinGW Makefiles
+    * NMake Makefiles
+    * Unix Makefiles
+    * Visual Studio 6, 7, 8, 9, 10
+    * CodeBlocks - MinGW and Unix Makefiles
+    * Eclipse CDT4 - MinGW, NMake and Unix Makefiles
