@@ -11,7 +11,7 @@
       * NSIS (Windows only)
       * RPM, DEV (Unix only)
       * DragNDrop, PackageMaker, OSXX11, Bundle (OSX only) 
-  * [http://www.cmake.org/cmake/help/cmake-2.6.html#section_Generators Generators]
+  * [http://www.cmake.org/cmake/help/cmake-2-8-docs.html#section_Generators Generators]
     * MinGW Makefiles
     * NMake Makefiles
     * Unix Makefiles
