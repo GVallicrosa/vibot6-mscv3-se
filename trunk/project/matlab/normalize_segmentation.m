@@ -27,3 +27,4 @@ elseif strcmp(color, 'red')
 end
 In(p) = 1; % write found pixels
 
+end

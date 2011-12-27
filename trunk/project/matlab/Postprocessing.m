@@ -8,18 +8,19 @@
 %    - Eduardo Tusa
 %    - Joel Vidal
 
-function [noiseRem,cleanImg] = Postprocessing(BW_im)
+function [noiseRem,cleanImg] = Postprocessing(BW_im, aspectArea, lowRatio, highRatio)
 %   ---Inputs----
-%   BW_im   : a segmented binary image [mxn bool]
+%   BW_im      : a segmented binary image [mxn bool]
+%   aspectArea : threshold to eliminate objects with area less
+%                than imageArea/aspectArea;
+%   lowRatio   : lowest value for aspect ratio (height/width)
+%   highRatio  : highest value for aspect ratio (height/width)
+%
 %   ---Outputs---
 %   noiseRem: contains the noise removed image (after morphological
 %             operations). [mxn bool]
 %   cleanImg: contains the object elimination image. [mxn bool]
-%   convHull: contains the indices of the contP points in the convex hull
-%             boundary. [n cell] n is the number of possible roadsigns
-%   contP   : contains the contour points of the image. This is obtained
-%             to speed up the convex hull operation and for further
-%             processing. [n cell] n is the number of possible roadsigns
+%
 %   ---Testing---
 %   [noiseRem,cleanImg,convHull,contP]=Postprocessing(NHS_output);
 %   figure(1);imshow(noiseRem)
@@ -32,7 +33,6 @@ function [noiseRem,cleanImg] = Postprocessing(BW_im)
 %   for i=1:length(contP)
 %       plot(contP{i}(convHull{i},2),contP{i}(convHull{i},1),'.')
 %   end
-
 
 %% Image-Cleaning
 %Remove the noise, restore the contours and fill incomplete data.
@@ -61,7 +61,7 @@ for i = 1:N                             %For each region in the image do:
     B = BB(i).BoundingBox;
     ratio = B(3)/B(4);                  %Compute aspect ratio. B(3): width, B(4): height
                                         %Conditions are set for elimination objects                                   
-    if (A(i).Area < totalSize/1500) || (ratio > 1.30 || ratio < 0.25)
+    if (A(i).Area < totalSize/aspectArea) || (ratio > highRatio || ratio < lowRatio)
         cleanImg(P(i).PixelIdxList) = 0;
     end
 end             
