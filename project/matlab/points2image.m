@@ -10,8 +10,8 @@ function im = points2image(points, m, n)
 
 im = zeros(m,n); % create image
 
-for i=1:length(valid)
-    im(valid_contour(k,1), valid(k,2)) = 1; % write values
+for i=1:length(points)
+    im(points(i,1), points(i,2)) = 1; % write values
 end
 
 end
