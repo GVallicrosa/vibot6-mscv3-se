@@ -2,8 +2,11 @@ function [ outDrDn3 ] = DrDn3( tht )
     %DrDn3 Calculates derivative of r w.r.t. n3
 
     %#global variables used here to store parameters
+    global EPSILON;
+    global Parameters;
     p = Parameters(6);
     q = Parameters(7);
+    n1 = Parameters(3);
     n2 = Parameters(4);
     n3 = Parameters(5);
     a = Parameters(1);

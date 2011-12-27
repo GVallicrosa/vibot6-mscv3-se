@@ -6,6 +6,7 @@
 %% Clean everything
 close all;
 clear all;
+clc;
 
 
 %% Options
@@ -28,14 +29,14 @@ addpath('gui', 'ShapeReconstruction', 'Rotational Offset');
 mkdir('output');
 
 %% Search for images
-dirname = '/home/guillem/Desktop/UE1_softwareEng/project/code_original/NHS Code/Images/';
+dirname = '../../vibot6_mscv3/Images/';
 files = dir(dirname);
 fileIndex = find(~[files.isdir]);
 
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'circular0016.jpg';
+    fname = 'triangular0015.jpg';
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     
@@ -83,6 +84,8 @@ fileIndex = find(~[files.isdir]);
         Offset = FindMinimum(Radius, Theta);
         
         %% Gielis curves reconstruction
-        
+        Output = ShapeReconstruction(valid_contour, Offset, true, 1);
+        IMname = ['output/',fname(1:length(fname)-3), '_shape',num2str(i),'.png'];
+        imwrite(Output,IMname,'PNG','BitDepth',1);
     end
 %end

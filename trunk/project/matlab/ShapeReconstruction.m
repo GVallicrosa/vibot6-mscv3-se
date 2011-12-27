@@ -7,33 +7,70 @@
 %    - Yukti Suri                      %
 %    - Ajad Chhatkuli                  %
 %    - Gao Lijia                       %
+%    - Andru Putra Twinanda            %
+%    - Ozan Tonkal                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [ err ] = ShapeReconstruction(SmoothData, ErrorOfFit)
+function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, functionused)
 % [INPUTS]
-% SmoothData  : contains the already-processed image data
+% Data        : contains the already-processed image data
 %               to be optimized and reconstructed
+% RotOffsets  : contains the rotational offset value
 %
 % [OUTPUTS]
-% ErrorOfFit  : contains the minimum of cost function
+% Output      : 
 %
 % [TESTING]
 %
-% ErrorOfFit = ShapeReconstruction(SmoothData);
-% figure(1); imshow(SmoothData);
-% title('Smoothed Data');
-% figure(2); imshow('?');
 %
 
-% Make a reference to the folder containing our required functions.
-addpath '.\ShapeReconstruction';
-
-global Parameters;
-Parameters(1) = 1;
-Parameters(2) = 3;
-
-ErrorOfFit = Optimize2(SmoothData, ...
-    false, ... % activate normalization or not
-    1); % the potential function (use 1 or 2, 3 possible
-        % but not the most stable)
+    % Make a reference to the folder containing our required functions.
+    addpath('ShapeReconstruction');
+    global EPSILON;
+    global Parameters;
+    
+    EPSILON = 1e-9;
+    
+    mError = 1e30;
+    
+    for j = 1:length(RotOffsets)
+        for i = 1:5
+            switch i
+                case 1
+                    ptmp = 1;
+                case 2
+                    ptmp = 3;
+                case 3
+                    ptmp = 4;
+                case 4
+                    ptmp = 6;
+                case 5
+                    ptmp = 8;
+            end
+            
+            % Initialise global variable Parameters
+            Parameters = [1, 1, ...
+                2, 2, 2, ...
+                ptmp, 1, ...
+                RotOffsets(j), 0, ...
+                0, 0, 0];
+            
+            Error = Optimize(Data, Normalization, functionused);
+            
+            if (Error < mError)
+                mError = Error;
+            end
+        end
+    end
+    
+    centerX = Parameters(10);
+    centerY = Parameters(11);
+    Output = zeros(0);
+    
+    for i = 0:0.01:6.26
+        r = Radius(i);
+        x = cos(i)*r + centerX;
+        y = sin(i)*r + centerY;
+        Output(end+1,:) = [x, y];
+    end
 end

@@ -9,7 +9,7 @@ global Parameters;
 
 q = Parameters(7);
 
-Dffinal = zeroes(3);
+Dffinal = zeros(3);
 
 % if the point is zero
 if P(1) == 0 && P(2) == 0
@@ -48,7 +48,7 @@ Df = zeros(q, 3); % Workaround for the following loop
 for i = 1 : q
     theta = thetabase + (i-1)*2*pi;
 
-    R = radius_(theta);
+    R = Radius(theta);
     
     f(i) = (R - PL);  % original code: f.push_back(R - PL);
 
@@ -95,7 +95,7 @@ for i = 1:q % for all intersections
     % compute R-function, sets all partial derivatives
     % fdum and Ddum temporary results of the union from F1 to Fi
 
-    [fdum, Ddum] = RpUnion(f1, f(i), Df1, Df(i));
+    [fdum, Ddum] = RpUnion_(f1, f(i), Df1, Df(i));
 
     % update results in f1 and Df1, and iterate
     f1 = fdum;
