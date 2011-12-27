@@ -1,4 +1,4 @@
-%% Main file for Matlab code
+%% Main file for Matlab code without GUI
 %  Implemented for:
 %    - Post processing
 %    - Contour extraction
@@ -7,18 +7,22 @@
 close all;
 clear all;
 
+%% Options
+% 
+
 %% Add necessary paths to call all functions
 addpath('gui', 'ShapeReconstruction', 'Rotational Offset');
 
 %% Search for images
-dirname = '/home/guillem/Desktop/UE1_softwareEng/project/code_original/NHS Output/';
+dirname = '/home/guillem/Desktop/UE1_softwareEng/project/code_original/NHS Code/Images/';
 files = dir(dirname);
 fileIndex = find(~[files.isdir]);
 
-for i = 1:length(fileIndex)
+%for i = 1:length(fileIndex)
     
     %% Open image
-    fname = files(fileIndex(i)).name;
+    fname = 'circular0016.jpg';
+    %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     
     %% Image segmentation
@@ -62,4 +66,4 @@ for i = 1:length(fileIndex)
         %% Gielis curves reconstruction
         
     end
-end
+%end
