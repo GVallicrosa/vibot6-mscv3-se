@@ -15,9 +15,9 @@ n3 = Parameters(5);
 p = Parameters(6);
 q = Parameters(7);
 
-c = cos(m*0.25*theta / q);
+c = cos(p*0.25*theta / q);
 C = abs(c);
-s = sin(m*0.25*theta / q);
+s = sin(p*0.25*theta / q);
 S = abs(s);
 
 if C<EPSILON || S<EPSILON
@@ -26,8 +26,8 @@ if C<EPSILON || S<EPSILON
 end
 
 out = (-1/n1) * ( ((C^n2) / a + (S^n3) / b) ^ (-1/n1 - 1)) * ...
-    (-0.25*m*C^n2*(n2*tan(p*theta*0.25/q)) / (a*q) + ...
-      0.25*m*S^n3*(n3/tan(p*theta*0.25/q)) / (b*q) );
+    (-0.25*p*C^n2*(n2*tan(p*theta*0.25/q)) / (a*q) + ...
+      0.25*p*S^n3*(n3/tan(p*theta*0.25/q)) / (b*q) );
 
 end
 

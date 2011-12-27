@@ -7,6 +7,13 @@ function [ r, T ] = RobustInit( Data )
 % Angular Histogram is calculated for finding the average radius
 % Get_p() gets the value of p whicha is the total no. of sectors in which we divide 2*pi radians.
 
+global Parameters;
+%a = Parameters(1);
+%b = Parameters(2);
+%pval = Parameters(6);
+%xOffset = Parameters(10);
+%yOffset = Parameters(11);
+
 newdata = Data;
 
 stop = false;
@@ -14,7 +21,7 @@ stop = false;
 it = 1;
 while it <=30 && stop==false
     
-    Hist = zeros(Get_p());                          %implement code for Get_p()
+    Hist = zeros(Parameters(6));                          %implement code for Get_p()
     T = zeros(2);
     r = 0;
     
@@ -27,7 +34,7 @@ while it <=30 && stop==false
         end
         
         for index = 1:size(Hist)
-            if index * (2*pi)/Get_p() <= angle && angle < (index+1) * (2*pi)/Get_p() 
+            if index * (2*pi)/Parameters(6) <= angle && angle < (index+1) * (2*pi)/Parameters(6) 
                     Hist(index) =  Hist(index)+1;
             end
         end
@@ -50,22 +57,22 @@ while it <=30 && stop==false
         for j = 1 : size(Hist)
             %go through angular sectors
 
-            amin = i*2*pi/Get_p();
+            amin = i*2*pi/pval;
 
             for k = 1 : (histavg - Hist(j))
                 % generate a random angle in [amin, amax];
-                angle = amin + pi/Get_p();
+                angle = amin + pi/pval;
                 
                 flood = [(-T(1)+r*cos(angle)) (-T(2)+r*sin(angle))];
-                newdata = [newdata; flood];
+                newdata(end,:) = flood;
             end
         end
     end
     
-    Set_xoffset(T[0]);
-    Set_yoffset(T[1]);
-    Set_a(r);
-    Set_b(r);
+    Parameters(10) = T(1);
+    Parameters(11) = T(2);
+    Parameters(1) = r;
+    Parameters(2) = r;
     
 end
 
