@@ -10,17 +10,17 @@ clear all;
 
 %% Options
 % NHS
-NHS_color  = 'blue'; % color to segment 'blue' or 'red'
-NHS_output = false;  % save output for this function
+NHS_color  = 'red'; % color to segment 'blue' or 'red'
+NHS_output = true;  % save output for this function
 % PostProcessing
 POST_aspectArea = 1500;  % imageArea/aspectArea thresholding (default 1500)
 POST_lowRatio   = 0.25;  % height/width lowest value (default 0.25)
 POST_highRatio  = 1.3;   % height/width highest value (default 1.3)
-POST_output     = false; % save output for this function
+POST_output     = true; % save output for this function
 % Contour extraction
 CE_distError = sqrt(2); % maximum distance from the convex hull to take
                           % contour pixels (default sqrt(2))
-CE_output    = false;   % save output for this function
+CE_output    = true;   % save output for this function
 
 
 %% Add necessary paths to call all functions
@@ -65,13 +65,13 @@ fileIndex = find(~[files.isdir]);
                                                %Get the points in the boundary of the blob
                                            
         %% Contour extraction
-        valid_contour = contour_extraction(contP, CE_distanceError);
+        valid_contour = contour_extraction(contP, CE_distError);
         if CE_output
             % Save contours
             Fname = ['output/',fname(1:length(fname)-3), '_cont', num2str(i),'.txt'];
-            save(Fname,'valid','-ASCII');
+            save(Fname,'valid_contour','-ASCII');
             % Save contour image
-            imCE = points2image(valid, m, n)
+            imCE = points2image(valid_contour, m, n);
             IMname = ['output/',fname(1:length(fname)-3), '_cont',num2str(i),'.png'];
             imwrite(imCE,IMname,'PNG','BitDepth',1);
         end
