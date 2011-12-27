@@ -37,7 +37,7 @@ const Vector2d & Test::getPoint(int index) {
 
 void Test::drawPoints(bool isOptimized) {
     // Start drawing points on a pixmap
-    QPixmap image(500,500);
+    QImage image(64, 64, QImage::Format_ARGB32_Premultiplied);
     QPainter painter(&image);
     painter.fillRect(image.rect(), Qt::white);
 
@@ -49,7 +49,7 @@ void Test::drawPoints(bool isOptimized) {
     painter.end();
     // Drawing finished.
     if (isOptimized) {
-        image.save("optimized_" + QString::number(m_countFile) + m_fileName);
+        image.save("image_optimized.jpg");
         m_countFile++;
     }
 }
@@ -68,9 +68,10 @@ void Test::startTesting() {
     offsets.push_back(3*3.14/4);
 
     m_rationalSuperShape2d = new RationalSuperShape2D();
+    qWarning() << "Starting optimizing...";
     m_data = m_rationalSuperShape2d->Run(m_data, offsets, true, 1);
     drawPoints(true);
-
+    qWarning() << "Optimizing finished successfully.";
 }
 
 void Test::readImage(QString fileName) {
