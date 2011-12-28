@@ -49,26 +49,27 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
             end
             
             % Initialise global variable Parameters
-            Parameters = [1, 1, ...
-                2, 2, 2, ...
-                ptmp, 1, ...
-                RotOffsets(j), 0, ...
-                0, 0, 0];
+            Parameters = [1, 1, ...   % a, b (a == b)
+                2, 2, 2, ...          % n1, n2, n3
+                ptmp, 1, ...          % p, q
+                RotOffsets(j), 0, ... % rotationalOffset, phiOffset
+                0, 0, 0];             % centerX, centerY, centerZ 
             
             Error = Optimize(Data, Normalization, functionused);
             
             if (Error < mError)
                 mError = Error;
+                bestParameters = Parameters;
             end
         end
     end
     
-    centerX = Parameters(10);
-    centerY = Parameters(11);
+    centerX = bestParameters(10);
+    centerY = bestParameters(11);
     Output = zeros(0);
     
     for i = 0:0.01:6.26
-        r = Radius(i);
+        r = radius_(i);
         x = cos(i)*r + centerX;
         y = sin(i)*r + centerY;
         Output(end+1,:) = [x, y];
