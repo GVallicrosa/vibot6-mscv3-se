@@ -2,17 +2,31 @@ cmake_minimum_required (VERSION 2.8.3)
 
 project( gui )
 
+# definitions
+set( IHLS_NHS        ${CMAKE_CURRENT_LIST_DIR}/../ihls_nhs )
+set( POST_PROCESSING ${CMAKE_CURRENT_LIST_DIR}/../post_processing )
+set( RATIONAL_SUPERSHAPE_2D ${CMAKE_CURRENT_LIST_DIR}/../rational_supershape_2d )
+set( ROTATIONALOFFSET  ${CMAKE_CURRENT_LIST_DIR}/../RotationalOffset )
+
+
 # with SET() command you can change variables or define new ones
 # here we define SAMPLE_SRCS variable that contains a list of all .cpp files
 # note that we don't need \ at the end of line
 set( SAMPLE_SRCS
         ./gui.cpp
         ./main.cpp
+        ${IHLS_NHS}/ihls.cpp
+        ${IHLS_NHS}/nhs.cpp
+        ${IHLS_NHS}/math_utils.cpp
+        ${POST_PROCESSING}/PostProcessing.cpp
+#         ${RATIONAL_SUPERSHAPE_2D}/rationalsupershape2d.cpp
+        ${ROTATIONALOFFSET}/RotationalOffset.cpp
 )
 
 # another list, this time it includes all header files that should be treated with moc
 set( SAMPLE_MOC_HDRS
     ./gui.h
+    ./window_QT.h
 )
 
 # some .ui files
@@ -52,10 +66,14 @@ QT4_WRAP_CPP( SAMPLE_MOC_SRCS ${SAMPLE_MOC_HDRS} )
 # we need this to be able to include headers produced by uic in our code
 # (CMAKE_CURRENT_BINARY_DIR holds a path to the build directory, while INCLUDE_DIRECTORIES() works just like INCLUDEPATH from qmake)
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
+include_directories( ${IHLS_NHS} )
+include_directories( ${POST_PROCESSING} )
+include_directories( ${RATIONAL_SUPERSHAPE_2D} )
+include_directories( ${ROTATIONALOFFSET} )
 
 # here we instruct CMake to build "sample" executable from all of the source files
 add_executable( gui ${SAMPLE_SRCS} ${SAMPLE_MOC_SRCS} ${SAMPLE_RC_SRCS} ${SAMPLE_UI_HDRS} )
 
 # last thing we have to do is to tell CMake what libraries our executable needs,
 # luckily FIND_PACKAGE prepared QT_LIBRARIES variable for us:
-target_link_libraries( gui ${QT_LIBRARIES} )
+target_link_libraries( gui ${QT_LIBRARIES} ${OpenCV_LIBS} )
