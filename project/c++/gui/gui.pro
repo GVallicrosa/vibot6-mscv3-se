@@ -31,10 +31,10 @@ SOURCES += PostProcessing.cpp
 HEADERS += PostProcessing.h
 
 ## rational_supershape_2d
-#INCLUDEPATH += ../rational_supershape_2d/
-#DEPENDPATH  += ../rational_supershape_2d/
-#SOURCES += rationalsupershape2d.cpp
-#HEADERS += rationalsupershape2d.h irationalsupershape2d.h
+INCLUDEPATH += ../rational_supershape_2d/
+DEPENDPATH  += ../rational_supershape_2d/
+SOURCES += rationalsupershape2d.cpp
+HEADERS += rationalsupershape2d.h irationalsupershape2d.h
 
 ## RotationalOffset
 INCLUDEPATH += ../RotationalOffset/
@@ -44,8 +44,8 @@ HEADERS += RotationalOffset.h
 
 
 ## 3rdparty
-#INCLUDEPATH += ../3rdparty/
-#DEPENDPATH += ../3rdparty/
+INCLUDEPATH += ../3rdparty/
+DEPENDPATH += ../3rdparty/
 
 
 ## For windows

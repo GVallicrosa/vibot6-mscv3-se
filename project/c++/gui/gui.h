@@ -2,9 +2,15 @@
 #define GUI_H
 
 #include <cv.h>
+#include <highgui.h>
 #include <QMainWindow>
+#include <Eigen/StdVector>
+#include <vector>
 #include "window_QT.h"
 
+using namespace std;
+using namespace Eigen;
+using namespace cv;
 
 namespace Ui {
     class Gui;
@@ -19,7 +25,7 @@ public:
     ~Gui();
 
 private slots:
-    void updateImage( const cv::Mat &img );
+    void updateImage( const Mat &img );
     void updateImage( const QString &str );
 
     void on_pushButton_LoadImage_clicked();
@@ -35,8 +41,12 @@ private:
     Ui::Gui *ui;
     CvWindow *cvWindow;
 
-
     int question( const QString & title );
+
+    // rational_supershape_2d
+    Mat rational_supershape_2d( const Mat &image, const vector< float > &rotOffsets );
+    Mat drawPoints( const Mat &image, const vector<Vector2d> &data );
+    vector<Vector2d> readImage_rational_supershape_2d( const Mat &image );
 };
 
 #endif // GUI_H
