@@ -48,7 +48,7 @@ Df = zeros(q, 3); % Workaround for the following loop
 for i = 1 : q
     theta = thetabase + (i-1)*2*pi;
 
-    R = Radius(theta);
+    R = radius_(theta);
     
     f(i) = (R - PL);  % original code: f.push_back(R - PL);
 

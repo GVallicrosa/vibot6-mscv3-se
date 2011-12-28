@@ -112,7 +112,7 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
             tht = tht + 2*pi;
         end
         
-        R = Radius(tht);
+        R = radius_(tht);
         
         % theta = arctan(y/x)
         % -y / (x*x+y*y)
