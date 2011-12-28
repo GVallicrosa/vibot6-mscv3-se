@@ -14,7 +14,7 @@ FORMS   += gui.ui \
 
 
 # stole from opencv
-#SOURCES += window_QT.cpp
+SOURCES += window_QT.cpp
 HEADERS += window_QT.h
 
 
@@ -60,3 +60,6 @@ unix {
     CONFIG += link_pkgconfig
     PKGCONFIG += opencv
 }
+
+RESOURCES += \
+    window_QT.qrc
