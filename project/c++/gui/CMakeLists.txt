@@ -7,6 +7,7 @@ set( IHLS_NHS        ${CMAKE_CURRENT_LIST_DIR}/../ihls_nhs )
 set( POST_PROCESSING ${CMAKE_CURRENT_LIST_DIR}/../post_processing )
 set( RATIONAL_SUPERSHAPE_2D ${CMAKE_CURRENT_LIST_DIR}/../rational_supershape_2d )
 set( ROTATIONALOFFSET  ${CMAKE_CURRENT_LIST_DIR}/../RotationalOffset )
+set( 3RDPARTY  ${CMAKE_CURRENT_LIST_DIR}/../3rdparty )
 
 
 # with SET() command you can change variables or define new ones
@@ -20,7 +21,7 @@ set( SAMPLE_SRCS
         ${IHLS_NHS}/nhs.cpp
         ${IHLS_NHS}/math_utils.cpp
         ${POST_PROCESSING}/PostProcessing.cpp
-#         ${RATIONAL_SUPERSHAPE_2D}/rationalsupershape2d.cpp
+        ${RATIONAL_SUPERSHAPE_2D}/rationalsupershape2d.cpp
         ${ROTATIONALOFFSET}/RotationalOffset.cpp
 )
 
@@ -71,6 +72,7 @@ include_directories( ${IHLS_NHS} )
 include_directories( ${POST_PROCESSING} )
 include_directories( ${RATIONAL_SUPERSHAPE_2D} )
 include_directories( ${ROTATIONALOFFSET} )
+include_directories( ${3RDPARTY} )
 
 # here we instruct CMake to build "sample" executable from all of the source files
 add_executable( gui ${SAMPLE_SRCS} ${SAMPLE_MOC_SRCS} ${SAMPLE_RC_SRCS} ${SAMPLE_UI_HDRS} )

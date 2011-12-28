@@ -32,3 +32,26 @@ More info about CMake:
     * http://www.cmake.org/cmake/help/documentation.html
 
 
+=====================================
+
+How to compile the GUI using qmake?
+
+There are two:
+
+1) (with QtCreator)
+    Open 'project/c++/gui/gui.pro' with QtCreator, then press "Run"
+
+
+2) (with the console)
+    > cd project/c++/
+    > mkdir gui-build
+    > cd gui-build
+    > qmake ../gui
+    > make
+
+-------------------------------------
+
+
+Note:
+  _ Tested with g++ 4.5.1, Qt 4.7.1 and OpenCV 2.3.1
+
