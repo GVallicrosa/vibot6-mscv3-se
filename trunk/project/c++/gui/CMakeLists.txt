@@ -15,6 +15,7 @@ set( ROTATIONALOFFSET  ${CMAKE_CURRENT_LIST_DIR}/../RotationalOffset )
 set( SAMPLE_SRCS
         ./gui.cpp
         ./main.cpp
+        ./window_QT.cpp
         ${IHLS_NHS}/ihls.cpp
         ${IHLS_NHS}/nhs.cpp
         ${IHLS_NHS}/math_utils.cpp

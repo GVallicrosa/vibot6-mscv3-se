@@ -40,7 +40,7 @@
 
 
 
-#include <window_QT.h>
+#include "window_QT.h"
 #include <math.h>
 #include <cv.h>
 
