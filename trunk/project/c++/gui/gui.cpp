@@ -5,12 +5,10 @@
 #include <QDebug>
 #include <QMessageBox>
 
-#include <cv.h>
-#include <highgui.h>
-
 #include "ihls.h"
 #include "nhs.h"
 #include "PostProcessing.h"
+#include "rationalsupershape2d.h"
 
 
 #define SIZE 100
@@ -149,16 +147,24 @@ int Gui::question( const QString & title )
 
 void Gui::on_pushButton_Process_clicked()
 {
+    if( ui->tableImage->rowCount() == 0 )
+        return;
+
     int currentRow = ui->tableImage->currentRow();
     string fileName = ui->tableImage->item( currentRow, 1 )->text().toStdString();
-//    if( fileName == "" )
-//        return;
+
+    if( fileName == "" )
+        return;
+
+    /* Steps */
+    /* ToDo: use the checkBox to decide, instead of "question()" function */
 
     // ihls_nhs
     Mat image = imread( fileName );
     Mat ihls_image = convert_rgb_to_ihls(image);
     Mat nhs_image = convert_ihls_to_nhs(ihls_image);
     updateImage( nhs_image );
+
 
     // PostProcessing - FilteredImage
     if( question("FilteredImage") != QMessageBox::Ok )
@@ -167,6 +173,7 @@ void Gui::on_pushButton_Process_clicked()
     PostProcessing p( nhs_image );
     Mat fimg = p.FilterImage();
     updateImage( fimg );
+
 
     // PostProcessing - Elimination
     if( question("Elimination") != QMessageBox::Ok )
@@ -199,5 +206,71 @@ void Gui::on_pushButton_Process_clicked()
     updateImage( cimg );
 
 
+
+    // rational_supershape_2d
+    if( question("rational_supershape_2d") != QMessageBox::Ok )
+        return;
+
+    /* instead of offsets
+     * receive this vector of float
+     * from rotationaloffset class
+     */
+    vector<float> offsets;
+    offsets.push_back(0);
+    offsets.push_back(3.14/4);
+    offsets.push_back(3.14/2);
+    offsets.push_back(3*3.14/4);
+
+    Mat dimg = rational_supershape_2d( image, offsets );
+    updateImage( dimg );
 }
 
+
+Mat Gui::rational_supershape_2d( const Mat &image, const vector< float > &offsets )
+{
+    vector<Vector2d> data = readImage_rational_supershape_2d( image );
+
+    qWarning() << "Starting optimizing...";
+    RationalSuperShape2D rationalSuperShape2d;
+    data = rationalSuperShape2d.Run(data, offsets, true, 1);
+    qWarning() << "Optimizing finished successfully.";
+
+    Mat dest = drawPoints( image, data );
+
+    return dest;
+}
+
+vector<Vector2d> Gui::readImage_rational_supershape_2d( const Mat &image )
+{
+    vector<Vector2d> data;
+
+    for (int i = 0; i < image.rows; ++i)
+    {
+        const uchar* img_data = image.ptr<uchar> (i);
+        for (int j = 0; j < image.cols; ++j)
+        {
+            unsigned int b = *img_data++;
+            unsigned int g = *img_data++;
+            unsigned int r = *img_data++;
+
+            if (r > 200 && g > 200 && b > 200) {
+                data.push_back(Vector2d(double(i), double(j)));
+            }
+        }
+    }
+
+    return data;
+}
+
+Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
+{
+    Mat dest = Mat::zeros( image.size(), CV_8U );
+
+    int size = data.size();
+    for( int i = 0; i < size; i++ )
+    {
+        circle( dest, Point( data[i][0], data[i][1] ), 1, cvScalar( 255, 0, 0 ), 3 ); //blue
+    }
+
+    return dest;
+}
