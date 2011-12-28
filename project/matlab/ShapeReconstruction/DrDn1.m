@@ -7,7 +7,7 @@ function [ outDrDn1 ] = DrDn1( tht )
     global Parameters;
     n1 = Parameters(3);
     n2 = Parameters(4);
-    R = radius(tht);
+    R = Radius(tht);
     rn1 = R ^(-n1);
     
     %#global constant EPSILON used here
