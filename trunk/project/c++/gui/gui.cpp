@@ -3,6 +3,15 @@
 #include <QStringList>
 #include <QFileDialog>
 #include <QDebug>
+#include <QMessageBox>
+
+#include <cv.h>
+#include <highgui.h>
+
+#include "ihls.h"
+#include "nhs.h"
+#include "PostProcessing.h"
+
 
 #define SIZE 100
 
@@ -11,7 +20,7 @@ Gui::Gui(QWidget *parent) :
     ui(new Ui::Gui)
 {
     ui->setupUi(this);
-    scene =  new QGraphicsScene;
+    cvWindow = new CvWindow(QString("cvWindow"), CV_WINDOW_AUTOSIZE);
 
     // Clear tableImage
     while( ui->tableImage->rowCount() )
@@ -24,8 +33,9 @@ Gui::Gui(QWidget *parent) :
     // Set the column width
     ui->tableImage->setColumnWidth( 0, SIZE+10 );
 
-    // Set the scene
-    ui->graphicsView->setScene( scene );
+    // set the location of 'cvWindow'
+    cvWindow->setParent(ui->frame);
+
 }
 
 Gui::~Gui()
@@ -33,13 +43,26 @@ Gui::~Gui()
     delete ui;
 }
 
+void Gui::updateImage( const cv::Mat &img )
+{
+    CvMat c_img = img;
+    cvWindow->updateImage( &c_img );
+}
+
+void Gui::updateImage( const QString &str )
+{
+    Mat img = imread(str.toStdString());
+    updateImage(img);
+}
+
+
 void Gui::on_pushButton_LoadImage_clicked()
 {
     // it allows multiple file selections
     QStringList files = QFileDialog::getOpenFileNames(
                             this,
                             "Select one or more files to open",
-                            "../Images",
+                            "../../../vibot6_mscv3/Images",
                             "Images (*.bmp *.png *.jpg)" );
 
 
@@ -91,13 +114,7 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
 
     qDebug() << fileName;
 
-    // clear the scene
-    scene->clear();
-
-    QPixmap pixmap(fileName);
-    pixmap.scaled( ui->graphicsView->size(), Qt::KeepAspectRatio );
-
-    scene->addPixmap(pixmap);
+    updateImage( fileName );
 
     QFileInfo fi( fileName );
     ui->label_CurrentImage->setText( fi.fileName() );
@@ -122,3 +139,65 @@ void Gui::on_pushButton_Prev_clicked()
     if( size > 0 && currentRow > 0 )
         ui->tableImage->setCurrentCell( currentRow-1, 1 );
 }
+
+
+
+int Gui::question( const QString & title )
+{
+    return QMessageBox::question( this, title, "Continue?",  QMessageBox::Ok | QMessageBox::Cancel);
+}
+
+void Gui::on_pushButton_Process_clicked()
+{
+    int currentRow = ui->tableImage->currentRow();
+    string fileName = ui->tableImage->item( currentRow, 1 )->text().toStdString();
+//    if( fileName == "" )
+//        return;
+
+    // ihls_nhs
+    Mat image = imread( fileName );
+    Mat ihls_image = convert_rgb_to_ihls(image);
+    Mat nhs_image = convert_ihls_to_nhs(ihls_image);
+    updateImage( nhs_image );
+
+    // PostProcessing - FilteredImage
+    if( question("FilteredImage") != QMessageBox::Ok )
+        return;
+
+    PostProcessing p( nhs_image );
+    Mat fimg = p.FilterImage();
+    updateImage( fimg );
+
+    // PostProcessing - Elimination
+    if( question("Elimination") != QMessageBox::Ok )
+        return;
+
+    long int aspectAria = 1500;
+    double lowRatio = 0.25;
+    double highRatio = 1.3;
+    vector<vector<Point> > copyCont;
+    Mat eimg = p.Elimination( fimg, copyCont, aspectAria, lowRatio, highRatio );
+    updateImage( eimg );
+
+
+    // PostProcessing - Convex
+    if( question("Convex") != QMessageBox::Ok )
+        return;
+
+    vector<vector<Point> >hull( copyCont.size() );
+    Mat himg = p.Convex( eimg, hull, copyCont );
+    updateImage( himg );
+
+
+    // PostProcessing - Get contour
+    if( question("Get contour") != QMessageBox::Ok )
+        return;
+
+    vector<IRO::Contour> extractedCont;
+    float dist_threshold = 70;
+    Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, dist_threshold );
+    updateImage( cimg );
+
+
+}
+
