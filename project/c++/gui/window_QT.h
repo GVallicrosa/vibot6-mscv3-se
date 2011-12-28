@@ -42,10 +42,6 @@
 
 #include "opencv2/highgui/highgui_c.h"
 
-#if defined( HAVE_QT_OPENGL )
-#include <QtOpenGL>
-#include <QGLWidget>
-#endif
 
 #include <QAbstractEventDispatcher>
 #include <QtGui/QApplication>
@@ -78,7 +74,7 @@
 #include <QRadioButton>
 #include <QButtonGroup>
 #include <QMenu>
-#include <QtTest/QTest>
+//#include <QtTest/QTest>
 
 //start private enum
 enum {CV_MODE_NORMAL= 0, CV_MODE_OPENGL = 1};
@@ -101,9 +97,6 @@ enum {	shortcut_zoom_normal 	= Qt::CTRL + Qt::Key_Z,
 
 class CvWindow;
 class ViewPort;
-#if defined( HAVE_QT_OPENGL )
-class OpenGLWidget;
-#endif
 
 
 class GuiReceiver : public QObject
@@ -143,7 +136,7 @@ public slots:
     void setRatioWindow(QString name, double arg2 );
     void saveWindowParameters(QString name);
     void loadWindowParameters(QString name);
-    void setOpenGLCallback(QString window_name, void* callbackOpenGL, void* userdata, double angle, double zmin, double zmax);
+//    void setOpenGLCallback(QString window_name, void* callbackOpenGL, void* userdata, double angle, double zmin, double zmax);
     void putText(void* arg1, QString text, QPoint org, void* font);
     void addButton(QString button_name, int button_type, int initial_button_state , void* on_change, void* userdata);
 	void enablePropertiesButtonEachWindow();
@@ -295,7 +288,7 @@ public:
     void displayStatusBar(QString text, int delayms );
     void readSettings();
     void writeSettings();
-    void setOpenGLCallback(CvOpenGLCallback arg1,void* userdata, double angle, double zmin, double zmax);
+//    void setOpenGLCallback(CvOpenGLCallback arg1,void* userdata, double angle, double zmin, double zmax);
     void hideTools();
     void showTools();
     static CvButtonbar* createButtonbar(QString bar_name);
@@ -318,8 +311,8 @@ public:
     QVector<QAction*> vect_QActions;
 
 
-protected:
-    virtual void keyPressEvent(QKeyEvent *event);
+//protected:
+//    virtual void keyPressEvent(QKeyEvent *event);
 
 private:
     QPointer<ViewPort> myview;
@@ -370,7 +363,7 @@ public:
     void updateImage(const CvArr *arr);
     void startDisplayInfo(QString text, int delayms);
     void setMouseCallBack(CvMouseCallback m, void* param);
-    void setOpenGLCallback(CvOpenGLCallback func,void* userdata, double arg3, double arg4, double arg5);
+//    void setOpenGLCallback(CvOpenGLCallback func,void* userdata, double arg3, double arg4, double arg5);
     int getRatio();
     void setRatio(int arg);
 
@@ -417,8 +410,8 @@ private:
     void* on_mouse_param;
 
     //for opengl callback
-    CvOpenGLCallback on_openGL_draw3D;
-    void* on_openGL_param;
+//    CvOpenGLCallback on_openGL_draw3D;
+//    void* on_openGL_param;
 
     bool isSameSize(IplImage* img1,IplImage* img2);
     QSize sizeHint() const;
@@ -444,16 +437,16 @@ private:
     void icvmouseHandler(QMouseEvent *event, type_mouse_event category, int &cv_event, int &flags);
     void icvmouseProcessing(QPointF pt, int cv_event, int flags);
 
-#if defined( HAVE_QT_OPENGL )
-	QPointer<QGLWidget> myGL;
-	double angle;
-	double zmin;
-	double zmax;
-    void unsetGL();
-    void initGL();
-    void setGL(int width, int height);
-    void icvgluPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);
-#endif
+//#if defined( HAVE_QT_OPENGL )
+//	QPointer<QGLWidget> myGL;
+//	double angle;
+//	double zmin;
+//	double zmax;
+//    void unsetGL();
+//    void initGL();
+//    void setGL(int width, int height);
+//    void icvgluPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);
+//#endif
 
 private slots:
     void stopDisplayInfo();
