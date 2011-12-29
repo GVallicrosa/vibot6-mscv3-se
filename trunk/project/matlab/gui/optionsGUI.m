@@ -30,11 +30,8 @@ function varargout = optionsGUI(varargin)
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
-
 % Edit the above text to modify the response to help optionsGUI
-
-% Last Modified by GUIDE v2.5 29-Dec-2011 12:59:17
-
+% Last Modified by GUIDE v2.5 29-Dec-2011 16:54:38
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
@@ -46,7 +43,6 @@ gui_State = struct('gui_Name',       mfilename, ...
 if nargin && ischar(varargin{1})
     gui_State.gui_Callback = str2func(varargin{1});
 end
-
 if nargout
     [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
 else
@@ -63,7 +59,7 @@ function optionsGUI_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to optionsGUI (see VARARGIN)
 
-% Choose default command line output for optionsGUI
+% Choose defaultButton command line output for optionsGUI
 handles.output = hObject;
 
 % Update handles structure
@@ -80,9 +76,49 @@ function varargout = optionsGUI_OutputFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Get default command line output from handles structure
+% Get defaultButton command line output from handles structure
 varargout{1} = handles.output;
 
+% Load all options
+global Options;
+% Segmentation color
+if strcmp(Options.NHS_color, 'red')
+    h = findobj(hObject,'Tag','Red');
+    set(h,'Value',1);
+else
+    h = findobj(hObject,'Tag','Blue');
+    set(h,'Value',1);
+end
+% Distance Error/Threshold
+h = findobj(hObject,'Tag','distThres');
+set(h, 'String', num2str(Options.CE_distError));
+% Low ratio
+h = findobj(hObject,'Tag','lowratio');
+set(h, 'String', num2str(Options.POST_lowRatio));
+% High ratio
+h = findobj(hObject,'Tag','highratio');
+set(h, 'String', num2str(Options.POST_highRatio));
+% Aspect area
+h = findobj(hObject,'Tag','aspectArea');
+set(h, 'String', num2str(Options.POST_aspectArea));
+% Cost function to use
+switch Options.GIELIS_func
+    case 1
+        h = findobj(hObject,'Tag','func1');
+        set(h,'Value',1);
+    case 2
+        h = findobj(hObject,'Tag','func2');
+        set(h,'Value',1);
+    case 3
+        h = findobj(hObject,'Tag','func3');
+        set(h,'Value',1);
+    otherwise
+end
+% Normalization
+if Options.GIELIS_norm
+    h = findobj(hObject,'Tag','normalization');
+    set(h,'Value',1);
+end
 
 
 function lowratio_Callback(hObject, eventdata, handles)
@@ -91,12 +127,9 @@ function lowratio_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of lowratio as text
-%        str2double(get(hObject,'String')) returns contents of lowratio as a double
+%        str2double(get(hObject,'String')) returns contents of lowratio as
+%        a double
 
-% Save changes to Options
-global Options;
-Options.POST_lowRatio = str2double(get(hObject,'String'));
-save opt.mat -struct Options;
 
 % --- Executes during object creation, after setting all properties.
 function lowratio_CreateFcn(hObject, eventdata, handles)
@@ -110,10 +143,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-% Load values from Options
-global Options;
-set(hObject, 'String', num2str(Options.POST_lowRatio));
-
 
 function highratio_Callback(hObject, eventdata, handles)
 % hObject    handle to highratio (see GCBO)
@@ -121,12 +150,9 @@ function highratio_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of highratio as text
-%        str2double(get(hObject,'String')) returns contents of highratio as a double
+%        str2double(get(hObject,'String')) returns contents of highratio as
+%        a double
 
-% Save changes to Options
-global Options;
-Options.POST_highRatio = str2double(get(hObject,'String'));
-save opt.mat -struct Options;
 
 % --- Executes during object creation, after setting all properties.
 function highratio_CreateFcn(hObject, eventdata, handles)
@@ -140,10 +166,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-% Load values from Options
-global Options;
-set(hObject, 'String', num2str(Options.POST_highRatio));
-
 
 function aspectArea_Callback(hObject, eventdata, handles)
 % hObject    handle to aspectArea (see GCBO)
@@ -151,12 +173,9 @@ function aspectArea_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of aspectArea as text
-%        str2double(get(hObject,'String')) returns contents of aspectArea as a double
+%        str2double(get(hObject,'String')) returns contents of aspectArea
+%        as a double
 
-% Save changes to Options
-global Options;
-Options.POST_aspectArea = str2double(get(hObject,'String'));
-save opt.mat -struct Options;
 
 % --- Executes during object creation, after setting all properties.
 function aspectArea_CreateFcn(hObject, eventdata, handles)
@@ -170,11 +189,6 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-% Load values from Options
-global Options;
-set(hObject, 'String', num2str(Options.POST_aspectArea));
-
-
 
 function distThres_Callback(hObject, eventdata, handles)
 % hObject    handle to distThres (see GCBO)
@@ -185,10 +199,6 @@ function distThres_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of distThres as
 %        a double
 
-% Save changes to Options
-global Options;
-Options.CE_distError = str2double(get(hObject,'String'));
-save opt.mat -struct Options;
 
 % --- Executes during object creation, after setting all properties.
 function distThres_CreateFcn(hObject, eventdata, handles)
@@ -202,17 +212,45 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-% Load values from Options
-global Options;
-set(hObject, 'String', num2str(Options.CE_distError));
+
+% --- Executes during object creation, after setting all properties.
+function Red_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Red (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
 
 
-% --- Executes on button press in default.
-function default_Callback(hObject, eventdata, handles)
-% hObject    handle to default (see GCBO)
+% --- Executes on button press in Red.
+function Red_Callback(hObject, eventdata, handles)
+% hObject    handle to Red (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+% Hint: get(hObject,'Value') returns toggle state of Red
+
+
+% --- Executes during object creation, after setting all properties.
+function Blue_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Blue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes on button press in Blue.
+function Blue_Callback(hObject, eventdata, handles)
+% hObject    handle to Blue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of Blue
+
+
+% --- Executes on button press in defaultButton.
+function defaultButton_Callback(hObject, eventdata, handles)
+% hObject    handle to defaultButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Reset to default options
 global Options;
 % NHS
 Options.NHS_color  = 'red';      % color to segment 'blue' or 'red'
@@ -227,63 +265,94 @@ Options.GIELIS_norm = true;      % use normalization (default true)
 Options.GIELIS_func = 1;         % cost function to use 1, 2 or 3 (default 1)d
 % Create the options file
 save opt.mat -struct Options;
+% Close options window
+h = get(hObject,'Parent');
+close(h);
 
 
-% --- Executes during object creation, after setting all properties.
-function Red_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to Red (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Load values from Options
-global Options;
-if strcmp(Options.NHS_color, 'red')
-    set(hObject, 'Value', [1.0]);
-% else
-%     set(hObject, 'Value', [0.0]);
-end
-
-
-% --- Executes on button press in Red.
-function Red_Callback(hObject, eventdata, handles)
-% hObject    handle to Red (see GCBO)
+% --- Executes on button press in acceptButton.
+function acceptButton_Callback(hObject, eventdata, handles)
+% hObject    handle to acceptButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of Red
+% Save all options and close
 global Options;
-if get(hObject,'Value') == 1
-    Options.NHS_color = 'red';
-    save opt.mat -struct Options;
+par = get(hObject, 'Parent');
+% NHS color
+h = findobj(par, 'Tag', 'Red');
+if get(h, 'Value')
+    Options.NHS_color  = 'red';      % color to segment 'blue' or 'red'
+else
+    Options.NHS_color  = 'blue';
 end
-
-
-% --- Executes during object creation, after setting all properties.
-function Blue_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to Blue (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Load values from Options
-global Options;
-if strcmp(Options.NHS_color, 'blue')
-    set(hObject, 'Value', 1);
-% else
-%     set(hObject, 'Value', 0);
+% PostProcessing
+h = findobj(par, 'Tag', 'aspectArea');
+Options.POST_aspectArea = str2double(get(h, 'String'));  % imageArea/aspectArea thresholding (default 1500)
+h = findobj(par, 'Tag', 'lowratio');
+Options.POST_lowRatio   = str2double(get(h, 'String'));  % height/width lowest value (default 0.25)
+h = findobj(par, 'Tag', 'highratio');
+Options.POST_highRatio  = str2double(get(h, 'String'));  % height/width highest value (default 1.3)
+% Contour extraction
+h = findobj(par, 'Tag', 'distThres');
+Options.CE_distError    = str2double(get(h, 'String'));  % maximum distance from the convex hull to take contour pixels (default sqrt(2))
+% Gielis recontruction
+h = findobj(par,'Tag','func1');
+if get(h,'Value') == 1
+    Options.GIELIS_func = 1;
 end
-global bluebutton;
-bluebutton = hObject;
+h = findobj(par,'Tag','func2');
+if get(h,'Value') == 1
+    Options.GIELIS_func = 2;
+end
+h = findobj(par,'Tag','func3');
+if get(h,'Value') == 1
+    Options.GIELIS_func = 3;
+end
+% Normalization
+h = findobj(par,'Tag','normalization');
+if get(h,'Value') == 1
+    Options.GIELIS_norm = true;
+else
+    Options.GIELIS_norm = false;
+end
+% Create the options file
+save opt.mat -struct Options;
+% Close options window
+close(par);
 
 
-% --- Executes on button press in Blue.
-function Blue_Callback(hObject, eventdata, handles)
-% hObject    handle to Blue (see GCBO)
+% --- Executes on button press in normalization.
+function normalization_Callback(hObject, eventdata, handles)
+% hObject    handle to normalization (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of Blue
-global Options;
-if get(hObject,'Value') == 1
-    Options.NHS_color = 'blue';
-    save opt.mat -struct Options;
-end
+% Hint: get(hObject,'Value') returns toggle state of normalization
+
+
+% --- Executes on button press in func1.
+function func1_Callback(hObject, eventdata, handles)
+% hObject    handle to func1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of func1
+
+
+% --- Executes on button press in func2.
+function func2_Callback(hObject, eventdata, handles)
+% hObject    handle to func2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of func2
+
+
+% --- Executes on button press in func3.
+function func3_Callback(hObject, eventdata, handles)
+% hObject    handle to func3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of func3
