@@ -205,7 +205,18 @@ void Gui::on_pushButton_Process_clicked()
     Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, dist_threshold );
     updateImage( cimg );
 
+		// FIXME
+		// The extractedCont size is always 0 ... it seems that the ThresholdedContour
+		// doesn't fill in the extractedCont.
+		cout << "ExtractedContour: " << extractedCont.size() << endl;
 
+    // PostProcessing - rotational offset
+    if( question("Rotational Offset") != QMessageBox::Ok )
+        return;
+
+		// calculate the Rotational Offset
+    cRotationalOffset RO;
+    vector<float>  offsets = RO.GetMinRadius( extractedCont[0] );		
 
     // rational_supershape_2d
     if( question("rational_supershape_2d") != QMessageBox::Ok )
@@ -213,13 +224,13 @@ void Gui::on_pushButton_Process_clicked()
 
     /* instead of offsets
      * receive this vector of float
-     * from rotationaloffset class
-     */
+     * from rotationaloffset class     
     vector<float> offsets;
     offsets.push_back(0);
     offsets.push_back(3.14/4);
     offsets.push_back(3.14/2);
     offsets.push_back(3*3.14/4);
+    */
 
     Mat dimg = rational_supershape_2d( image, offsets );
     updateImage( dimg );
