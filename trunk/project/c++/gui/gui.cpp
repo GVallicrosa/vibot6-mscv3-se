@@ -205,10 +205,14 @@ void Gui::on_pushButton_Process_clicked()
     Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, dist_threshold );
     updateImage( cimg );
 
-		// FIXME
-		// The extractedCont size is always 0 ... it seems that the ThresholdedContour
-		// doesn't fill in the extractedCont.
-		cout << "ExtractedContour: " << extractedCont.size() << endl;
+		// Converting the copyCont to IRO:Contour so the rotational offset module
+		// can use it.
+    IRO::Contour contour;
+		for ( int i = 0; i < copyCont[0].size(); i++ )
+    {
+				cout << copyCont[0][i].x << " " << copyCont[0][i].y << endl;
+        contour.push_back( make_pair( copyCont[0][i].x, copyCont[0][i].y ) );
+    }
 
     // PostProcessing - rotational offset
     if( question("Rotational Offset") != QMessageBox::Ok )
@@ -216,7 +220,7 @@ void Gui::on_pushButton_Process_clicked()
 
 		// calculate the Rotational Offset
     cRotationalOffset RO;
-    vector<float>  offsets = RO.GetMinRadius( extractedCont[0] );		
+    vector<float>  offsets = RO.GetMinRadius( contour );		
 
     // rational_supershape_2d
     if( question("rational_supershape_2d") != QMessageBox::Ok )
