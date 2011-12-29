@@ -209,8 +209,7 @@ void Gui::on_pushButton_Process_clicked()
 		// can use it.
     IRO::Contour contour;
 		for ( int i = 0; i < copyCont[0].size(); i++ )
-    {
-				cout << copyCont[0][i].x << " " << copyCont[0][i].y << endl;
+    {				
         contour.push_back( make_pair( copyCont[0][i].x, copyCont[0][i].y ) );
     }
 
