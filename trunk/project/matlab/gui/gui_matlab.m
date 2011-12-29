@@ -70,27 +70,30 @@ clc;
 
 global DisplayIndex ;
 global Processflag;
+global Options;
+
 Processflag = 0;
 DisplayIndex = 0;
-    %for remembering the previously selected folder 
-handles.macroFolder = cd;
-
-strIniFile = fullfile(handles.macroFolder, 'imageFolder.mat');
-    %checks whether imageFolder.mat exists or not
-	if exist(strIniFile, 'file')
-		% Pull out values and stuff them in structure initialValues.
-		initialValues = load('imageFolder.mat');
-		% Assign the image folder from the lastUsedImageFolder field of the
-		% structure.
-	    handles.ImageFolder = initialValues.lastUsedImageFolder;
-	else
-		% If the file is not there, point the image folder to the current
-		% directory.  Then save it out in our mat file.
-		handles.ImageFolder = cd;
-		% Save the image folder in our ini file.
-		lastUsedImageFolder = handles.ImageFolder;
-		save(strIniFile, 'lastUsedImageFolder');
-    end
+%     %for remembering the previously selected folder 
+% handles.macroFolder = cd;
+% 
+% strIniFile = fullfile(handles.macroFolder, 'imageFolder.mat');
+%     %checks whether imageFolder.mat exists or not
+% 	if exist(strIniFile, 'file')
+% 		% Pull out values and stuff them in structure initialValues.
+% 		initialValues = load('imageFolder.mat');
+% 		% Assign the image folder from the lastUsedImageFolder field of the
+% 		% structure.
+% 	    handles.ImageFolder = initialValues.lastUsedImageFolder;
+handles.ImageFolder = Options.lastFolder;
+% 	else
+% 		% If the file is not there, point the image folder to the current
+% 		% directory.  Then save it out in our mat file.
+% 		handles.ImageFolder = cd;
+% 		% Save the image folder in our ini file.
+% 		lastUsedImageFolder = handles.ImageFolder;
+% 		save(strIniFile, 'lastUsedImageFolder');
+%     end
 % Update handles structure
 guidata(hObject, handles);
 
@@ -124,8 +127,10 @@ function SelectImageFolder_Callback(hObject, eventdata, handles)
         handles = LoadImageList(handles);
         guidata(hObject, handles);
 		% Save the image folder in our ini file.
-		lastUsedImageFolder = handles.ImageFolder;
-		save('imageFolder.mat', 'lastUsedImageFolder');
+% 		lastUsedImageFolder = handles.ImageFolder;
+% 		save('imageFolder.mat', 'lastUsedImageFolder');
+        Options.lastFolder = handles.ImageFolder;
+        save opt.mat -struct Options;
     else
         msgbox('No folder specified as input for function LoadImageList.');
         return;

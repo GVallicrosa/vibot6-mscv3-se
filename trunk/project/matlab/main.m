@@ -99,15 +99,11 @@ fileIndex = find(~[files.isdir]);
         IMname = ['output/',fname(1:length(fname)-3), '_shape',num2str(i),'.png'];
         f = figure('visible','off'); 
         subplot('position', [0 0 1 1]);
-        imshow(im);
-        hold on;
-        % Output = valid_contour; % for testing
-        plot(Output(:,2),Output(:,1),'g','LineWidth', 3);
-        hold off;
-        [H,W,D] = size(im);
+        imshow(im); hold on;
+        plot(Output(:,2),Output(:,1),'g','LineWidth', 3); hold off;
         dpi = 100;
-        set(f, 'paperposition', [0 0 W/dpi H/dpi]);
-        set(f, 'papersize', [W/dpi H/dpi]);
+        set(f, 'paperposition', [0 0 n/dpi m/dpi]);
+        set(f, 'papersize', [n/dpi m/dpi]);
         print(f, sprintf('-r%d',dpi), '-dpng', IMname);
         %imwrite(Output,IMname,'PNG');%,'BitDepth',1);
     end

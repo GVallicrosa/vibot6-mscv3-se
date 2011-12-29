@@ -66,12 +66,26 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
     
     centerX = bestParameters(10);
     centerY = bestParameters(11);
-    Output = zeros(0);
+%     Output = zeros(0);
     
-    for i = 0:0.01:6.26
-        r = radius_(i);
-        x = cos(i)*r + centerX;
-        y = sin(i)*r + centerY;
-        Output(end+1,:) = [x, y];
-    end
+    a = bestParameters(1);
+    b = bestParameters(2);
+    n1 =bestParameters(3);
+    n2 =bestParameters(4);
+    n3 =bestParameters(5);
+    m = bestParameters(6);
+    offset = bestParameters(8);
+    phi = 0:0.1:2*pi;
+    r = 1./(((abs(1./a.*cos(m./4.*phi))).^n2 + (abs(1./b.*sin(m./4.*phi)).^n3)).^(1./n1));
+    phi = phi + offset;
+    x = r.*cos(phi) + centerX;
+    y = r.*sin(phi) + centerY;
+    Output = [x' y'];
+    
+%     for i = 0:0.01:6.26
+%         r = radius_(i);
+%         x = cos(i)*r + centerX;
+%         y = sin(i)*r + centerY;
+%         Output(end+1,:) = [x, y];
+%     end
 end
