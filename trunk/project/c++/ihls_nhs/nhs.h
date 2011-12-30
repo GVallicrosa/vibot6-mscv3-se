@@ -15,6 +15,9 @@
 
 using namespace cv;
 
+#define R_CONDITION (h < hue_max || h > hue_min) && s > sat_min
+#define B_CONDITION (h < hue_max && h > hue_min) && s > sat_min
+
 // Got it from the original Matlab code.
 // The values for the red colour.
 #define R_HUE_MAX 11
@@ -22,9 +25,9 @@ using namespace cv;
 #define R_SAT_MIN 30
 
 // The values for the blue colour.
-#define B_HUE_MAX 143
-#define B_HUE_MIN 128
-#define B_SAT_MIN 84
+#define B_HUE_MAX 163
+#define B_HUE_MIN 134
+#define B_SAT_MIN 60
 
 /**
  * This function receives an IHLS image as an argument, and converts it
