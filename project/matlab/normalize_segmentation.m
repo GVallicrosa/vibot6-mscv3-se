@@ -1,4 +1,4 @@
-function [In] = normalize_segmentation(I, color)
+function [In] = normalize_segmentation(I, color, hue_max, hue_min, sat_min)
 % Converts the image to IHLS and does the segmentation
 %
 % INPUT
@@ -7,6 +7,24 @@ function [In] = normalize_segmentation(I, color)
 %
 % OUTPUT
 %    In     : normalized and segmented image
+
+if nargin == 2
+    if strcmp(color, 'other')
+        if hue_max > 255 || hue_max < 0 || hue_min > 255 || hue_min < 0 || sat_min > 255 || sat_min < 0
+            hue_max = 11;
+            hue_min = 230;
+            sat_min = 30;
+        end
+    elseif strcmp(color, 'blue')
+        hue_max = 163;
+        hue_min = 134;
+        sat_min = 60;
+    elseif strcmp(color, 'red')
+        hue_max = 11;
+        hue_min = 230;
+        sat_min = 30;
+    end
+end
 
 %% Convert to IHLS and normalize hue-saturation
 I2 = rgb2ihls(I);       % convert to IHLS
@@ -21,9 +39,11 @@ s_norm = uint8(s);      % convert to uint8
 %% Color Segmentation
 In = zeros(size(I,1), size(I,2)); % create image to store output
 if strcmp(color, 'blue')
-    p = find((h_norm>=134 & h_norm<163) & (s_norm>39 & s_norm<=215));
-elseif strcmp(color, 'red')
-    p = find(s_norm>30 & h_norm>230 | s_norm>30 & h_norm<11);
+    %     p = find((h_norm>=134 & h_norm<163) & (s_norm>60 & s_norm<=215));
+    p = find((h_norm > hue_min & h_norm < hue_max) & s_norm > sat_min);
+elseif strcmp(color, 'red') || strcmp(color, 'other')
+    %     p = find(s_norm>30 & h_norm>230 | s_norm>30 & h_norm<11);
+    p = find((h_norm > hue_min | h_norm < hue_max) & s_norm > sat_min);
 end
 In(p) = 1; % write found pixels
 

@@ -46,6 +46,8 @@ fileIndex = find(~[files.isdir]);
     display(['- ', fname]);
     
     %% Image segmentation
+		% You can pass arbitrary hue max and min, sat min. e.g.:
+		% normalize_segmentation(im, 'other', 11, 230, 60);
     nhs = normalize_segmentation(im, NHS_color);
     [m n] = size(nhs); % for future use
     if NHS_output

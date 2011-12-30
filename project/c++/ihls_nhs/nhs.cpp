@@ -35,19 +35,44 @@ convert_ihls_to_nhs(Mat ihls_image, int colour, int hue_max, int hue_min,
 
   Mat nhs_image(ihls_image.rows, ihls_image.cols, CV_8UC1);
 
-  for (int i = 0; i < ihls_image.rows; ++i)
+  // I put the if before for loops, to make the process faster.
+  // Otherwise for each pixel it had to check this condition.
+  // Nicer implementation could be to separate these two for loops in
+  // two different functions, one for red and one for blue.
+  if (colour == 1)
     {
-      const uchar *ihls_data = ihls_image.ptr<uchar> (i);
-      uchar *nhs_data = nhs_image.ptr<uchar> (i);
-      for (int j = 0; j < ihls_image.cols; ++j)
+      for (int i = 0; i < ihls_image.rows; ++i)
         {
-          uchar s = *ihls_data++;
-          // Although l is not being used and we could have
-          // replaced the next line with ihls_data++
-          // but for the sake of readability, we left it as it it.
-          uchar l = *ihls_data++;
-          uchar h = *ihls_data++;
-          *nhs_data++ = ((h < hue_max || h > hue_min) && s > sat_min) ? 255 : 0;
+          const uchar *ihls_data = ihls_image.ptr<uchar> (i);
+          uchar *nhs_data = nhs_image.ptr<uchar> (i);
+          for (int j = 0; j < ihls_image.cols; ++j)
+            {
+              uchar s = *ihls_data++;
+              // Although l is not being used and we could have
+              // replaced the next line with ihls_data++
+              // but for the sake of readability, we left it as it it.
+              uchar l = *ihls_data++;
+              uchar h = *ihls_data++;
+              *nhs_data++ = (B_CONDITION) ? 255 : 0;
+            }
+        }
+    }
+  else
+    {
+      for (int i = 0; i < ihls_image.rows; ++i)
+        {
+          const uchar *ihls_data = ihls_image.ptr<uchar> (i);
+          uchar *nhs_data = nhs_image.ptr<uchar> (i);
+          for (int j = 0; j < ihls_image.cols; ++j)
+            {
+              uchar s = *ihls_data++;
+              // Although l is not being used and we could have
+              // replaced the next line with ihls_data++
+              // but for the sake of readability, we left it as it it.
+              uchar l = *ihls_data++;
+              uchar h = *ihls_data++;
+              *nhs_data++ = (R_CONDITION) ? 255 : 0;
+            }
         }
     }
 

@@ -162,7 +162,11 @@ void Gui::on_pushButton_Process_clicked()
     // ihls_nhs
     Mat image = imread( fileName );
     Mat ihls_image = convert_rgb_to_ihls(image);
-    Mat nhs_image = convert_ihls_to_nhs(ihls_image);
+		// The second argument menas if it's red or blue.
+		// 0 is red, blue is 1. You can put 2 here for others, but then
+		// you have to provide the hue max and min, sat min values. e.g. :
+		// convert_ihls_to_nhs(ihls_image, 2, 163, 134, 60);
+    Mat nhs_image = convert_ihls_to_nhs(ihls_image, 0);
     updateImage( nhs_image );
 
 
