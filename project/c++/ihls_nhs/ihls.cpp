@@ -1,6 +1,3 @@
-/*
- * TODO: write unit testing for all the functions.
- */
 #include "ihls.h"
 #include "math_utils.h"
 

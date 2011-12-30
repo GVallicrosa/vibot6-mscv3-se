@@ -15,10 +15,16 @@
 
 using namespace cv;
 
-// Got it from the Matlab code
-#define HUE_MAX 11
-#define HUE_MIN 230
-#define SAT_MIN 30
+// Got it from the original Matlab code.
+// The values for the red colour.
+#define R_HUE_MAX 11
+#define R_HUE_MIN 230
+#define R_SAT_MIN 30
+
+// The values for the blue colour.
+#define B_HUE_MAX 143
+#define B_HUE_MIN 128
+#define B_SAT_MIN 84
 
 /**
  * This function receives an IHLS image as an argument, and converts it
@@ -28,8 +34,24 @@ using namespace cv;
  * The reason that we have a return matrix and not overriding the original
  * RGB image, is to keep the original RGB values for reference.
  *
+ * @param ihls_image
+ *   The converted image to IHLS format. It should be in the Mat format of
+ *   OpenCv.
+ * @param colour
+ *   0 = red; 1 = blue; 2 = others; If the value is 2, the rest of parameters
+ *   must be provided.
+ * @param hue_max
+ *   The maximum integer value of hue for thresholding.
+ * @param hue_min
+ *   The minimum integer value of hue for thresholding.
+ * @param sat_min
+ *   The minimum integer value of saturation for thresholding.
+ *
+ * @return
+ *   The normalised image in Mat format.
  */
 Mat
-convert_ihls_to_nhs(Mat ihls_image);
+convert_ihls_to_nhs(Mat ihls_image, int colour = 0, int hue_max = R_HUE_MAX,
+    int hue_min = R_HUE_MIN, int sat_min = R_SAT_MIN);
 
 #endif /* NHS_H_ */
