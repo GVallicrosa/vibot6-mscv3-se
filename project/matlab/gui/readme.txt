@@ -1,1 +1,7 @@
-Put these files (5 files) in the the level same as main.m and run gui_matlab
+run gui_main.m ......
+select image from image list 
+and press process button
+wait till msg box appears
+
+select what to dispaly 
+and use prev/next  to view
