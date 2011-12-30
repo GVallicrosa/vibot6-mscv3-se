@@ -5,8 +5,32 @@
 #include <cmath>
 
 Mat
-convert_ihls_to_nhs(Mat ihls_image)
+convert_ihls_to_nhs(Mat ihls_image, int colour, int hue_max, int hue_min,
+    int sat_min)
 {
+  if (colour == 2)
+    {
+      if (hue_max > 255 || hue_max < 0 || hue_min > 255 || hue_min < 0
+          || sat_min > 255 || sat_min < 0)
+        {
+          hue_min = R_HUE_MIN;
+          hue_max = R_HUE_MAX;
+          sat_min = R_SAT_MIN;
+        }
+    }
+  else if (colour == 1)
+    {
+      hue_min = B_HUE_MIN;
+      hue_max = B_HUE_MAX;
+      sat_min = B_SAT_MIN;
+    }
+  else
+    {
+      hue_min = R_HUE_MIN;
+      hue_max = R_HUE_MAX;
+      sat_min = R_SAT_MIN;
+    }
+
   assert(ihls_image.channels() == 3);
 
   Mat nhs_image(ihls_image.rows, ihls_image.cols, CV_8UC1);
@@ -23,7 +47,7 @@ convert_ihls_to_nhs(Mat ihls_image)
           // but for the sake of readability, we left it as it it.
           uchar l = *ihls_data++;
           uchar h = *ihls_data++;
-          *nhs_data++ = ((h < HUE_MAX || h > HUE_MIN) && s > SAT_MIN) ? 255 : 0;
+          *nhs_data++ = ((h < hue_max || h > hue_min) && s > sat_min) ? 255 : 0;
         }
     }
 
