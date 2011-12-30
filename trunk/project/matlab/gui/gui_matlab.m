@@ -70,30 +70,27 @@ clc;
 
 global DisplayIndex ;
 global Processflag;
-global Options;
-
 Processflag = 0;
 DisplayIndex = 0;
-%     %for remembering the previously selected folder 
-% handles.macroFolder = cd;
-% 
-% strIniFile = fullfile(handles.macroFolder, 'imageFolder.mat');
-%     %checks whether imageFolder.mat exists or not
-% 	if exist(strIniFile, 'file')
-% 		% Pull out values and stuff them in structure initialValues.
-% 		initialValues = load('imageFolder.mat');
-% 		% Assign the image folder from the lastUsedImageFolder field of the
-% 		% structure.
-% 	    handles.ImageFolder = initialValues.lastUsedImageFolder;
-handles.ImageFolder = Options.lastFolder;
-% 	else
-% 		% If the file is not there, point the image folder to the current
-% 		% directory.  Then save it out in our mat file.
-% 		handles.ImageFolder = cd;
-% 		% Save the image folder in our ini file.
-% 		lastUsedImageFolder = handles.ImageFolder;
-% 		save(strIniFile, 'lastUsedImageFolder');
-%     end
+    %for remembering the previously selected folder 
+handles.macroFolder = cd;
+
+strIniFile = fullfile(handles.macroFolder, 'imageFolder.mat');
+    %checks whether imageFolder.mat exists or not
+	if exist(strIniFile, 'file')
+		% Pull out values and stuff them in structure initialValues.
+		initialValues = load('imageFolder.mat');
+		% Assign the image folder from the lastUsedImageFolder field of the
+		% structure.
+	    handles.ImageFolder = initialValues.lastUsedImageFolder;
+	else
+		% If the file is not there, point the image folder to the current
+		% directory.  Then save it out in our mat file.
+		handles.ImageFolder = cd;
+		% Save the image folder in our ini file.
+		lastUsedImageFolder = handles.ImageFolder;
+		save(strIniFile, 'lastUsedImageFolder');
+    end
 % Update handles structure
 guidata(hObject, handles);
 
@@ -127,10 +124,8 @@ function SelectImageFolder_Callback(hObject, eventdata, handles)
         handles = LoadImageList(handles);
         guidata(hObject, handles);
 		% Save the image folder in our ini file.
-% 		lastUsedImageFolder = handles.ImageFolder;
-% 		save('imageFolder.mat', 'lastUsedImageFolder');
-        Options.lastFolder = handles.ImageFolder;
-        save opt.mat -struct Options;
+		lastUsedImageFolder = handles.ImageFolder;
+		save('imageFolder.mat', 'lastUsedImageFolder');
     else
         msgbox('No folder specified as input for function LoadImageList.');
         return;
@@ -170,7 +165,7 @@ function Options_Callback(hObject, eventdata, handles)
 % hObject    handle to Options (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
- optionsGUI();
+ %optionsGUI();
 
 % --- Executes on button press in IntermediateResults.
 function IntermediateResults_Callback(hObject, eventdata, handles)
@@ -280,14 +275,32 @@ function Process_Callback(hObject, eventdata, handles)
   global cleanImg;
   global countoutImg;
   global Processflag;
+  global Offset;
+  global Output;
+  global valid_contour;
+  global currfilename;
+  color = 'red';
+  aspectRatio = 1500;
+  lowRatio = 0.25;
+  highRatio = 1.3;
+  distanceError = 1.414;
+  GIELIS_norm = 1;
+  GIELIS_func = 1;
   im = get(handles.ImageList,'UserData');
   if size(im) == 0
        msgbox('No Image Selected from the list');
        return;   
   end
   ihls = im;
- [nhs,noiseRem,cleanImg,countoutImg] = ProcessImage(im);
- Processflag = 1;
+ 
+  currfilename= get(handles.text1,'string');
+  
+%  [nhs,noiseRem,cleanImg,countoutImg] = ProcessImage(im,color);
+[nhs,noiseRem,cleanImg,valid_contour,countoutImg,Offset,Output] = ProcessImage(im,color,aspectRatio,lowRatio,highRatio,distanceError,GIELIS_norm, GIELIS_func);
+ 
+Processflag = 1;
+msgbox('Done Processing');
+ 
 %  setappdata(gui_matlab,'ihls',im);
 %  setappdata(gui_matlab,'nhsSegmentation',nhs);
 %  setappdata(gui_matlab,'noiseRemoval',noiseRem);
@@ -298,7 +311,54 @@ function SaveAll_Callback(hObject, eventdata, handles)
 % hObject    handle to SaveAll (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+  global ihls;
+  global nhs;
+  global noiseRem;
+  global cleanImg;
+  global countoutImg;
+  global Processflag;
+  global Offset;
+  global Output;
+  global valid_contour;
+  
+    if Processflag == 1
+         fname= get(handles.text1,'string');
+      if(get(handles.RGB2IHLS,'Value') == 1)
+          IMname = ['output/',fname(1:length(fname)-3), '_ihls.png'];
+          imwrite(ihls,IMname,'PNG','BitDepth',8); 
+      end
+      if(get(handles.NHSSegmentation,'Value') == 1)
+          IMname = ['output/',fname(1:length(fname)-3), '_nhs.png'];
+          imwrite(nhs,IMname,'PNG','BitDepth',1); 
+      end
+      if(get(handles.NoiseRemoval,'Value') == 1)
+          IMname = ['output/',fname(1:length(fname)-3), '_noiseRem.png'];
+          imwrite(noiseRem,IMname,'PNG','BitDepth',1); 
+      end
+      if(get(handles.ObjectElimination,'Value') == 1)
+         IMname = ['output/',fname(1:length(fname)-3), '_cleanImg.png'];
+         imwrite(cleanImg,IMname,'PNG','BitDepth',1); 
+      end
+      if(get(handles.RecoverDeformedShape,'Value') == 1)
+      end
+      if(get(handles.ContourExtraction,'Value') == 1)
+          IMname = ['output/',fname(1:length(fname)-3), '_countoutImg.png'];
+          imwrite(countoutImg,IMname,'PNG','BitDepth',1); 
+          Fname = ['output/',fname(1:length(fname)-3), '_cont','.txt'];
+          save(Fname,'valid_contour','-ASCII');
+      end
+      if(get(handles.GetRotationalOffset,'Value') == 1)
+          Fname = ['output/',fname(1:length(fname)-3), '_rotoffset.txt'];
+          save(Fname,'Offset','-ASCII');
+      end
+      if(get(handles.GelisShapeReconstruction,'Value') == 1)
+          Fname = ['output/',fname(1:length(fname)-3), '_shape','.txt'];
+          save(Fname,'Output','-ASCII');
+      end
+      if(get(handles.FinalOutput,'Value') == 1)
+      end
+    end
+     
 
 %% --- Executes on selection change in ImageList.
 function ImageList_Callback(hObject, eventdata, handles)
@@ -312,6 +372,7 @@ function ImageList_Callback(hObject, eventdata, handles)
  global Processflag;
  selectedIndex = get(handles.ImageList, 'value');
  ListOfImageNames = get(handles.ImageList, 'string');
+
  %if no files are loaded in list the list contains [Image List]
  %the first char [ is checked for whether the list is empty or not 
  flagempty = char(ListOfImageNames(selectedIndex)); 
@@ -333,7 +394,11 @@ axesChildHandle = imshow(imageArray, [], 'InitialMagnification', 'fit');
 return;
  
  %==========================================================================
-
+%% --- Plot Image----------
+function PlotFigure(ObjectArray)
+hold off;
+ axesChildHandle = plot(ObjectArray(:,2),ObjectArray(:,1),'g','LineWidth', 3);
+ return;
 %% --- Executes during object creation, after setting all properties.
 function ImageList_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to ImageList (see GCBO)
@@ -380,6 +445,8 @@ function ImageShow(handles)
     global cleanImg;
     global countoutImg;
     global Processflag;
+    global Offset;
+    global Output;
     if Processflag == 1
      switch DisplayIndex
          case 1
@@ -397,8 +464,16 @@ function ImageShow(handles)
          case 5
              set(handles.text1,'string','Recover Deformed Shape');
          case 6
-             ImageDisplay(countoutImg);
+              ImageDisplay(countoutImg);
              set(handles.text1,'string','Contour');
+         case 7
+              set(handles.text1,'string',['Rotational Offset Value = ' num2str(rad2deg(Offset))]);
+         case 8
+             PlotFigure(Output);
+             set(handles.text1,'string','Gelis Shape Reconstruction');
+         case 9
+             PlotFigure(Output);
+             set(handles.text1,'string','Output');
          otherwise
      end     
     end
