@@ -27,7 +27,7 @@ using namespace cv;
 // The values for the blue colour.
 #define B_HUE_MAX 163
 #define B_HUE_MIN 134
-#define B_SAT_MIN 60
+#define B_SAT_MIN 39
 
 /**
  * This function receives an IHLS image as an argument, and converts it
