@@ -18,7 +18,7 @@ if nargin == 2
     elseif strcmp(color, 'blue')
         hue_max = 163;
         hue_min = 134;
-        sat_min = 60;
+        sat_min = 39;
     elseif strcmp(color, 'red')
         hue_max = 11;
         hue_min = 230;
