@@ -1,4 +1,4 @@
-run gui_main.m ......
+run mainGUI.m
 select image from image list 
 and press process button
 wait till msg box appears
