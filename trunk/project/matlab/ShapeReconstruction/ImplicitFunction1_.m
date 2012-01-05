@@ -9,7 +9,7 @@ global Parameters;
 
 q = Parameters(7);
 
-Dffinal = zeros(3);
+Dffinal = zeros(3, 1);
 
 % if the point is zero
 if P(1) == 0 && P(2) == 0
@@ -24,7 +24,7 @@ end;
 
 % dimension of f = q, because later on there will be a loop
 % which assign values to f by q times.
-f = zeros(q);
+f = zeros(q, 1);
 Ddum = 0;
 
 x = P(1);
@@ -67,11 +67,11 @@ for i = 1:q-1
             temp = f(i);
             f(i) = f(j);
             f(j) = temp;
-            swap(f(i),f(j));
+            % swap(f(i),f(j));
         	% swap rows Df[i] and Df[j]
-            temp = Df(i,:);
+            temp1 = Df(i,:);
             Df(i,:) = Df(j,:);
-            Df(j,:) = temp;
+            Df(j,:) = temp1;
         end
     end
 end
@@ -91,7 +91,7 @@ Df1 = Df(1,:);  % first associated row with partial derivatives
 
 % combine functions as (...((F1 v F2) v F3 ) v F4) v ...)
 
-for i = 1:q % for all intersections
+for i = 2:q % for all intersections
     % compute R-function, sets all partial derivatives
     % fdum and Ddum temporary results of the union from F1 to Fi
 

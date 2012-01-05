@@ -36,8 +36,8 @@ function [ err ] = Optimize( Data , Normalization , functionused )
         [ChiSquare alpha beta] = XiSquare(Data,...
                              alpha,...
                              beta,...
-                             itnum == 0,...    %init x0, y0, and tht0 or not?// Team U: in the first iteration only initialize all the parameters
-                             true,...          %robust or not?// Team U: It will never be false. If true this would call RobustInit() which is for
+                             itnum == 1,...    %init x0, y0, and tht0 or not?// Team U: in the first iteration only initialize all the parameters
+                             false,...          %robust or not?// Team U: It will never be false. If true this would call RobustInit() which is for
                              ...               %initial assumption circle for Gielis curve. RobustInit() is called only for itnum==0
                              functionused,...  %implicit function1  //Team U:Which potential field function is being used
                              Normalization,... %activate normalization or not
@@ -57,7 +57,7 @@ function [ err ] = Optimize( Data , Normalization , functionused )
         % method. Here alpha is positive definite symmetric Hermitian
         % matrix, and so Cholesky decomposition would be chosen by
         % MATLAB...... Not sure though
-        beta = linsolve(alpha, beta, LSopts);   % subsititution for solveInPlace() in C++. This solves alpha*h=beta and then we assign beta=h
+        beta = linsolve(alpha, beta);   % subsititution for solveInPlace() in C++. This solves alpha*h=beta and then we assign beta=h
         
         % Check if coefficients a and b in [0.01, 100]
 
@@ -77,7 +77,6 @@ function [ err ] = Optimize( Data , Normalization , functionused )
             % coefficients n1 in (1., 1000)
             % setting n1<1. leads to strong numerical instabilities
             Parameters(3) = abs( Parameters(3) + beta(3) );
-            
             
             % coefficients n2,n3 in (0.001, 1000)
             Parameters(4) = abs( Parameters(4) + beta(4) );
