@@ -612,83 +612,67 @@ function updateDisplayIndex(buttontype,handles)
     if strcmp(buttontype, 'next')
         value = 1;
     end
-    DisplayIndex = DisplayIndex + value;
-    if DisplayIndex < 1
-        DisplayIndex = 1;
-    elseif DisplayIndex > n % number of avaiable outputs
-        DisplayIndex = n;
-    end
-%     presentdisplay = DisplayIndex + value;
-%     if(get(handles.IntermediateResults,'Value')==1)
-%         flag = 1;
-%         while flag == 1
-%             switch presentdisplay
-%                 case 1
-%                     if(get(handles.RGB2IHLS,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                     end
-%                 case 2
-%                      if(get(handles.NHSSegmentation,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                     end
-%                 case 3
-%                      if(get(handles.NoiseRemoval,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                     end
-%                     case 4
-%                     if(get(handles.ObjectElimination,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                     end
-%                 case 5
-%                      if(get(handles.RecoverDeformedShape,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                     end
-%                 case 6
-%                      if(get(handles.ContourExtraction,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                      end
+%     DisplayIndex = DisplayIndex + value;
+%     if DisplayIndex < 1
+%         DisplayIndex = 1;
+%     elseif DisplayIndex > n % number of avaiable outputs
+%         DisplayIndex = n;
+%     end
+%updates display index .... what to be displayed according to check box
+%selection after each time prev/next button is pressed
+    presentdisplay = DisplayIndex +value;
+    if(get(handles.IntermediateResults,'Value')==1)
+        flag = 1;
+        while flag == 1
+            switch presentdisplay
+                case 2
+                     if(get(handles.NHSSegmentation,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 3
+                     if(get(handles.NoiseRemoval,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                    case 4
+                    if(get(handles.ObjectElimination,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                case 5
+                     if(get(handles.ContourExtraction,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                     end
 %                 case 7
 %                     if(get(handles.GetRotationalOffset,'Value') == 1)
 %                         flag = 0;
 %                     else
 %                         presentdisplay = presentdisplay + value;
 %                     end
-%                 case 8
-%                      if(get(handles.GelisShapeReconstruction,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                     end
-%                 case 9
-%                      if(get(handles.FinalOutput,'Value') == 1)
-%                         flag = 0;
-%                     else
-%                         presentdisplay = presentdisplay + value;
-%                      end
-%                 otherwise
-%                     if (presentdisplay > 9)
-%                         presentdisplay = 9;
-%                     end
-%                     if (presentdisplay <1)
-%                         presentdisplay = 1;
-%                     end
-%                     flag = 0;
-%             end
-%         end
-%         DisplayIndex = presentdisplay;
-%     end 
+                case 6
+                     if(get(handles.GelisShapeReconstruction,'Value') == 1)
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                     end
+                otherwise
+                    if (presentdisplay > 6)
+                        presentdisplay = 6;
+                    end
+                    if (presentdisplay <1)
+                        presentdisplay = 1;
+                    end
+                    flag = 0;
+            end
+        end
+        DisplayIndex = presentdisplay
+    end 
    return;
                 
 %============================================================================= 
