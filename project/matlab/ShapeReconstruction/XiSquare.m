@@ -5,16 +5,12 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
     global Parameters;
     global EPSILON;
     
-    tht0 = Parameters(8);
-    x0 = Parameters(10);
-    y0 = Parameters(11);
-    
     % dj= zeros(8,1); uncomment this in case of problems
     dTrdx0 = [0 , 0 , -1 ; 0 , 0 , 0 ;  0 , 0 , 1];
     dTrdy0 = [0 , 0 , 0 ;  0 , 0 , -1 ; 0 , 0 , 1];
     
-    Df = zeros(0);
-        
+    %Df = zeros(0,0);
+    
     if(init_on==true)
         % RobustInit() is called to find center and radius 
         % of the circle to be used in the initial assumption of Gielis curve
@@ -39,11 +35,15 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
             %#global Set_b(amin);
             Parameters(2) =abs(amin);          
             %#global Set_xoffset(Center(0));  
-            Parameters(10) =Center(0);
+            Parameters(10) =Center(1);
             %#golbal Set_yoffset(Center(1));
-            Parameters(11) =Center(1);
+            Parameters(11) =Center(2);
         end        
     end
+    
+    tht0 = Parameters(8);
+    x0 = Parameters(10);
+    y0 = Parameters(11);
     
     % Clean memory
     if (update==true)
@@ -140,7 +140,7 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         
         % compute elements beta[i][0] and alpha[i][j]
         % ==> requires partial derivatives!!
-        % dF/dR stored at index 2 in array Df
+        % dF/dR stored at index 3 in array Df
         % -during the call to ImplicitFunction1-2-3
         DfDr= Df(3);
         
