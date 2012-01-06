@@ -11,11 +11,10 @@
 function [nhs,noiseRem,cleanImg,contCE,imCE,rotOff,pointGIELIS,OutputImg] = ProcessImage(inputImage)
 % does road sign detection from input image
 % integration of other codes for GUI takem from main.m
-% global currfilename;
 
 % No need to pass all the parameters using global Options variable
 global Options; % All options in a single variable
-currfilename = Options.currfilename;
+% currfilename = Options.currfilename;
 
 %% Image segmentation
 nhs = normalize_segmentation(inputImage, Options.NHS_color);

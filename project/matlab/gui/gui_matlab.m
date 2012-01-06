@@ -468,64 +468,67 @@ return
 %==========================================================================
 %% -- update DisplayIndex according to check box
 function updateDisplayIndex(buttontype,handles)
+    % Function only called if Options.Processflag == 1
     global Options
-    global Images; % here we save all output images, also the input
-    [m n] = size(Images);
-%    value = 0; % no need to initialize
+    
+    % Which button is pressed?
     if strcmp(buttontype, 'prev')
         value = -1;
     end
     if strcmp(buttontype, 'next')
         value = 1;
     end
-%     DisplayIndex = DisplayIndex + value;
-%     if DisplayIndex < 1
-%         DisplayIndex = 1;
-%     elseif DisplayIndex > n % number of avaiable outputs
-%         DisplayIndex = n;
-%     end
-%updates display index .... what to be displayed according to check box
-%selection after each time prev/next button is pressed
+    
+    % updates display index according to check boxes
+    % selection after each time prev/next button is pressed
+    
+    % Load actual options
+    Options.intermediate_output = get(handles.IntermediateResults,'Value');
+    Options.NHS_output = get(handles.NHSSegmentation,'Value');
+    Options.POST_out_noise = get(handles.NoiseRemoval,'Value');
+    Options.POST_out_clean = get(handles.ObjectElimination,'Value');
+    Options.CE_output = get(handles.ContourExtraction,'Value');
+    Options.GIELIS_output = get(handles.GelisShapeReconstruction,'Value');
+    save opt.mat -struct Options;
+    
+    % Logic for image to display
     presentdisplay = Options.DisplayIndex + value;
-    if(get(handles.IntermediateResults,'Value')==1)
-        flag = 1;
-        while flag == 1
+    if Options.intermediate_output
+        flag = true; % to know if we are still finding the correct output to display
+        while flag
             switch presentdisplay
                 case 2
-                     if(get(handles.NHSSegmentation,'Value') == 1)
+                    if Options.NHS_output
                         flag = 0;
                     else
                         presentdisplay = presentdisplay + value;
                     end
                 case 3
-                     if(get(handles.NoiseRemoval,'Value') == 1)
+                    if Options.POST_out_noise
                         flag = 0;
                     else
                         presentdisplay = presentdisplay + value;
                     end
                 case 4
-                    if(get(handles.ObjectElimination,'Value') == 1)
+                    if Options.POST_out_clean
                         flag = 0;
                     else
                         presentdisplay = presentdisplay + value;
                     end
                 case 5
-                     if(get(handles.ContourExtraction,'Value') == 1)
+                    if Options.CE_output
                         flag = 0;
                     else
                         presentdisplay = presentdisplay + value;
-                     end
-                case 6
-                     if(get(handles.GelisShapeReconstruction,'Value') == 1)
-                        flag = 0;
-                    else
-                        presentdisplay = presentdisplay + value;
-                     end
-                otherwise
-                    if (presentdisplay > 6)
-                        presentdisplay = 6;
                     end
-                    if (presentdisplay <1)
+                case 6
+                    if Options.GIELIS_output
+                        flag = 0;
+                    else
+                        presentdisplay = presentdisplay + value;
+                    end
+                otherwise
+                    if (presentdisplay > 6) || (presentdisplay <1)
                         presentdisplay = 1;
                     end
                     flag = 0;
@@ -533,7 +536,7 @@ function updateDisplayIndex(buttontype,handles)
         end
         Options.DisplayIndex = presentdisplay;
     end 
-   return;
+ return;
                 
 %============================================================================= 
 
