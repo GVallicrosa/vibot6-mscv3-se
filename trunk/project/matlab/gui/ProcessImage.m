@@ -21,16 +21,16 @@ currfilename = Options.currfilename;
 nhs = normalize_segmentation(inputImage, Options.NHS_color);
 [m n] = size(nhs);
 % Test save
-IMname = ['output/',currfilename(1:length(currfilename)-3),'_nhs.png'];
-imwrite(nhs,IMname,'PNG','BitDepth',1); 
+% IMname = ['output/',currfilename(1:length(currfilename)-3),'_nhs.png'];
+% imwrite(nhs,IMname,'PNG','BitDepth',1); 
 
 %% Postprocessing
 [noiseRem,cleanImg] = Postprocessing(nhs, Options.POST_aspectArea, Options.POST_lowRatio, Options.POST_highRatio);
 % Test save
-IMname = ['output/',currfilename(1:length(currfilename)-3),'_noiseRem.png'];
-imwrite(noiseRem,IMname,'PNG','BitDepth',1); 
-IMname = ['output/',currfilename(1:length(currfilename)-3),'_cleanImg.png'];
-imwrite(cleanImg,IMname,'PNG','BitDepth',1);
+% IMname = ['output/',currfilename(1:length(currfilename)-3),'_noiseRem.png'];
+% imwrite(noiseRem,IMname,'PNG','BitDepth',1); 
+% IMname = ['output/',currfilename(1:length(currfilename)-3),'_cleanImg.png'];
+% imwrite(cleanImg,IMname,'PNG','BitDepth',1);
 
 %% Label image
 [L,N] = bwlabel(cleanImg, 8);   % Labeling of the clean image to recognize regions
@@ -56,12 +56,6 @@ if N>0                          % If we have regions, continue processing
         for j=1:length(valid_contour)
             imCE(valid_contour(j,1), valid_contour(j,2)) = 1;
         end
-% OLD CODE
-%         % Save image and points
-%         IMname = ['output/',currfilename(1:length(currfilename)-3),'_cont',num2str(i),'.png'];
-%         imwrite(imCE,IMname,'PNG','BitDepth',1); 
-%         Fname  = ['output/',currfilename(1:length(currfilename)-3),'_cont',num2str(i),'.txt'];
-%         save(Fname,'valid_contour','-ASCII');
         
         %% Rotational offset
         x = valid_contour(:,2);
@@ -79,22 +73,6 @@ if N>0                          % If we have regions, continue processing
         %% properly
 %         Output = ShapeReconstruction(valid_contour, Offset, GIELIS_norm, GIELIS_func);
 %         pointGIELIS{i} = Output;
-%         % Save points
-%         Fname  = ['output/',currfilename(1:length(currfilename)-3),'_shape',num2str(i),'.txt'];
-%         save(Fname,'Output','-ASCII');
-%         % Create output image
-%         IMname = ['output/',currfilename(1:length(currfilename)-3),'_shape',num2str(i),'.png'];
-%         f = figure('visible','off'); 
-%         subplot('position', [0 0 1 1]);
-%         imshow(inputImage);
-%         hold on;
-%         plot(Output(:,2),Output(:,1),'g','LineWidth', 3); % Draw green line for Gielis shape
-%         hold off;
-%         dpi = 100;
-%         set(f, 'paperposition', [0 0 n/dpi m/dpi]);
-%         set(f, 'papersize', [n/dpi m/dpi]);
-%         print(f, sprintf('-r%d',dpi), '-dpng', IMname);
-%         OutputImg = imread(IMname);
     end
     
     %% Process Gielis image (Guillem: I don't know how to do this without plots)
@@ -111,18 +89,11 @@ if N>0                          % If we have regions, continue processing
     dpi = 100;
     set(f, 'paperposition', [0 0 n/dpi m/dpi]);
     set(f, 'papersize', [n/dpi m/dpi]);
-    IMname = ['output/',currfilename(1:length(currfilename)-3),'_shape.png'];
-    print(f, sprintf('-r%d',dpi), '-dpng', IMname);
-    OutputImg = imread(IMname);
-    
-    %% Save other images
-    IMname = ['output/',currfilename(1:length(currfilename)-3),'_CE.png'];
-    imwrite(imCE,IMname,'PNG','BitDepth',1);
+    print(f, sprintf('-r%d',dpi), '-dpng', 'temp.png');
+    OutputImg = imread('temp.png');
+    delete('temp.png');
     
 else  %to avoid error if no contour is found
-%     valid_contour = NaN;
-%     Offset = NaN;
-%     Output = NaN;
     OutputImg = NaN;
 end
 

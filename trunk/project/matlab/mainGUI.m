@@ -45,5 +45,9 @@ if ~isdir('output')
     mkdir('output');
 end
 
+%% Initializations
+Options.DisplayIndex = 1; % current index of the image displayed
+Options.Processflag = 0;  % tells if the image is processed or not
+
 %% Execute GUI
 gui_matlab;
