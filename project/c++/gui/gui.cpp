@@ -147,7 +147,7 @@ int Gui::question( const QString & title )
 
 void Gui::on_pushButton_Process_clicked()
 {
-    if( ui->tableImage->rowCount() == 0 )
+    if( ui->tableImage == 0 || ui->tableImage->rowCount() == 0 )
         return;
 
     int currentRow = ui->tableImage->currentRow();
@@ -238,6 +238,13 @@ void Gui::on_pushButton_Process_clicked()
         cRotationalOffset RO;
         vector<float>  offsets = RO.GetMinRadius( contourPoint );
 
+        // TODO: get rid of it later, just for testing.
+        //        printf("Offsets size: %d\n", offsets.size());
+        //        for (int w = 0; w < offsets.size(); w++)
+        //        {
+        //            printf("Offsets: %f\n", offsets[w]);
+        //        }
+
 
         qWarning() << "Starting optimizing...";
         RationalSuperShape2D rationalSuperShape2d;
@@ -257,7 +264,8 @@ void Gui::on_pushButton_Process_clicked()
 
 Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
 {
-    Mat dest = Mat::zeros( image.size(), CV_8U );
+    //    Mat dest = Mat::zeros( image.size(), CV_8U );
+    Mat dest = image;
 
     int size = data.size();
     for( int i = 0; i < size; i++ )

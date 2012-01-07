@@ -981,10 +981,11 @@ vector< Vector2d > RationalSuperShape2D::Run(const vector<Vector2d> &data,
     vector< Vector2d > output;
     double centerX = Get_xoffset();
     double centerY = Get_yoffset();
+    double ro = Get_thtoffset();
     for (double i = 0.0f; i <= 6.26; i += 0.01) {
-        double r = Radius(i);
-        double x = cos(i)*r + centerX;
-        double y = sin(i)*r + centerY;
+        double r = Radius(i);       
+        double x = cos(i + ro)*r + centerX;
+        double y = sin(i + ro)*r + centerY;
         output.push_back(Vector2d(x,y));
     }
     return output;
