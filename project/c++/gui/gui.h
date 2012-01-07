@@ -13,7 +13,7 @@ using namespace Eigen;
 using namespace cv;
 
 namespace Ui {
-    class Gui;
+class Gui;
 }
 
 class Gui : public QMainWindow
@@ -43,10 +43,7 @@ private:
 
     int question( const QString & title );
 
-    // rational_supershape_2d
-    Mat rational_supershape_2d( const Mat &image, const vector< float > &rotOffsets );
     Mat drawPoints( const Mat &image, const vector<Vector2d> &data );
-    vector<Vector2d> readImage_rational_supershape_2d( const Mat &image );
 };
 
 #endif // GUI_H

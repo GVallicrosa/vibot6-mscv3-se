@@ -227,7 +227,7 @@ Mat PostProcessing::Convex(Mat eimage,vector<vector<Point> >&hull,vector<vector<
 
 Mat PostProcessing::ThresholdedContour( vector < vector< Point > > &hull,
                                         vector<vector<Point> > &Contour,
-                                        vector<IRO::Contour> extractedCont,
+                                        vector<IRO::Contour> &extractedCont,
                                         float dist_threshold )
 {
     Mat dest = Mat::zeros( image.size(), CV_8U );

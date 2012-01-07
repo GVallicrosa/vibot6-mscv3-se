@@ -24,7 +24,7 @@ public:
 	Mat FilterImage();
 	Mat Elimination(Mat,vector<vector<Point> >&,long int, double, double);
 	Mat Convex(Mat, vector<vector<Point> >&hull,vector<vector<Point> > &copyCont);
-    Mat ThresholdedContour(vector<vector<Point> >&hull,vector<vector<Point> > &Contour, vector<IRO::Contour> extractedCont, float );
+        Mat ThresholdedContour(vector<vector<Point> >&hull,vector<vector<Point> > &Contour, vector<IRO::Contour> &extractedCont, float );
 
 private:
     float distance(Point  po, Point pf, Point pc);    

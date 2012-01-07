@@ -58,16 +58,16 @@ void Gui::on_pushButton_LoadImage_clicked()
 {
     // it allows multiple file selections
     QStringList files = QFileDialog::getOpenFileNames(
-                            this,
-                            "Select one or more files to open",
-                            "../../../vibot6_mscv3/Images",
-                            "Images (*.bmp *.png *.jpg)" );
+                this,
+                "Select one or more files to open",
+                "../../../vibot6_mscv3/Images",
+                "Images (*.bmp *.png *.jpg)" );
 
 
     // Debug
-//    QListIterator<QString> i(files);
-//    while( i.hasNext() )
-//        qDebug() << i.next();
+    //    QListIterator<QString> i(files);
+    //    while( i.hasNext() )
+    //        qDebug() << i.next();
 
 
     // Default Image size
@@ -97,7 +97,7 @@ void Gui::on_pushButton_LoadImage_clicked()
         ui->tableImage->setRowHeight( current_row, SIZE );
 
         // Sort By FileName
-//        ui->tableImage->sortByColumn(1);
+        //        ui->tableImage->sortByColumn(1);
     }
 }
 
@@ -162,10 +162,10 @@ void Gui::on_pushButton_Process_clicked()
     // ihls_nhs
     Mat image = imread( fileName );
     Mat ihls_image = convert_rgb_to_ihls(image);
-		// The second argument menas if it's red or blue.
-		// 0 is red, blue is 1. You can put 2 here for others, but then
-		// you have to provide the hue max and min, sat min values. e.g. :
-		// convert_ihls_to_nhs(ihls_image, 2, 163, 134, 60);
+    // The second argument menas if it's red or blue.
+    // 0 is red, blue is 1. You can put 2 here for others, but then
+    // you have to provide the hue max and min, sat min values. e.g. :
+    // convert_ihls_to_nhs(ihls_image, 2, 163, 134, 60);
     Mat nhs_image = convert_ihls_to_nhs(ihls_image, 0);
     updateImage( nhs_image );
 
@@ -209,75 +209,50 @@ void Gui::on_pushButton_Process_clicked()
     Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, dist_threshold );
     updateImage( cimg );
 
-		// Converting the copyCont to IRO:Contour so the rotational offset module
-		// can use it.
-    IRO::Contour contour;
-		for ( int i = 0; i < copyCont[0].size(); i++ )
-    {				
-        contour.push_back( make_pair( copyCont[0][i].x, copyCont[0][i].y ) );
-    }
-
     // PostProcessing - rotational offset
     if( question("Rotational Offset") != QMessageBox::Ok )
         return;
 
-		// calculate the Rotational Offset
-    cRotationalOffset RO;
-    vector<float>  offsets = RO.GetMinRadius( contour );		
-
-    // rational_supershape_2d
-    if( question("rational_supershape_2d") != QMessageBox::Ok )
-        return;
-
-    /* instead of offsets
-     * receive this vector of float
-     * from rotationaloffset class     
-    vector<float> offsets;
-    offsets.push_back(0);
-    offsets.push_back(3.14/4);
-    offsets.push_back(3.14/2);
-    offsets.push_back(3*3.14/4);
-    */
-
-    Mat dimg = rational_supershape_2d( image, offsets );
-    updateImage( dimg );
-}
-
-
-Mat Gui::rational_supershape_2d( const Mat &image, const vector< float > &offsets )
-{
-    vector<Vector2d> data = readImage_rational_supershape_2d( image );
-
-    qWarning() << "Starting optimizing...";
-    RationalSuperShape2D rationalSuperShape2d;
-    data = rationalSuperShape2d.Run(data, offsets, true, 1);
-    qWarning() << "Optimizing finished successfully.";
-
-    Mat dest = drawPoints( image, data );
-
-    return dest;
-}
-
-vector<Vector2d> Gui::readImage_rational_supershape_2d( const Mat &image )
-{
+    // For rotational offset
+    IRO::Contour contourPoint;
+    // For shape reconstruction
+    vector<Vector2d> contourVector;
+    // For displaying
     vector<Vector2d> data;
 
-    for (int i = 0; i < image.rows; ++i)
+    // Going through all the contours and extract points from
+    // shape reconstruction.
+    for (int i = 0; i < extractedCont.size(); i++)
     {
-        const uchar* img_data = image.ptr<uchar> (i);
-        for (int j = 0; j < image.cols; ++j)
-        {
-            unsigned int b = *img_data++;
-            unsigned int g = *img_data++;
-            unsigned int r = *img_data++;
+        contourPoint = extractedCont[i];
 
-            if (r > 200 && g > 200 && b > 200) {
-                data.push_back(Vector2d(double(i), double(j)));
-            }
+        contourVector.clear();
+        contourVector.resize( contourPoint.size() );
+        for (int j = 0; j < contourPoint.size(); j++)
+        {
+            contourVector[j][0] = contourPoint[j].first;
+            contourVector[j][1] = contourPoint[j].second;
+        }
+
+        // calculate the Rotational Offset
+        cRotationalOffset RO;
+        vector<float>  offsets = RO.GetMinRadius( contourPoint );
+
+
+        qWarning() << "Starting optimizing...";
+        RationalSuperShape2D rationalSuperShape2d;
+        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, 1);
+        qWarning() << "Optimizing finished successfully.";
+
+        for (int j = 0; j < output.size(); j++)
+        {
+            data.push_back(output[j]);
         }
     }
 
-    return data;
+    Mat dimg = drawPoints( image, data );
+    updateImage( dimg );
+
 }
 
 Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )

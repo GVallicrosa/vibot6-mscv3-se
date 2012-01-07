@@ -38,13 +38,13 @@ EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION(Vector2d)
 
 class IRationalSuperShape2D
 {
-public:
+    public:
     IRationalSuperShape2D() {}
 
     virtual vector< Vector2d > Run(const vector< Vector2d > &data,
-										   const vector< float > &rotOffsets,
-                                           bool normalization = true,
-                                           int functionUsed = 1) = 0;
+                                   const vector< float > &rotOffsets,
+                                   bool normalization = true,
+                                   int functionUsed = 1) = 0;
 };
 
 #endif // IRATIONALSUPERSHAPE2D_H

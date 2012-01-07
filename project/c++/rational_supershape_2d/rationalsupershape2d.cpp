@@ -5,10 +5,10 @@
 
 RationalSuperShape2D::RationalSuperShape2D() {
     Init(1, 1,    //scale
-        2, 2, 2,  //shape
-        4, 1,     //symmetric
-        0,0,      //rotational
-        0,0,0);   //translational
+         2, 2, 2,  //shape
+         4, 1,     //symmetric
+         0,0,      //rotational
+         0,0,0);   //translational
 }
 
 RationalSuperShape2D::RationalSuperShape2D(double a, double b, double n1,
@@ -53,10 +53,10 @@ void RationalSuperShape2D::Init(double a, double b, double n1,
 
 void RationalSuperShape2D::Init( double a, double b, double n1,double n2,double n3) {
     Init(a, b,              //scale
-        n1, n2, n3,         //shape
-        Get_p(), Get_q(),   //symmetric
-        Get_thtoffset(),0,  //rotational
-        0,0,0);             //translational
+         n1, n2, n3,         //shape
+         Get_p(), Get_q(),   //symmetric
+         Get_thtoffset(),0,  //rotational
+         0,0,0);             //translational
 }
 
 double RationalSuperShape2D::ImplicitFunction1( const Vector2d &point, vector <double> &dfFinal ) {
@@ -525,10 +525,10 @@ void RationalSuperShape2D::Optimize(const vector<Vector2d> &data, double &err,
         alpha.ldlt().solveInPlace(beta);
         // coefficients a and b in [0.01, 100]
         outofBounds =  mParameters[0] + beta[0] < 0.01  || mParameters[0] + beta[0] > 1000 ||
-                       mParameters[1] + beta[1] < 0.01  || mParameters[1] + beta[1] > 1000 ||
-                       mParameters[2] + beta[2] < 0.1   || mParameters[2] + beta[2] > 1000 ||
-                       mParameters[3] + beta[3] < 0.001 || mParameters[3] + beta[3] > 1000 ||
-                       mParameters[4] + beta[4] < 0.001 || mParameters[4] + beta[4] > 1000;
+                mParameters[1] + beta[1] < 0.01  || mParameters[1] + beta[1] > 1000 ||
+                mParameters[2] + beta[2] < 0.1   || mParameters[2] + beta[2] > 1000 ||
+                mParameters[3] + beta[3] < 0.001 || mParameters[3] + beta[3] > 1000 ||
+                mParameters[4] + beta[4] < 0.001 || mParameters[4] + beta[4] > 1000;
 
         if( !outofBounds )
         {
@@ -555,13 +555,13 @@ void RationalSuperShape2D::Optimize(const vector<Vector2d> &data, double &err,
         // evaluate chisquare with new values
         oldChiSquare = chiSquare;
         newChiSquare = XiSquare(data,
-                         alpha2,
-                         beta2,
-                         false,         // init x0, y0, and tht0 or not?
-                         false,         // robust or not?
-                         functionUsed,  // implicitf cuntion1
-                         normalization, // actiate normalization or not
-                         false);
+                                alpha2,
+                                beta2,
+                                false,         // init x0, y0, and tht0 or not?
+                                false,         // robust or not?
+                                functionUsed,  // implicitf cuntion1
+                                normalization, // actiate normalization or not
+                                false);
 
         // check if better result
         // if new result is not right
@@ -570,7 +570,7 @@ void RationalSuperShape2D::Optimize(const vector<Vector2d> &data, double &err,
         if( newChiSquare > (0.999 * oldChiSquare) ) {
             lambda *= lambdaIncr;
             for(i = 0; i < mParameters.size(); i++) {
-                    mParameters[i] = oldParams[i];
+                mParameters[i] = oldParams[i];
             }
         }
         else {
@@ -643,7 +643,7 @@ void RationalSuperShape2D :: RobustInit(const vector< Vector2d >& data){
 
             for(unsigned int index = 0; index < hist.size(); index++){
                 if((index * (2 * RATIONAL_PI)/Get_p()) <= angle &&
-                    (angle < (index+1) * (2 * RATIONAL_PI)/Get_p())) {
+                        (angle < (index+1) * (2 * RATIONAL_PI)/Get_p())) {
 
                     hist[index] =  hist[index]+1;
                 }
@@ -694,9 +694,9 @@ void RationalSuperShape2D :: RobustInit(const vector< Vector2d >& data){
 }
 
 double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd &alpha,
-                                        VectorXd &beta, bool initOn,
-                                        bool robust, int functionUsed,
-                                        bool normalization, bool update) {
+                                      VectorXd &beta, bool initOn,
+                                      bool robust, int functionUsed,
+                                      bool normalization, bool update) {
     VectorXd dj;
     vector<double> dF;
 
@@ -709,19 +709,19 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
     unsigned int i,j,k;
 
     double r, x, y, tht, dThtDx, dThtDy,dThtDx0, dThtDy0, dRdTht,
-        chiSquare(1e15),
-        f(0),h(0),
-        x0(Get_xoffset()),y0(Get_yoffset()),tht0(Get_thtoffset()),
-        dXdX0,dXdY0,dXdTht0, dYdX0,dYdY0,dYdTht0, dThtdTht0;
+            chiSquare(1e15),
+            f(0),h(0),
+            x0(Get_xoffset()),y0(Get_yoffset()),tht0(Get_thtoffset()),
+            dXdX0,dXdY0,dXdTht0, dYdX0,dYdY0,dYdTht0, dThtdTht0;
 
     // derivatives of translation matrix are
     // -constant and can be computed once for all
     dTrDx0 << 0, 0, -1,
-              0, 0, 0,
-              0, 0, 1;
+            0, 0, 0,
+            0, 0, 1;
     dTrDy0 << 0, 0, 0,
-              0, 0, -1,
-              0, 0, 1;
+            0, 0, -1,
+            0, 0, 1;
 
     dj = VectorXd::Zero(8);
 
@@ -730,20 +730,20 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
 
     switch (functionUsed)
     {
-        case 1 : {
-            pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction1;
-        } break;
+    case 1 : {
+        pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction1;
+    } break;
 
-        case 2 :{
-            pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction2;
-        } break;
+    case 2 :{
+        pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction2;
+    } break;
 
-        case 3 : {
-            pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction3;
-        } break;
+    case 3 : {
+        pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction3;
+    } break;
 
-        default :
-            pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction1;
+    default :
+        pt2ConstMember = &RationalSuperShape2D :: ImplicitFunction1;
     }
 
     if(initOn)
@@ -789,20 +789,20 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
     dRotDtht0.setZero();
 
     trMatrix << 1 , 0 , -x0 ,
-                0 , 1 , -y0 ,
-                0 , 0 , 1;
+            0 , 1 , -y0 ,
+            0 , 0 , 1;
 
     // get partial derivatives
     // then define inverse rotation,
     // -i.e. transposed rotation
     rotMatrix << cos(tht0) , sin(tht0) , 0 ,
-                -sin(tht0) , cos(tht0) , 0 ,
-                0 , 0 , 1;
+            -sin(tht0) , cos(tht0) , 0 ,
+            0 , 0 , 1;
 
     // get partial derivatives
     dRotDtht0 << -sin(tht0) , cos(tht0) , 0 ,
-                -cos(tht0) , -sin(tht0) , 0 ,
-                0 , 0 , 1;
+            -cos(tht0) , -sin(tht0) , 0 ,
+            0 , 0 , 1;
 
     for(i = 0; i < data.size(); i++)
     {
@@ -891,7 +891,7 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
 
         // df/dx + df/dy
         double nablamagn =  dF[0]*dF[0]
-                            + dF[1]*dF[1];
+                + dF[1]*dF[1];
 
         h = f * pow(f*f + nablamagn,-0.5);
 
@@ -919,7 +919,7 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
             if(normalization) {
                 if (f != 0) {
                     for(k = 0; k < 8; k++) {
-                            beta[k] -=  h * dj[k];
+                        beta[k] -=  h * dj[k];
                     }
                 }
             }
@@ -942,41 +942,41 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
 }
 
 vector< Vector2d > RationalSuperShape2D::Run(const vector<Vector2d> &data,
-											 const vector< float > &rotOffsets,
+                                             const vector< float > &rotOffsets,
                                              bool normalization, int functionUsed) {
     mError = 1e30;
     int sizeOffsets = rotOffsets.size();
     for (int j = 0; j < sizeOffsets; j++) {
-		for (int i = 0; i < 5; i++) {
-			double err = 1e30;
-			RationalSuperShape2D tmp;
+        for (int i = 0; i < 5; i++) {
+            double err = 1e30;
+            RationalSuperShape2D tmp;
 
-			int ptmp;
-			if (i==0) ptmp = 1;
-			if (i==1) ptmp = 3;
-			if (i==2) ptmp = 4;
-			if (i==3) ptmp = 6;
-			if (i==4) ptmp = 8;
+            int ptmp;
+            if (i==0) ptmp = 1;
+            if (i==1) ptmp = 3;
+            if (i==2) ptmp = 4;
+            if (i==3) ptmp = 6;
+            if (i==4) ptmp = 8;
 
-			tmp.Init(1,1,       // and b
-					 2,2,2,     // n1  to n3
-					 ptmp,1,    // and q
-					 rotOffsets[j],0,       // change thtoffset to manual PI/2
-					 0,0,0);
+            tmp.Init(1,1,       // and b
+                     2,2,2,     // n1  to n3
+                     ptmp,1,    // and q
+                     rotOffsets[j],0,       // change thtoffset to manual PI/2
+                     0,0,0);
 
-			tmp.Optimize(data, err, normalization, functionUsed);
+            tmp.Optimize(data, err, normalization, functionUsed);
 
-			// less error, so update parameters!
-			if (err < mError) {
-				Init(tmp.Get_a(), tmp.Get_b(),
-					 tmp.Get_n1(), tmp.Get_n2(), tmp.Get_n3(),
-					 tmp.Get_p(), tmp.Get_q(),
-					 tmp.Get_thtoffset(), tmp.Get_phioffset(),
-					 tmp.Get_xoffset(), tmp.Get_yoffset(), tmp.Get_zoffset());
-				mError = err;
-			}
-		}
-	}
+            // less error, so update parameters!
+            if (err < mError) {
+                Init(tmp.Get_a(), tmp.Get_b(),
+                     tmp.Get_n1(), tmp.Get_n2(), tmp.Get_n3(),
+                     tmp.Get_p(), tmp.Get_q(),
+                     tmp.Get_thtoffset(), tmp.Get_phioffset(),
+                     tmp.Get_xoffset(), tmp.Get_yoffset(), tmp.Get_zoffset());
+                mError = err;
+            }
+        }
+    }
 
     vector< Vector2d > output;
     double centerX = Get_xoffset();
