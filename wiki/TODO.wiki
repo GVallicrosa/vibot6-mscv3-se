@@ -25,6 +25,17 @@ Here is the list of what still needs to be done for our project. Please update t
   ** For some images the output although correct but is much smaller than the road sign.
 
 = Matlab =
+ * Solve problems with Gielis module
+
+ * GUI
+  ** When GUI starts, check the last image folder and load the image list
+  ** Add a button "Save Selected" to save the checked outputs (because "Save all" saves everything). The outputs must be for Image outputs (original, nhs, noiseRemoval, cleanImage, contourExtraction, output), and the file outputs (contourExtraction, rotationalOffsets, gielisRecontruction). Add the necessary checkboxes.
+  ** It will be better to save the outputs in a subfolder where the image is, called output, instead in the main Matlab path.
+  ** Check the names of the checkboxes for images outputs with the names displayed under the images when displayed.
+
+ * Optional...
+  ** Maybe add a gielis parameters output (a, b, m, n1, n2, n3) to a file
+  ** Maybe implement a way to process all the images in a folder with a "Process all" button and save directly all images, not displaying anything
 
 
 = Documentation =
