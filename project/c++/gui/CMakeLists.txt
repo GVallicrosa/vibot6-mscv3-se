@@ -37,6 +37,9 @@ set( SAMPLE_UIS
     ./options.ui
 )
 
+# .qrc file
+set( SAMPLE_RCS window_QT.qrc )  
+
 # enable warnings
 add_definitions( -Wall )
 
