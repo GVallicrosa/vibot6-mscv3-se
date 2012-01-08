@@ -341,3 +341,8 @@ Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
     return dest;
 }
 
+
+void Gui::on_pushButton_Options_clicked()
+{
+    ui_options.show();
+}

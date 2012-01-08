@@ -5,9 +5,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-           gui.cpp
+           gui.cpp \
+           options.cpp
 
-HEADERS += gui.h
+HEADERS += gui.h \
+           options.h
 
 FORMS   += gui.ui \
            options.ui

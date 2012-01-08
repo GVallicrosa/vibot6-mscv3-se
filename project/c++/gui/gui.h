@@ -7,6 +7,7 @@
 #include <Eigen/StdVector>
 #include <vector>
 #include "window_QT.h"
+#include "options.h"
 
 using namespace std;
 using namespace Eigen;
@@ -15,11 +16,6 @@ using namespace cv;
 namespace Ui {
 class Gui;
 }
-
-struct Options
-{
-    // ToDo: Add the options in this structure
-};
 
 class Gui : public QMainWindow
 {
@@ -45,6 +41,8 @@ private slots:
     void readSettings( void );
     void writeSettings( void );
 
+    void on_pushButton_Options_clicked();
+
 private:
     Ui::Gui *ui;
     CvWindow *cvWindow;
@@ -57,7 +55,8 @@ private:
     QSettings settings;
 
     // Options
-    Options options;
+    Options ui_options;
+
 };
 
 #endif // GUI_H
