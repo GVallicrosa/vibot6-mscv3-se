@@ -9,7 +9,7 @@ global Parameters;
 
 q = Parameters(7);
 
-Dffinal = zeros(3, 1);
+Dffinal = zeros(1, 3);
 
 % if the point is zero
 if P(1) == 0 && P(2) == 0
@@ -24,7 +24,7 @@ end;
 
 % dimension of f = q, because later on there will be a loop
 % which assign values to f by q times.
-f = zeros(q, 1);
+f = zeros(1, q);
 Ddum = 0;
 
 x = P(1);
