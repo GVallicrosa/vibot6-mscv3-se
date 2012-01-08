@@ -12,7 +12,7 @@ Here is the list of what still needs to be done for our project. Please update t
   ** Getting rid of the the confirmation questions. Currently for each step it asks whether user is sure.
   ** Saving output images.
   ** Saving logs. (For each step saved the information in a txt file, empty line can be used for separation of data in a file.) (The Matlab part is implemented, please refer to that for guideline.)
-  ** When no image is selected and process button is pressed, application crashes.
+  ** ~~When no image is selected and process button is pressed, application crashes~~. (solved)
   ** Keeping the image folder path.
   ** A button for process all the loaded images.
 
