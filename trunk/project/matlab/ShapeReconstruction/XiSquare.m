@@ -144,7 +144,7 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         % -during the call to ImplicitFunction1-2-3
         DfDr= Df(3);
         
-        dj = zeros(8,1);
+        dj = zeros(8, 1);
         dj(1) = DfDr * DrDa(tht);
         dj(2) = DfDr * DrDb(tht);
         dj(3) = DfDr * DrDn1(tht);
@@ -174,7 +174,7 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
                         dj(idum) = dj(idum) * h*(1-h*h)/f;
                     end
                 else
-                    dj = zeros(8,1);
+                    dj = zeros(8, 1);
                 end
                 
                 %##C++ code slightly edited to remove redundant if

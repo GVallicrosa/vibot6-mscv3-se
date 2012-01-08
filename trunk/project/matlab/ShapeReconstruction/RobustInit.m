@@ -15,17 +15,18 @@ global Parameters;
 % yOffset = Parameters(11);
 
 newdata = Data;
+histavg = 0;
 
 stop = false;
 
 it = 1;
-while it <=30 && stop==false
+while it <= 30 && stop==false
     
-    Hist = zeros(Parameters(6));                          %implement code for Get_p()
-    T = zeros(2);
+    Hist = zeros(1, Parameters(6));                          %implement code for Get_p()
+    T = zeros(1, 2);
     r = 0;
     
-    for i=1:size(newdata)
+    for i=1:length(newdata)
         P = newdata(i,:);                           %change to P(:)
         T = T + P;
         angle = atan2(P(2), P(1));
@@ -33,46 +34,50 @@ while it <=30 && stop==false
             angle = angle + 2*pi;
         end
         
-        for index = 1:size(Hist)
-            if index * (2*pi)/Parameters(6) <= angle && angle < (index+1) * (2*pi)/Parameters(6) 
+        for index = 1:length(Hist)
+            if ((index-1) * (2*pi)/Parameters(6) <= angle && angle < index * (2*pi)/Parameters(6)) 
                     Hist(index) =  Hist(index)+1;
             end
         end
-        
-        T = T / size(newdata);
-        
-        for j = 1: size(newdata)
-            r = r + norm(newdata(j) - T);
-            r = r / size(newdata) ;
-        end
-        
-        histavg=0;
-        oldhistavg = histavg;
-        histavg = mean(Hist);
-        
-        if histavg == oldhistavg 
-            stop = true;
-        end
-        
-        for j = 1 : size(Hist)
-            %go through angular sectors
+    end
+    
+    T = T / length(newdata);
 
-            amin = i*2*pi/pval;
+    r = 0;
 
-            for k = 1 : (histavg - Hist(j))
-                % generate a random angle in [amin, amax];
-                angle = amin + pi/pval;
-                
-                flood = [(-T(1)+r*cos(angle)) (-T(2)+r*sin(angle))];
-                newdata(end,:) = flood;
-            end
+    for i = 1: length(newdata)
+        r = r + norm(newdata(i) - T);
+    end
+
+    r = r / length(newdata);
+
+    oldhistavg = histavg;
+    histavg = mean(Hist);
+
+    if histavg == oldhistavg 
+        stop = true;
+    end
+
+    for i = 1 : length(Hist)
+        %go through angular sectors
+
+        amin = (i-1)*2*pi/Parameters(6);
+
+        for j = 1 : (histavg - Hist(i))
+            % generate a random angle in [amin, amax];
+            angle = amin + pi/Parameters(6);
+
+            flood = [(-T(1)+r*cos(angle)) (-T(2)+r*sin(angle))];
+            newdata(end+1,:) = flood;
         end
     end
+    
     
     Parameters(10) = T(1);
     Parameters(11) = T(2);
     Parameters(1) = r;
     Parameters(2) = r;
     
+    it = it + 1;
 end
 

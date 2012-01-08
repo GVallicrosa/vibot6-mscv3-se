@@ -21,7 +21,7 @@ POST_output     = true;  % save output for this function
 CE_distError = sqrt(2);  % maximum distance from the convex hull to take contour pixels (default sqrt(2))
 CE_output    = true;     % save output for this function
 % Gielis reconstruction
-GIELIS_norm = false;      % use normalization (default true)
+GIELIS_norm = true;      % use normalization (default true)
 GIELIS_func = 1;         % cost function to use 1, 2 or 3 (default 1)
 GIELIS_output = true;    % save output for this function
 
@@ -40,7 +40,7 @@ fileIndex = find(~[files.isdir]);
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'triangular0024.jpg';
+    fname = 'Different0035.jpg';
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     display(['- ', fname]);
