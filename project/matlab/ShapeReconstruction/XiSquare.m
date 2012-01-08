@@ -1,6 +1,12 @@
 function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust, functionused, Normalization, update)
-%MATLAB version for function XiSquare() of C++
-%   Detailed explanation goes here
+% This function computes the cost function
+%  Input:           Data is the contour points
+%  Input/Output:    alpha is hessian matrix : JtJ
+%  Input/Output     beta is the -Jt
+%  Input            init_on the initialization flag
+%  Input            robust, using robustInit or not
+%  Input            functionused, number of potential field function
+%  Input            update, whether tha value of alpha and beta are updated
     
     global Parameters;
     global EPSILON;
