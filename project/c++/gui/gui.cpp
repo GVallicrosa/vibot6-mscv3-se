@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMessageBox>
+#include <string.h>
 
 #include "ihls.h"
 #include "nhs.h"
@@ -12,6 +13,9 @@
 
 
 #define SIZE 100
+
+// Prototype for saving outpout images.
+void save_output_images(vector<Mat> images, vector<bool> flags, char *file_name, char *save_folder);
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
@@ -345,4 +349,27 @@ Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
 void Gui::on_pushButton_Options_clicked()
 {
     ui_options.show();
+}
+
+
+/*
+ * Saving the output images into hard disk.
+ */
+void
+save_output_images(vector<Mat> images, vector<bool> flags, char *file_name, char *save_folder)
+{
+    char *names[5] = {"_nhs", "_noiseRem", "_cleanImg", "_cont", "_shape"};
+
+    for (unsigned int i = 0; i < images.size(); i++)
+    {
+        if (flags[i])
+        {
+            char image_name[512] = "";
+            strcat(image_name, save_folder);
+            strcat(image_name, file_name);
+            strcat(image_name, names[i]);
+            strcat(image_name, ".png");
+            imwrite(image_name, images[i]);
+        }
+    }
 }
