@@ -34,12 +34,47 @@ Gui::Gui(QWidget *parent) :
     // set the location of 'cvWindow'
     cvWindow->setParent(ui->frame);
 
+    readSettings();
 }
 
 Gui::~Gui()
 {
+    writeSettings();
     delete ui;
 }
+
+//void Gui::default_settings( void )
+//{
+
+//}
+
+
+void Gui::readSettings( void )
+{
+    settings.beginGroup("MainWindow");
+
+    resize(settings.value("size", QSize(400, 400)).toSize());
+    move(settings.value("pos", QPoint(200, 200)).toPoint());
+    restoreState(settings.value("state", QByteArray()).toByteArray());
+
+    settings.endGroup();
+}
+
+void Gui::writeSettings( void )
+{
+    settings.beginGroup("MainWindow");
+
+    // Save postion/size of main window
+    settings.setValue("size", size());
+    settings.setValue("pos", pos());
+    settings.setValue("state", saveState());
+
+    settings.endGroup();
+}
+
+
+
+
 
 void Gui::updateImage( const cv::Mat &img )
 {
@@ -56,12 +91,20 @@ void Gui::updateImage( const QString &str )
 
 void Gui::on_pushButton_LoadImage_clicked()
 {
+    const QString DEFAULT_DIR_KEY("default_dir");
+
     // it allows multiple file selections
     QStringList files = QFileDialog::getOpenFileNames(
                 this,
                 "Select one or more files to open",
-                "../../../vibot6_mscv3/Images",
+                settings.value(DEFAULT_DIR_KEY).toString(),
                 "Images (*.bmp *.png *.jpg)" );
+
+    if( !files.isEmpty() )
+    {
+        QDir CurrentDir;
+        settings.setValue( DEFAULT_DIR_KEY, CurrentDir.absoluteFilePath(files.at(0)) );
+    }
 
     // Debug
     //    QListIterator<QString> i(files);
@@ -75,10 +118,16 @@ void Gui::on_pushButton_LoadImage_clicked()
     QSize size(SIZE,SIZE);
 
     QListIterator<QString> it(files);
+    QPixmap pixmap;
     while( it.hasNext() )
     {
         // Get the current file name (and move the iterator)
         QString current_file = it.next();
+
+        // If the file doesn't exists, continue with the next image
+        pixmap.load(current_file);
+        if( pixmap.isNull() )
+            continue;
 
         // Insert a new row in the table
         int current_row = ui->tableImage->rowCount();
@@ -89,7 +138,6 @@ void Gui::on_pushButton_LoadImage_clicked()
         ui->tableImage->setItem( current_row, 1, fileNameItem );
 
         // Set the Image in the table (column 0)
-        QPixmap pixmap(current_file);
         pixmap.scaled(size, Qt::KeepAspectRatioByExpanding);   // scaled the image
         QTableWidgetItem *imageItem = new QTableWidgetItem(QIcon(pixmap), "");
         ui->tableImage->setItem( current_row, 0, imageItem );
@@ -101,7 +149,10 @@ void Gui::on_pushButton_LoadImage_clicked()
         //        ui->tableImage->sortByColumn(1);
     }
 
-    ui->tableImage->setCurrentCell( total_before_addition, 1 );
+    if( total_before_addition < ui->tableImage->rowCount() )
+    {
+        ui->tableImage->setCurrentCell( total_before_addition, 1 );
+    }
 }
 
 void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
@@ -236,13 +287,13 @@ void Gui::on_pushButton_Process_clicked()
 
     // Going through all the contours and extract points from
     // shape reconstruction.
-    for (int i = 0; i < extractedCont.size(); i++)
+    for (unsigned i = 0; i < extractedCont.size(); i++)
     {
         contourPoint = extractedCont[i];
 
         contourVector.clear();
         contourVector.resize( contourPoint.size() );
-        for (int j = 0; j < contourPoint.size(); j++)
+        for (unsigned j = 0; j < contourPoint.size(); j++)
         {
             contourVector[j][0] = contourPoint[j].first;
             contourVector[j][1] = contourPoint[j].second;
@@ -265,7 +316,7 @@ void Gui::on_pushButton_Process_clicked()
         vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, 1);
         qWarning() << "Optimizing finished successfully.";
 
-        for (int j = 0; j < output.size(); j++)
+        for (unsigned j = 0; j < output.size(); j++)
         {
             data.push_back(output[j]);
         }
@@ -289,3 +340,4 @@ Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
 
     return dest;
 }
+

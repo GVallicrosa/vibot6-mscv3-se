@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Options</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="window_QT.qrc">
+    <normaloff>:/logo.png</normaloff>:/logo.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_14">
    <item>
     <widget class="QTabWidget" name="tabWidget">
@@ -610,7 +614,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="window_QT.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

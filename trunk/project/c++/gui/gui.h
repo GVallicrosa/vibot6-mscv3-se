@@ -16,6 +16,11 @@ namespace Ui {
 class Gui;
 }
 
+struct Options
+{
+    // ToDo: Add the options in this structure
+};
+
 class Gui : public QMainWindow
 {
     Q_OBJECT
@@ -37,6 +42,9 @@ private slots:
 
     void on_pushButton_Process_clicked();
 
+    void readSettings( void );
+    void writeSettings( void );
+
 private:
     Ui::Gui *ui;
     CvWindow *cvWindow;
@@ -44,6 +52,12 @@ private:
     int question( const QString & title );
 
     Mat drawPoints( const Mat &image, const vector<Vector2d> &data );
+
+    // Setting
+    QSettings settings;
+
+    // Options
+    Options options;
 };
 
 #endif // GUI_H
