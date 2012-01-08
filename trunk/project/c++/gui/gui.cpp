@@ -63,12 +63,13 @@ void Gui::on_pushButton_LoadImage_clicked()
                 "../../../vibot6_mscv3/Images",
                 "Images (*.bmp *.png *.jpg)" );
 
-
     // Debug
     //    QListIterator<QString> i(files);
     //    while( i.hasNext() )
     //        qDebug() << i.next();
 
+    // Total number of item before addition
+    int total_before_addition = ui->tableImage->rowCount();
 
     // Default Image size
     QSize size(SIZE,SIZE);
@@ -99,6 +100,8 @@ void Gui::on_pushButton_LoadImage_clicked()
         // Sort By FileName
         //        ui->tableImage->sortByColumn(1);
     }
+
+    ui->tableImage->setCurrentCell( total_before_addition, 1 );
 }
 
 void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
@@ -148,10 +151,21 @@ int Gui::question( const QString & title )
 void Gui::on_pushButton_Process_clicked()
 {
     if( ui->tableImage == 0 || ui->tableImage->rowCount() == 0 )
+    {
+        qWarning() << "Table is empty!";
         return;
+    }
 
     int currentRow = ui->tableImage->currentRow();
-    string fileName = ui->tableImage->item( currentRow, 1 )->text().toStdString();
+    QTableWidgetItem *currentItem = ui->tableImage->item( currentRow, 1 );
+    if( currentItem == 0 )
+    {
+        qWarning() << "Selection is empty!";
+        return;
+    }
+
+    // Get filename of the selected image
+    string fileName = currentItem->text().toStdString();
 
     if( fileName == "" )
         return;
