@@ -1,6 +1,7 @@
 function [ outDrDn1 ] = DrDn1( tht )
-
-    %DrDn1 Calculates derivative of r w.r.t. n1
+%DrDn1 Calculates derivative of radius w.r.t. n1
+    %Input: tht   - The angle parameter
+    %Output: out  - The derivative, i.e., a scalar value
 
     %#global n1 parameter used
     global EPSILON;

@@ -1,6 +1,7 @@
 function [ outDrDb ] = DrDb( tht )
-
-    %DrDb Calculates derivative of r w.r.t. b
+%DrDb Calculates derivative of radius w.r.t. b
+    %Input: tht   - The angle parameter
+    %Output: out  - The derivative, i.e., a scalar value
 
     %#global variables used here to store parameters
     global Parameters;

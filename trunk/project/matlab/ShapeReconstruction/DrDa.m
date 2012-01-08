@@ -1,5 +1,7 @@
 function [outDrDa] = DrDa( tht )    
-%DrDa Calculates derivative of r w.r.t. a
+%DrDa Calculates derivative of radius w.r.t. a
+    %Input: tht   - The angle parameter
+    %Output: out    - The derivative, i.e., a scalar value
 
     %#global variables used here to store parameters
     global Parameters;
