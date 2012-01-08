@@ -11,5 +11,6 @@
         <file alias="save-icon">files_Qt/Milky/48/7.png</file>
         <file alias="properties-icon">files_Qt/Milky/48/38.png</file>
         <file alias="stylesheet-trackbar">files_Qt/stylesheet_trackbar.qss</file>
+        <file>logo.png</file>
     </qresource>
 </RCC>
