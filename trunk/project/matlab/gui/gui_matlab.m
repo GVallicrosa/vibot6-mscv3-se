@@ -33,7 +33,7 @@ function varargout = gui_matlab(varargin)
 
 % Edit the above text to modify the response to help gui_matlab
 
-% Last Modified by GUIDE v2.5 20-Dec-2011 01:53:36
+% Last Modified by GUIDE v2.5 08-Jan-2012 04:59:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -101,7 +101,7 @@ end
 
 % Remember the previously selected folder 
 handles.ImageFolder = Options.lastFolder;
-
+handles = LoadImageList(handles);
 % Update handles structure
 guidata(hObject, handles);
 
@@ -297,55 +297,56 @@ Options.currfilename = get(handles.text1,'string');
 
 % Save all images in a variable
 global Images;
+
 fname = Options.currfilename;
 fname = fname(1:length(fname)-4);
 Images = cell(3, 6); % first row images, second names, and save names
 
 Images{1,1} = im; % input image
 Images{2,1} = Options.currfilename; % original name for the input image
-Images{3,1} = ['output/',fname,'_original.png'];
+Images{3,1} = [fname,'_original.png'];
 
 Images{1,2} = nhs; % after segmentation
 Images{2,2} = 'NHS segmentation';
-Images{3,2} = ['output/',fname,'_nhs.png'];
+Images{3,2} = [fname,'_nhs.png'];
 
 Images{1,3} = noiseRem; % after noise removal
 Images{2,3} = 'Noise removal';
-Images{3,3} = ['output/',fname,'_noiseRem.png'];
+Images{3,3} = [fname,'_noiseRem.png'];
 
 Images{1,4} = cleanImg; % after morphological operations
 Images{2,4} = 'Cleaned image';
-Images{3,4} = ['output/',fname,'_clean.png'];
+Images{3,4} = [fname,'_clean.png'];
 
 Images{1,5} = countourImg; % after contour extraction
 Images{2,5} = 'Contour extraction';
-Images{3,5} = ['output/',fname,'_CE.png'];
+Images{3,5} = [fname,'_CE.png'];
 
 Images{1,6} = OutputImg; % final output image
 Images{2,6} = 'Output image';
-Images{3,6} = ['output/',fname,'_output.png'];
+Images{3,6} = [fname,'_output.png'];
 
 % Save all files in a variable
 global Files;
 Files = cell(2,3);
 
 Files{1,1} = valid_contour; % contour extraction
-Files{2,1} = ['output/',fname,'_CE']; % add numbers when saving
+Files{2,1} = [fname,'_CE']; % add numbers when saving
 
 Files{1,2} = Offset; % rotational offset
-Files{2,2} = ['output/',fname,'_rotOff'];
+Files{2,2} = [fname,'_rotOff'];
 
 Files{1,3} = Output; % gielis curves recontruction
-Files{2,3} = ['output/',fname,'_gielis'];
+Files{2,3} = [fname,'_gielis'];
 
 % Image is processed now
 Options.Processflag = 1;
 msgbox('Done Processing');
 
 
-%% --- Executes on button press in SaveAll.
-function SaveAll_Callback(hObject, eventdata, handles)
-% hObject    handle to SaveAll (see GCBO)
+%% --- Executes on button press in SaveSelected.
+function SaveSelected_Callback(hObject, eventdata, handles)
+% hObject    handle to SaveSelected (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global Options;
@@ -353,28 +354,81 @@ global Images;
 global Files;
   
 if Options.Processflag == 1 % ensure image already processed
+     foldername = Options.lastFolder;
+     foldername = [foldername '/' 'output'];
+     if ~isdir(foldername )
+           mkdir(foldername);
+     end
+     foldername = [foldername '/'];
+     
+    % Load actual options
+    Options.intermediate_output = get(handles.IntermediateResults,'Value');
+    Options.NHS_output = get(handles.NHSSegmentation,'Value');
+    Options.POST_out_noise = get(handles.NoiseRemoval,'Value');
+    Options.POST_out_clean = get(handles.ObjectElimination,'Value');
+    Options.CE_output = get(handles.ContourExtraction,'Value');
+    Options.RO_output = get(handles.GetRotationalOffset,'Value'); 
+    Options.GIELIS_output = get(handles.GelisShapeReconstruction,'Value');
+    save opt.mat -struct Options;
     
-    % Images
-    for i = 1:6
-        if i==1 || i==6 % save color images
-            imwrite(Images{1,i},Images{3,i},'PNG','BitDepth',8);
-        else % save binary images
-            imwrite(Images{1,i},Images{3,i},'PNG','BitDepth',1);
-        end
+    if(Options.NHS_output)
+        filepath= [foldername Images{3,2}];
+        imwrite(Images{1,2},filepath,'PNG','BitDepth',1);
     end
+     if(Options.POST_out_noise)
+        filepath= [foldername Images{3,3}];
+        imwrite(Images{1,3},filepath,'PNG','BitDepth',1);
+     end
+    if(Options.POST_out_clean)
+        filepath= [foldername Images{3,4}];
+        imwrite(Images{1,4},filepath,'PNG','BitDepth',1);
+    end
+     if(Options.CE_output)
+        filepath= [foldername Images{3,5}];
+        imwrite(Images{1,5},filepath,'PNG','BitDepth',1);
+        saveText(1,foldername);
+     end
+     if(Options.POST_out_noise)
+         saveText(2,foldername);   
+     end
+     if(Options.GIELIS_output)
+        filepath= [foldername Images{3,6}];
+        imwrite(Images{1,6},filepath,'PNG','BitDepth',8);
+        saveText(3,foldername);
+     end
+     
+%     % Images
+%     for i = 1:6
+%          filepath= [foldername Images{3,i}];
+%         if i==1 || i==6 % save color images
+%             imwrite(Images{1,i},filepath,'PNG','BitDepth',8);
+%         else % save binary images
+%             imwrite(Images{1,i},filepath,'PNG','BitDepth',1);
+%         end
+%     end
     
     % Files
-    for i=1:3
-        datas = Files{1,i};
-        fname = Files{2,i};
-        for j=1:length(datas)
-            data = datas{j};
-            sname = [fname, '_', num2str(j), '.txt']; % save name
-            save(sname,'data','-ASCII');
-        end
-    end
+%     for i=1:3
+%         datas = Files{1,i};
+%         fname = Files{2,i};
+%         for j=1:length(datas)
+%             data = datas{j};
+%             sname = [foldername fname, '_', num2str(j), '.txt']; % save name
+%             save(sname,'data','-ASCII');
+%         end
+%     end
 end
-     
+%% saves text file
+function saveText(i,foldername)
+global Files;
+datas = Files{1,i};
+fname = Files{2,i};
+for j=1:length(datas)
+    data = datas{j};
+    sname = [foldername fname, '_', num2str(j), '.txt']; % save name
+    save(sname,'data','-ASCII');
+end
+return;
 
 %% --- Executes on selection change in ImageList.
 function ImageList_Callback(hObject, eventdata, handles)
@@ -403,6 +457,7 @@ if  flagempty ~= '['
     Options.DisplayIndex = 1;
     Options.Processflag = 0;
 end
+
 
 %==========================================================================
 %% --- Displays image in image list -------  
@@ -528,14 +583,32 @@ function updateDisplayIndex(buttontype,handles)
                         presentdisplay = presentdisplay + value;
                     end
                 otherwise
-                    if (presentdisplay > 6) || (presentdisplay <1)
+                     if(Options.DisplayIndex<6 && presentdisplay >1)
+                        presentdisplay = 6;
+                     end
+                    
+                    if (presentdisplay > 6) 
                         presentdisplay = 1;
+                    elseif(presentdisplay <1) 
+                           presentdisplay = 6; 
                     end
+                    
+                   
                     flag = 0;
             end
+             
+        end
+       
+        Options.DisplayIndex = presentdisplay;
+    else   % if intermdiate display is not checked ..it just display output
+        if presentdisplay ~=6
+            presentdisplay =6;
+        else
+            presentdisplay = 1;
         end
         Options.DisplayIndex = presentdisplay;
-    end 
+    end
+        
  return;
                 
 %============================================================================= 
