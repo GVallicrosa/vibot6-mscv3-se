@@ -952,14 +952,19 @@ vector< Vector2d > RationalSuperShape2D::Run(const vector<Vector2d> &data,
             RationalSuperShape2D tmp;
 
             int ptmp;
-            if (i==0) ptmp = 1;
-            if (i==1) ptmp = 3;
-            if (i==2) ptmp = 4;
-            if (i==3) ptmp = 6;
-            if (i==4) ptmp = 8;
+//             if (i==0) ptmp = 1;
+//             if (i==1) ptmp = 3;
+//             if (i==2) ptmp = 4;
+//             if (i==3) ptmp = 6;
+//             if (i==4) ptmp = 8;
+
+            if (i==0) ptmp = 3;
+            if (i==1) ptmp = 4;
+            if (i==2) ptmp = 6;
+            if (i==3) ptmp = 8;
 
             tmp.Init(1,1,       // and b
-                     2,2,2,     // n1  to n3
+                     1,2,2,     // n1  to n3
                      ptmp,1,    // and q
                      rotOffsets[j],0,       // change thtoffset to manual PI/2
                      0,0,0);
