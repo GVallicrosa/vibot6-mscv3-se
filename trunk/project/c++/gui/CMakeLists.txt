@@ -16,6 +16,7 @@ set( 3RDPARTY  ${CMAKE_CURRENT_LIST_DIR}/../3rdparty )
 set( SAMPLE_SRCS
         ./gui.cpp
         ./main.cpp
+        ./options.cpp
         ./window_QT.cpp
         ${IHLS_NHS}/ihls.cpp
         ${IHLS_NHS}/nhs.cpp
@@ -28,6 +29,7 @@ set( SAMPLE_SRCS
 # another list, this time it includes all header files that should be treated with moc
 set( SAMPLE_MOC_HDRS
     ./gui.h
+    ./options.h
     ./window_QT.h
 )
 
