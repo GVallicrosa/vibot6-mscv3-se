@@ -479,13 +479,13 @@ void RationalSuperShape2D::Optimize(const vector<Vector2d> &data, double &err,
     MatrixXd alpha, alpha2;
     VectorXd beta, beta2, dJ, oldBeta,  trial, sigma;
 
-    alpha   =   MatrixXd::Zero(8,8);
-    alpha2  =   MatrixXd::Zero(8,8);
+    alpha   =   MatrixXd::Zero(5,5);
+    alpha2  =   MatrixXd::Zero(5,5);
 
-    beta    =   VectorXd::Zero(8);
-    beta2   =   VectorXd::Zero(8);
-    dJ      =   VectorXd::Zero(8);
-    oldBeta =   VectorXd::Zero(8);
+    beta    =   VectorXd::Zero(5);
+    beta2   =   VectorXd::Zero(5);
+    dJ      =   VectorXd::Zero(5);
+    oldBeta =   VectorXd::Zero(5);
     trial   =   VectorXd::Zero(8);
     sigma   =   VectorXd::Zero(8);
 
@@ -514,7 +514,7 @@ void RationalSuperShape2D::Optimize(const vector<Vector2d> &data, double &err,
         // add Lambda to diagonal elements
         // -and solve the matrix
         // linearization of Hessian, cf Numerical Recepies
-        for(k = 0; k < 8; k++) {
+        for(k = 0; k < 5; k++) {
             // multiplicative factor to make diagonal dominant
             alpha(k,k) *= 1.0 + lambda;
             // additive factor to avoid rank deficient matrix
@@ -543,13 +543,13 @@ void RationalSuperShape2D::Optimize(const vector<Vector2d> &data, double &err,
             Set_n3( mParameters[4] + beta[4]);
             // coefficients x0 and y0
             // truncate translation to avoid huge gaps
-            beta[5] = min(0.01, max(-0.01, beta[5]));
-            beta[6] = min(0.01, max(-0.01, beta[6]));
-            beta[7] = min(RATIONAL_PI/100.0, max(-RATIONAL_PI/100.0, beta[7]));
-            mParameters[9] += beta[5];
-            mParameters[10] += beta[6];
+            // beta[5] = min(0.01, max(-0.01, beta[5]));
+            // beta[6] = min(0.01, max(-0.01, beta[6]));
+            // beta[7] = min(RATIONAL_PI/100.0, max(-RATIONAL_PI/100.0, beta[7]));
+            // mParameters[9] += beta[5];
+            // mParameters[10] += beta[6];
             // rotational offset tht0
-            mParameters[7] += beta[7];
+            // mParameters[7] += beta[7];
         }
 
         // evaluate chisquare with new values
@@ -883,11 +883,11 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
         // df/dn2 = df/dr * dr/dn2
         dj[3] = dfDr * DrDn2(tht);
         // df/dx0 = df/dr * dr/dtht *dtht/dx0
-        dj[5]= dfDr * dRdTht*dThtDx0;
+        //dj[5]= dfDr * dRdTht*dThtDx0;
         // df/dy0 = df/dr * dr/dtht *dtht/dy0
-        dj[6]= dfDr * dRdTht*dThtDy0;
+        //dj[6]= dfDr * dRdTht*dThtDy0;
         // df/dth0 = dfdr * dr/dtht * dtht/dtht0
-        dj[7]= dfDr * dRdTht*dThtdTht0;
+        //dj[7]= dfDr * dRdTht*dThtdTht0;
 
         // df/dx + df/dy
         double nablamagn =  dF[0]*dF[0]
@@ -907,7 +907,7 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
         if(update) {
             if(normalization) {
                 if (fabs(f) > RATIONAL_EPSILON || nablamagn > RATIONAL_EPSILON ) {
-                    for (int idum = 0; idum < 8; idum++){
+                    for (int idum = 0; idum < 5; idum++){
                         dj[idum] *= h * (1.0 - h * h) / f;
                     }
                 }
@@ -918,19 +918,19 @@ double RationalSuperShape2D::XiSquare(const vector < Vector2d > &data, MatrixXd 
             // summation of values for the gradient
             if(normalization) {
                 if (f != 0) {
-                    for(k = 0; k < 8; k++) {
+                    for(k = 0; k < 5; k++) {
                         beta[k] -=  h * dj[k];
                     }
                 }
             }
             else {
-                for(k = 0; k < 8; k++) {
+                for(k = 0; k < 5; k++) {
                     beta[k] -= f * dj[k];
                 }
             }
             // compute approximation of Hessian matrix
-            for(k = 0; k < 8; k++) {
-                for(j = 0; j < 8; j++) {
+            for(k = 0; k < 5; k++) {
+                for(j = 0; j < 5; j++) {
                     // Hessian Calculation
                     alpha(k,j) +=  dj[k] * dj[j];
                 }
