@@ -50,7 +50,7 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
             
             % Initialise global variable Parameters
             Parameters = [1, 1, ...   % a, b (a == b)
-                2, 2, 2, ...          % n1, n2, n3
+                1, 2, 2, ...          % n1, n2, n3
                 ptmp, 1, ...          % p, q
                 RotOffsets(j), 0, ... % rotationalOffset, phiOffset
                 0, 0, 0];             % centerX, centerY, centerZ 

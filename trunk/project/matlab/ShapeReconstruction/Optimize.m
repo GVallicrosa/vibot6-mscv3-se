@@ -18,7 +18,7 @@ function [ err ] = Optimize( Data , Normalization , functionused )
     oldparams = zeros(16,1);
     LAMBDA_INCR = 10;
     lambda = LAMBDA_INCR ^ (-12);
-    oldbeta = zeros(8,1);
+    oldbeta = zeros(5,1);
 
     %Matrix3d Tr,Rot, dTrdx0, dTrdy0, dRotdtht0;
     %double a, b, R, x, y, tht, dthtdx, dthtdy,dthtdx0, dthtdy0, drdth;
@@ -28,22 +28,22 @@ function [ err ] = Optimize( Data , Normalization , functionused )
     while itnum <= 1000 && STOP == false
         
         oldparams = Parameters;
-        alpha = zeros(8,8);
-        alpha2 = zeros(8,8);
-        beta = zeros(8,1);
-        beta2 = zeros(8,1);
+        alpha = zeros(5,5);
+        alpha2 = zeros(5,5);
+        beta = zeros(5,1);
+        beta2 = zeros(5,1);
         
         [ChiSquare alpha beta] = XiSquare(Data,...
                              alpha,...
                              beta,...
                              itnum == 1,...    %init x0, y0, and tht0 or not?// Team U: in the first iteration only initialize all the parameters
-                             true,...          %robust or not?// Team U: It will never be false. If true this would call RobustInit() which is for
+                             false,...          %robust or not?// Team U: It will never be false. If true this would call RobustInit() which is for
                              ...               %initial assumption circle for Gielis curve. RobustInit() is called only for itnum==0
                              functionused,...  %implicit function1  //Team U:Which potential field function is being used
                              Normalization,... %activate normalization or not
                              true);            %update vectors //Team U: if false the values of alpha and beta won't be changed in the function and
                                                %alpha n beta wud have the last values only
-        for k = 1:8
+        for k = 1:5
 		    alpha(k,k) = alpha(k,k) * ( 1. + lambda);   %multiplicative factor to make diagonal dominant   //Team U: dnt knw whether to keep this step or not
 		    alpha(k,k) = alpha(k,k) + lambda;    %additive factor to avoid rank deficient matrix      //Team U: same as (J^T*J + lambda*I)
         end
@@ -84,14 +84,14 @@ function [ err ] = Optimize( Data , Normalization , functionused )
             % coefficients x0 and y0 translational offset
             % truncate translation to avoid huge gaps
             % Team U: x0 and y0 lie in (-0.01,0.01) and rot offset lies in (-PI/10,PI/100)
-            beta(6) = min(0.01, max(-0.01,beta(6)));
-            beta(7) = min(0.01, max(-0.01,beta(7)));
-            beta(8) = min(pi/100, max(-pi/100,beta(8)));
+            %beta(6) = min(0.01, max(-0.01,beta(6)));
+            %beta(7) = min(0.01, max(-0.01,beta(7)));
+            %beta(8) = min(pi/100, max(-pi/100,beta(8)));
             %Team U: Translational offset
-            Parameters(10) = Parameters(10) + beta(6);
-            Parameters(11) = Parameters(11) + beta(7);
+            %Parameters(10) = Parameters(10) + beta(6);
+            %Parameters(11) = Parameters(11) + beta(7);
             % rotational offset tht0
-            Parameters(8)  = Parameters(8)  + beta(8);
+            %Parameters(8)  = Parameters(8)  + beta(8);
             
         end
         
