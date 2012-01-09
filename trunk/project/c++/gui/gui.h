@@ -46,6 +46,7 @@ private slots:
     void on_pushButton_Options_clicked();
 
     void on_pushButton_Process_All_clicked();
+    void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
 
 private:
     Ui::Gui *ui;
