@@ -26,11 +26,9 @@ if C<EPSILON || S<EPSILON
     return;
 end
 
-Line1 = -1/n1;
-Line2 = ( (C/a)^n2 + (S/b)^n3 ) ^ (-1/n1 - 1);
-Line3 = ( -n2 * (C/a)^n2 * p*0.25*q*tan(p*0.25*theta / q) + ...
-    n3*(S/b)^n3 * p/(4*q*tan(p*0.25*theta / q)) );
-out = Line1 * Line2 * Line3;
+out = (-1/n1) * ( ((C^n2) / a + (S^n3) / b) ^ (-1/n1 - 1)) * ...
+    (-0.25*p*C^n2*(n2*tan(p*theta*0.25/q)) / (a*q) + ...
+      0.25*p*S^n3*(n3/tan(p*theta*0.25/q)) / (b*q) );
 
 end
 
