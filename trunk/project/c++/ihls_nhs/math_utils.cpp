@@ -1,6 +1,3 @@
-/*
- * TODO: write unit testing for all the functions.
- */
 #include "math_utils.h"
 
 /**

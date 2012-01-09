@@ -23,6 +23,8 @@ class Gui : public QMainWindow
 
 public:
     explicit Gui(QWidget *parent = 0);
+    vector<Mat> output_images;
+    bool is_display_images;
     ~Gui();
 
 private slots:
@@ -42,6 +44,8 @@ private slots:
     void writeSettings( void );
 
     void on_pushButton_Options_clicked();
+
+    void on_pushButton_Process_All_clicked();
 
 private:
     Ui::Gui *ui;

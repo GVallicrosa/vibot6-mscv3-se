@@ -4,7 +4,7 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMessageBox>
-#include <string.h>
+#include <string>
 
 #include "ihls.h"
 #include "nhs.h"
@@ -15,7 +15,7 @@
 #define SIZE 100
 
 // Prototype for saving outpout images.
-void save_output_images(vector<Mat> images, vector<bool> flags, char *file_name, char *save_folder);
+void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
@@ -77,9 +77,6 @@ void Gui::writeSettings( void )
 }
 
 
-
-
-
 void Gui::updateImage( const cv::Mat &img )
 {
     CvMat c_img = img;
@@ -91,7 +88,6 @@ void Gui::updateImage( const QString &str )
     Mat img = imread(str.toStdString());
     updateImage(img);
 }
-
 
 void Gui::on_pushButton_LoadImage_clicked()
 {
@@ -176,8 +172,6 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
     ui->label_CurrentImage->setText( fi.fileName() );
 }
 
-
-
 void Gui::on_pushButton_Next_clicked()
 {
     int currentRow = ui->tableImage->currentRow();
@@ -196,15 +190,47 @@ void Gui::on_pushButton_Prev_clicked()
         ui->tableImage->setCurrentCell( currentRow-1, 1 );
 }
 
-
-
 int Gui::question( const QString & title )
 {
     return QMessageBox::question( this, title, "Continue?",  QMessageBox::Ok | QMessageBox::Cancel);
 }
 
+void Gui::on_pushButton_Process_All_clicked()
+{
+    // We have this boolean so when we do process all, we don't
+    // update the images on screen.
+    is_display_images = false;
+
+    int number_images = ui->tableImage->rowCount();
+    if( ui->tableImage == 0 || number_images == 0 )
+    {
+        qWarning() << "Table is empty!";
+        return;
+    }
+
+    vector<bool> flags;
+    flags.push_back(true);
+    flags.push_back(true);
+    flags.push_back(true);
+    flags.push_back(true);
+    flags.push_back(true);
+
+    for(int i = 0; i < number_images; i++)
+    {
+        ui->tableImage->setCurrentCell( i, 1 );
+        on_pushButton_Process_clicked();
+        QTableWidgetItem *currentItem = ui->tableImage->item( i, 1 );
+        QFileInfo fi(currentItem->text());
+        QString base = fi.baseName();
+        save_output_images(output_images, flags, base.toStdString(), fi.canonicalPath().toStdString());
+    }
+
+    is_display_images = true;
+}
+
 void Gui::on_pushButton_Process_clicked()
 {
+    output_images.clear();
     if( ui->tableImage == 0 || ui->tableImage->rowCount() == 0 )
     {
         qWarning() << "Table is empty!";
@@ -230,57 +256,61 @@ void Gui::on_pushButton_Process_clicked()
 
     // ihls_nhs
     Mat image = imread( fileName );
-    Mat ihls_image = convert_rgb_to_ihls(image);
+    Mat ihls_image = convert_rgb_to_ihls(image);    
     // The second argument menas if it's red or blue.
     // 0 is red, blue is 1. You can put 2 here for others, but then
     // you have to provide the hue max and min, sat min values. e.g. :
     // convert_ihls_to_nhs(ihls_image, 2, 163, 134, 60);
     Mat nhs_image = convert_ihls_to_nhs(ihls_image, 0);
-    updateImage( nhs_image );
+    if(is_display_images)
+    {
+        updateImage( nhs_image );
+    }
+    output_images.push_back(nhs_image);
 
 
     // PostProcessing - FilteredImage
-    if( question("FilteredImage") != QMessageBox::Ok )
-        return;
-
     PostProcessing p( nhs_image );
     Mat fimg = p.FilterImage();
-    updateImage( fimg );
-
+    if(is_display_images)
+    {
+        updateImage( fimg );
+    }
 
     // PostProcessing - Elimination
-    if( question("Elimination") != QMessageBox::Ok )
-        return;
-
     long int aspectAria = 1500;
     double lowRatio = 0.25;
     double highRatio = 1.3;
     vector<vector<Point> > copyCont;
     Mat eimg = p.Elimination( fimg, copyCont, aspectAria, lowRatio, highRatio );
-    updateImage( eimg );
+    if(is_display_images)
+    {
+        updateImage( eimg );
+    }
+    output_images.push_back(eimg);
 
 
     // PostProcessing - Convex
-    if( question("Convex") != QMessageBox::Ok )
-        return;
-
     vector<vector<Point> >hull( copyCont.size() );
     Mat himg = p.Convex( eimg, hull, copyCont );
-    updateImage( himg );
+    if(is_display_images)
+    {
+        updateImage( himg );
+    }
+    output_images.push_back(himg);
 
 
-    // PostProcessing - Get contour
-    if( question("Get contour") != QMessageBox::Ok )
-        return;
-
+    // PostProcessing - Get contour   
     vector<IRO::Contour> extractedCont;
-    float dist_threshold = 70;
+    float dist_threshold = 200;
     Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, dist_threshold );
-    updateImage( cimg );
+    if(is_display_images)
+    {
+        updateImage( cimg );
+    }
+    output_images.push_back(cimg);
 
     // PostProcessing - rotational offset
-    if( question("Rotational Offset") != QMessageBox::Ok )
-        return;
 
     // For rotational offset
     IRO::Contour contourPoint;
@@ -327,7 +357,11 @@ void Gui::on_pushButton_Process_clicked()
     }
 
     Mat dimg = drawPoints( image, data );
-    updateImage( dimg );
+    if(is_display_images)
+    {
+        updateImage( dimg );
+    }
+    output_images.push_back(dimg);
 
 }
 
@@ -356,7 +390,7 @@ void Gui::on_pushButton_Options_clicked()
  * Saving the output images into hard disk.
  */
 void
-save_output_images(vector<Mat> images, vector<bool> flags, char *file_name, char *save_folder)
+save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder)
 {
     char *names[5] = {"_nhs", "_noiseRem", "_cleanImg", "_cont", "_shape"};
 
@@ -364,11 +398,13 @@ save_output_images(vector<Mat> images, vector<bool> flags, char *file_name, char
     {
         if (flags[i])
         {
-            char image_name[512] = "";
-            strcat(image_name, save_folder);
-            strcat(image_name, file_name);
-            strcat(image_name, names[i]);
-            strcat(image_name, ".png");
+            string image_name;
+            image_name.append(save_folder);
+            image_name.append("/");
+            image_name.append(file_name);
+            image_name.append(names[i]);
+            image_name.append(".jpg");
+
             imwrite(image_name, images[i]);
         }
     }
