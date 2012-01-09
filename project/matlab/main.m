@@ -33,14 +33,14 @@ if ~isdir('output')
 end
 
 %% Search for images
-dirname = '../../vibot6_mscv3/Images/';
+dirname = './Images/'; % previous value: '../../vibot6_mscv3/Images/';
 files = dir(dirname);
 fileIndex = find(~[files.isdir]);
 
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'Different0040.jpg';
+    fname = 'octogonal0018.jpg';
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     display(['- ', fname]);
@@ -108,5 +108,7 @@ fileIndex = find(~[files.isdir]);
         set(f, 'papersize', [n/dpi m/dpi]);
         print(f, sprintf('-r%d',dpi), '-dpng', IMname);
         %imwrite(Output,IMname,'PNG');%,'BitDepth',1);
+        
     end
+    display('We''re Finished!');
 %end

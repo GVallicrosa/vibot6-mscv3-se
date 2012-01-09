@@ -57,7 +57,7 @@ function [ err ] = Optimize( Data , Normalization , functionused )
         % method. Here alpha is positive definite symmetric Hermitian
         % matrix, and so Cholesky decomposition would be chosen by
         % MATLAB...... Not sure though
-        beta = linsolve(alpha, beta);   % subsititution for solveInPlace() in C++. This solves alpha*h=beta and then we assign beta=h
+        gamma = alpha\beta; beta = gamma; %beta = linsolve(alpha, beta);   % subsititution for solveInPlace() in C++. This solves alpha*h=beta and then we assign beta=h
         
         % Check if coefficients a and b in [0.01, 100]
 
