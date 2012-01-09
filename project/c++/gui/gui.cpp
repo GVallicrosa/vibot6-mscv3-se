@@ -14,9 +14,6 @@
 
 #define SIZE 100
 
-// Prototype for saving outpout images.
-void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
-
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Gui)
@@ -262,6 +259,9 @@ void Gui::on_pushButton_Process_clicked()
     // you have to provide the hue max and min, sat min values. e.g. :
     // convert_ihls_to_nhs(ihls_image, 2, 163, 134, 60);
     Mat nhs_image = convert_ihls_to_nhs(ihls_image, 0);
+    // We need a seperate file for post processign, because they override it
+    // and we cant later on save this image and interval step.
+    Mat nhs_image_for_post = nhs_image.clone();
     if(is_display_images)
     {
         updateImage( nhs_image );
@@ -270,7 +270,7 @@ void Gui::on_pushButton_Process_clicked()
 
 
     // PostProcessing - FilteredImage
-    PostProcessing p( nhs_image );
+    PostProcessing p( nhs_image_for_post );
     Mat fimg = p.FilterImage();
     if(is_display_images)
     {
@@ -390,9 +390,9 @@ void Gui::on_pushButton_Options_clicked()
  * Saving the output images into hard disk.
  */
 void
-save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder)
+Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder)
 {
-    char *names[5] = {"_nhs", "_noiseRem", "_cleanImg", "_cont", "_shape"};
+    char *names[5] = {"_nhs", "_noiseRem", "_cleanImg", "_cont", "_shape"};    
 
     for (unsigned int i = 0; i < images.size(); i++)
     {
