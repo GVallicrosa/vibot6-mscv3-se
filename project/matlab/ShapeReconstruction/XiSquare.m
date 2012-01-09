@@ -53,8 +53,8 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
     
     % Clean memory
     if (update==true)
-        alpha = zeros(8,8);
-        beta = zeros(8,1);
+        alpha = zeros(5,5);
+        beta = zeros(5,1);
     end
     
     % Evaluate ChiSquare components for matrices alpha & beta
@@ -150,15 +150,15 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         % -during the call to ImplicitFunction1-2-3
         DfDr= Df(3);
         
-        dj = zeros(8, 1);
+        dj = zeros(5, 1);
         dj(1) = DfDr * DrDa(tht);
         dj(2) = DfDr * DrDb(tht);
         dj(3) = DfDr * DrDn1(tht);
         dj(4) = DfDr * DrDn2(tht);
         dj(5) = DfDr * DrDn3(tht);
-        dj(6) = DfDr * drdth*dthtdx0;
-        dj(7) = DfDr * drdth*dthtdy0;
-        dj(8) = DfDr * drdth*dthtdtht0;
+        %dj(6) = DfDr * drdth*dthtdx0;
+        %dj(7) = DfDr * drdth*dthtdy0;
+        %dj(8) = DfDr * drdth*dthtdtht0;
         
         %df/dx + df/dy
         nablamagn = Df(1)*Df(1) + Df(2)*Df(2);
@@ -176,29 +176,29 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         if(update == true)
             if(Normalization == true)
                 if(abs(f)>EPSILON || nablamagn>EPSILON)
-                    for idum= 1:8
+                    for idum= 1:5
                         dj(idum) = dj(idum) * h*(1-h*h)/f;
                     end
                 else
-                    dj = zeros(8, 1);
+                    dj = zeros(5, 1);
                 end
                 
                 %##C++ code slightly edited to remove redundant if
                 
                 if(f~=0)
-                    for k = 1:8
+                    for k = 1:5
                         beta(k) = beta(k) - h * dj(k);
                     end
                 end
             else
-                for k = 1:8
+                for k = 1:5
                     beta(k) = beta(k) - f*dj(k);
                 end
             end
             
             % compute approximation of Hessian matrix
-            for k = 1:8
-                for j = 1:8
+            for k = 1:5
+                for j = 1:5
                     alpha(k,j) = alpha(k,j) + dj(k) * dj(j);
                 end
             end
