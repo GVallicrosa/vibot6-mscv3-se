@@ -318,11 +318,8 @@ void Gui::on_pushButton_Process_clicked()
     output_images.push_back(fimg_save);
 
     // PostProcessing - Elimination
-    long int aspectAria = 1500;
-    double lowRatio = 0.25;
-    double highRatio = 1.3;
     vector<vector<Point> > copyCont;
-    Mat eimg = p.Elimination( fimg, copyCont, aspectAria, lowRatio, highRatio );
+    Mat eimg = p.Elimination( fimg, copyCont, aspect_are, low_ratio, high_ratio );
     Mat eimg_save = eimg.clone();
     if(is_display_images)
     {
