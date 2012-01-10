@@ -27,6 +27,13 @@ public:
     bool is_display_images;
     ~Gui();
 
+    // Options
+    QString Color;
+    bool Normalization;
+    QString Function;
+    float low_ratio, high_ratio, aspect_are, Threshold;
+
+
 private slots:
     void updateImage( const Mat &img );
     void updateImage( const QString &str );

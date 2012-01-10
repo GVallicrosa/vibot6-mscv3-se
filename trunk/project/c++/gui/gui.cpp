@@ -16,6 +16,7 @@
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
+    ui_options(this),
     ui(new Ui::Gui)
 {
     ui->setupUi(this);
@@ -35,7 +36,17 @@ Gui::Gui(QWidget *parent) :
     // set the location of 'cvWindow'
     cvWindow->setParent(ui->frame);
 
+    cvWindow->resize(ui->frame->size());
+
     readSettings();
+
+    // check consistency - for the first time load the default param.
+    if( Color.isEmpty() )
+    {
+        // ui_options Contructor load the default parameters in case of errors
+        ui_options.save();
+    }
+
 }
 
 Gui::~Gui()
