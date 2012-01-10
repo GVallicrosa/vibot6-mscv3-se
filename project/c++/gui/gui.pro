@@ -52,10 +52,13 @@ DEPENDPATH += ../3rdparty/
 
 ## For windows
 win32 {
-    INCLUDEPATH += C:\\opencv-build\\install\\include \
-                C:\\opencv-build\\install\\include\\opencv \
-                C:\\opencv-build\\install\\include\\opencv2
-    LIBS += -LC:\\opencv-build\\install\\lib \
+    # Set this to the folder where you compiled the opencv source
+    OPENCV_DIR = "C:\\Opencv-2.3.1\\release"
+
+    INCLUDEPATH += $$OPENCV_DIR\\include \
+                $$OPENCV_DIR\\include\\opencv \
+                $$OPENCV_DIR\\include\\opencv2
+    LIBS += -L$$OPENCV_DIR\\lib \
         -lopencv_core231.dll \
         -lopencv_highgui231.dll \
         -lopencv_imgproc231.dll \
