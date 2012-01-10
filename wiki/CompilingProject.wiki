@@ -60,5 +60,19 @@ The application should be running now.
 *I haven't tested it with Code Blocks, so I cant grantee that the instructions I wrote works 100% properly, so you might have to perform some additional steps. But, I can grantee that it should work in Code Blocks with the 'custom make file'.*
 
 = Windows =
+Follow the following steps to check out the code, compile and run in on your Windows machine.
+
+ # Download QT from here: http://qt.nokia.com/downloads/sdk-windows-cpp
+ # Do the installation for the file you just downloaded.
+ # Add the following string to the PATH, ''C:\Program Files (x86)\CMake 2.8\bin;C:\QtSDK\mingw\bin;C:\opencv-build\install\bin;C:\QtSDK\QtCreator\bin;'' (Of course, you have to change the folders accordingly if you have chosen another folders for your installations.)
+ # Download CMake from here: http://www.cmake.org/files/v2.8/cmake-2.8.7-win32-x86.exe
+ # Install CMake and make sure you choose this option: Add CMake to the system PATH for all users.
+
+http://www.laganiere.name/opencvCookbook/img/c1image15.png
+
+ # Download opencv from here: http://sourceforge.net/projects/opencvlibrary/files/opencv-win/2.3.1/OpenCV-2.3.1-win-superpack.exe/download
+ # Install the opencv with the guideline from this page: http://www.laganiere.name/opencvCookbook/chap1.shtml
+ # I have installed my opencv under "C:\opencv-build", if you do the same then you don't need to change any settings later in project makefile.
+ # Open ''project\c++\gui\gui.pro'' with qtcreator and build it and run it.
 
 = Mac =
