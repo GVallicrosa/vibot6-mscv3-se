@@ -63,6 +63,7 @@ Gui::~Gui()
 
 void Gui::readSettings( void )
 {
+    // Main windows settings
     settings.beginGroup("MainWindow");
 
     resize(settings.value("size", QSize(400, 400)).toSize());
@@ -70,10 +71,24 @@ void Gui::readSettings( void )
     restoreState(settings.value("state", QByteArray()).toByteArray());
 
     settings.endGroup();
+
+
+    // Options
+    settings.beginGroup("Options");
+    Color = settings.value("Color").toString();
+    Normalization = settings.value("Normalization").toBool();
+
+    Function   = settings.value("Function").toString();
+    low_ratio  = settings.value("low_ratio").toFloat();
+    high_ratio = settings.value("high_ratio").toFloat();
+    aspect_are = settings.value("aspect_are").toFloat();
+    Threshold  = settings.value("Threshold").toFloat();
+    settings.endGroup();
 }
 
 void Gui::writeSettings( void )
 {
+    // Main windows settings
     settings.beginGroup("MainWindow");
 
     // Save postion/size of main window
@@ -81,6 +96,18 @@ void Gui::writeSettings( void )
     settings.setValue("pos", pos());
     settings.setValue("state", saveState());
 
+    settings.endGroup();
+
+
+    // Options
+    settings.beginGroup("Options");
+    settings.setValue("Color", Color);
+    settings.setValue("Normalization", Normalization);
+    settings.setValue("Function", Function);
+    settings.setValue("low_ratio", low_ratio);
+    settings.setValue("high_ratio", high_ratio);
+    settings.setValue("aspect_are", aspect_are);
+    settings.setValue("Threshold", Threshold);
     settings.endGroup();
 }
 
@@ -396,6 +423,7 @@ Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
 
 void Gui::on_pushButton_Options_clicked()
 {
+    ui_options.load();
     ui_options.show();
 }
 
