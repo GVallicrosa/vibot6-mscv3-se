@@ -296,7 +296,12 @@ void Gui::on_pushButton_Process_clicked()
     // 0 is red, blue is 1. You can put 2 here for others, but then
     // you have to provide the hue max and min, sat min values. e.g. :
     // convert_ihls_to_nhs(ihls_image, 2, 163, 134, 60);
-    Mat nhs_image = convert_ihls_to_nhs(ihls_image, 0);
+    int nhs_mode = 0;
+    if (Color.toLower().compare("blue") == 0)
+    {
+        nhs_mode = 1;
+    }
+    Mat nhs_image = convert_ihls_to_nhs(ihls_image, nhs_mode);
     // We need a seperate file for post processign, because they override it
     // and we cant later on save this image and interval step.
     Mat nhs_image_for_post = nhs_image.clone();
