@@ -272,10 +272,12 @@ void Gui::on_pushButton_Process_clicked()
     // PostProcessing - FilteredImage
     PostProcessing p( nhs_image_for_post );
     Mat fimg = p.FilterImage();
+    Mat fimg_save = fimg.clone();
     if(is_display_images)
     {
-        updateImage( fimg );
+        updateImage( fimg_save );
     }
+    output_images.push_back(fimg_save);
 
     // PostProcessing - Elimination
     long int aspectAria = 1500;
@@ -283,11 +285,12 @@ void Gui::on_pushButton_Process_clicked()
     double highRatio = 1.3;
     vector<vector<Point> > copyCont;
     Mat eimg = p.Elimination( fimg, copyCont, aspectAria, lowRatio, highRatio );
+    Mat eimg_save = eimg.clone();
     if(is_display_images)
     {
-        updateImage( eimg );
+        updateImage( eimg_save );
     }
-    output_images.push_back(eimg);
+    output_images.push_back(eimg_save);
 
 
     // PostProcessing - Convex
@@ -297,12 +300,12 @@ void Gui::on_pushButton_Process_clicked()
     {
         updateImage( himg );
     }
-    output_images.push_back(himg);
+    // output_images.push_back(himg);
 
 
     // PostProcessing - Get contour   
     vector<IRO::Contour> extractedCont;
-    float dist_threshold = 200;
+    float dist_threshold = 20;
     Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, dist_threshold );
     if(is_display_images)
     {
@@ -392,7 +395,7 @@ void Gui::on_pushButton_Options_clicked()
 void
 Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder)
 {
-    char *names[5] = {"_nhs", "_noiseRem", "_cleanImg", "_cont", "_shape"};    
+    char *names[5] = {"_nhs", "_noiseRemoval", "_elimination", "_reducedContour", "_shape"};
 
     for (unsigned int i = 0; i < images.size(); i++)
     {
