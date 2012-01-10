@@ -345,8 +345,7 @@ void Gui::on_pushButton_Process_clicked()
 
     // PostProcessing - Get contour   
     vector<IRO::Contour> extractedCont;
-    float dist_threshold = 20;
-    Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, dist_threshold );
+    Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, Threshold );
     if(is_display_images)
     {
         updateImage( cimg );
@@ -390,7 +389,16 @@ void Gui::on_pushButton_Process_clicked()
 
         qWarning() << "Starting optimizing...";
         RationalSuperShape2D rationalSuperShape2d;
-        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, 1);
+
+        int functionUsed = 0;
+        if( Function == "Func1" )
+            functionUsed = 1;
+        else if( Function == "Func2" )
+            functionUsed = 2;
+        else if( Function == "Func3" )
+            functionUsed = 3;
+
+        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
         qWarning() << "Optimizing finished successfully.";
 
         for (unsigned j = 0; j < output.size(); j++)
