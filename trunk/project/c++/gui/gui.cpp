@@ -212,7 +212,7 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
 
 void Gui::on_pushButton_Next_clicked()
 {
-    current_image = (current_image+1) % NUM_OF_OUTPUT_IMAGES;
+    current_image = (current_image + 1) % NUM_OF_OUTPUT_IMAGES;
 
     int currentRow = ui->tableImage->currentRow();
     QTableWidgetItem *currentItem = ui->tableImage->item( currentRow, 1 );
@@ -226,54 +226,59 @@ void Gui::on_pushButton_Next_clicked()
 
     switch (current_image)
     {
-        case 0:
-            if( ui->NHSSegmentation->isChecked() ) {
-                ui->label_CurrentImage->setText( "NHS Segmentation: " + fi.fileName() );
-                break;
-            }
-            current_image++;
-        case 1:
-            if( ui->NoiseRemoval->isChecked() ) {
-                ui->label_CurrentImage->setText( "Noise Removal: " + fi.fileName() );
-                break;
-            }
-            current_image++;
-        case 2:
-            if( ui->ObjectElimination->isChecked() ) {
-                ui->label_CurrentImage->setText( "Object Elimination: " + fi.fileName() );
-                break;
-            }
-            current_image++;
-        case 3:
-            if( ui->ContourExtaction->isChecked() ) {
-                ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
-                break;
-            }
-            current_image++;
-        case 4:
-            if( ui->GetRotationOffset->isChecked() ) {
-                ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
-                break;
-            }
-            current_image++;
-        case 5:
-            if( ui->GielisShapeReconstruction->isChecked() ) {
-                ui->label_CurrentImage->setText( "Gielis Shape Reconstruction: " + fi.fileName() );
-                break;
-            }
-            current_image++;
+    case 0:
+        if( ui->NHSSegmentation->isChecked() ) {
+            ui->label_CurrentImage->setText( "NHS Segmentation: " + fi.fileName() );
+            break;
+        }
+        current_image++;
+    case 1:
+        if( ui->NoiseRemoval->isChecked() ) {
+            ui->label_CurrentImage->setText( "Noise Removal: " + fi.fileName() );
+            break;
+        }
+        current_image++;
+    case 2:
+        if( ui->ObjectElimination->isChecked() ) {
+            ui->label_CurrentImage->setText( "Object Elimination: " + fi.fileName() );
+            break;
+        }
+        current_image++;
+    case 3:
+        if( ui->ContourExtaction->isChecked() ) {
+            ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
+            break;
+        }
+        current_image++;
+    case 4:
+        if( ui->GetRotationOffset->isChecked() ) {
+            ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
+            break;
+        }
+        current_image++;
+    case 5:
+        if( ui->GielisShapeReconstruction->isChecked() ) {
+            ui->label_CurrentImage->setText( "Gielis Shape Reconstruction: " + fi.fileName() );
+            break;
+        }
+        current_image++;
     }
 
-    if( current_image < output_images.size() )
-        updateImage( output_images.at(current_image) );
+    if (current_image >= output_images.size())
+        current_image = 0;
+
+    if (current_image < 0)
+        current_image = output_images.size() - 1;
+
+    updateImage( output_images.at(current_image) );
 }
 
 void Gui::on_pushButton_Prev_clicked()
 {
-    if( current_image < 0 )
-        current_image = NUM_OF_OUTPUT_IMAGES;
+    current_image = (current_image - 1) % NUM_OF_OUTPUT_IMAGES;
 
-    current_image = (current_image-1) % NUM_OF_OUTPUT_IMAGES;
+    if (current_image < 0)
+        current_image = output_images.size() - 1;
 
     int currentRow = ui->tableImage->currentRow();
     QTableWidgetItem *currentItem = ui->tableImage->item( currentRow, 1 );
@@ -287,46 +292,51 @@ void Gui::on_pushButton_Prev_clicked()
 
     switch (current_image)
     {
-        case 5:
-            if( ui->GielisShapeReconstruction->isChecked() ) {
-                ui->label_CurrentImage->setText( "Gielis Shape Reconstruction: " + fi.fileName() );
-                break;
-            }
-            current_image--;
-        case 4:
-            if( ui->GetRotationOffset->isChecked() ) {
-                ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
-                break;
-            }
-            current_image--;
-        case 3:
-            if( ui->ContourExtaction->isChecked() ) {
-                ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
-                break;
-            }
-            current_image--;
-        case 2:
-            if( ui->ObjectElimination->isChecked() ) {
-                ui->label_CurrentImage->setText( "Object Elimination: " + fi.fileName() );
-                break;
-            }
-            current_image--;
-        case 1:
-            if( ui->NoiseRemoval->isChecked() ) {
-                ui->label_CurrentImage->setText( "Noise Removal: " + fi.fileName() );
-                break;
-            }
-            current_image--;
-        case 0:
-            if( ui->NHSSegmentation->isChecked() ) {
-                ui->label_CurrentImage->setText( "NHS Segmentation: " + fi.fileName() );
-                break;
-            }
-            current_image--;
+    case 5:
+        if( ui->GielisShapeReconstruction->isChecked() ) {
+            ui->label_CurrentImage->setText( "Gielis Shape Reconstruction: " + fi.fileName() );
+            break;
+        }
+        current_image--;
+    case 4:
+        if( ui->GetRotationOffset->isChecked() ) {
+            ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
+            break;
+        }
+        current_image--;
+    case 3:
+        if( ui->ContourExtaction->isChecked() ) {
+            ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
+            break;
+        }
+        current_image--;
+    case 2:
+        if( ui->ObjectElimination->isChecked() ) {
+            ui->label_CurrentImage->setText( "Object Elimination: " + fi.fileName() );
+            break;
+        }
+        current_image--;
+    case 1:
+        if( ui->NoiseRemoval->isChecked() ) {
+            ui->label_CurrentImage->setText( "Noise Removal: " + fi.fileName() );
+            break;
+        }
+        current_image--;
+    case 0:
+        if( ui->NHSSegmentation->isChecked() ) {
+            ui->label_CurrentImage->setText( "NHS Segmentation: " + fi.fileName() );
+            break;
+        }
+        current_image--;
     }
 
-    if( current_image > 0 && current_image < output_images.size() )
-        updateImage( output_images.at(current_image) );
+    if (current_image >= output_images.size())
+        current_image = 0;
+
+    if (current_image < 0)
+        current_image = output_images.size() - 1;
+
+    updateImage( output_images.at(current_image) );
 }
 
 void Gui::on_pushButton_Process_All_clicked()
@@ -343,6 +353,7 @@ void Gui::on_pushButton_Process_All_clicked()
     }
 
     vector<bool> flags;
+    flags.push_back(true);
     flags.push_back(true);
     flags.push_back(true);
     flags.push_back(true);
@@ -387,7 +398,7 @@ void Gui::on_pushButton_Process_clicked()
 
     // ihls_nhs
     Mat image = imread( fileName );
-    Mat ihls_image = convert_rgb_to_ihls(image);    
+    Mat ihls_image = convert_rgb_to_ihls(image);
     // The second argument menas if it's red or blue.
     // 0 is red, blue is 1. You can put 2 here for others, but then
     // you have to provide the hue max and min, sat min values. e.g. :
@@ -437,13 +448,10 @@ void Gui::on_pushButton_Process_clicked()
     {
         updateImage( himg_save );
     }
-    // Currently we have 5 interval output images both in Matlab and c++.
-    // If we decide to show convex hull as well, please change the size of
-    // save_output_images function so it works with 6 images. 
-    // output_images.push_back(himg_save);
+    output_images.push_back(himg_save);
 
 
-    // PostProcessing - Get contour   
+    // PostProcessing - Get contour
     vector<IRO::Contour> extractedCont;
     Mat cimg = p.ThresholdedContour( hull, copyCont, extractedCont, Threshold );
     if(is_display_images)
@@ -545,7 +553,7 @@ void Gui::on_pushButton_Options_clicked()
 void
 Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder)
 {
-    char *names[5] = {"_nhs", "_noiseRemoval", "_elimination", "_reducedContour", "_shape"};
+    char *names[6] = {"_nhs", "_noiseRemoval", "_elimination", "_convexHull", "_reducedContour", "_shape"};
 
     for (unsigned int i = 0; i < images.size(); i++)
     {
