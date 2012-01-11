@@ -73,65 +73,62 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QCheckBox" name="checkBox_RGBtoIHLS">
-              <property name="text">
-               <string>RGB to IHLS</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_NHSSegmentation">
+             <widget class="QCheckBox" name="NHSSegmentation">
               <property name="text">
                <string>NHS Segmentation</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_NoiseRemoval">
+             <widget class="QCheckBox" name="NoiseRemoval">
               <property name="text">
                <string>Noise removal</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_ObjectElimination">
+             <widget class="QCheckBox" name="ObjectElimination">
               <property name="text">
                <string>Object elimination</string>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_RecoverDeformedShape">
-              <property name="text">
-               <string>Recover deformed shape</string>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_ContourExtaction">
+             <widget class="QCheckBox" name="ContourExtaction">
               <property name="text">
                <string>Contour extraction</string>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBox_SmoothContour">
-              <property name="text">
-               <string>Smooth contour</string>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_GetRotationOffset">
+             <widget class="QCheckBox" name="GetRotationOffset">
               <property name="text">
                <string>Get rotation offset</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_GielisShapeReconstruction">
+             <widget class="QCheckBox" name="GielisShapeReconstruction">
               <property name="text">
                <string>Gielis shape reconstruction</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -291,7 +288,7 @@
      <x>0</x>
      <y>0</y>
      <width>745</width>
-     <height>25</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

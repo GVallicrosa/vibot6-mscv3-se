@@ -13,10 +13,13 @@
 
 
 #define SIZE 100
+#define NUM_OF_OUTPUT_IMAGES 6
+
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
     ui_options(this),
+    current_image(0),
     ui(new Ui::Gui)
 {
     ui->setupUi(this);
@@ -209,25 +212,121 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
 
 void Gui::on_pushButton_Next_clicked()
 {
-    int currentRow = ui->tableImage->currentRow();
-    int size = ui->tableImage->rowCount();
+    current_image = (current_image+1) % NUM_OF_OUTPUT_IMAGES;
 
-    if( size > 0 && currentRow < size-1 )
-        ui->tableImage->setCurrentCell( currentRow+1, 1 );
+    int currentRow = ui->tableImage->currentRow();
+    QTableWidgetItem *currentItem = ui->tableImage->item( currentRow, 1 );
+    if( currentItem == 0 ) {
+        qWarning() << "Selection is empty!";
+        return;
+    }
+    // Get filename of the selected image
+    QString fileName = currentItem->text();
+    QFileInfo fi( fileName );
+
+    switch (current_image)
+    {
+        case 0:
+            if( ui->NHSSegmentation->isChecked() ) {
+                ui->label_CurrentImage->setText( "NHS Segmentation: " + fi.fileName() );
+                break;
+            }
+            current_image++;
+        case 1:
+            if( ui->NoiseRemoval->isChecked() ) {
+                ui->label_CurrentImage->setText( "Noise Removal: " + fi.fileName() );
+                break;
+            }
+            current_image++;
+        case 2:
+            if( ui->ObjectElimination->isChecked() ) {
+                ui->label_CurrentImage->setText( "Object Elimination: " + fi.fileName() );
+                break;
+            }
+            current_image++;
+        case 3:
+            if( ui->ContourExtaction->isChecked() ) {
+                ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
+                break;
+            }
+            current_image++;
+        case 4:
+            if( ui->GetRotationOffset->isChecked() ) {
+                ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
+                break;
+            }
+            current_image++;
+        case 5:
+            if( ui->GielisShapeReconstruction->isChecked() ) {
+                ui->label_CurrentImage->setText( "Gielis Shape Reconstruction: " + fi.fileName() );
+                break;
+            }
+            current_image++;
+    }
+
+    if( current_image < output_images.size() )
+        updateImage( output_images.at(current_image) );
 }
 
 void Gui::on_pushButton_Prev_clicked()
 {
+    if( current_image < 0 )
+        current_image = NUM_OF_OUTPUT_IMAGES;
+
+    current_image = (current_image-1) % NUM_OF_OUTPUT_IMAGES;
+
     int currentRow = ui->tableImage->currentRow();
-    int size = ui->tableImage->rowCount();
+    QTableWidgetItem *currentItem = ui->tableImage->item( currentRow, 1 );
+    if( currentItem == 0 ) {
+        qWarning() << "Selection is empty!";
+        return;
+    }
+    // Get filename of the selected image
+    QString fileName = currentItem->text();
+    QFileInfo fi( fileName );
 
-    if( size > 0 && currentRow > 0 )
-        ui->tableImage->setCurrentCell( currentRow-1, 1 );
-}
+    switch (current_image)
+    {
+        case 5:
+            if( ui->GielisShapeReconstruction->isChecked() ) {
+                ui->label_CurrentImage->setText( "Gielis Shape Reconstruction: " + fi.fileName() );
+                break;
+            }
+            current_image--;
+        case 4:
+            if( ui->GetRotationOffset->isChecked() ) {
+                ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
+                break;
+            }
+            current_image--;
+        case 3:
+            if( ui->ContourExtaction->isChecked() ) {
+                ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
+                break;
+            }
+            current_image--;
+        case 2:
+            if( ui->ObjectElimination->isChecked() ) {
+                ui->label_CurrentImage->setText( "Object Elimination: " + fi.fileName() );
+                break;
+            }
+            current_image--;
+        case 1:
+            if( ui->NoiseRemoval->isChecked() ) {
+                ui->label_CurrentImage->setText( "Noise Removal: " + fi.fileName() );
+                break;
+            }
+            current_image--;
+        case 0:
+            if( ui->NHSSegmentation->isChecked() ) {
+                ui->label_CurrentImage->setText( "NHS Segmentation: " + fi.fileName() );
+                break;
+            }
+            current_image--;
+    }
 
-int Gui::question( const QString & title )
-{
-    return QMessageBox::question( this, title, "Continue?",  QMessageBox::Ok | QMessageBox::Cancel);
+    if( current_image > 0 && current_image < output_images.size() )
+        updateImage( output_images.at(current_image) );
 }
 
 void Gui::on_pushButton_Process_All_clicked()
@@ -286,9 +385,6 @@ void Gui::on_pushButton_Process_clicked()
     if( fileName == "" )
         return;
 
-    /* Steps */
-    /* ToDo: use the checkBox to decide, instead of "question()" function */
-
     // ihls_nhs
     Mat image = imread( fileName );
     Mat ihls_image = convert_rgb_to_ihls(image);    
@@ -336,11 +432,12 @@ void Gui::on_pushButton_Process_clicked()
     // PostProcessing - Convex
     vector<vector<Point> >hull( copyCont.size() );
     Mat himg = p.Convex( eimg, hull, copyCont );
+    Mat himg_save = himg.clone();
     if(is_display_images)
     {
-        updateImage( himg );
+        updateImage( himg_save );
     }
-    // output_images.push_back(himg);
+     output_images.push_back(himg_save);
 
 
     // PostProcessing - Get contour   
@@ -414,6 +511,7 @@ void Gui::on_pushButton_Process_clicked()
     }
     output_images.push_back(dimg);
 
+    current_image = output_images.size() - 1;
 }
 
 Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )

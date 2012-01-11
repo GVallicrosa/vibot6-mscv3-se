@@ -24,6 +24,7 @@ class Gui : public QMainWindow
 public:
     explicit Gui(QWidget *parent = 0);
     vector<Mat> output_images;
+    int current_image;
     bool is_display_images;
     ~Gui();
 
@@ -58,8 +59,6 @@ private slots:
 private:
     Ui::Gui *ui;
     CvWindow *cvWindow;
-
-    int question( const QString & title );
 
     Mat drawPoints( const Mat &image, const vector<Vector2d> &data );
 
