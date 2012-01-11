@@ -437,7 +437,10 @@ void Gui::on_pushButton_Process_clicked()
     {
         updateImage( himg_save );
     }
-     output_images.push_back(himg_save);
+    // Currently we have 5 interval output images both in Matlab and c++.
+    // If we decide to show convex hull as well, please change the size of
+    // save_output_images function so it works with 6 images. 
+    // output_images.push_back(himg_save);
 
 
     // PostProcessing - Get contour   
