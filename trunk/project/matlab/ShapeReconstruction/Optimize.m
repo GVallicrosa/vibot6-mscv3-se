@@ -37,7 +37,7 @@ function [ err ] = Optimize( Data , Normalization , functionused )
                              alpha,...
                              beta,...
                              itnum == 1,...    %init x0, y0, and tht0 or not?// Team U: in the first iteration only initialize all the parameters
-                             false,...          %robust or not?// Team U: It will never be false. If true this would call RobustInit() which is for
+                             false,...          %robust or not?// Team U: It will never be true. If true this would call RobustInit() which is for
                              ...               %initial assumption circle for Gielis curve. RobustInit() is called only for itnum==0
                              functionused,...  %implicit function1  //Team U:Which potential field function is being used
                              Normalization,... %activate normalization or not
@@ -84,9 +84,7 @@ function [ err ] = Optimize( Data , Normalization , functionused )
             % coefficients x0 and y0 translational offset
             % truncate translation to avoid huge gaps
             % Team U: x0 and y0 lie in (-0.01,0.01) and rot offset lies in (-PI/10,PI/100)
-            %beta(6) = min(0.01, max(-0.01,beta(6)));
-            %beta(7) = min(0.01, max(-0.01,beta(7)));
-            %beta(8) = min(pi/100, max(-pi/100,beta(8)));
+
             %Team U: Translational offset
             %Parameters(10) = Parameters(10) + beta(6);
             %Parameters(11) = Parameters(11) + beta(7);
