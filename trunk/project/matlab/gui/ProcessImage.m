@@ -70,8 +70,8 @@ if N>0                          % If we have regions, continue processing
         
         %% Gielis curves reconstruction % disabled because is not working
         %% properly
-%         Output = ShapeReconstruction(valid_contour, Offset, GIELIS_norm, GIELIS_func);
-%         pointGIELIS{i} = Output;
+         Output = ShapeReconstruction(valid_contour, Offset, GIELIS_norm, GIELIS_func);
+         pointGIELIS{i} = Output;
     end
     
     %% Process Gielis image (Guillem: I don't know how to do this without plots)
@@ -79,7 +79,7 @@ if N>0                          % If we have regions, continue processing
     subplot('position', [0 0 1 1]);
     imshow(inputImage);
     hold on;
-    pointGIELIS = contCE; % only for testing without gielis
+    %pointGIELIS = contCE; % only for testing without gielis
     for k=1:length(pointGIELIS)
         points = pointGIELIS{k};
         plot(points(:,2),points(:,1),'g','LineWidth', 3);
