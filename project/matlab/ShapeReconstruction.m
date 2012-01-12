@@ -34,10 +34,10 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
     mError = 1e30;
     
     for j = 1:length(RotOffsets)
-        for i = 1:5
+        for i = 2:5
             switch i
-                case 1
-                    ptmp = 1;
+%                 case 1
+%                     ptmp = 1;
                 case 2
                     ptmp = 3;
                 case 3
