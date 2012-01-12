@@ -38,6 +38,9 @@ function [noiseRem,cleanImg] = Postprocessing(BW_im, aspectArea, lowRatio, highR
 %Remove the noise, restore the contours and fill incomplete data.
 
 sd = strel('disk',4);                   %Create a structuring element
+%Team U correction: Adding opening before any other processing
+BW_im = bwareaopen(BW_im, 100); 
+%
 cleanImg = imdilate(BW_im, sd);         %Dilate the image
 cleanImg = imfill(cleanImg,8,'holes');  %Fill the holes
 cleanImg = imerode(cleanImg,sd);        %Erode the image
