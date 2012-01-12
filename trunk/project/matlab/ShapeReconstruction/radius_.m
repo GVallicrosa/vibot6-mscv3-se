@@ -1,6 +1,6 @@
 function [ out ] = Radius_( angle )
-%RADIUS_ Summary of this function goes here
-%   Detailed explanation goes here
+%Gielis curve radius for a given angle r(theta)
+%   Formula modified. Here a^n2 is replaced by a and b^n3 replaced by b
 global Parameters;
 
 a = Parameters(1);
