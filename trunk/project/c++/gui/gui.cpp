@@ -560,8 +560,8 @@ Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string fil
         if (flags[i])
         {
             string image_name;
-            image_name.append(save_folder);
-            image_name.append("/");
+            image_name.append(save_folder);            
+            image_name.append("/output/");
             image_name.append(file_name);
             image_name.append(names[i]);
             image_name.append(".jpg");
