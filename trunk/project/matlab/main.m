@@ -44,7 +44,7 @@ fileIndex = find(~[files.isdir]);
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'octogonal0001.jpg';
+    fname = 'circular0009.jpg';
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     display(['- ', fname]);
@@ -94,7 +94,14 @@ fileIndex = find(~[files.isdir]);
         end
         
         %% Rotational offset
-        [Radius, Theta] = Cartisian2Polar(valid_contour);
+        x = zeros(size(valid_contour,1));
+        y = zeros(size(valid_contour,1));
+        valid_contour1 = zeros(size(valid_contour));
+        x = valid_contour(:,2);
+        y = valid_contour(:,1);
+        valid_contour1(:,1) = x;
+        valid_contour1(:,2) = y;
+        [Radius, Theta] = Cartisian2Polar(valid_contour1);
         [Theta,Permutation_Index] = sort(Theta,'ascend');
         Radius = Radius(Permutation_Index);
         Offset = FindMinimum(Radius, Theta);
