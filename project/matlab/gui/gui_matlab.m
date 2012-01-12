@@ -33,7 +33,7 @@ function varargout = gui_matlab(varargin)
 
 % Edit the above text to modify the response to help gui_matlab
 
-% Last Modified by GUIDE v2.5 08-Jan-2012 04:59:49
+% Last Modified by GUIDE v2.5 12-Jan-2012 19:55:39
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -71,6 +71,7 @@ global Options;
 
 % Load all options to the checkboxes
 intermediate = false;
+% IMAGES
 if Options.NHS_output
     set(handles.NHSSegmentation, 'Value', 1);
     intermediate = true;
@@ -87,12 +88,25 @@ if Options.CE_output
     set(handles.ContourExtraction, 'Value', 1);
     intermediate = true;
 end
+if Options.GIELIS_output
+    set(handles.GelisShapeReconstruction, 'Value', 1);
+    intermediate = true;
+end
+% FILES
+if Options.CE_file_before
+    set(handles.originalContour, 'Value', 1);
+    intermediate = true;
+end
+if Options.CE_file_after
+    set(handles.CEfile, 'Value', 1);
+    intermediate = true;
+end 
 if Options.RO_output
     set(handles.GetRotationalOffset, 'Value', 1);
     intermediate = true;
 end
-if Options.GIELIS_output
-    set(handles.GelisShapeReconstruction, 'Value', 1);
+if Options.GIELIS_param
+    set(handles.gielisParameters, 'Value', 1);
     intermediate = true;
 end
 if intermediate
@@ -293,7 +307,7 @@ end
 
 % Process the current image
 Options.currfilename = get(handles.text1,'string');
-[nhs,noiseRem,cleanImg,valid_contour,countourImg,Offset,Output,OutputImg] = ProcessImage(im); % less parameters
+[nhs,noiseRem,cleanImg,imCE,OutputImg, contOrig,contCE,rotOff,paramGIELIS] = ProcessImage(im); % less parameters
 
 % Save all images in a variable
 global Images;
@@ -318,7 +332,7 @@ Images{1,4} = cleanImg; % after morphological operations
 Images{2,4} = 'Cleaned image';
 Images{3,4} = [fname,'_clean.png'];
 
-Images{1,5} = countourImg; % after contour extraction
+Images{1,5} = imCE; % after contour extraction
 Images{2,5} = 'Contour extraction';
 Images{3,5} = [fname,'_CE.png'];
 
@@ -328,16 +342,19 @@ Images{3,6} = [fname,'_output.png'];
 
 % Save all files in a variable
 global Files;
-Files = cell(2,3);
+Files = cell(2,4);
 
-Files{1,1} = valid_contour; % contour extraction
-Files{2,1} = [fname,'_CE']; % add numbers when saving
+Files{1,1} = contOrig; % original contour
+Files{2,1} = [fname,'_contOrig']; % add numbers when saving
 
-Files{1,2} = Offset; % rotational offset
-Files{2,2} = [fname,'_rotOff'];
+Files{1,2} = contCE; % contour extraction
+Files{2,2} = [fname,'_CE'];
 
-Files{1,3} = Output; % gielis curves recontruction
-Files{2,3} = [fname,'_gielis'];
+Files{1,3} = rotOff; % rotational offset
+Files{2,3} = [fname,'_rotOff'];
+
+Files{1,4} = paramGIELIS; % gielis curves recontruction
+Files{2,4} = [fname,'_gielis'];
 
 % Image is processed now
 Options.Processflag = 1;
@@ -351,73 +368,71 @@ function SaveSelected_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global Options;
 global Images;
-global Files;
+%global Files;
   
 if Options.Processflag == 1 % ensure image already processed
-     foldername = Options.lastFolder;
-     foldername = [foldername '/' 'output'];
-     if ~isdir(foldername )
-           mkdir(foldername);
-     end
-     foldername = [foldername '/'];
+    foldername = Options.lastFolder;
+    foldername = [foldername '/' 'output'];
+    if ~isdir(foldername)
+        mkdir(foldername);
+    end
+    foldername = [foldername '/'];
      
     % Load actual options
     Options.intermediate_output = get(handles.IntermediateResults,'Value');
+    % IMAGES
     Options.NHS_output = get(handles.NHSSegmentation,'Value');
     Options.POST_out_noise = get(handles.NoiseRemoval,'Value');
     Options.POST_out_clean = get(handles.ObjectElimination,'Value');
     Options.CE_output = get(handles.ContourExtraction,'Value');
-    Options.RO_output = get(handles.GetRotationalOffset,'Value'); 
     Options.GIELIS_output = get(handles.GelisShapeReconstruction,'Value');
+    % FILES
+    Options.CE_file_before = get(handles.originalContour,'Value'); 
+    Options.CE_file_after = get(handles.CEfile,'Value'); 
+    Options.RO_output = get(handles.GetRotationalOffset,'Value'); 
+    Options.GIELIS_param = get(handles.gielisParameters,'Value'); 
+    % Save Options
     save opt.mat -struct Options;
     
+    % Do the saving
+    % IMAGES
     if(Options.NHS_output)
         filepath= [foldername Images{3,2}];
         imwrite(Images{1,2},filepath,'PNG','BitDepth',1);
     end
-     if(Options.POST_out_noise)
+    if(Options.POST_out_noise)
         filepath= [foldername Images{3,3}];
         imwrite(Images{1,3},filepath,'PNG','BitDepth',1);
-     end
+    end
     if(Options.POST_out_clean)
         filepath= [foldername Images{3,4}];
         imwrite(Images{1,4},filepath,'PNG','BitDepth',1);
     end
-     if(Options.CE_output)
+    if(Options.CE_output)
         filepath= [foldername Images{3,5}];
         imwrite(Images{1,5},filepath,'PNG','BitDepth',1);
         saveText(1,foldername);
-     end
-     if(Options.POST_out_noise)
-         saveText(2,foldername);   
-     end
-     if(Options.GIELIS_output)
+    end
+    if(Options.GIELIS_output)
         filepath= [foldername Images{3,6}];
         imwrite(Images{1,6},filepath,'PNG','BitDepth',8);
         saveText(3,foldername);
-     end
-     
-%     % Images
-%     for i = 1:6
-%          filepath= [foldername Images{3,i}];
-%         if i==1 || i==6 % save color images
-%             imwrite(Images{1,i},filepath,'PNG','BitDepth',8);
-%         else % save binary images
-%             imwrite(Images{1,i},filepath,'PNG','BitDepth',1);
-%         end
-%     end
-    
-    % Files
-%     for i=1:3
-%         datas = Files{1,i};
-%         fname = Files{2,i};
-%         for j=1:length(datas)
-%             data = datas{j};
-%             sname = [foldername fname, '_', num2str(j), '.txt']; % save name
-%             save(sname,'data','-ASCII');
-%         end
-%     end
+    end
+    % FILES
+    if Options.CE_file_before
+        saveText(1,foldername);
+    end
+    if Options.CE_file_after
+        saveText(2,foldername);
+    end
+    if Options.RO_output
+        saveText(3,foldername);
+    end
+    if Options.GIELIS_param
+        saveText(4,foldername);   
+    end
 end
+
 %% saves text file
 function saveText(i,foldername)
 global Files;
@@ -537,7 +552,7 @@ function updateDisplayIndex(buttontype,handles)
     % updates display index according to check boxes
     % selection after each time prev/next button is pressed
     
-    % Load actual options
+    % Load actual options for IMAGES
     Options.intermediate_output = get(handles.IntermediateResults,'Value');
     Options.NHS_output = get(handles.NHSSegmentation,'Value');
     Options.POST_out_noise = get(handles.NoiseRemoval,'Value');
@@ -618,3 +633,30 @@ function figure1_ResizeFcn(hObject, eventdata, handles)
 % hObject    handle to figure1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in gielisParameters.
+function gielisParameters_Callback(hObject, eventdata, handles)
+% hObject    handle to gielisParameters (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of gielisParameters
+
+
+% --- Executes on button press in CEfile.
+function CEfile_Callback(hObject, eventdata, handles)
+% hObject    handle to CEfile (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of CEfile
+
+
+% --- Executes on button press in originalContour.
+function originalContour_Callback(hObject, eventdata, handles)
+% hObject    handle to originalContour (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of originalContour

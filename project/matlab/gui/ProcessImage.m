@@ -8,7 +8,7 @@
 %    Nathanael Lemessa Baisa	       %
 %    Taman Upadhaya	                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [nhs,noiseRem,cleanImg,contCE,imCE,rotOff,pointGIELIS,OutputImg] = ProcessImage(inputImage)
+function [nhs,noiseRem,cleanImg,imCE,OutputImg, contOrig,contCE,rotOff,paramGIELIS] = ProcessImage(inputImage)
 % does road sign detection from input image
 % integration of other codes for GUI takem from main.m
 
@@ -35,9 +35,14 @@ nhs = normalize_segmentation(inputImage, Options.NHS_color);
 [L,N] = bwlabel(cleanImg, 8);   % Labeling of the clean image to recognize regions
 
 %% Empty image and variables to save all together
-contCE = cell(1,N); % structure for points because the length is not equal for all contours
+% IMAGE
 imCE = zeros(size(cleanImg)); % image to overwrite all contours
-rotOff = cell(1,N);
+% FILES
+contOrig = cell(1,N);    % save contours before contour extraction
+contCE = cell(1,N);      % save contours after contour extraction
+rotOff = cell(1,N);      % save rotational offsets obtained
+paramGIELIS = cell(1,N); % save gielis parameters
+% Extra for drawing gielis image
 pointGIELIS = cell(1,N);
 
 if N>0                          % If we have regions, continue processing
@@ -46,7 +51,8 @@ if N>0                          % If we have regions, continue processing
         [rows cols] = find(L==i);   % Get the coordinates of all the points
         tmpI = (L==i);              % Make a temporary binary image of the current label
         % Get the points in the boundary of the region
-        contP = bwtraceboundary(tmpI, [rows(1),cols(1)], 'E', 8, Inf, 'counterclockwise');              
+        contP = bwtraceboundary(tmpI, [rows(1),cols(1)], 'E', 8, Inf, 'counterclockwise');
+        contOrig{i} = contP;
                                            
         %% Contour extraction
         valid_contour = contour_extraction(contP, Options.CE_distError); % Extract the contour
@@ -68,10 +74,11 @@ if N>0                          % If we have regions, continue processing
         Offset = FindMinimum(Radius, Theta);
         rotOff{i} = Offset;
         
-        %% Gielis curves reconstruction % disabled because is not working
-        %% properly
-         Output = ShapeReconstruction(valid_contour, Offset, Options.GIELIS_norm, Options.GIELIS_func);
+        %% Gielis curves reconstruction
+         Output = ShapeReconstruction(valid_contour, Offset, false, Options.GIELIS_func);
          pointGIELIS{i} = Output;
+         global Parameters;
+         paramGIELIS{i} = Parameters;
     end
     
     %% Process Gielis image (Guillem: I don't know how to do this without plots)

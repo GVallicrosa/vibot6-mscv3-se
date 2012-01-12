@@ -114,11 +114,6 @@ switch Options.GIELIS_func
         set(h,'Value',1);
     otherwise
 end
-% Normalization
-if Options.GIELIS_norm
-    h = findobj(hObject,'Tag','normalization');
-    set(h,'Value',1);
-end
 
 
 function lowratio_Callback(hObject, eventdata, handles)
@@ -259,9 +254,8 @@ Options.POST_aspectArea = 1500;  % imageArea/aspectArea thresholding (default 15
 Options.POST_lowRatio   = 0.25;  % height/width lowest value (default 0.25)
 Options.POST_highRatio  = 1.3;   % height/width highest value (default 1.3)
 % Contour extraction
-Options.CE_distError = sqrt(2);  % maximum distance from the convex hull to take contour pixels (default sqrt(2))
+Options.CE_distError = 5;  % maximum distance from the convex hull to take contour pixels (default sqrt(2))
 % Gielis recontruction
-Options.GIELIS_norm = true;      % use normalization (default true)
 Options.GIELIS_func = 1;         % cost function to use 1, 2 or 3 (default 1)d
 % Create the options file
 save opt.mat -struct Options;
@@ -309,26 +303,10 @@ h = findobj(par,'Tag','func3');
 if get(h,'Value') == 1
     Options.GIELIS_func = 3;
 end
-% Normalization
-h = findobj(par,'Tag','normalization');
-if get(h,'Value') == 1
-    Options.GIELIS_norm = true;
-else
-    Options.GIELIS_norm = false;
-end
 % Create the options file
 save opt.mat -struct Options;
 % Close options window
 close(par);
-
-
-% --- Executes on button press in normalization.
-function normalization_Callback(hObject, eventdata, handles)
-% hObject    handle to normalization (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hint: get(hObject,'Value') returns toggle state of normalization
 
 
 % --- Executes on button press in func1.
