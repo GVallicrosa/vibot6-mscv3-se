@@ -70,7 +70,7 @@ if N>0                          % If we have regions, continue processing
         
         %% Gielis curves reconstruction % disabled because is not working
         %% properly
-         Output = ShapeReconstruction(valid_contour, Offset, GIELIS_norm, GIELIS_func);
+         Output = ShapeReconstruction(valid_contour, Offset, Options.GIELIS_norm, Options.GIELIS_func);
          pointGIELIS{i} = Output;
     end
     
