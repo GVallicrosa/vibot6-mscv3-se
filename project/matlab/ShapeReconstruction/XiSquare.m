@@ -148,6 +148,9 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         % ==> requires partial derivatives!!
         % dF/dR stored at index 3 in array Df
         % -during the call to ImplicitFunction1-2-3
+        %dj is the Jacobian transpose J^T. As the cost function is being
+        %optimized wrt to 5 variables only a,b,n1,n2,n3, the dimension of
+        %dj=5 and that of alpha=5*5
         DfDr= Df(3);
         
         dj = zeros(5, 1);
@@ -204,7 +207,8 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
             end
         end %end if(update==true)
     end %end for i=1:length(Data)
-    
+    alpha(isnan(alpha))=0;
+    beta(isnan(alpha))=0;
     Parameters(8) = tht0;
     Parameters(10) = x0;
     Parameters(11) = y0;
