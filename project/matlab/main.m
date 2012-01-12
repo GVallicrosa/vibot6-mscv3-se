@@ -9,7 +9,7 @@ clear all;
 clc;
 
 %%Just for checking-Yukti
-global save_m save_rot;
+global Parameters;
 
 %% Options
 % NHS
@@ -44,7 +44,7 @@ fileIndex = find(~[files.isdir]);
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'triangular0017.jpg';
+    fname = 'octogonal0001.jpg';
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     display(['- ', fname]);
@@ -110,7 +110,7 @@ fileIndex = find(~[files.isdir]);
         f = figure('visible','off'); 
         subplot('position', [0 0 1 1]);
         imshow(im); hold on;
-        plot(Output(:,2),Output(:,1),'g','LineWidth', 2); hold off;
+        plot(Output(:,2),Output(:,1),'g','LineWidth', 1); hold off;
         dpi = 100;
         set(f, 'paperposition', [0 0 n/dpi m/dpi]);
         set(f, 'papersize', [n/dpi m/dpi]);
