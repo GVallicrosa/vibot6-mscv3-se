@@ -42,9 +42,6 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
                     ptmp = 3;
                 case 3
                     ptmp = 4;
-                    %Added by Team U: As rectangles were detected with 90
-                    %degree rotation
-                    RotOffsets(j)=RotOffsets(j)+pi/2;
                 case 4
                     ptmp = 6;
                 case 5
