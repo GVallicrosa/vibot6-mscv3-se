@@ -23,12 +23,12 @@ else % load and save default options
     Options.POST_out_noise  = true;  % save output for this function
     Options.POST_out_clean  = true;  % save output for this function
     % Contour extraction
-    Options.CE_distError = sqrt(2);  % maximum distance from the convex hull to take contour pixels (default sqrt(2))
+    Options.CE_distError = 5;  % maximum distance from the convex hull to take contour pixels (default sqrt(2))
     Options.CE_output    = true;     % save output for this function
     % Rotational offset
     Options.RO_output    = true;     % save output for this function
     % Gielis recontruction
-    Options.GIELIS_norm = true;      % use normalization (default true)
+    Options.GIELIS_norm = false;      % use normalization (default true)
     Options.GIELIS_func = 1;         % cost function to use 1, 2 or 3 (default 1)
     Options.GIELIS_output = true;    % save output for this function
     % Last folder opened
