@@ -42,6 +42,9 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
                     ptmp = 3;
                 case 3
                     ptmp = 4;
+                    %Added by Team U: As rectangles were detected with 90
+                    %degree rotation
+                    RotOffsets(j)=RotOffsets(j)+pi/2;
                 case 4
                     ptmp = 6;
                 case 5
@@ -68,6 +71,7 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
     centerX = Parameters(10);
     centerY = Parameters(11);
     Output = zeros(0);
+    
     
     for i = 0:0.01:2*pi
         r = radius_(i);
