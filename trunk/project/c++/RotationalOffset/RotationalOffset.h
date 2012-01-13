@@ -31,7 +31,7 @@ using namespace std;
 class IRO
 {
 public:
-    typedef pair<unsigned,unsigned> Point2D;
+    typedef pair<int,int> Point2D;
     typedef vector<Point2D> Contour;
 
     virtual vector<float>  GetMinRadius( const Contour &contour ) = 0;
