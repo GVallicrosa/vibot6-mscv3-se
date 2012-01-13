@@ -75,13 +75,13 @@ void Options::save()
 
 void Options::on_buttonBox_accepted()
 {
-    qDebug( "ButtonBox: Ok" );
+//    qDebug( "ButtonBox: Ok" );
     save();
 }
 
 void Options::on_buttonBox_rejected()
 {
-    qDebug( "ButtonBox: Cancel" );
+//    qDebug( "ButtonBox: Cancel" );
 }
 
 
