@@ -191,16 +191,22 @@ void Gui::on_pushButton_LoadImage_clicked()
     {
         ui->tableImage->setCurrentCell( total_before_addition, 1 );
     }
+
+    ui->pushButton_Delete->setEnabled(true);
 }
 
 void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
 {
-    if( currentRow == previousRow )
+    if( ui->tableImage->rowCount() == 0 || currentRow == previousRow )
         return;
 
     // FileName is in the column 1
     currentColumn = 1;
-    QString fileName = ui->tableImage->item( currentRow, 1 )->text();
+    QTableWidgetItem * item = ui->tableImage->item( currentRow, 1 );
+    if( item == 0 )
+        return;
+
+    QString fileName = item->text();
 
     qDebug() << fileName;
 
@@ -371,6 +377,8 @@ void Gui::on_pushButton_Process_All_clicked()
     }
 
     is_display_images = true;
+    ui->tableImage->clear();
+    output_images.clear();
 }
 
 void Gui::on_pushButton_Process_clicked()
@@ -495,24 +503,24 @@ void Gui::on_pushButton_Process_clicked()
         //        }
 
 
-        qWarning() << "Starting optimizing...";
-        RationalSuperShape2D rationalSuperShape2d;
+//        qWarning() << "Starting optimizing...";
+//        RationalSuperShape2D rationalSuperShape2d;
 
-        int functionUsed = 0;
-        if( Function == "Func1" )
-            functionUsed = 1;
-        else if( Function == "Func2" )
-            functionUsed = 2;
-        else if( Function == "Func3" )
-            functionUsed = 3;
+//        int functionUsed = 0;
+//        if( Function == "Func1" )
+//            functionUsed = 1;
+//        else if( Function == "Func2" )
+//            functionUsed = 2;
+//        else if( Function == "Func3" )
+//            functionUsed = 3;
 
-        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
-        qWarning() << "Optimizing finished successfully.";
+//        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
+//        qWarning() << "Optimizing finished successfully.";
 
-        for (unsigned j = 0; j < output.size(); j++)
-        {
-            data.push_back(output[j]);
-        }
+//        for (unsigned j = 0; j < output.size(); j++)
+//        {
+//            data.push_back(output[j]);
+//        }
     }
 
     Mat dimg = drawPoints( image, data );
@@ -555,6 +563,15 @@ Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string fil
 {
     char *names[6] = {"_nhs", "_noiseRemoval", "_elimination", "_convexHull", "_reducedContour", "_shape"};
 
+    cout << "save_folder: " << save_folder << endl;
+
+
+    if( !QDir( QString(save_folder.c_str())+"/output/" ).exists() )
+    {
+        QDir().mkdir( QString(save_folder.c_str())+"/output/" );
+    }
+
+
     for (unsigned int i = 0; i < images.size(); i++)
     {
         if (flags[i])
@@ -566,7 +583,28 @@ Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string fil
             image_name.append(names[i]);
             image_name.append(".jpg");
 
-            imwrite(image_name, images[i]);
+            cout << "Saved: " << imwrite(image_name, images[i]) << endl;
         }
+    }
+}
+
+void Gui::on_pushButton_Delete_clicked()
+{
+    if( ui->tableImage == 0 || ui->tableImage->rowCount() == 0 )
+    {
+        qWarning() << "Table is empty!";
+        return;
+    }
+
+    QList<QTableWidgetItem *> selected = ui->tableImage->selectedItems();
+    for( int i=0; i < selected.size(); i++ )
+    {
+        int row = ui->tableImage->row( selected.at(i) );
+        ui->tableImage->removeRow(row);
+    }
+
+    if( ui->tableImage->rowCount() == 0 )
+    {
+        ui->pushButton_Delete->setEnabled(false);
     }
 }

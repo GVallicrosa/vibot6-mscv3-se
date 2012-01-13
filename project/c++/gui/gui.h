@@ -56,6 +56,8 @@ private slots:
     void on_pushButton_Process_All_clicked();
     void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
 
+    void on_pushButton_Delete_clicked();
+
 private:
     Ui::Gui *ui;
     CvWindow *cvWindow;
