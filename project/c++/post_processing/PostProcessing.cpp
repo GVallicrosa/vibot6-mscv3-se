@@ -3,7 +3,7 @@
 //constructor
 PostProcessing::PostProcessing(Mat filename)
 {
-	image=filename;
+    image=filename;
 }
 
 //destructor
@@ -29,8 +29,8 @@ PostProcessing::~PostProcessing()
 //
 void PostProcessing::DisplayImage(const string &name, Mat img)
 {
-	namedWindow(name,0);
-	imshow(name,img);
+    namedWindow(name,0);
+    imshow(name,img);
 }
 
 //NAME OF FUNCTION: FilterImage
@@ -51,33 +51,33 @@ void PostProcessing::DisplayImage(const string &name, Mat img)
 
 Mat PostProcessing::FilterImage()
 {
-	//Morphological operation
+    //Morphological operation
     //dilate
-	Mat sd=getStructuringElement(MORPH_CROSS,Size(4,4)); //structuring element used for dilate and erode
-	dilate(image,image,sd);
+    Mat sd=getStructuringElement(MORPH_CROSS,Size(4,4)); //structuring element used for dilate and erode
+    dilate(image,image,sd);
 
     Mat dst=image.clone();                                //destination image; copy of the original image
-	threshold(image,image,254,255,CV_THRESH_BINARY);      // make the image binary 
+    threshold(image,image,254,255,CV_THRESH_BINARY);      // make the image binary
 
-	// find the contours of the objects
+    // find the contours of the objects
     vector<vector<Point> > contours;
     vector<Vec4i> hierarchy;
     findContours(image, contours,hierarchy,CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
-	
-	//draw the filled contours to the destination image
-	Scalar color(255,255,255);
-	drawContours(dst, contours, -1, color, CV_FILLED, 8);
 
-	//Morphological operations
+    //draw the filled contours to the destination image
+    Scalar color(255,255,255);
+    drawContours(dst, contours, -1, color, CV_FILLED, 8);
+
+    //Morphological operations
     //dilate
-	erode(dst,dst,sd);
+    erode(dst,dst,sd);
 
-	//eliminate nois using a median filter
-	for (int i=0;i<5;i++)
-	   medianBlur(dst,dst,5);
+    //eliminate nois using a median filter
+    for (int i=0;i<5;i++)
+        medianBlur(dst,dst,5);
 
-	//output
-	return dst;
+    //output
+    return dst;
 }
 
 //NAME OF FUNCTION: Elimination
@@ -103,52 +103,52 @@ Mat PostProcessing::FilterImage()
 //
 Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont, long int areaRatio, double lowAspectRatio, double highAspectRatio)
 {
-	long int area=image.size().area();                   //area of the original image
-	   // cout<<"Aria/1500: "<<area/1500<<endl;
-	
-	Mat dst=Mat::zeros(fimage.rows,fimage.cols,CV_8U);   //destination image  
-	
-	threshold(fimage,fimage,254,255,CV_THRESH_BINARY);   //make image binary
+    long int area=image.size().area();                   //area of the original image
+    // cout<<"Aria/1500: "<<area/1500<<endl;
 
-	//find the new contours
+    Mat dst=Mat::zeros(fimage.rows,fimage.cols,CV_8U);   //destination image
+
+    threshold(fimage,fimage,254,255,CV_THRESH_BINARY);   //make image binary
+
+    //find the new contours
     vector<vector<Point> > contours;
     vector<Vec4i> hierarchy;
-    findContours(fimage,contours,hierarchy,CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+    findContours(fimage,contours,hierarchy,CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
 
-	    // cout<<"Dimensiune: "<<contours.size()<<endl;
+    // cout<<"Dimensiune: "<<contours.size()<<endl;
     
     //for each contour   
-	for (unsigned int i=0;i<contours.size();i++)
-	   {
-		
-		    //associate a rectangle to calculate the width and height
-		 Rect b=boundingRect(Mat(contours[i]));
+    for (unsigned int i=0;i<contours.size();i++)
+    {
 
-		  
-		 // compute the aspect ratio 
-		 double ratio=(double)b.width/(double)b.height;
-			 
-		   //long int areaRegion=b.size.area();
-	     long int areaRegion=b.area();
+        //associate a rectangle to calculate the width and height
+        Rect b=boundingRect(Mat(contours[i]));
 
-			
-			        // cout<<"Ratie: "<<ratio<<" Area: "<<areaRegion<<endl;
-			
-			if ((areaRegion<area/areaRatio) || ((ratio>highAspectRatio) || (ratio<lowAspectRatio)))  //conditions for eliminating the objects
-			{
-				// cout<<"sters de la pozitia "<<i<<endl;
-			}
-			else
-				copyCont.push_back(contours[i]);	
-			
-	   }
 
-	   cout<<copyCont.size()<<endl;
-   
-	Scalar color(255,255,255);
-	drawContours(dst,copyCont, -1, color, CV_FILLED, 8);
+        // compute the aspect ratio
+        double ratio=(double)b.width/(double)b.height;
 
-	//return image after elimination
+        //long int areaRegion=b.size.area();
+        long int areaRegion=b.area();
+
+
+        // cout<<"Ratie: "<<ratio<<" Area: "<<areaRegion<<endl;
+
+        if ((areaRegion<area/areaRatio) || ((ratio>highAspectRatio) || (ratio<lowAspectRatio)))  //conditions for eliminating the objects
+        {
+            // cout<<"sters de la pozitia "<<i<<endl;
+        }
+        else
+            copyCont.push_back(contours[i]);
+
+    }
+
+    cout<<copyCont.size()<<endl;
+
+    Scalar color(255,255,255);
+    drawContours(dst,copyCont, -1, color, CV_FILLED, 8);
+
+    //return image after elimination
     return dst;
 }
 
@@ -177,26 +177,26 @@ Mat PostProcessing::Elimination(Mat fimage,vector<vector<Point> > &copyCont, lon
 
 Mat PostProcessing::Convex(Mat eimage,vector<vector<Point> >&hull,vector<vector<Point> > &copyCont)
 {
-    	 Mat dest = Mat::zeros( image.size(), CV_8U ); // the output image
-	     for (unsigned int i=0;i<copyCont.size();i++)
-		 {
-			 convexHull(Mat(copyCont[i]),hull[i]);    //convex hull operation
-		 }
-        
-		
+    Mat dest = Mat::zeros( image.size(), CV_8U ); // the output image
+    for (unsigned int i=0;i<copyCont.size();i++)
+    {
+        convexHull(Mat(copyCont[i]),hull[i], false);    //convex hull operation
+    }
 
-       for(unsigned int i = 0; i<copyCont.size(); i++ )   //drawing the points for convex hull
+
+
+    for(unsigned int i = 0; i<copyCont.size(); i++ )   //drawing the points for convex hull
+    {
+        for (unsigned int j=0;j<hull[i].size();j++)
         {
-			for (unsigned int j=0;j<hull[i].size();j++)
-			{
-			Scalar color = Scalar(255, 0, 0);
-			     //drawContours( drawing, copyCont, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
-			//drawContours( dest, hull, i, color, 1, CV_AA, vector<Vec4i>(), 0, Point() );
-			 circle(dest,hull[i][j],2,color,1,8);
-			}
-        };
-		
-		return dest;
+            Scalar color = Scalar(255, 0, 0);
+            //drawContours( drawing, copyCont, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
+            //drawContours( dest, hull, i, color, 1, CV_AA, vector<Vec4i>(), 0, Point() );
+            circle(dest,hull[i][j],2,color,1,8);
+        }
+    };
+
+    return dest;
 
 }
 
@@ -261,7 +261,7 @@ Mat PostProcessing::ThresholdedContour( vector < vector< Point > > &hull,
         hullNext = hull[objectIndex][hullIndex];
 
         //stores the points of each contour to object vector
-        vector< pair <unsigned, unsigned> > object;
+        vector< pair <int, int> > object;
 
         //for each point of the contour
         for ( unsigned int i = 0;i < Contour[objectIndex].size();i++ )
