@@ -46,10 +46,10 @@ fileIndex = find(~[files.isdir]);
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'Different0006.jpg';
+    fname = 'octogonal0018.jpg';
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
-    display(['- ', fname]);
+    display(['Processing ', fname]);
     
     %% Image segmentation
 		% You can pass arbitrary hue max and min, sat min. e.g.:
@@ -72,8 +72,9 @@ fileIndex = find(~[files.isdir]);
     
     %% Label image
     [L,N] = bwlabel(cleanImg, 8);              %Labeling of the clean image
+    display(['- No. of detected shapes: ', num2str(N)]);
     for i=1:N                                  %For each labeled region
-        display(['  -- contour ', num2str(i),'/',num2str(N)])
+        display(['  -- Detecting contour ', num2str(i),'/',num2str(N)])
         [rows cols] = find(L==i);              %Get the coordinates of the points
         tmpI = (L==i);                         %Make a temporary binary image of the current label
         
@@ -109,6 +110,7 @@ fileIndex = find(~[files.isdir]);
         Offset = FindMinimum(Radius, Theta);
 
         %% Gielis curves reconstruction
+        display(['     --- Shape Reconstruction ', num2str(i),'/',num2str(N)])
         Output = ShapeReconstruction(valid_contour, Offset, GIELIS_norm, GIELIS_func);
         if GIELIS_output
             Fname = ['output/',fname(1:length(fname)-3), '_shape', num2str(i),'.txt'];
@@ -127,5 +129,5 @@ fileIndex = find(~[files.isdir]);
         %imwrite(Output,IMname,'PNG');%,'BitDepth',1);
         
     end
-    display('We''re Finished!');
+    display('All done!');
 %end
