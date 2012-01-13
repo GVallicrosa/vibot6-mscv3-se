@@ -1,4 +1,4 @@
-%% Main file for Matlab code without GUI
+%% Main file for Matlab code GUI
 % First load all options from a file, if not load default options.
 % Then launches the GUI
 
