@@ -29,6 +29,8 @@ GIELIS_norm = false;      % use normalization (default true)
 GIELIS_func = 1;         % cost function to use 1, 2 or 3 (default 1)
 GIELIS_output = true;    % save output for this function
 
+% Suppress the warnings for subsequent calculations in ShapeReconstruction
+warning off all;
 
 %% Add necessary paths to call all functions
 addpath('gui', 'ShapeReconstruction', 'Rotational Offset');
@@ -44,7 +46,7 @@ fileIndex = find(~[files.isdir]);
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'circular0009.jpg';
+    fname = 'Different0006.jpg';
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
     display(['- ', fname]);
