@@ -96,7 +96,7 @@ void Options::on_buttonBox_clicked(QAbstractButton* button)
         ui->low_ratio->setValue(0.25);
         ui->high_ratio->setValue(1.3);
         ui->aspect_are->setValue(1500);
-        ui->Threshold->setValue(1.4142);
+        ui->Threshold->setValue(20.0);
         ui->Normalization->setChecked(true);
         ui->Func1->setChecked(true);
     }
