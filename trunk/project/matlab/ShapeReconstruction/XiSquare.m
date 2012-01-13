@@ -117,7 +117,7 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         if (tht<0) 
             tht = tht + 2*pi;
         end
-        
+        %R not used here??
         R = radius_(tht);
         
         % theta = arctan(y/x)
@@ -148,9 +148,6 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         % ==> requires partial derivatives!!
         % dF/dR stored at index 3 in array Df
         % -during the call to ImplicitFunction1-2-3
-        %dj is the Jacobian transpose J^T. As the cost function is being
-        %optimized wrt to 5 variables only a,b,n1,n2,n3, the dimension of
-        %dj=5 and that of alpha=5*5
         DfDr= Df(3);
         
         dj = zeros(5, 1);
@@ -179,9 +176,10 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         if(update == true)
             if(Normalization == true)
                 if(abs(f)>EPSILON || nablamagn>EPSILON)
-                    for idum= 1:5
-                        dj(idum) = dj(idum) * h*(1-h*h)/f;
-                    end
+%                     for idum= 1:5
+%                         dj(idum) = dj(idum) * h*(1-h*h)/f;
+%                     end
+                    dj = dj.*(h*(1-h*h)/f);
                 else
                     dj = zeros(5, 1);
                 end
@@ -189,26 +187,29 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
                 %##C++ code slightly edited to remove redundant if
                 
                 if(f~=0)
-                    for k = 1:5
-                        beta(k) = beta(k) - h * dj(k);
-                    end
+%                     for k = 1:5
+%                         beta(k) = beta(k) - h * dj(k);
+%                     end
+                    beta = beta - dj .*h;
                 end
             else
-                for k = 1:5
-                    beta(k) = beta(k) - f*dj(k);
-                end
+%                 for k = 1:5
+%                     beta(k) = beta(k) - f*dj(k);
+%                 end
+                beta = beta - dj .*f;
             end
             
             % compute approximation of Hessian matrix
-            for k = 1:5
-                for j = 1:5
-                    alpha(k,j) = alpha(k,j) + dj(k) * dj(j);
-                end
-            end
+            
+            alpha = alpha + dj*dj';   %J'J should be written as JJ' because J (here dj) is column vector
+%             for k = 1:5
+%                 for j = 1:5
+%                     alpha(k,j) = alpha(k,j) + dj(k) * dj(j);
+%                 end
+%             end
         end %end if(update==true)
     end %end for i=1:length(Data)
-    alpha(isnan(alpha))=0;
-    beta(isnan(alpha))=0;
+    
     Parameters(8) = tht0;
     Parameters(10) = x0;
     Parameters(11) = y0;
