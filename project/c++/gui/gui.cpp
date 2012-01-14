@@ -206,6 +206,29 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
     if( item == 0 )
         return;
 
+    // Ask to the user if he want to lose all the images output
+    if( ui->pushButton_SaveAll->isEnabled() )
+    {
+        QMessageBox::StandardButton ans = QMessageBox::question( this, "Change current cell",
+                                                                 "You are going to lose all the output images. "
+                                                                 "Do you want to continue?",
+                                                                 QMessageBox::Ok | QMessageBox::Cancel);
+        if( ans == QMessageBox::Cancel )
+        {
+//            ui->tableImage->disconnect(SIGNAL(currentCellChanged(int,int,int,int)));
+//            QTableWidgetItem * item = ui->tableImage->item( previousRow, previousColumn );
+//            qWarning() << " " << currentRow << " " << previousRow;
+//            ui->tableImage->setCurrentCell( currentRow, currentColumn, QItemSelectionModel::SelectCurrent );
+//            connect(ui->tableImage, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(on_tableImage_currentCellChanged(int,int,int,int)));
+            return;
+        }
+
+        // Disable buttons
+        ui->pushButton_SaveAll->setEnabled(false);
+        ui->pushButton_Next->setEnabled(false);
+        ui->pushButton_Prev->setEnabled(false);
+    }
+
     QString fileName = item->text();
 
     qDebug() << fileName;
@@ -376,8 +399,6 @@ void Gui::on_pushButton_Process_All_clicked()
         save_output_images(output_images, flags, base.toStdString(), fi.canonicalPath().toStdString());
     }
 
-    // ui->tableImage->clear();
-
     for(int i = number_images - 1; i >= 0; i--)
     {
         ui->tableImage->setCurrentCell( i, 1 );
@@ -537,6 +558,11 @@ void Gui::on_pushButton_Process_clicked()
     output_images.push_back(dimg);
 
     current_image = output_images.size() - 1;
+
+    // Enable buttons
+    ui->pushButton_SaveAll->setEnabled(true);
+    ui->pushButton_Next->setEnabled(true);
+    ui->pushButton_Prev->setEnabled(true);
 }
 
 Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
@@ -613,4 +639,26 @@ void Gui::on_pushButton_Delete_clicked()
     {
         ui->pushButton_Delete->setEnabled(false);
     }
+    else
+    {
+        ui->tableImage->setCurrentCell(0,1);
+    }
+}
+
+void Gui::on_pushButton_SaveAll_clicked()
+{
+    vector<bool> flags;
+    flags.push_back(true);
+    flags.push_back(true);
+    flags.push_back(true);
+    flags.push_back(true);
+    flags.push_back(true);
+    flags.push_back(true);
+
+    QTableWidgetItem *currentItem = ui->tableImage->currentItem();
+    QFileInfo fi(currentItem->text());
+    QString base = fi.baseName();
+    save_output_images(output_images, flags, base.toStdString(), fi.canonicalPath().toStdString());
+
+    ui->pushButton_SaveAll->setEnabled(false);
 }

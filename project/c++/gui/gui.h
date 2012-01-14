@@ -43,26 +43,25 @@ private slots:
     void on_tableImage_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
     void on_pushButton_Next_clicked();
-
     void on_pushButton_Prev_clicked();
-
-    void on_pushButton_Process_clicked();
 
     void readSettings( void );
     void writeSettings( void );
 
-    void on_pushButton_Options_clicked();
-
-    void on_pushButton_Process_All_clicked();
-    void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
-
+    void on_pushButton_Process_clicked();
+    void on_pushButton_SaveAll_clicked();
     void on_pushButton_Delete_clicked();
+    void on_pushButton_Process_All_clicked();
+
+    void on_pushButton_Options_clicked();
 
 private:
     Ui::Gui *ui;
     CvWindow *cvWindow;
 
     Mat drawPoints( const Mat &image, const vector<Vector2d> &data );
+
+    void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
 
     // Setting
     QSettings settings;

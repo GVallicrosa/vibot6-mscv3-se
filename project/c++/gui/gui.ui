@@ -31,9 +31,15 @@
        <enum>Qt::Horizontal</enum>
       </property>
       <widget class="QSplitter" name="splitter">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>429</width>
+         <width>500</width>
          <height>16777215</height>
         </size>
        </property>
@@ -139,15 +145,41 @@
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QPushButton" name="pushButton_Process">
+             <property name="toolTip">
+              <string>Process the current image</string>
+             </property>
              <property name="text">
-              <string>Process</string>
+              <string>&amp;Process</string>
+             </property>
+             <property name="icon">
+              <iconset resource="window_QT.qrc">
+               <normaloff>:/logo.png</normaloff>:/logo.png</iconset>
+             </property>
+             <property name="shortcut">
+              <string>Ctrl+P</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_SaveAll">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>Save all the output images</string>
+             </property>
+             <property name="statusTip">
+              <string/>
+             </property>
              <property name="text">
-              <string>Save all</string>
+              <string>&amp;Save All</string>
+             </property>
+             <property name="icon">
+              <iconset resource="window_QT.qrc">
+               <normaloff>:/save-icon</normaloff>:/save-icon</iconset>
+             </property>
+             <property name="shortcut">
+              <string>Ctrl+S</string>
              </property>
             </widget>
            </item>
@@ -159,10 +191,20 @@
              <property name="text">
               <string>Delete selected</string>
              </property>
+             <property name="icon">
+              <iconset resource="window_QT.qrc">
+               <normaloff>:/properties-icon</normaloff>:/properties-icon</iconset>
+             </property>
+             <property name="shortcut">
+              <string>Del</string>
+             </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_Process_All">
+             <property name="toolTip">
+              <string>Process and Save all the images</string>
+             </property>
              <property name="text">
               <string>Process All</string>
              </property>
@@ -173,9 +215,15 @@
         </layout>
        </widget>
        <widget class="QTableWidget" name="tableImage">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="maximumSize">
          <size>
-          <width>350</width>
+          <width>500</width>
           <height>16777215</height>
          </size>
         </property>
@@ -250,6 +298,9 @@
           </property>
           <item>
            <widget class="QPushButton" name="pushButton_Prev">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="maximumSize">
              <size>
               <width>80</width>
@@ -273,6 +324,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_Next">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="maximumSize">
              <size>
               <width>80</width>
