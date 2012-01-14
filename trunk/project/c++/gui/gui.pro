@@ -6,10 +6,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
            gui.cpp \
-           options.cpp
+           options.cpp \
+           imageframe.cpp
 
 HEADERS += gui.h \
-           options.h
+           options.h \
+           imageframe.h
 
 FORMS   += gui.ui \
            options.ui
