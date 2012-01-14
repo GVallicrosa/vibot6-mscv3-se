@@ -50,6 +50,9 @@ Gui::Gui(QWidget *parent) :
         ui_options.save();
     }
 
+    // So in the first time we display the images.
+    is_display_images = true;
+
 }
 
 Gui::~Gui()
@@ -406,10 +409,11 @@ void Gui::on_pushButton_Process_All_clicked()
     }
     output_images.clear();
     is_display_images = true;
+    statusBar()->showMessage( "Process for all images is completed!" );
 }
 
 void Gui::on_pushButton_Process_clicked()
-{
+{    
     output_images.clear();
     if( ui->tableImage == 0 || ui->tableImage->rowCount() == 0 )
     {
@@ -430,6 +434,11 @@ void Gui::on_pushButton_Process_clicked()
 
     if( fileName == "" )
         return;
+
+    // Setting the status bar
+    // Get filename of the selected image
+    QFileInfo fi( currentItem->text() );
+    statusBar()->showMessage( "Process for file " + fi.fileName() + " has started!" );
 
     // ihls_nhs
     Mat image = imread( fileName );
@@ -563,6 +572,8 @@ void Gui::on_pushButton_Process_clicked()
     ui->pushButton_SaveAll->setEnabled(true);
     ui->pushButton_Next->setEnabled(true);
     ui->pushButton_Prev->setEnabled(true);
+
+    statusBar()->showMessage( "Process for " + QString(fi.fileName()) +  " is completed!" );
 }
 
 Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
