@@ -376,9 +376,15 @@ void Gui::on_pushButton_Process_All_clicked()
         save_output_images(output_images, flags, base.toStdString(), fi.canonicalPath().toStdString());
     }
 
-    is_display_images = true;
-    ui->tableImage->clear();
+    // ui->tableImage->clear();
+
+    for(int i = number_images - 1; i >= 0; i--)
+    {
+        ui->tableImage->setCurrentCell( i, 1 );
+        on_pushButton_Delete_clicked();
+    }
     output_images.clear();
+    is_display_images = true;
 }
 
 void Gui::on_pushButton_Process_clicked()
@@ -503,24 +509,24 @@ void Gui::on_pushButton_Process_clicked()
         //        }
 
 
-//        qWarning() << "Starting optimizing...";
-//        RationalSuperShape2D rationalSuperShape2d;
+        qWarning() << "Starting optimizing...";
+        RationalSuperShape2D rationalSuperShape2d;
 
-//        int functionUsed = 0;
-//        if( Function == "Func1" )
-//            functionUsed = 1;
-//        else if( Function == "Func2" )
-//            functionUsed = 2;
-//        else if( Function == "Func3" )
-//            functionUsed = 3;
+        int functionUsed = 0;
+        if( Function == "Func1" )
+            functionUsed = 1;
+        else if( Function == "Func2" )
+            functionUsed = 2;
+        else if( Function == "Func3" )
+            functionUsed = 3;
 
-//        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
-//        qWarning() << "Optimizing finished successfully.";
+        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
+        qWarning() << "Optimizing finished successfully.";
 
-//        for (unsigned j = 0; j < output.size(); j++)
-//        {
-//            data.push_back(output[j]);
-//        }
+        for (unsigned j = 0; j < output.size(); j++)
+        {
+            data.push_back(output[j]);
+        }
     }
 
     Mat dimg = drawPoints( image, data );
@@ -583,7 +589,7 @@ Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string fil
             image_name.append(names[i]);
             image_name.append(".jpg");
 
-            cout << "Saved: " << imwrite(image_name, images[i]) << endl;
+            imwrite(image_name, images[i]);
         }
     }
 }
