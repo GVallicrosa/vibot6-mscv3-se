@@ -77,10 +77,12 @@ if N>0                          % If we have regions, continue processing
         rotOff{i} = Offset;
         
         %% Gielis curves reconstruction
+         warning off all; % Suppress the warnings for subsequent calculations in ShapeReconstruction
          Output = ShapeReconstruction(valid_contour, Offset, false, Options.GIELIS_func);
          pointGIELIS{i} = Output;
          global Parameters;
          paramGIELIS{i} = Parameters;
+         warning on all;
     end
     
     %% Process Gielis image (Guillem: I don't know how to do this without plots)
@@ -101,8 +103,8 @@ if N>0                          % If we have regions, continue processing
     OutputImg = imread('temp.png');
     delete('temp.png');
     
-else  %to avoid error if no contour is found
-    OutputImg = NaN;
+else  %to avoid error if no contour is found dispaly input image
+    OutputImg = inputImage;
 end
 
 end % function end
