@@ -206,28 +206,28 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
     if( item == 0 )
         return;
 
-    // Ask to the user if he want to lose all the images output
-    if( ui->pushButton_SaveAll->isEnabled() )
-    {
-        QMessageBox::StandardButton ans = QMessageBox::question( this, "Change current cell",
-                                                                 "You are going to lose all the output images. "
-                                                                 "Do you want to continue?",
-                                                                 QMessageBox::Ok | QMessageBox::Cancel);
-        if( ans == QMessageBox::Cancel )
-        {
-//            ui->tableImage->disconnect(SIGNAL(currentCellChanged(int,int,int,int)));
-//            QTableWidgetItem * item = ui->tableImage->item( previousRow, previousColumn );
-//            qWarning() << " " << currentRow << " " << previousRow;
-//            ui->tableImage->setCurrentCell( currentRow, currentColumn, QItemSelectionModel::SelectCurrent );
-//            connect(ui->tableImage, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(on_tableImage_currentCellChanged(int,int,int,int)));
-            return;
-        }
+//    // Ask to the user if he want to lose all the images output
+//    if( ui->pushButton_SaveAll->isEnabled() )
+//    {
+//        QMessageBox::StandardButton ans = QMessageBox::question( this, "Change current cell",
+//                                                                 "You are going to lose all the output images. "
+//                                                                 "Do you want to continue?",
+//                                                                 QMessageBox::Ok | QMessageBox::Cancel);
+//        if( ans == QMessageBox::Cancel )
+//        {
+////            ui->tableImage->disconnect(SIGNAL(currentCellChanged(int,int,int,int)));
+////            QTableWidgetItem * item = ui->tableImage->item( previousRow, previousColumn );
+////            qWarning() << " " << currentRow << " " << previousRow;
+////            ui->tableImage->setCurrentCell( currentRow, currentColumn, QItemSelectionModel::SelectCurrent );
+////            connect(ui->tableImage, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(on_tableImage_currentCellChanged(int,int,int,int)));
+//            return;
+//        }
 
-        // Disable buttons
-        ui->pushButton_SaveAll->setEnabled(false);
-        ui->pushButton_Next->setEnabled(false);
-        ui->pushButton_Prev->setEnabled(false);
-    }
+//        // Disable buttons
+//        ui->pushButton_SaveAll->setEnabled(false);
+//        ui->pushButton_Next->setEnabled(false);
+//        ui->pushButton_Prev->setEnabled(false);
+//    }
 
     QString fileName = item->text();
 
