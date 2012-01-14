@@ -267,7 +267,7 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QFrame" name="frame">
+         <widget class="ImageFrame" name="frame">
           <property name="enabled">
            <bool>true</bool>
           </property>
@@ -352,7 +352,7 @@
      <x>0</x>
      <y>0</y>
      <width>745</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -384,6 +384,14 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ImageFrame</class>
+   <extends>QFrame</extends>
+   <header location="global">imageframe.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="window_QT.qrc"/>
  </resources>

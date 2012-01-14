@@ -10,6 +10,7 @@
 #include "nhs.h"
 #include "PostProcessing.h"
 #include "rationalsupershape2d.h"
+#include "imageframe.h"
 
 
 #define SIZE 100
@@ -39,8 +40,6 @@ Gui::Gui(QWidget *parent) :
     // set the location of 'cvWindow'
     cvWindow->setParent(ui->frame);
 
-    cvWindow->resize(ui->frame->size());
-
     readSettings();
 
     // check consistency - for the first time load the default param.
@@ -53,6 +52,9 @@ Gui::Gui(QWidget *parent) :
     // So in the first time we display the images.
     is_display_images = true;
 
+    // If the frame resizes, update the image size
+    connect(ui->frame, SIGNAL(resizeImage(QSize)), this, SLOT(updateImageSize(QSize)));
+    updateImageSize(ui->frame->size());
 }
 
 Gui::~Gui()
@@ -122,12 +124,23 @@ void Gui::updateImage( const cv::Mat &img )
 {
     CvMat c_img = img;
     cvWindow->updateImage( &c_img );
+    updateImageSize(ui->frame->size());
 }
 
 void Gui::updateImage( const QString &str )
 {
     Mat img = imread(str.toStdString());
     updateImage(img);
+}
+
+void Gui::updateImageSize(const QSize &size) {
+    //  We need a little bit space for color and coordinate
+    //  information below the image
+    int width = size.width();
+    int height = size.height()-50;
+    cvWindow->getView()->setSceneRect(QRect(0,0,width,height));
+    cvWindow->getView()->setFixedSize(QSize(width, height));
+    cvWindow->resize(QSize(width, height));
 }
 
 void Gui::on_pushButton_LoadImage_clicked()

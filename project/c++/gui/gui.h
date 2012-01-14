@@ -38,6 +38,7 @@ public:
 private slots:
     void updateImage( const Mat &img );
     void updateImage( const QString &str );
+    void updateImageSize( const QSize &size);
 
     void on_pushButton_LoadImage_clicked();
     void on_tableImage_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
