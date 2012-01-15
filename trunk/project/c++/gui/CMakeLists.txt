@@ -14,6 +14,7 @@ set( 3RDPARTY  ${CMAKE_CURRENT_LIST_DIR}/../3rdparty )
 # here we define SAMPLE_SRCS variable that contains a list of all .cpp files
 # note that we don't need \ at the end of line
 set( SAMPLE_SRCS
+        ./imageframe.cpp
         ./gui.cpp
         ./main.cpp
         ./options.cpp
@@ -28,6 +29,7 @@ set( SAMPLE_SRCS
 
 # another list, this time it includes all header files that should be treated with moc
 set( SAMPLE_MOC_HDRS
+    ./imageframe.h
     ./gui.h
     ./options.h
     ./window_QT.h
@@ -57,6 +59,7 @@ FIND_PACKAGE(OpenCV REQUIRED)
 # add some useful macros and variables
 # (QT_USE_FILE is a variable defined by FIND_PACKAGE( Qt4 ) that contains a path to CMake script)
 include( ${QT_USE_FILE} )
+include_directories( ${CMAKE_CURRENT_LIST_DIR} )
 # include_directories( ${OPENCV_INCLUDE_DIR} )
 
 
