@@ -79,8 +79,8 @@ http://www.laganiere.name/opencvCookbook/img/c1image15.png
 
 To compile on mac, you can use cmake. You will need:
 
-* [http://www.macports.org/ MacPorts] - Software to easily install packages and libraries on Mac OS X, somewhat like Aptitude for Ubuntu
-* The [http://qt.nokia.com/downloads/qt-for-open-source-cpp-development-on-mac-os-x QT] libraries for Mac OS X
+  * [http://www.macports.org/ MacPorts] - Software to easily install packages and libraries on Mac OS X, somewhat like Aptitude for Ubuntu
+  * The [http://qt.nokia.com/downloads/qt-for-open-source-cpp-development-on-mac-os-x QT] libraries for Mac OS X
 
 Open up a terminal window (Applications/Utilities/Terminal.app). First, update your macports repositories:
 
