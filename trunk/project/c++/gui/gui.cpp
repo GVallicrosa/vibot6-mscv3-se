@@ -222,28 +222,28 @@ void Gui::on_tableImage_currentCellChanged(int currentRow, int currentColumn, in
     if( item == 0 )
         return;
 
-//    // Ask to the user if he want to lose all the images output
-//    if( ui->pushButton_SaveAll->isEnabled() )
-//    {
-//        QMessageBox::StandardButton ans = QMessageBox::question( this, "Change current cell",
-//                                                                 "You are going to lose all the output images. "
-//                                                                 "Do you want to continue?",
-//                                                                 QMessageBox::Ok | QMessageBox::Cancel);
-//        if( ans == QMessageBox::Cancel )
-//        {
-////            ui->tableImage->disconnect(SIGNAL(currentCellChanged(int,int,int,int)));
-////            QTableWidgetItem * item = ui->tableImage->item( previousRow, previousColumn );
-////            qWarning() << " " << currentRow << " " << previousRow;
-////            ui->tableImage->setCurrentCell( currentRow, currentColumn, QItemSelectionModel::SelectCurrent );
-////            connect(ui->tableImage, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(on_tableImage_currentCellChanged(int,int,int,int)));
-//            return;
-//        }
+    //    // Ask to the user if he want to lose all the images output
+    //    if( ui->pushButton_SaveAll->isEnabled() )
+    //    {
+    //        QMessageBox::StandardButton ans = QMessageBox::question( this, "Change current cell",
+    //                                                                 "You are going to lose all the output images. "
+    //                                                                 "Do you want to continue?",
+    //                                                                 QMessageBox::Ok | QMessageBox::Cancel);
+    //        if( ans == QMessageBox::Cancel )
+    //        {
+    ////            ui->tableImage->disconnect(SIGNAL(currentCellChanged(int,int,int,int)));
+    ////            QTableWidgetItem * item = ui->tableImage->item( previousRow, previousColumn );
+    ////            qWarning() << " " << currentRow << " " << previousRow;
+    ////            ui->tableImage->setCurrentCell( currentRow, currentColumn, QItemSelectionModel::SelectCurrent );
+    ////            connect(ui->tableImage, SIGNAL(currentCellChanged(int,int,int,int)), this, SLOT(on_tableImage_currentCellChanged(int,int,int,int)));
+    //            return;
+    //        }
 
-//        // Disable buttons
-//        ui->pushButton_SaveAll->setEnabled(false);
-//        ui->pushButton_Next->setEnabled(false);
-//        ui->pushButton_Prev->setEnabled(false);
-//    }
+    //        // Disable buttons
+    //        ui->pushButton_SaveAll->setEnabled(false);
+    //        ui->pushButton_Next->setEnabled(false);
+    //        ui->pushButton_Prev->setEnabled(false);
+    //    }
 
     QString fileName = item->text();
 
@@ -426,7 +426,7 @@ void Gui::on_pushButton_Process_All_clicked()
 }
 
 void Gui::on_pushButton_Process_clicked()
-{    
+{
     output_images.clear();
     if( ui->tableImage == 0 || ui->tableImage->rowCount() == 0 )
     {
@@ -526,6 +526,8 @@ void Gui::on_pushButton_Process_clicked()
     // For displaying
     vector<Vector2d> data;
 
+    vector<vector<float> > rotaional_offsets;
+
     // Going through all the contours and extract points from
     // shape reconstruction.
     for (unsigned i = 0; i < extractedCont.size(); i++)
@@ -543,6 +545,7 @@ void Gui::on_pushButton_Process_clicked()
         // calculate the Rotational Offset
         cRotationalOffset RO;
         vector<float>  offsets = RO.GetMinRadius( contourPoint );
+        rotaional_offsets.push_back(offsets);
 
         // TODO: get rid of it later, just for testing.
         //        printf("Offsets size: %d\n", offsets.size());
@@ -570,7 +573,11 @@ void Gui::on_pushButton_Process_clicked()
         {
             data.push_back(output[j]);
         }
+
     }
+
+    save_rotaional_offsets(rotaional_offsets, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+    save_rational_output(data, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
 
     Mat dimg = drawPoints( image, data );
     if(is_display_images)
@@ -587,6 +594,65 @@ void Gui::on_pushButton_Process_clicked()
     ui->pushButton_Prev->setEnabled(true);
 
     statusBar()->showMessage( "Process for " + QString(fi.fileName()) +  " is completed!" );
+}
+
+void
+Gui::save_rotaional_offsets(vector<vector<float> > output, const string file_name, const string save_folder)
+{
+    ofstream log_stream;
+
+    if( !QDir( QString(save_folder.c_str())+"/output/" ).exists() )
+    {
+        QDir().mkdir( QString(save_folder.c_str()) + "/output/" );
+    }
+
+    string log_file;
+    log_file.append(save_folder);
+    log_file.append("/output/");
+    log_file.append(file_name);
+    log_file.append("_rotationalOffset");
+    log_file.append(".txt");
+
+    log_stream.open(log_file.c_str());
+
+    for (unsigned j = 0; j < output.size(); j++)
+    {
+        for (unsigned i = 0; i < output[j].size(); i++)
+        {
+            log_stream << output[j][i] << "\t";
+        }
+        log_stream << "\n";
+    }
+
+    log_stream.close();
+}
+
+void
+Gui::save_rational_output(vector<Vector2d> output, const string file_name, const string save_folder)
+{
+    ofstream log_stream;
+
+    if( !QDir( QString(save_folder.c_str())+"/output/" ).exists() )
+    {
+        QDir().mkdir( QString(save_folder.c_str()) + "/output/" );
+    }
+
+    string log_file;
+    log_file.append(save_folder);
+    log_file.append("/output/");
+    log_file.append(file_name);
+    log_file.append("_rationalShape");
+    log_file.append(".txt");
+
+    log_stream.open(log_file.c_str());
+
+    for (unsigned j = 0; j < output.size(); j++)
+    {
+        log_stream << output[j][0] << "\t";
+        log_stream << output[j][1] << "\n";
+    }
+
+    log_stream.close();
 }
 
 Mat Gui::drawPoints( const Mat &image, const vector<Vector2d> &data )
@@ -633,7 +699,7 @@ Gui::save_output_images(vector<Mat> images, vector<bool> flags, const string fil
         if (flags[i])
         {
             string image_name;
-            image_name.append(save_folder);            
+            image_name.append(save_folder);
             image_name.append("/output/");
             image_name.append(file_name);
             image_name.append(names[i]);
