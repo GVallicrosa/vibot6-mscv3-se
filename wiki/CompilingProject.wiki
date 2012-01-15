@@ -76,3 +76,38 @@ http://www.laganiere.name/opencvCookbook/img/c1image15.png
  # Open ''project\c++\gui\gui.pro'' with qtcreator and build it and run it.
 
 = Mac =
+
+To compile on mac, you can use cmake. You will need:
+
+* [http://www.macports.org/ MacPorts] - Software to easily install packages and libraries on Mac OS X, somewhat like Aptitude for Ubuntu
+* The [http://qt.nokia.com/downloads/qt-for-open-source-cpp-development-on-mac-os-x QT] libraries for Mac OS X
+
+Open up a terminal window (Applications/Utilities/Terminal.app). First, update your macports repositories:
+
+{{{
+sudo port selfupdate
+}}}
+Afterwards, you will need to install OpenCV (Although not necessary for this project, you can also install the python bindings in this step) and cmake:
+{{{
+sudo port install opencv
+sudo port install cmake
+}}}
+
+Navigate to a folder where you want to have your local copy of the source, and check out the project:
+{{{
+svn checkout https://vibot6-mscv3-se.googlecode.com/svn/trunk/ vibot6-mscv3-se --username (your username)
+cd project
+cd c++
+}}}
+Now use cmake to compile it:
+{{{
+mkdir build
+cd build
+cmake ..
+make
+}}}
+
+You're all set to start using the project! For example, try running the GUI:
+{{{
+./gui
+}}}
