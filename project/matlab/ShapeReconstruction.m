@@ -72,8 +72,8 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
     
     for i = 0:0.01:2*pi
         r = radius_(i);
-        x = cos(i)*r + centerX;
-        y = sin(i)*r + centerY;
+        x = cos(i + Parameters(8))*r + centerX; 
+        y = sin(i + Parameters(8))*r + centerY;
         Output(end+1,:) = [x, y];
     end
 end

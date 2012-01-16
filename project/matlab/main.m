@@ -13,7 +13,7 @@ global Parameters;
 
 %% Options
 % NHS
-NHS_color  = 'red';      % color to segment 'blue' or 'red'
+NHS_color  = 'blue';      % color to segment 'blue' or 'red'
 
 NHS_output = true;       % save output for this function
 % PostProcessing
@@ -29,8 +29,6 @@ GIELIS_norm = false;      % use normalization (default true)
 GIELIS_func = 1;         % cost function to use 1, 2 or 3 (default 1)
 GIELIS_output = true;    % save output for this function
 
-% Suppress the warnings for subsequent calculations in ShapeReconstruction
-warning off all;
 
 %% Add necessary paths to call all functions
 addpath('gui', 'ShapeReconstruction', 'Rotational Offset');
@@ -46,10 +44,14 @@ fileIndex = find(~[files.isdir]);
 %for i = 1:length(fileIndex)
     
     %% Open image
-    fname = 'octogonal0018.jpg';
+
+    fname = 'rectangular0001.jpg';
+
+    %fname = 'circular0009.jpg';
+
     %fname = files(fileIndex(i)).name;
     im = imread([dirname,fname]);
-    display(['Processing ', fname]);
+    display(['- ', fname]);
     
     %% Image segmentation
 		% You can pass arbitrary hue max and min, sat min. e.g.:
@@ -72,9 +74,8 @@ fileIndex = find(~[files.isdir]);
     
     %% Label image
     [L,N] = bwlabel(cleanImg, 8);              %Labeling of the clean image
-    display(['- No. of detected shapes: ', num2str(N)]);
     for i=1:N                                  %For each labeled region
-        display(['  -- Detecting contour ', num2str(i),'/',num2str(N)])
+        display(['  -- contour ', num2str(i),'/',num2str(N)])
         [rows cols] = find(L==i);              %Get the coordinates of the points
         tmpI = (L==i);                         %Make a temporary binary image of the current label
         
@@ -97,27 +98,20 @@ fileIndex = find(~[files.isdir]);
         end
         
         %% Rotational offset
-        x = zeros(size(valid_contour,1));
-        y = zeros(size(valid_contour,1));
-        valid_contour1 = zeros(size(valid_contour));
-        x = valid_contour(:,2);
-        y = valid_contour(:,1);
-        valid_contour1(:,1) = x;
-        valid_contour1(:,2) = y;
-        [Radius, Theta] = Cartisian2Polar(valid_contour1);
+        [Radius, Theta] = Cartisian2Polar(valid_contour);
         [Theta,Permutation_Index] = sort(Theta,'ascend');
         Radius = Radius(Permutation_Index);
-        Offset = FindMinimum(Radius, Theta);
-
+        [Offset Radius_Offset]= FindMinimum(Radius, Theta);
+        
         %% Gielis curves reconstruction
-        display(['     --- Shape Reconstruction ', num2str(i),'/',num2str(N)])
-        Output = ShapeReconstruction(valid_contour, Offset, GIELIS_norm, GIELIS_func);
+        Output = ShapeReconstruction(valid_contour,Offset, GIELIS_norm, GIELIS_func);
         if GIELIS_output
             Fname = ['output/',fname(1:length(fname)-3), '_shape', num2str(i),'.txt'];
             save(Fname,'Output','-ASCII');
         end
+        Parameters(8)
         % Always save the output image (provisional code, ensures same image dimensions)
-        IMname = ['output/',fname(1:length(fname)-3), '_shape',num2str(i),'.png'];
+        IMname = ['output1/',fname(1:length(fname)-3), '_shape',num2str(i),'.png'];
         f = figure('visible','off'); 
         subplot('position', [0 0 1 1]);
         imshow(im); hold on;
@@ -129,5 +123,6 @@ fileIndex = find(~[files.isdir]);
         %imwrite(Output,IMname,'PNG');%,'BitDepth',1);
         
     end
-    display('All done!');
+    display('We''re Finished!');
+    
 %end
