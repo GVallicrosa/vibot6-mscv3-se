@@ -63,7 +63,7 @@ private:
     Mat drawPoints( const Mat &image, const vector<Vector2d> &data );
 
     void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
-    void save_rational_output(vector<Vector2d> output, const string file_name, const string save_folder);
+    void save_rational_output(vector<Vector2d> output, vector<float> gielis_curve_params, const string file_name, const string save_folder);
     void save_rotaional_offsets(vector<vector<float> > output, const string file_name, const string save_folder);
 
     // Setting

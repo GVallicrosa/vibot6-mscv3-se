@@ -528,6 +528,8 @@ void Gui::on_pushButton_Process_clicked()
 
     vector<vector<float> > rotaional_offsets;
 
+    vector<float> gielis_curve_params;
+
     // Going through all the contours and extract points from
     // shape reconstruction.
     for (unsigned i = 0; i < extractedCont.size(); i++)
@@ -567,6 +569,13 @@ void Gui::on_pushButton_Process_clicked()
             functionUsed = 3;
 
         vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
+
+        gielis_curve_params.push_back(rationalSuperShape2d.Get_a());
+        gielis_curve_params.push_back(rationalSuperShape2d.Get_b());
+        gielis_curve_params.push_back(rationalSuperShape2d.Get_n1());
+        gielis_curve_params.push_back(rationalSuperShape2d.Get_n2());
+        gielis_curve_params.push_back(rationalSuperShape2d.Get_n3());
+
         qWarning() << "Optimizing finished successfully.";
 
         for (unsigned j = 0; j < output.size(); j++)
@@ -577,7 +586,7 @@ void Gui::on_pushButton_Process_clicked()
     }
 
     save_rotaional_offsets(rotaional_offsets, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
-    save_rational_output(data, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+    save_rational_output(data, gielis_curve_params, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
 
     Mat dimg = drawPoints( image, data );
     if(is_display_images)
@@ -628,7 +637,7 @@ Gui::save_rotaional_offsets(vector<vector<float> > output, const string file_nam
 }
 
 void
-Gui::save_rational_output(vector<Vector2d> output, const string file_name, const string save_folder)
+Gui::save_rational_output(vector<Vector2d> output, vector<float> gielis_curve_params, const string file_name, const string save_folder)
 {
     ofstream log_stream;
 
@@ -646,6 +655,15 @@ Gui::save_rational_output(vector<Vector2d> output, const string file_name, const
 
     log_stream.open(log_file.c_str());
 
+    // Saving the parameters first
+    log_stream << "a: " << gielis_curve_params[0] << "\t";
+    log_stream << "b: " << gielis_curve_params[1] << "\t";
+    log_stream << "n1: " << gielis_curve_params[2] << "\t";
+    log_stream << "n2: " << gielis_curve_params[3] << "\t";
+    log_stream << "n3: " << gielis_curve_params[4] << "\t";
+    log_stream << "\n\n";
+
+    // Saving the points after that.
     for (unsigned j = 0; j < output.size(); j++)
     {
         log_stream << output[j][0] << "\t";

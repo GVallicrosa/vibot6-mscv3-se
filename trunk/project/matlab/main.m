@@ -39,7 +39,7 @@ if ~isdir('output')
 end
 
 %% Search for images
-dirname = './Images/'; % previous value: '../../vibot6_mscv3/Images/';
+dirname = '/home/safir/Desktop/Temporary/Images-Red/'; % previous value: '../../vibot6_mscv3/Images/';
 files = dir(dirname);
 fileIndex = find(~[files.isdir]);
 
