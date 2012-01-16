@@ -84,7 +84,7 @@ fileIndex = find(~[files.isdir]);
                                                %Get the points in the boundary of the blob
 %          img_canny= edge(tmpI,'canny');
 %          contP=find(img_canny==1);
-         
+%         
         %% Contour extraction
         valid_contour = contour_extraction(contP, CE_distError);
         if CE_output
