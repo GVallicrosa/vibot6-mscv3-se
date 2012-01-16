@@ -25,7 +25,7 @@ function [ err ] = Optimize( Data , Normalization , functionused )
     %double h;
 
     itnum = 1;
-    while itnum <= 1000 && STOP == false
+    while itnum <= 20 && STOP == false
         
         oldparams = Parameters;
         alpha = zeros(5,5);

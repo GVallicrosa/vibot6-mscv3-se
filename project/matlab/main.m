@@ -13,7 +13,7 @@ global Parameters;
 
 %% Options
 % NHS
-NHS_color  = 'blue';      % color to segment 'blue' or 'red'
+NHS_color  = 'red';      % color to segment 'blue' or 'red'
 
 NHS_output = true;       % save output for this function
 % PostProcessing
@@ -45,7 +45,7 @@ fileIndex = find(~[files.isdir]);
     
     %% Open image
 
-    fname = 'rectangular0001.jpg';
+    fname = 'triangular0026.jpg';
 
     %fname = 'circular0009.jpg';
 
@@ -101,7 +101,7 @@ fileIndex = find(~[files.isdir]);
         [Radius, Theta] = Cartisian2Polar(valid_contour);
         [Theta,Permutation_Index] = sort(Theta,'ascend');
         Radius = Radius(Permutation_Index);
-        [Offset Radius_Offset]= FindMinimum(Radius, Theta);
+        Offset = FindMinimum(Radius, Theta);
         
         %% Gielis curves reconstruction
         Output = ShapeReconstruction(valid_contour,Offset, GIELIS_norm, GIELIS_func);
@@ -111,11 +111,11 @@ fileIndex = find(~[files.isdir]);
         end
         Parameters(8)
         % Always save the output image (provisional code, ensures same image dimensions)
-        IMname = ['output1/',fname(1:length(fname)-3), '_shape',num2str(i),'.png'];
+        IMname = ['output/',fname(1:length(fname)-3), '_shape',num2str(i),'.png'];
         f = figure('visible','off'); 
         subplot('position', [0 0 1 1]);
         imshow(im); hold on;
-        plot(Output(:,2),Output(:,1),'g','LineWidth', 1); hold off;
+        plot(Output(:,2),Output(:,1),'g','LineWidth', 2); hold off;
         dpi = 100;
         set(f, 'paperposition', [0 0 n/dpi m/dpi]);
         set(f, 'papersize', [n/dpi m/dpi]);
@@ -123,6 +123,6 @@ fileIndex = find(~[files.isdir]);
         %imwrite(Output,IMname,'PNG');%,'BitDepth',1);
         
     end
-    display('We''re Finished!');
+    display('We are Finished!');
     
 %end
