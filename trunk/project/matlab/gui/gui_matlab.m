@@ -411,12 +411,10 @@ if Options.Processflag == 1 % ensure image already processed
     if(Options.CE_output)
         filepath= [foldername Images{3,5}];
         imwrite(Images{1,5},filepath,'PNG','BitDepth',1);
-        saveText(1,foldername);
     end
     if(Options.GIELIS_output)
         filepath= [foldername Images{3,6}];
         imwrite(Images{1,6},filepath,'PNG','BitDepth',8);
-        saveText(3,foldername);
     end
     % FILES
     if Options.CE_file_before

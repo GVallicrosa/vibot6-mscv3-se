@@ -10,13 +10,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [nhs,noiseRem,cleanImg,imCE,OutputImg, contOrig,contCE,rotOff,paramGIELIS] = ProcessImage(inputImage)
 % does road sign detection from input image
-% integration of other codes for GUI takem from main.m
 
-% No need to pass all the parameters using global Options variable
 global Options; % All options in a single variable
-% currfilename = Options.currfilename;
 
 %% Image segmentation
+% You can pass arbitrary hue max and min, sat min. e.g.:
+% normalize_segmentation(im, 'other', 11, 230, 60);
 nhs = normalize_segmentation(inputImage, Options.NHS_color);
 [m n] = size(nhs);
 % Test save
@@ -63,14 +62,7 @@ if N>0                          % If we have regions, continue processing
         end
         
         %% Rotational offset
-         x = zeros(size(valid_contour,1));
-        y = zeros(size(valid_contour,1));
-        valid_contour1 = zeros(size(valid_contour));
-        x = valid_contour(:,2);
-        y = valid_contour(:,1);
-        valid_contour1(:,1) = x;
-        valid_contour1(:,2) = y;
-        [Radius, Theta] = Cartisian2Polar(valid_contour1);
+        [Radius, Theta] = Cartisian2Polar(valid_contour);
         [Theta,Permutation_Index] = sort(Theta,'ascend');
         Radius = Radius(Permutation_Index);
         Offset = FindMinimum(Radius, Theta);
@@ -93,7 +85,7 @@ if N>0                          % If we have regions, continue processing
     %pointGIELIS = contCE; % only for testing without gielis
     for k=1:length(pointGIELIS)
         points = pointGIELIS{k};
-        plot(points(:,2),points(:,1),'g','LineWidth', 3);
+        plot(points(:,2),points(:,1),'g','LineWidth', 1);
     end
     hold off;
     dpi = 100;
