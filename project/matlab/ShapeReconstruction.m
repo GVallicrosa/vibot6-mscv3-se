@@ -64,7 +64,7 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
         end
     end
     
-    if exist('bestParameters')
+    if exist('bestParameters', 'var')
         Parameters = bestParameters;
     end
     
