@@ -64,7 +64,10 @@ function [ Output ] = ShapeReconstruction(Data, RotOffsets, Normalization, funct
         end
     end
     
-    Parameters = bestParameters;
+    if exist('bestParameters')
+        Parameters = bestParameters;
+    end
+    
     centerX = Parameters(10);
     centerY = Parameters(11);
     Output = zeros(0);
