@@ -1,5 +1,5 @@
-function [potential_field_value, Dffinal] = ImplicitFunction1_(P)
-%IMPLICITFUNCTION1_ This function computes the potential field.
+function [potential_field_value, Dffinal] = ImplicitFunction3_(P)
+%IMPLICITFUNCTION3_ This function computes the potential field.
 %It also calculates the derivatives of the field.
 %The input/output specifications are:
 %1.  Input  : P, Single Data Point after translation/rotation
@@ -9,7 +9,7 @@ global Parameters;
 
 q = Parameters(7);
 
-Dffinal = zeros(3);
+Dffinal = zeros(1, 3);
 
 % if the point is zero
 if P(1) == 0 && P(2) == 0
@@ -24,7 +24,7 @@ end;
 
 % dimension of f = q, because later on there will be a loop
 % which assign values to f by q times.
-f = zeros(q);
+f = zeros(1, q);
 Ddum = 0;
 
 x = P(1);
@@ -67,7 +67,7 @@ for i = 1:q-1
             temp = f(i);
             f(i) = f(j);
             f(j) = temp;
-            swap(f(i),f(j));
+            % swap(f(i),f(j));
         	% swap rows Df[i] and Df[j]
             temp = Df(i,:);
             Df(i,:) = Df(j,:);
@@ -91,7 +91,7 @@ Df1 = Df(1,:);  % first associated row with partial derivatives
 
 % combine functions as (...((F1 v F2) v F3 ) v F4) v ...)
 
-for i = 1:q % for all intersections
+for i = 2:q % for all intersections
     % compute R-function, sets all partial derivatives
     % fdum and Ddum temporary results of the union from F1 to Fi
 
