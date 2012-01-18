@@ -585,8 +585,18 @@ void Gui::on_pushButton_Process_clicked()
 
     }
 
-    save_rotaional_offsets(rotaional_offsets, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
-    save_rational_output(data, gielis_curve_params, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+    if (extractedCont.size() > 0)
+    {
+        save_rotaional_offsets(rotaional_offsets, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+        save_rational_output(data, gielis_curve_params, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+    }
+    else
+    {
+        QMessageBox ErrMsg;
+        ErrMsg.setIcon(QMessageBox::Warning);
+        ErrMsg.setText("Contour extraction failed for " + QString(fi.fileName()));
+        ErrMsg.exec();
+    }
 
     Mat dimg = drawPoints( image, data );
     if(is_display_images)
