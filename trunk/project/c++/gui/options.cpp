@@ -36,9 +36,7 @@ void Options::load()
     ui->low_ratio->setValue( gui->low_ratio );
     ui->high_ratio->setValue( gui->high_ratio );
     ui->aspect_are->setValue( gui->aspect_are );
-    ui->Threshold->setValue( gui->Threshold );
-
-    ui->Normalization->setChecked( gui->Normalization );
+    ui->Threshold->setValue( gui->Threshold );    
 
     if( gui->Function == "Func1" )
         ui->Func1->setChecked(true);
@@ -61,9 +59,7 @@ void Options::save()
     gui->low_ratio  = ui->low_ratio->value();
     gui->high_ratio = ui->high_ratio->value();
     gui->aspect_are = ui->aspect_are->value();
-    gui->Threshold  = ui->Threshold->value();
-
-    gui->Normalization = ui->Normalization->isChecked();
+    gui->Threshold  = ui->Threshold->value();  
 
     if( ui->Func1->isChecked() )
         gui->Function = "Func1";
@@ -96,8 +92,7 @@ void Options::on_buttonBox_clicked(QAbstractButton* button)
         ui->low_ratio->setValue(0.25);
         ui->high_ratio->setValue(1.3);
         ui->aspect_are->setValue(1500);
-        ui->Threshold->setValue(20.0);
-        ui->Normalization->setChecked(true);
+        ui->Threshold->setValue(7.0);
         ui->Func1->setChecked(true);
     }
 }

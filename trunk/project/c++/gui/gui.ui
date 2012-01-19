@@ -80,8 +80,8 @@
               <string>&amp;Process</string>
              </property>
              <property name="icon">
-              <iconset resource="window_QT.qrc">
-               <normaloff>:/logo.png</normaloff>:/logo.png</iconset>
+              <iconset>
+               <normaloff>logo.png</normaloff>logo.png</iconset>
              </property>
              <property name="shortcut">
               <string>Ctrl+P</string>
@@ -136,6 +136,10 @@
              <property name="text">
               <string>Process All</string>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>logo2.png</normaloff>logo2.png</iconset>
+             </property>
             </widget>
            </item>
           </layout>
@@ -186,7 +190,7 @@
                 <item>
                  <widget class="QCheckBox" name="ContourExtaction">
                   <property name="text">
-                   <string>Contour extraction</string>
+                   <string>Convex Hull</string>
                   </property>
                   <property name="checked">
                    <bool>true</bool>
@@ -196,7 +200,7 @@
                 <item>
                  <widget class="QCheckBox" name="GetRotationOffset">
                   <property name="text">
-                   <string>Get rotation offset</string>
+                   <string>Reduced Contour</string>
                   </property>
                   <property name="checked">
                    <bool>true</bool>
@@ -225,6 +229,9 @@
                <property name="title">
                 <string>Log Files</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
                <widget class="QCheckBox" name="logOriginalContour">
                 <property name="geometry">
                  <rect>
@@ -237,12 +244,15 @@
                 <property name="text">
                  <string>Original Contour</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
                <widget class="QCheckBox" name="logContourExtraction">
                 <property name="geometry">
                  <rect>
                   <x>10</x>
-                  <y>60</y>
+                  <y>70</y>
                   <width>243</width>
                   <height>22</height>
                  </rect>
@@ -250,12 +260,15 @@
                 <property name="text">
                  <string>Contour Extraction</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
                <widget class="QCheckBox" name="logRotationalOffset">
                 <property name="geometry">
                  <rect>
                   <x>10</x>
-                  <y>90</y>
+                  <y>110</y>
                   <width>243</width>
                   <height>22</height>
                  </rect>
@@ -263,18 +276,24 @@
                 <property name="text">
                  <string>Rotational Offset</string>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
                <widget class="QCheckBox" name="logGielisParameters">
                 <property name="geometry">
                  <rect>
                   <x>10</x>
-                  <y>120</y>
+                  <y>150</y>
                   <width>243</width>
                   <height>22</height>
                  </rect>
                 </property>
                 <property name="text">
                  <string>Gielis Parameters</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </widget>

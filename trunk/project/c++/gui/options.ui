@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>357</width>
-    <height>348</height>
+    <width>428</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -127,13 +127,6 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
-           <widget class="QCheckBox" name="Normalization">
-            <property name="text">
-             <string>Normalization</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
            <widget class="QGroupBox" name="groupBox_5">
             <property name="title">
              <string>Function to use</string>
