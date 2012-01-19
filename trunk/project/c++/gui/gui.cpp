@@ -777,6 +777,26 @@ void Gui::on_pushButton_SaveAll_clicked()
     QFileInfo fi(currentItem->text());
     QString base = fi.baseName();
     save_output_images(output_images, flags, base.toStdString(), fi.canonicalPath().toStdString());
-
+    save_log_files();
     ui->pushButton_SaveAll->setEnabled(false);
+}
+
+void Gui::save_log_files()
+{
+    if(ui->logContourExtraction->isChecked()) {
+//        save_contour_extraction_output()
+        qWarning() << "Saving log files for Contour Extraction";
+    }
+    if(ui->logGielisParameters->isChecked()) {
+//        save_rational_output();
+        qWarning() << "Saving log files for Gielis Parameters";
+    }
+    if(ui->logOriginalContour->isChecked()) {
+//        save_original_contour_output();
+        qWarning() << "Saving log files for Original Contour";
+    }
+    if(ui->logRotationalOffset->isChecked()) {
+//        save_rational_output(output, gielis_curve_params, file_name, save_folder);
+        qWarning() << "Saving log files for Rotational Offset";
+    }
 }
