@@ -69,79 +69,7 @@
            </item>
           </layout>
          </item>
-         <item row="1" column="0">
-          <widget class="QGroupBox" name="groupBox_IntermediateResults">
-           <property name="title">
-            <string>Intermediate results</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <widget class="QCheckBox" name="NHSSegmentation">
-              <property name="text">
-               <string>NHS Segmentation</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="NoiseRemoval">
-              <property name="text">
-               <string>Noise removal</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="ObjectElimination">
-              <property name="text">
-               <string>Object elimination</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="ContourExtaction">
-              <property name="text">
-               <string>Contour extraction</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="GetRotationOffset">
-              <property name="text">
-               <string>Get rotation offset</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="GielisShapeReconstruction">
-              <property name="text">
-               <string>Gielis shape reconstruction</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="3" column="0">
+         <item row="4" column="0">
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QPushButton" name="pushButton_Process">
@@ -209,6 +137,149 @@
               <string>Process All</string>
              </property>
             </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QGroupBox" name="groupBox_IntermediateResults">
+               <property name="title">
+                <string>Intermediate results</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QCheckBox" name="NHSSegmentation">
+                  <property name="text">
+                   <string>NHS Segmentation</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="NoiseRemoval">
+                  <property name="text">
+                   <string>Noise removal</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="ObjectElimination">
+                  <property name="text">
+                   <string>Object elimination</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="ContourExtaction">
+                  <property name="text">
+                   <string>Contour extraction</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="GetRotationOffset">
+                  <property name="text">
+                   <string>Get rotation offset</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="GielisShapeReconstruction">
+                  <property name="text">
+                   <string>Gielis shape reconstruction</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QGroupBox" name="groupBox">
+               <property name="title">
+                <string>Log Files</string>
+               </property>
+               <widget class="QCheckBox" name="logOriginalContour">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>30</y>
+                  <width>243</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Original Contour</string>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="logContourExtraction">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>60</y>
+                  <width>243</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Contour Extraction</string>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="logRotationalOffset">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>90</y>
+                  <width>243</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Rotational Offset</string>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="logGielisParameters">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>120</y>
+                  <width>243</width>
+                  <height>22</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Gielis Parameters</string>
+                </property>
+               </widget>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
