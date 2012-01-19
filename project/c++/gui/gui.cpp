@@ -50,7 +50,7 @@ Gui::Gui(QWidget *parent) :
     }
 
     // So in the first time we display the images.
-    is_display_images = true;
+    is_display_images = true;   
 
     // If the frame resizes, update the image size
     connect(ui->frame, SIGNAL(resizeImage(QSize)), this, SLOT(updateImageSize(QSize)));
@@ -413,6 +413,12 @@ void Gui::on_pushButton_Process_All_clicked()
         QFileInfo fi(currentItem->text());
         QString base = fi.baseName();
         save_output_images(output_images, flags, base.toStdString(), fi.canonicalPath().toStdString());
+
+        // Saving log files
+        save_contour(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+        save_extracted_contour(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+        save_rotaional_offsets(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
+        save_rational_output(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
     }
 
     for(int i = number_images - 1; i >= 0; i--)
@@ -427,7 +433,14 @@ void Gui::on_pushButton_Process_All_clicked()
 
 void Gui::on_pushButton_Process_clicked()
 {
+    // Cleaning all the log files both for parameters and images.
     output_images.clear();
+    contour_log.clear();
+    extracted_contour_log.clear();
+    rotaional_offsets.clear();
+    gielis_curve_params.clear();
+    gielis_output.clear();
+
     if( ui->tableImage == 0 || ui->tableImage->rowCount() == 0 )
     {
         qWarning() << "Table is empty!";
@@ -496,6 +509,9 @@ void Gui::on_pushButton_Process_clicked()
     }
     output_images.push_back(eimg_save);
 
+    // Setting the log file for contour before extraction.
+    contour_log = copyCont;
+
 
     // PostProcessing - Convex
     vector<vector<Point> >hull( copyCont.size() );
@@ -517,6 +533,9 @@ void Gui::on_pushButton_Process_clicked()
     }
     output_images.push_back(cimg);
 
+    // Setting the log file for contour after extraction.
+    extracted_contour_log = extractedCont;
+
     // PostProcessing - rotational offset
 
     // For rotational offset
@@ -524,11 +543,7 @@ void Gui::on_pushButton_Process_clicked()
     // For shape reconstruction
     vector<Vector2d> contourVector;
     // For displaying
-    vector<Vector2d> data;
-
-    vector<vector<float> > rotaional_offsets;
-
-    vector<float> gielis_curve_params;
+    vector<Vector2d> data;   
 
     // Going through all the contours and extract points from
     // shape reconstruction.
@@ -568,7 +583,7 @@ void Gui::on_pushButton_Process_clicked()
         else if( Function == "Func3" )
             functionUsed = 3;
 
-        vector<Vector2d> output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
+        gielis_output = rationalSuperShape2d.Run( contourVector, offsets, true, functionUsed );
 
         gielis_curve_params.push_back(rationalSuperShape2d.Get_a());
         gielis_curve_params.push_back(rationalSuperShape2d.Get_b());
@@ -578,24 +593,11 @@ void Gui::on_pushButton_Process_clicked()
 
         qWarning() << "Optimizing finished successfully.";
 
-        for (unsigned j = 0; j < output.size(); j++)
+        for (unsigned j = 0; j < gielis_output.size(); j++)
         {
-            data.push_back(output[j]);
+            data.push_back(gielis_output[j]);
         }
 
-    }
-
-    if (extractedCont.size() > 0)
-    {
-        save_rotaional_offsets(rotaional_offsets, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
-        save_rational_output(data, gielis_curve_params, fi.baseName().toStdString(), fi.canonicalPath().toStdString());
-    }
-    else
-    {
-        QMessageBox ErrMsg;
-        ErrMsg.setIcon(QMessageBox::Warning);
-        ErrMsg.setText("Contour extraction failed for " + QString(fi.fileName()));
-        ErrMsg.exec();
     }
 
     Mat dimg = drawPoints( image, data );
@@ -616,7 +618,7 @@ void Gui::on_pushButton_Process_clicked()
 }
 
 void
-Gui::save_rotaional_offsets(vector<vector<float> > output, const string file_name, const string save_folder)
+Gui::save_rotaional_offsets(const string file_name, const string save_folder)
 {
     ofstream log_stream;
 
@@ -629,16 +631,16 @@ Gui::save_rotaional_offsets(vector<vector<float> > output, const string file_nam
     log_file.append(save_folder);
     log_file.append("/output/");
     log_file.append(file_name);
-    log_file.append("_rotationalOffset");
+    log_file.append("_rotaional_offsets");
     log_file.append(".txt");
 
     log_stream.open(log_file.c_str());
 
-    for (unsigned j = 0; j < output.size(); j++)
+    for (unsigned j = 0; j < rotaional_offsets.size(); j++)
     {
-        for (unsigned i = 0; i < output[j].size(); i++)
+        for (unsigned i = 0; i < rotaional_offsets[j].size(); i++)
         {
-            log_stream << output[j][i] << "\t";
+            log_stream << rotaional_offsets[j][i] << "\t";
         }
         log_stream << "\n";
     }
@@ -647,7 +649,7 @@ Gui::save_rotaional_offsets(vector<vector<float> > output, const string file_nam
 }
 
 void
-Gui::save_rational_output(vector<Vector2d> output, vector<float> gielis_curve_params, const string file_name, const string save_folder)
+Gui::save_contour(const string file_name, const string save_folder)
 {
     ofstream log_stream;
 
@@ -660,24 +662,95 @@ Gui::save_rational_output(vector<Vector2d> output, vector<float> gielis_curve_pa
     log_file.append(save_folder);
     log_file.append("/output/");
     log_file.append(file_name);
-    log_file.append("_rationalShape");
+    log_file.append("_contour_log");
     log_file.append(".txt");
 
     log_stream.open(log_file.c_str());
 
-    // Saving the parameters first
-    log_stream << "a: " << gielis_curve_params[0] << "\t";
-    log_stream << "b: " << gielis_curve_params[1] << "\t";
-    log_stream << "n1: " << gielis_curve_params[2] << "\t";
-    log_stream << "n2: " << gielis_curve_params[3] << "\t";
-    log_stream << "n3: " << gielis_curve_params[4] << "\t";
-    log_stream << "\n\n";
+    for (unsigned j = 0; j < contour_log.size(); j++)
+    {
+        for (unsigned i = 0; i < contour_log[j].size(); i++)
+        {
+            log_stream << contour_log[j][i].x << "\t";
+            log_stream << contour_log[j][i].y << "\n";
+        }
+        log_stream << "\n";
+    }
+
+    log_stream.close();
+}
+
+void
+Gui::save_extracted_contour(const string file_name, const string save_folder)
+{
+    ofstream log_stream;
+
+    if( !QDir( QString(save_folder.c_str())+"/output/" ).exists() )
+    {
+        QDir().mkdir( QString(save_folder.c_str()) + "/output/" );
+    }
+
+    string log_file;
+    log_file.append(save_folder);
+    log_file.append("/output/");
+    log_file.append(file_name);
+    log_file.append("_extracted_contour_log");
+    log_file.append(".txt");
+
+    log_stream.open(log_file.c_str());
 
     // Saving the points after that.
-    for (unsigned j = 0; j < output.size(); j++)
+    for (unsigned j = 0; j < extracted_contour_log.size(); j++)
     {
-        log_stream << output[j][0] << "\t";
-        log_stream << output[j][1] << "\n";
+        for (unsigned i = 0; i < extracted_contour_log[j].size(); i++)
+        {
+            log_stream << extracted_contour_log[j][i].first << "\t";
+            log_stream << extracted_contour_log[j][i].second << "\n";
+        }
+        log_stream << "\n";
+    }
+
+    log_stream.close();
+}
+
+/*
+ * Sacing the parameters and poitns of the Gielis curve.
+ */
+void
+Gui::save_rational_output(const string file_name, const string save_folder)
+{
+    ofstream log_stream;
+
+    if( !QDir( QString(save_folder.c_str())+"/output/" ).exists() )
+    {
+        QDir().mkdir( QString(save_folder.c_str()) + "/output/" );
+    }
+
+    string log_file;
+    log_file.append(save_folder);
+    log_file.append("/output/");
+    log_file.append(file_name);
+    log_file.append("_gielis_output");
+    log_file.append(".txt");
+
+    log_stream.open(log_file.c_str());
+
+    if (gielis_curve_params.size() > 0)
+    {
+        // Saving the parameters first
+        log_stream << "a: " << gielis_curve_params[0] << "\t";
+        log_stream << "b: " << gielis_curve_params[1] << "\t";
+        log_stream << "n1: " << gielis_curve_params[2] << "\t";
+        log_stream << "n2: " << gielis_curve_params[3] << "\t";
+        log_stream << "n3: " << gielis_curve_params[4] << "\t";
+        log_stream << "\n\n";
+    }
+
+    // Saving the points after that.
+    for (unsigned j = 0; j < gielis_output.size(); j++)
+    {
+        log_stream << gielis_output[j][0] << "\t";
+        log_stream << gielis_output[j][1] << "\n";
     }
 
     log_stream.close();
@@ -777,26 +850,26 @@ void Gui::on_pushButton_SaveAll_clicked()
     QFileInfo fi(currentItem->text());
     QString base = fi.baseName();
     save_output_images(output_images, flags, base.toStdString(), fi.canonicalPath().toStdString());
-    save_log_files();
+    save_log_files(fi);
     ui->pushButton_SaveAll->setEnabled(false);
 }
 
-void Gui::save_log_files()
+void Gui::save_log_files(QFileInfo fi)
 {
     if(ui->logContourExtraction->isChecked()) {
-//        save_contour_extraction_output()
+        save_contour(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
         qWarning() << "Saving log files for Contour Extraction";
     }
     if(ui->logGielisParameters->isChecked()) {
-//        save_rational_output();
+        save_rational_output(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
         qWarning() << "Saving log files for Gielis Parameters";
     }
     if(ui->logOriginalContour->isChecked()) {
-//        save_original_contour_output();
+        save_extracted_contour(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
         qWarning() << "Saving log files for Original Contour";
     }
     if(ui->logRotationalOffset->isChecked()) {
-//        save_rational_output(output, gielis_curve_params, file_name, save_folder);
+        save_rotaional_offsets(fi.baseName().toStdString(), fi.canonicalPath().toStdString());
         qWarning() << "Saving log files for Rotational Offset";
     }
 }

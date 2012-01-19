@@ -8,6 +8,7 @@
 #include <vector>
 #include "window_QT.h"
 #include "options.h"
+#include "RotationalOffset.h"
 
 using namespace std;
 using namespace Eigen;
@@ -24,6 +25,11 @@ class Gui : public QMainWindow
 public:
     explicit Gui(QWidget *parent = 0);
     vector<Mat> output_images;
+    vector<vector<Point> > contour_log;
+    vector<IRO::Contour> extracted_contour_log;
+    vector<vector<float> > rotaional_offsets;
+    vector<float> gielis_curve_params;
+    vector<Vector2d> gielis_output;
     int current_image;
     bool is_display_images;
     ~Gui();
@@ -63,9 +69,11 @@ private:
     Mat drawPoints( const Mat &image, const vector<Vector2d> &data );
 
     void save_output_images(vector<Mat> images, vector<bool> flags, const string file_name, const string save_folder);
-    void save_rational_output(vector<Vector2d> output, vector<float> gielis_curve_params, const string file_name, const string save_folder);
-    void save_rotaional_offsets(vector<vector<float> > output, const string file_name, const string save_folder);
-    void save_log_files();
+    void save_contour(const string file_name, const string save_folder);
+    void save_extracted_contour(const string file_name, const string save_folder);
+    void save_rational_output( const string file_name, const string save_folder);
+    void save_rotaional_offsets(const string file_name, const string save_folder);
+    void save_log_files(QFileInfo fi);
 
     // Setting
     QSettings settings;
