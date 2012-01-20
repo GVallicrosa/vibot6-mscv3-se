@@ -290,13 +290,13 @@ void Gui::on_pushButton_Next_clicked()
         current_image++;
     case 3:
         if( ui->ContourExtaction->isChecked() ) {
-            ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
+            ui->label_CurrentImage->setText( "Convex Hull: " + fi.fileName() );
             break;
         }
         current_image++;
     case 4:
         if( ui->GetRotationOffset->isChecked() ) {
-            ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
+            ui->label_CurrentImage->setText( "Reduced Contour: " + fi.fileName() );
             break;
         }
         current_image++;
@@ -344,13 +344,13 @@ void Gui::on_pushButton_Prev_clicked()
         current_image--;
     case 4:
         if( ui->GetRotationOffset->isChecked() ) {
-            ui->label_CurrentImage->setText( "Get Rotation Offset: " + fi.fileName() );
+            ui->label_CurrentImage->setText( "Reduced Contour: " + fi.fileName() );
             break;
         }
         current_image--;
     case 3:
         if( ui->ContourExtaction->isChecked() ) {
-            ui->label_CurrentImage->setText( "Contour Extaction: " + fi.fileName() );
+            ui->label_CurrentImage->setText( "Convex Hull: " + fi.fileName() );
             break;
         }
         current_image--;
