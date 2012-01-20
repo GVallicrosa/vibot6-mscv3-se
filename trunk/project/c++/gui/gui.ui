@@ -39,7 +39,7 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>500</width>
+         <width>519</width>
          <height>16777215</height>
         </size>
        </property>
@@ -80,8 +80,8 @@
               <string>&amp;Process</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>logo.png</normaloff>logo.png</iconset>
+              <iconset resource="window_QT.qrc">
+               <normaloff>:/logo.png</normaloff>:/logo.png</iconset>
              </property>
              <property name="shortcut">
               <string>Ctrl+P</string>
@@ -137,8 +137,8 @@
               <string>Process All</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>logo2.png</normaloff>logo2.png</iconset>
+              <iconset resource="window_QT.qrc">
+               <normaloff>:/logomulti.png</normaloff>:/logomulti.png</iconset>
              </property>
             </widget>
            </item>
@@ -420,7 +420,7 @@
      <x>0</x>
      <y>0</y>
      <width>745</width>
-     <height>25</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
