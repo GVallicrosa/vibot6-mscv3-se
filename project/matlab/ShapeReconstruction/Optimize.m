@@ -27,7 +27,7 @@ function [ err ] = Optimize( Data , Normalization , functionused )
     itnum = 1;
     while itnum <= 20 && STOP == false
         
-        oldparams = Parameters;
+%         oldparams = Parameters;
         alpha = zeros(5,5);
         alpha2 = zeros(5,5);
         beta = zeros(5,1);
@@ -43,6 +43,9 @@ function [ err ] = Optimize( Data , Normalization , functionused )
                              Normalization,... %activate normalization or not
                              true);            %update vectors //Team U: if false the values of alpha and beta won't be changed in the function and
                                                %alpha n beta wud have the last values only
+        
+        oldparams = Parameters;
+        
         for k = 1:5
 		    alpha(k,k) = alpha(k,k) * ( 1. + lambda);   %multiplicative factor to make diagonal dominant   //Team U: dnt knw whether to keep this step or not
 		    alpha(k,k) = alpha(k,k) + lambda;    %additive factor to avoid rank deficient matrix      //Team U: same as (J^T*J + lambda*I)

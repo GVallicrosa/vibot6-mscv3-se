@@ -210,7 +210,7 @@ function [ChiSquare, alpha, beta] = XiSquare(Data, alpha, beta, init_on, robust,
         end %end if(update==true)
     end %end for i=1:length(Data)
     
-    Parameters(8) = tht0;
-    Parameters(10) = x0;
-    Parameters(11) = y0;
+%     Parameters(8) = tht0;
+%     Parameters(10) = x0;
+%     Parameters(11) = y0;
 end %end function XiSquare()
