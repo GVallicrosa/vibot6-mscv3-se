@@ -9,6 +9,7 @@
 #include "window_QT.h"
 #include "options.h"
 #include "RotationalOffset.h"
+#include "rationalsupershape2d.h"
 
 using namespace std;
 using namespace Eigen;
