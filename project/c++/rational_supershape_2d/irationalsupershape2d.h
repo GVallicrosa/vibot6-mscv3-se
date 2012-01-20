@@ -32,11 +32,9 @@
 using namespace std;
 using namespace Eigen;
 
-#ifndef EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION
 // In order to be able to use vector2d
 // -in stl containers, this line is mandatory.
 EIGEN_DEFINE_STL_VECTOR_SPECIALIZATION(Vector2d)
-#endif
 
 class IRationalSuperShape2D
 {

@@ -9,7 +9,6 @@
 #include "ihls.h"
 #include "nhs.h"
 #include "PostProcessing.h"
-#include "rationalsupershape2d.h"
 #include "imageframe.h"
 
 
