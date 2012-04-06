@@ -35,9 +35,9 @@ sudo apt-get install libsvn-java
   # When you're in the C/C++ perspective, right click on the project and go to 'run as' and run it as 'local C/C++ application'.
 
 == Terminal ==
- # Check out the code by running following command. (Of course change akbarinia.arash@gmail.com to your username.
+ # Check out the code by running following command. 
 {{{
-svn checkout https://vibot6-mscv3-se.googlecode.com/svn/trunk/ vibot6-mscv3-se --username akbarinia.arash@gmail.com
+svn checkout https://vibot6-mscv3-se.googlecode.com/svn/trunk/ vibot6-mscv3-se --username something@gmail.com
 }}}
  # Navigate to the vibot6_mscv3 folder.
  # Run this command.
